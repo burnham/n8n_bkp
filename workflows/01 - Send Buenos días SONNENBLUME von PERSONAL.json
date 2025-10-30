@@ -1,0 +1,208 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Generate an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate an image": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Enviar imagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-29T23:25:11.686Z",
+  "id": "QlWW5ygt6XADzPj2",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "01 - Send Buenos días SONNENBLUME von PERSONAL",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 6,
+              "triggerAtMinute": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8b6fab8f-663e-4d08-8ca5-9b84fa97e60a",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5f130d68-c1a8-4d8e-aacd-16bc8dfa97cc",
+              "name": "PROMPT",
+              "value": "Crea una imagen, para dar los buenos días que ya es hora de levantarse a mi amada esposa apasiona de la Inteligencia Artificial y las automatizaciones. ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        0
+      ],
+      "id": "2b11bd51-6bc5-4c9e-8d54-9cdddc4381ba",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "prompt": "={{ $json.PROMPT }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        320,
+        0
+      ],
+      "id": "2e786cd1-7e28-4cb3-a6b8-ef03572ea347",
+      "name": "Generate an image",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        512,
+        0
+      ],
+      "id": "ab2b8d3f-dd84-4697-9a79-d5f0766cfeea",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "operation": "send-image",
+        "instanceName": "Georgios",
+        "remoteJid": "4367762329069",
+        "media": "={{ $json.data }}",
+        "caption": "Buenos dias mi amor, es hora de levantarse!",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        720,
+        0
+      ],
+      "id": "4c632fee-d563-4718-b1c8-7cb710b86ae9",
+      "name": "Enviar imagem",
+      "credentials": {
+        "evolutionApi": {
+          "id": "xx7NQwgqrCANhFMj",
+          "name": "Evolution GEORGIOS"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      },
+      {
+        "json": {
+          "name": "Second item",
+          "code": 2
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Vienna",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-29T23:25:11.702Z",
+      "createdAt": "2025-10-29T23:25:11.702Z",
+      "role": "workflow:owner",
+      "workflowId": "QlWW5ygt6XADzPj2",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-10-30T00:48:51.376Z",
+      "createdAt": "2025-10-29T23:20:09.942Z",
+      "id": "5RryqJXHMRhJl7Ze",
+      "name": "Personal"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-30T17:01:56.000Z",
+  "versionId": "8c9de60b-adfc-44c7-a05c-1bfa161e0f57"
+}
