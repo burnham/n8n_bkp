@@ -1,0 +1,45 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2025-10-30T18:29:39.621Z",
+  "id": "HhK8tvvWHvipBj9r",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "FB_MSG",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "468b39f6-b5d7-4dba-9a98-990ba53b55ff",
+      "name": "Webhook",
+      "webhookId": "a815cb12-7ae7-4aa0-b9c2-e69cec10bec7"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-30T18:29:39.629Z",
+      "createdAt": "2025-10-30T18:29:39.629Z",
+      "role": "workflow:owner",
+      "workflowId": "HhK8tvvWHvipBj9r",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-30T19:03:22.000Z",
+  "versionId": "aafcd312-9ddd-4bfa-8867-b04cacc1756e"
+}
