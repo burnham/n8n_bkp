@@ -1,0 +1,554 @@
+{
+  "active": false,
+  "connections": {
+    "Embeddings Mistral Cloud2": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Embeddings User Doc",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader1": {
+      "ai_document": [
+        [
+          {
+            "node": "Embeddings User Doc",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader1",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings User Doc": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set del Prompt User": {
+      "main": [
+        [
+          {
+            "node": "Si archivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Agente IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente IA",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente IA",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI1": {
+      "main": [
+        [
+          {
+            "node": "Embeddings User Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Si archivo": {
+      "main": [
+        [
+          {
+            "node": "OpenAI1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Set del Prompt User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Capturar LEAD Agente": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-30T17:03:44.276Z",
+  "id": "47FCbf54qYukvARA",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Foto Agente - Tarjeta Correo N8N GB",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        672,
+        240
+      ],
+      "id": "736f89cd-65b5-4d1e-aa73-4b7d96fc8ed9",
+      "name": "Embeddings Mistral Cloud2",
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "ndK0QlcT2ip1xCAv",
+          "name": "Mistral Cloud account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "fileName",
+                "value": "={{$json[\"fileName\"]}}"
+              },
+              {
+                "name": "sessionId",
+                "value": "={{$json[\"sessionId\"]}}"
+              },
+              {
+                "name": "chunkId",
+                "value": "={{$json[\"index\"]}}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        832,
+        256
+      ],
+      "id": "d81e972c-6510-4445-ab72-92ae919d6545",
+      "name": "Default Data Loader1"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": "tarjeta_cliente",
+        "embeddingBatchSize": 100,
+        "options": {
+          "columnNames": {
+            "values": {
+              "contentColumnName": "content"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.1,
+      "position": [
+        704,
+        0
+      ],
+      "id": "e5cdbfb0-4f6b-430c-b0b0-abaa6980dde1",
+      "name": "Embeddings User Doc",
+      "credentials": {
+        "postgres": {
+          "id": "ekPcYBDB1uvhjbGk",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chunkSize": 2000,
+        "chunkOverlap": 200,
+        "options": {
+          "splitCode": "markdown"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        816,
+        448
+      ],
+      "id": "1abcd6a2-9fc4-4e94-8d68-5c2fa2d0cd6a",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0f05f32b-3da7-4eb1-b0c7-c58330b3e482",
+              "name": "userText",
+              "value": "={{ $json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -848,
+        32
+      ],
+      "id": "2497b162-7363-4892-890a-5b1028e12e73",
+      "name": "Set del Prompt User"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1) Recoge todos los items en un array\nconst allItems = items;\n\n// 2) Extrae el texto del usuario (campo chatInput)\nconst userItem = allItems.find(i => i.json.chatInput !== undefined);\nconst userText = userItem ? userItem.json.chatInput : \"\";\n\n// 3) Filtra los chunks del documento (campo pageContent)\nconst docChunks = allItems\n  .filter(i => i.json.pageContent !== undefined && i.json.chatInput === undefined)\n  .map(i => i.json.pageContent);\n\n// 4) Une todos los trozos en un solo string\nconst docContent = docChunks.join(\"\\n\\n\");\n\n// 5) Construye el prompt final\nconst fullPrompt = docChunks.length > 0\n  ? `${userText}\\n\\n--- este es el Contenido del archivo subido por el usuario a verificar por el cumplimiento de la normativa que tienes en tu base de conocimiento ---\\n\\n${docContent}`\n  : userText;\n\n// 6) Devuelve un único item con la propiedad prompt\nreturn [{\n  json: { prompt: fullPrompt }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        352
+      ],
+      "id": "f85a3faa-5f09-4461-99d8-6469c6ca9d92",
+      "name": "Code",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -96,
+        576
+      ],
+      "id": "a001b4a0-5821-4423-88c6-66e30b201870",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.prompt }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        96,
+        576
+      ],
+      "id": "d9b5fa08-da50-4cba-b8c8-7cb37a7a4c55",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "CHATGPT-4O-LATEST"
+        },
+        "text": "Porfavor, saca toda la información de esta imagen",
+        "inputType": "base64",
+        "binaryPropertyName": "data0",
+        "simplify": false,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        0,
+        0
+      ],
+      "id": "dfe589ff-d0ad-4dbc-9430-289ecd9aa6d7",
+      "name": "OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7d71ae39-748f-436d-b71f-c1c9781fbd56",
+              "leftValue": "={{ $json.files[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -528,
+        32
+      ],
+      "id": "b2858644-77fd-49e9-9f45-dc70ac24913c",
+      "name": "Si archivo"
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Sube la foto de la tarjeta de visita:",
+        "options": {
+          "allowFileUploads": true,
+          "inputPlaceholder": "Escribe aquí...",
+          "subtitle": "IA y Automatizaciones para tu Empresa",
+          "title": "NonRealXR.COM! 👋",
+          "customCss": ":root {\n  /* Fuente */\n  --chat--font-family: 'Roboto', sans-serif;\n\n  /* Colores */\n  --chat--color-primary: #0d47a1;               /* Azul corporativo */\n  --chat--color-primary-shade-50: #0b3d91;\n  --chat--color-primary-shade-100: #092f7a;\n  --chat--color-secondary: #607d8b;             /* Gris azulado */\n  --chat--color-secondary-shade-50: #546e78;\n  --chat--color-white: #ffffff;\n  --chat--color-light: #1e2530;                 /* Fondo principal oscuro */\n  --chat--color-light-shade-50: #2a313e;\n  --chat--color-light-shade-100: #3b4554;\n  --chat--color-medium: #4f5970;                /* Gris medio para bordes/textos */\n  --chat--color-dark: #cfd8e3;                  /* Texto claro */\n  --chat--color-disabled: #777980;\n  --chat--color-typing: #9ea7b8;\n\n  /* Espaciado y bordes */\n  --chat--spacing: 1rem;\n  --chat--border-radius: 0.375rem;\n  --chat--transition-duration: 0.2s;\n\n  /* Ventana */\n  --chat--window--width: 400px;\n  --chat--window--height: 600px;\n  --chat--window--bottom: var(--chat--spacing);\n  --chat--window--right: var(--chat--spacing);\n  --chat--window--z-index: 1000;\n  --chat--window--border: 1px solid var(--chat--color-light-shade-50);\n  --chat--window--border-radius: var(--chat--border-radius);\n\n  /* Cabecera */\n  --chat--header--background: var(--chat--color-primary);\n  --chat--header--color: var(--chat--color-white);\n  --chat--header--padding: var(--chat--spacing);\n  --chat--heading--font-size: 1.75em;\n  --chat--subtitle--font-size: 1em;\n\n  /* Mensajes */\n  --chat--messages-list--padding: var(--chat--spacing);\n  --chat--message--font-size: 1rem;\n  --chat--message--padding: var(--chat--spacing);\n  --chat--message--border-radius: var(--chat--border-radius);\n  --chat--message-line-height: 1.6;\n  --chat--message--margin-bottom: var(--chat--spacing);\n\n  --chat--message--bot--background: var(--chat--color-light-shade-50);\n  --chat--message--bot--color: var(--chat--color-dark);\n  --chat--message--bot--border: none;\n\n  --chat--message--user--background: var(--chat--color-primary);\n  --chat--message--user--color: var(--chat--color-white);\n  --chat--message--user--border: none;\n\n  --chat--message--pre--background: rgba(255, 255, 255, 0.05);\n\n  /* Toggle */\n  --chat--toggle--size: 60px;\n  --chat--toggle--background: var(--chat--color-primary);\n  --chat--toggle--hover--background: var(--chat--color-primary-shade-50);\n  --chat--toggle--active--background: var(--chat--color-primary-shade-100);\n  --chat--toggle--color: var(--chat--color-white);\n\n  /* Área de entrada */\n  --chat--textarea--height: 48px;\n  --chat--textarea--max-height: 28rem;\n  --chat--input--font-size: 1rem;\n  --chat--input--border: 1px solid var(--chat--color-medium);\n  --chat--input--border-radius: var(--chat--border-radius);\n  --chat--input--padding: 0.75rem;\n  --chat--input--background: var(--chat--color-light);\n  --chat--input--text-color: var(--chat--color-dark);\n  --chat--input--line-height: 1.5;\n  --chat--input--placeholder--font-size: var(--chat--input--font-size);\n  --chat--input--border-active: 1px solid var(--chat--color-primary);\n  --chat--input--left--panel--width: 2.5rem;\n\n  /* Botones */\n  --chat--button--color: var(--chat--color-white);\n  --chat--button--background: var(--chat--color-primary);\n  --chat--button--padding: 0.5rem 1rem;\n  --chat--button--border-radius: var(--chat--border-radius);\n  --chat--button--hover--background: var(--chat--color-primary-shade-50);\n\n  /* Enviar y archivo */\n  --chat--input--send--button--background: var(--chat--color-primary);\n  --chat--input--send--button--color: var(--chat--color-white);\n  --chat--input--send--button--background-hover: var(--chat--color-primary-shade-50);\n\n  --chat--input--file--button--background: var(--chat--color-light-shade-50);\n  --chat--input--file--button--color: var(--chat--color-medium);\n  --chat--input--file--button--background-hover: var(--chat--color-light-shade-100);\n  --chat--input--file--button--color-hover: var(--chat--color-secondary-shade-50);\n\n  /* Cuerpo y pie */\n  --chat--body--background: var(--chat--color-light);\n  --chat--footer--background: var(--chat--color-light);\n  --chat--footer--color: var(--chat--color-dark);\n}\n\n/* Override para ancho de mensaje */\n.chat-message {\n  max-width: 60%;\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1184,
+        32
+      ],
+      "id": "cdd3ab93-378d-4c03-86f5-78c96077bfbd",
+      "name": "When chat message received",
+      "webhookId": "269c2fc7-adc1-430d-af6a-e9ac86838a48"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1W-Qbtxm1SgzcDcjeTrM30_yzJT3W5QgOaqQILP4m4hI",
+          "mode": "list",
+          "cachedResultName": "Captura LEADS Agent",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1W-Qbtxm1SgzcDcjeTrM30_yzJT3W5QgOaqQILP4m4hI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "LEADS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1W-Qbtxm1SgzcDcjeTrM30_yzJT3W5QgOaqQILP4m4hI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre', ``, 'string') }}",
+            "Correo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Correo', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        400,
+        576
+      ],
+      "id": "f8d5ddc1-72a2-4976-b70e-42f28baf9408",
+      "name": "Capturar LEAD Agente",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.prompt }}",
+        "options": {
+          "systemMessage": "=Tu misión es recibir una información de una tarjeta de visita con un correo electrónico, un nombre de una persona, y un nombre de una empresa. Si algo de esta información falta no pasa nada. \n\nSolo responderás en relación a la tarjeta de visita, solo puedes responder a esta temática.\n\nTienes que enviar un correo eletrónico al contacto que recibas. Diciéndole:\n\n<p> Hola, (Nombre) <br>\n\n<p> Haz un mensaje personalizado, dependiendo de lo que sea la empresa,siempre ten en cuenta que, es un cliente y el trato debe de ser cordial y profesional. Añade emoticonos, explcia los beneficios de aplicar la IA en la empresa del cliente en base a su actividad.<br>\n\n<p> Será un placer hacer la auditoria junto con el equipo de NonRealXR.COM <br>\n\n<p> Nos vemos en la reunión con el equipo.<br>\n\n<p> Muchas gracias!<br>\n\n<p>Saludos,<br>\n\nEquipo de <strong>NonRealXR.COM</strong></p>\n\nUsa la tool de 'gmail' para enviar el correo. Siempre debes de enviar el correo es tu único trabajo.\n\nUna vez hecho esto, guarda la información de contacto en la tool 'Captura LEADS agente'."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        0,
+        352
+      ],
+      "id": "03bd72cf-5525-4d15-8dbf-c6f45b579a47",
+      "name": "Agente IA",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        256,
+        576
+      ],
+      "id": "d08a342e-926a-43e2-a847-caa9e36a5481",
+      "name": "Send a message in Gmail",
+      "webhookId": "79842668-e437-48a5-8630-f67992449c04",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RACKunhqsGrQUqMd",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-30T17:03:44.289Z",
+      "createdAt": "2025-10-30T17:03:44.289Z",
+      "role": "workflow:owner",
+      "workflowId": "47FCbf54qYukvARA",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-10-30T00:48:51.376Z",
+      "createdAt": "2025-10-29T23:20:09.942Z",
+      "id": "5RryqJXHMRhJl7Ze",
+      "name": "Personal"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-30T18:02:37.000Z",
+  "versionId": "ddece871-01c0-4b1b-bb74-763c88d7c283"
+}
