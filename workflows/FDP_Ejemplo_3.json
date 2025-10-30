@@ -1,0 +1,404 @@
+{
+  "active": false,
+  "connections": {
+    "Email Trigger (IMAP)": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "Send Email2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-30T00:47:38.424Z",
+  "id": "ZHQQw7X7FWKUPktn",
+  "isArchived": false,
+  "meta": null,
+  "name": "FDP_Ejemplo_3",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [
+        -832,
+        64
+      ],
+      "id": "67a39e6a-bb92-46f2-bca3-b15ae221b222",
+      "name": "Email Trigger (IMAP)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8bf6aa64-6448-4ad4-b1d6-54cf411e992e",
+              "name": "from",
+              "value": "={{ $json.from }}",
+              "type": "string"
+            },
+            {
+              "id": "0e084279-e9c2-4431-bd1b-a89a16156cdd",
+              "name": "date",
+              "value": "={{ $json.date }}",
+              "type": "string"
+            },
+            {
+              "id": "f4945140-b18b-4212-a60e-5f606453e820",
+              "name": "subject",
+              "value": "={{ $json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "1f5dda21-0d90-48ef-88b9-6d522c73b4f9",
+              "name": "textHtml",
+              "value": "={{ $json.textHtml }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -672,
+        64
+      ],
+      "id": "3863c365-a6f5-4cc2-b5d2-447716ab0643",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Cw96ieXH7UDiLHFtF3sl4LVmWObLUbVaTWKzyZeijic",
+          "mode": "list",
+          "cachedResultName": "Listado de Expedientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Cw96ieXH7UDiLHFtF3sl4LVmWObLUbVaTWKzyZeijic/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Cw96ieXH7UDiLHFtF3sl4LVmWObLUbVaTWKzyZeijic/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Expediente",
+              "lookupValue": "={{ $json.subject }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -512,
+        64
+      ],
+      "id": "cb4b4d62-4d6d-48be-93f4-d861996b63af",
+      "name": "Google Sheets",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "26f83ee8-bfc9-4f37-ac8b-5460abeeed49",
+              "leftValue": "={{ Object.keys($json).length === 0 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -352,
+        64
+      ],
+      "id": "1ca570d7-647d-4507-b20e-2fe8a829a0a3",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "fromEmail": "siniestros@nacaia.com",
+        "toEmail": "={{ $json.Correo }}",
+        "subject": "={{ $json.Expediente }}",
+        "html": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Correo NacaIA</title>\n  <!--[if mso]>\n  <style type=\"text/css\">\n    table {border-collapse: collapse;}\n    td {font-family: Arial, sans-serif;}\n    .rounded {border-radius: 8px;}\n  </style>\n  <![endif]-->\n</head>\n<body style=\"margin: 0; padding: 0; background-color: #f9f9f9;\">\n  <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color: #f9f9f9;\">\n    <tr>\n      <td align=\"center\" style=\"padding: 20px 0;\">\n        <table role=\"presentation\" width=\"65%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color: #ffffff; border: 1px solid #dddddd; border-radius: 8px; overflow: hidden;\">\n          \n          <!-- Header -->\n          <tr>\n            <td align=\"center\" style=\"padding: 20px; background-color: #ffffff; border-bottom: 1px solid #dddddd;\">\n              <img src=\"https://nacaia.com/assets/img/logo.png\" alt=\"NacaIA Logo\" width=\"380\" style=\"display: block; margin: 0 auto;\">\n              <p style=\"color: #ce9b53; font-size: 20px; font-family: Arial, sans-serif; margin: 5px 0; font-weight: 600;\">Soluciones Tecnológicas Avanzadas</p>\n            </td>\n          </tr>\n          \n          <!-- Contenido principal -->\n          <tr>\n            <td style=\"padding: 30px 20px; font-family: Arial, sans-serif; line-height: 1.6; color: #333333;\">\n              <p style=\"font-size: 16px; color: #2a4d69; font-weight: 600; margin: 0 0 20px;\">\n              Hola {{ $json.Gestor }},<br><br>\n\n              Te reenvío un expediente enviado por {{ $('Email Trigger (IMAP)').first().json.from }} asociado a tu cartera.<br><br>\n\n\t\t\t  {{ $('Email Trigger (IMAP)').first().json.textHtml }}\n\t\t\t  </p>                           \n\t\t\t  </p>\n            </td>\n          </tr>\t        \t  \n\n          <!-- Footer -->\n          <tr>\n            <td style=\"background-color: #ce9b53; padding: 15px; text-align: center; font-family: Arial, sans-serif; font-size: 12px; color: #333333;\">\n              <p style=\"margin: 0;\"><strong>info@nacaia.com</strong> | <a href=\"https://nacaia.com\" target=\"_blank\" style=\"color: #2a4d69; text-decoration: none;\">nacaia.com</a></p>\n              <p style=\"margin: 10px 0 0;\"><strong>ADVERTENCIA LEGAL:</strong> Este correo electrónico, y en su caso, cualquier fichero anexo al mismo, contiene información de carácter confidencial, exclusivamente dirigida a su destinatario, salvo error u omisión involuntarios. Queda prohibida su divulgación, copia o distribución a terceros, sin la previa autorización por escrito de su remitente. En el caso de haber recibido este mensaje por error, se ruega comunique esta circunstancia mediante su reenvío a la dirección electrónica del remitente y proceda a su eliminación, así como la de cualquier documento adjunto al mismo.</p>\n              <p style=\"margin: 10px 0 0;\">nacaIA ha adoptado todas las medidas a su alcance para impedir la implantación de virus informáticos en este correo y su documentación adjunta hasta el momento de su emisión, sin que asuma responsabilidad alguna por los eventuales daños o pérdidas que pueda ocasionar la recepción del mismo</p>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n  </table>\n</body>\n</html>\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -112,
+        0
+      ],
+      "id": "fc796a8c-360c-44f1-b919-b6a8d307434f",
+      "name": "Send Email",
+      "webhookId": "aceec472-82b3-4925-8006-8d620653e8d6"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Cw96ieXH7UDiLHFtF3sl4LVmWObLUbVaTWKzyZeijic",
+          "mode": "list",
+          "cachedResultName": "Listado de Expedientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Cw96ieXH7UDiLHFtF3sl4LVmWObLUbVaTWKzyZeijic/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Cw96ieXH7UDiLHFtF3sl4LVmWObLUbVaTWKzyZeijic/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -112,
+        160
+      ],
+      "id": "7cef87a7-dcae-45e2-b444-845a7d3c2554",
+      "name": "Google Sheets1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const counts = {};\nconst emails = {};\n\n// Contar los registros por gestor y guardar el correo asociado\nfor (const row of $input.all()) {\n    const gestor = row.json[\"Gestor\"];\n    const correo = row.json[\"Correo\"];\n\n    if (!gestor || !correo) continue;\n\n    counts[gestor] = (counts[gestor] || 0) + 1;\n  \n    if (!emails[gestor]) {\n        emails[gestor] = correo;\n    }\n}\n\n// Encontrar el gestor con menos registros\nlet minGestor = null;\nlet minCount = Infinity;\nlet minCorreo = null;\n\nfor (const [gestor, count] of Object.entries(counts)) {\n    if (count < minCount) {\n        minGestor = gestor;\n        minCount = count;\n        minCorreo = emails[gestor];  // Obtener el correo del gestor con menos registros\n    }\n}\n\nconsole.log(\"Gestor con menos asignaciones:\", minGestor, minCount);\n// Devolver el gestor con menos registros y su correo\nreturn {\n  json: {\n    gestor: minGestor,\n    correo: minCorreo,\n    count: minCount\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        32,
+        160
+      ],
+      "id": "d2e650a5-31a0-49db-a7c0-e5786dab058a",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Cw96ieXH7UDiLHFtF3sl4LVmWObLUbVaTWKzyZeijic",
+          "mode": "list",
+          "cachedResultName": "Listado de Expedientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Cw96ieXH7UDiLHFtF3sl4LVmWObLUbVaTWKzyZeijic/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Cw96ieXH7UDiLHFtF3sl4LVmWObLUbVaTWKzyZeijic/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Expediente": "={{ $('Edit Fields').first().json.subject }}",
+            "Gestor": "={{ $json.gestor }}",
+            "Correo": "={{ $json.correo }}",
+            "Entrada": "={{ $now }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Expediente",
+              "displayName": "Expediente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gestor",
+              "displayName": "Gestor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Entrada",
+              "displayName": "Entrada",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        176,
+        160
+      ],
+      "id": "a6275af6-7724-4ae5-bc18-4830f9a5487e",
+      "name": "Google Sheets2"
+    },
+    {
+      "parameters": {
+        "fromEmail": "siniestros@nacaia.com",
+        "toEmail": "={{ $json.Correo }}",
+        "subject": "={{ $json.Expediente }}",
+        "html": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Correo NacaIA</title>\n  <!--[if mso]>\n  <style type=\"text/css\">\n    table {border-collapse: collapse;}\n    td {font-family: Arial, sans-serif;}\n    .rounded {border-radius: 8px;}\n  </style>\n  <![endif]-->\n</head>\n<body style=\"margin: 0; padding: 0; background-color: #f9f9f9;\">\n  <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color: #f9f9f9;\">\n    <tr>\n      <td align=\"center\" style=\"padding: 20px 0;\">\n        <table role=\"presentation\" width=\"65%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color: #ffffff; border: 1px solid #dddddd; border-radius: 8px; overflow: hidden;\">\n          \n          <!-- Header -->\n          <tr>\n            <td align=\"center\" style=\"padding: 20px; background-color: #ffffff; border-bottom: 1px solid #dddddd;\">\n              <img src=\"https://nacaia.com/assets/img/logo.png\" alt=\"NacaIA Logo\" width=\"380\" style=\"display: block; margin: 0 auto;\">\n              <p style=\"color: #ce9b53; font-size: 20px; font-family: Arial, sans-serif; margin: 5px 0; font-weight: 600;\">Soluciones Tecnológicas Avanzadas</p>\n            </td>\n          </tr>\n          \n          <!-- Contenido principal -->\n          <tr>\n            <td style=\"padding: 30px 20px; font-family: Arial, sans-serif; line-height: 1.6; color: #333333;\">\n              <p style=\"font-size: 16px; color: #2a4d69; font-weight: 600; margin: 0 0 20px;\">\n              Hola {{ $json.Gestor }},<br><br>\n\n              Te reenvío un expediente enviado por {{ $('Email Trigger (IMAP)').first().json.from }} asociado a tu cartera.<br><br>\n\n\t\t\t  {{ $('Email Trigger (IMAP)').first().json.textHtml }}\n\t\t\t  </p>                           \n\t\t\t  </p>\n            </td>\n          </tr>\t        \t  \n\n          <!-- Footer -->\n          <tr>\n            <td style=\"background-color: #ce9b53; padding: 15px; text-align: center; font-family: Arial, sans-serif; font-size: 12px; color: #333333;\">\n              <p style=\"margin: 0;\"><strong>info@nacaia.com</strong> | <a href=\"https://nacaia.com\" target=\"_blank\" style=\"color: #2a4d69; text-decoration: none;\">nacaia.com</a></p>\n              <p style=\"margin: 10px 0 0;\"><strong>ADVERTENCIA LEGAL:</strong> Este correo electrónico, y en su caso, cualquier fichero anexo al mismo, contiene información de carácter confidencial, exclusivamente dirigida a su destinatario, salvo error u omisión involuntarios. Queda prohibida su divulgación, copia o distribución a terceros, sin la previa autorización por escrito de su remitente. En el caso de haber recibido este mensaje por error, se ruega comunique esta circunstancia mediante su reenvío a la dirección electrónica del remitente y proceda a su eliminación, así como la de cualquier documento adjunto al mismo.</p>\n              <p style=\"margin: 10px 0 0;\">nacaIA ha adoptado todas las medidas a su alcance para impedir la implantación de virus informáticos en este correo y su documentación adjunta hasta el momento de su emisión, sin que asuma responsabilidad alguna por los eventuales daños o pérdidas que pueda ocasionar la recepción del mismo</p>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n  </table>\n</body>\n</html>\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        336,
+        160
+      ],
+      "id": "30b3f775-f71d-4e2e-abc2-141a8e8cd0a4",
+      "name": "Send Email2",
+      "webhookId": "aceec472-82b3-4925-8006-8d620653e8d6"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-30T00:47:38.441Z",
+      "createdAt": "2025-10-30T00:47:38.441Z",
+      "role": "workflow:owner",
+      "workflowId": "ZHQQw7X7FWKUPktn",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-10-29T17:55:00.069Z",
+      "createdAt": "2025-10-29T17:55:00.069Z",
+      "id": "urzNtCIjN3p1EnZn",
+      "name": "FDP - Ejercicios"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-30T02:15:56.000Z",
+  "versionId": "172fa37e-a17c-4356-8beb-3536c4716bc6"
+}
