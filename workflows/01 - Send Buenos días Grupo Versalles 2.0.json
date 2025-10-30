@@ -1,0 +1,197 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Generate an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate an image": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Enviar imagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-29T18:29:59.461Z",
+  "id": "ZY1Kga3ppgk5nuDO",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "01 - Send Buenos días Grupo Versalles 2.0",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 5
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "42676707-5c5b-486f-ad8c-8ab3d61250cc",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5f130d68-c1a8-4d8e-aacd-16bc8dfa97cc",
+              "name": "PROMPT",
+              "value": "Crea una imagen todos los dias para darle el buenos dias con fortaleza (en general no me refiero por la mañana) a un grupo de amigos del WhatsApp a los que les apasiona la inteligencia artificial y las automatizaciones",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        0
+      ],
+      "id": "e08a68d8-14c5-481b-ac2a-824d4a7b9c22",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "prompt": "={{ $json.PROMPT }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        320,
+        0
+      ],
+      "id": "e21368fb-05c0-41eb-bee4-b80c3c552293",
+      "name": "Generate an image",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        512,
+        0
+      ],
+      "id": "7cf2f136-d359-4f25-ae98-23f6fa920fac",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "operation": "send-image",
+        "instanceName": "Georgios",
+        "remoteJid": "120363400326230088@g.us",
+        "media": "={{ $json.data }}",
+        "caption": "Buenas a tod@s!",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        720,
+        0
+      ],
+      "id": "ae414675-a87e-4f0a-aa82-b7bd7a56694d",
+      "name": "Enviar imagem",
+      "credentials": {
+        "evolutionApi": {
+          "id": "xx7NQwgqrCANhFMj",
+          "name": "Evolution account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      },
+      {
+        "json": {
+          "name": "Second item",
+          "code": 2
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-29T18:29:59.466Z",
+      "createdAt": "2025-10-29T18:29:59.466Z",
+      "role": "workflow:owner",
+      "workflowId": "ZY1Kga3ppgk5nuDO",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-30T02:15:47.000Z",
+  "versionId": "00e6efc4-d07b-4430-9117-025c1ad8e18b"
+}
