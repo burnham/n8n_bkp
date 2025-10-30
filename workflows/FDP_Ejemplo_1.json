@@ -1,0 +1,185 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Evolution API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-29T23:23:04.494Z",
+  "id": "kDtiwVnnDJKhScNv",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "FDP_Ejemplo_1",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "060a7823-b7b2-4f02-a35c-561fc6b55749",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4f286781-ed09-44e1-8c6e-12c0528afd37",
+              "name": "PROMPT",
+              "value": "Crea una imagen, para dar los buenos días que ya es hora de levantarse a mi amada esposa apasiona de la Inteligencia Artificial y las automatizaciones. ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        0
+      ],
+      "id": "0a397557-663f-4c48-afa1-0157426772da",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "prompt": "={{ $json.PROMPT }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        320,
+        0
+      ],
+      "id": "eefe46e0-afb4-43d7-8290-7a95ed6b89ae",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        480,
+        0
+      ],
+      "id": "22a8520a-dbf3-4ced-871d-3a97346d0460",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "operation": "send-image",
+        "instanceName": "nacaIA",
+        "remoteJid": "4367762329069",
+        "media": "={{ $json.data }}",
+        "caption": "Buenos días mi reina, es hora de levantarse!",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        640,
+        0
+      ],
+      "id": "36a8ad8b-9865-49b6-8120-924a694d6d12",
+      "name": "Evolution API",
+      "credentials": {
+        "evolutionApi": {
+          "id": "xx7NQwgqrCANhFMj",
+          "name": "Evolution account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-29T23:23:04.505Z",
+      "createdAt": "2025-10-29T23:23:04.505Z",
+      "role": "workflow:owner",
+      "workflowId": "kDtiwVnnDJKhScNv",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-10-29T17:55:00.069Z",
+      "createdAt": "2025-10-29T17:55:00.069Z",
+      "id": "urzNtCIjN3p1EnZn",
+      "name": "FDP - Ejercicios"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-30T00:47:55.000Z",
+  "versionId": "61651fe8-6578-4a6b-818a-4a9187440222"
+}
