@@ -477,8 +477,8 @@
       "type": "n8n-nodes-base.github",
       "typeVersion": 1.1,
       "position": [
-        -1369.8733405875953,
-        -385.5773667029379
+        -1376,
+        -384
       ],
       "id": "c25860ae-31b7-460a-9e5a-13898486e2cf",
       "name": "Delete a file",
@@ -508,8 +508,15 @@
     }
   ],
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-10-30T00:48:51.376Z",
+      "createdAt": "2025-10-29T23:20:09.942Z",
+      "id": "5RryqJXHMRhJl7Ze",
+      "name": "Personal"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-30T08:13:49.000Z",
-  "versionId": "69f10434-59c5-4c63-977b-5e1419744f6c"
+  "updatedAt": "2025-10-30T08:14:15.000Z",
+  "versionId": "cd3f9688-a34a-484a-8054-8710e9bf70ba"
 }
