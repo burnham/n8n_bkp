@@ -1,0 +1,213 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Generate an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate an image": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Enviar imagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar imagem": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-10-30T07:42:41.137Z",
+  "id": "VkW0oqIdr0kkmsWe",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "01 - Send Buenos días GEORGIOS from NonRealXR",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 10,
+              "triggerAtMinute": 3
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -16,
+        -160
+      ],
+      "id": "8afa91e1-05c5-4272-ad9e-a4212f2ac564",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5f130d68-c1a8-4d8e-aacd-16bc8dfa97cc",
+              "name": "PROMPT",
+              "value": "Crea una imagen, para dar los buenos días que ya es hora de levantarse a mi amada esposa apasiona de la Inteligencia Artificial y las automatizaciones. ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        256,
+        -160
+      ],
+      "id": "60b12cab-8802-47cc-998d-68cae4354534",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "prompt": "={{ $json.PROMPT }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        480,
+        -160
+      ],
+      "id": "35495e74-0cb4-4935-9bfb-efb0dd7c4a73",
+      "name": "Generate an image",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        704,
+        -160
+      ],
+      "id": "a7235ee1-0681-4806-bd69-b9c6fda88e28",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "operation": "send-image",
+        "instanceName": "NonRealXR",
+        "remoteJid": "4367762491875",
+        "media": "={{ $json.data }}",
+        "caption": "Hola Georgios",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        928,
+        -160
+      ],
+      "id": "25afa1c0-cb1a-44c6-bcd4-f9771eaa92a8",
+      "name": "Enviar imagem",
+      "credentials": {
+        "evolutionApi": {
+          "id": "IfDB9SN9fRaLbVwX",
+          "name": "Evolution NonRealXR"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      },
+      {
+        "json": {
+          "name": "Second item",
+          "code": 2
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Vienna",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-30T07:42:41.146Z",
+      "createdAt": "2025-10-30T07:42:41.146Z",
+      "role": "workflow:owner",
+      "workflowId": "VkW0oqIdr0kkmsWe",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-10-30T00:48:51.376Z",
+      "createdAt": "2025-10-29T23:20:09.942Z",
+      "id": "5RryqJXHMRhJl7Ze",
+      "name": "Personal"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-30T09:05:43.000Z",
+  "versionId": "67730b06-5564-4158-b135-e8d84488ea49"
+}
