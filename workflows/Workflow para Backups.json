@@ -493,7 +493,10 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Europe/Vienna",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
   },
   "shared": [
     {
@@ -507,6 +510,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-30T03:57:39.000Z",
-  "versionId": "3e1410a7-56d2-47f5-ace5-18202a80026e"
+  "updatedAt": "2025-10-30T08:13:49.000Z",
+  "versionId": "69f10434-59c5-4c63-977b-5e1419744f6c"
 }
