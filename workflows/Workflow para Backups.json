@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "n8n": {
       "main": [
@@ -458,6 +458,37 @@
         -1216,
         -32
       ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "delete",
+        "owner": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "repository": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        -1369.8733405875953,
+        -385.5773667029379
+      ],
+      "id": "c25860ae-31b7-460a-9e5a-13898486e2cf",
+      "name": "Delete a file",
+      "webhookId": "83ce67bb-a12b-40a3-99b8-a9004db25333",
+      "credentials": {
+        "githubApi": {
+          "id": "Fmspbsge3rrFQ0KV",
+          "name": "GitHub account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -475,7 +506,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-10-30T03:22:41.000Z",
-  "versionId": "b27547b1-b74f-4be3-a00d-a31e2ebfc1d2"
+  "triggerCount": 1,
+  "updatedAt": "2025-10-30T03:57:39.000Z",
+  "versionId": "3e1410a7-56d2-47f5-ace5-18202a80026e"
 }
