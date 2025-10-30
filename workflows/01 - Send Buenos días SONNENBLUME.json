@@ -59,7 +59,8 @@
         "rule": {
           "interval": [
             {
-              "triggerAtHour": 6
+              "triggerAtHour": 6,
+              "triggerAtMinute": 10
             }
           ]
         }
@@ -152,7 +153,7 @@
       "credentials": {
         "evolutionApi": {
           "id": "xx7NQwgqrCANhFMj",
-          "name": "Evolution account"
+          "name": "Evolution GEORGIOS"
         }
       }
     }
@@ -174,7 +175,10 @@
     ]
   },
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Europe/Vienna",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
   },
   "shared": [
     {
@@ -190,8 +194,15 @@
       "recurrenceRules": []
     }
   },
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-10-30T00:48:51.376Z",
+      "createdAt": "2025-10-29T23:20:09.942Z",
+      "id": "5RryqJXHMRhJl7Ze",
+      "name": "Personal"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-30T02:15:35.000Z",
-  "versionId": "12fc2070-1d89-49d8-88f9-4d15d916ae90"
+  "updatedAt": "2025-10-30T09:05:59.000Z",
+  "versionId": "8314b144-64ff-4f5f-b063-fc62de655e74"
 }
