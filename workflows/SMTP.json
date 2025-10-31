@@ -1,0 +1,164 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Retrieve SMTP Credentials",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retrieve SMTP Credentials": {
+      "main": [
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-31T01:43:40.744Z",
+  "id": "aamtRDvioWi0CLti",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "SMTP",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "2c08794e-3778-40f0-9368-970ac28c2f3a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $('Retrieve SMTP Credentials').item.json.Sender }}",
+        "toEmail": "={{ $('Retrieve SMTP Credentials').item.json.User }}",
+        "subject": "E-Mail de PRUEBA",
+        "html": "Probando si llega un e-mail",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "14f25df4-700f-4b56-8dc6-c778b7514835",
+      "name": "Send email",
+      "webhookId": "52f77226-0eaa-4a7d-a60b-78d2ea2176f6",
+      "credentials": {
+        "smtp": {
+          "id": "IaYoYAxqmHf5VqTV",
+          "name": "SMTP NonReal XR ACC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "23b0da59-45b9-4ef4-9fe2-ae59076217be",
+              "name": "User",
+              "value": "={{$env.N8N_SMTP_USER}}",
+              "type": "string"
+            },
+            {
+              "id": "8337f8af-f3d8-4ef8-adf1-6d822fb9419e",
+              "name": "Password",
+              "value": "={{$env.N8N_SMTP_PASS}}",
+              "type": "string"
+            },
+            {
+              "id": "2f9860d5-0af7-49e3-b33e-181dea521da4",
+              "name": "Host",
+              "value": "={{$env.N8N_SMTP_HOST}}",
+              "type": "string"
+            },
+            {
+              "id": "eb2de307-a505-44e8-b6f7-4f33a205cd96",
+              "name": "Port",
+              "value": "={{$env.N8N_SMTP_PORT}}",
+              "type": "string"
+            },
+            {
+              "id": "9a79a5ef-873d-4d7a-af65-1b664601604b",
+              "name": "SSL/TLS",
+              "value": "={{$env.N8N_SMTP_SSL}}",
+              "type": "boolean"
+            },
+            {
+              "id": "0a11933d-ee5c-4816-9efa-c22d3fa06e4c",
+              "name": "Client Host Name",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "a22a5f9f-d106-46c4-be5b-ebe3d58814d9",
+              "name": "Sender",
+              "value": "={{$env.N8N_SMTP_SENDER}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "9d74ac0e-6b4f-483b-a2c0-bb5ad3345296",
+      "name": "Retrieve SMTP Credentials"
+    },
+    {
+      "parameters": {
+        "content": "##SMTP VARIABLES\nEnvironment Variables N8N\n\nN8N_EMAIL_MODE=smtp\nN8N_SMTP_HOST=smtp.gmail.com\nN8N_SMTP_PORT=587\nN8N_SMTP_SSL=false\nN8N_SMTP_USER=<nonrealxr@gmail.com>\nN8N_SMTP_PASS=abcd efgh ijkl mnop\nN8N_SMTP_SENDER=NonReal XR - Studio <nonrealxrl@gmail.com>\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/sticky-notes/)",
+        "height": 240,
+        "width": 496,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -16,
+        -304
+      ],
+      "typeVersion": 1,
+      "id": "a510f5bd-2397-4c6f-9575-a6147ee8c01e",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-31T01:43:40.755Z",
+      "createdAt": "2025-10-31T01:43:40.755Z",
+      "role": "workflow:owner",
+      "workflowId": "aamtRDvioWi0CLti",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-31T02:40:17.000Z",
+  "versionId": "07380343-d68f-46a5-bea2-a4ca480f5645"
+}
