@@ -1,0 +1,229 @@
+{
+  "active": false,
+  "connections": {
+    "Set Parameter": {
+      "main": [
+        [
+          {
+            "node": "Get Long Lived FB User Token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Long Lived FB User Token": {
+      "main": [
+        [
+          {
+            "node": "Get Long Lived FB Page Token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Set Parameter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Long Lived FB Page Token": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-10-30T23:04:46.784Z",
+  "id": "7X3gdXabDGzn9zxS",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Get Long Lived Facebook User or Page Access Token",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7f32e8e6-29bb-4987-ac25-a8c0748e0537",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -352,
+        288
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/v20.0/oauth/access_token",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": " grant_type",
+              "value": "fb_exchange_token"
+            },
+            {
+              "name": " client_id",
+              "value": "={{ $json[' client_id'] }}"
+            },
+            {
+              "name": " client_secret",
+              "value": "={{ $json[' client_secret'] }}"
+            },
+            {
+              "name": " fb_exchange_token",
+              "value": "={{ $json.user_access_token }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "2efd947f-9c86-4d72-ac24-e13758924317",
+      "name": "Get Long Lived FB User Token",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        176,
+        288
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "=GET",
+        "url": "=https://graph.facebook.com/v20.0/{{ $('Set Parameter').item.json.app_scoped_user_id }}/accounts",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": " access_token",
+              "value": "={{ $json.body.access_token }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "877450c9-26b4-4f46-bde3-3dadd0daf5e9",
+      "name": "Get Long Lived FB Page Token",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        448,
+        288
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "content": "## Set Required Facebook Parameter \n- client_id\n- client_secret\n- user_access_token\n- app-scoped-user-id (optional)\n\n## according to this doc\n https://developers.facebook.com/docs/facebook-login/guides/access-tokens/get-long-lived/",
+        "height": 472,
+        "width": 356
+      },
+      "id": "3580460a-0520-499d-8537-c1a6a5c9addd",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -192,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b1f6b8a1-dc25-4b1e-9aa3-0c0e452ae2de",
+              "name": " client_id",
+              "type": "string",
+              "value": ""
+            },
+            {
+              "id": "9a63879a-c359-49ad-9fec-19c9e4c78dd6",
+              "name": " client_secret",
+              "type": "string",
+              "value": ""
+            },
+            {
+              "id": "6971a841-ed5e-4d96-bdab-1eaec2d51ccc",
+              "name": "user_access_token",
+              "type": "string",
+              "value": ""
+            },
+            {
+              "id": "c75d5e50-62ea-4ee0-bfaa-5f79cf4d147e",
+              "name": "app_scoped_user_id",
+              "type": "string",
+              "value": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3ad66e0d-449e-43d4-835c-b4b362f7b2c0",
+      "name": "Set Parameter",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -128,
+        288
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "me",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        656,
+        288
+      ],
+      "id": "2a593314-13bb-422c-b4f2-85e1c926e620",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "2u7L29IImc8W4n3y",
+          "name": "Facebook Graph account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-10-30T23:04:46.790Z",
+      "createdAt": "2025-10-30T23:04:46.790Z",
+      "role": "workflow:owner",
+      "workflowId": "7X3gdXabDGzn9zxS",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-31T00:51:19.000Z",
+  "versionId": "3a5a6c06-b936-4327-a3f4-f56aaaf99526"
+}
