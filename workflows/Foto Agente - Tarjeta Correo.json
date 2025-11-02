@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Embeddings Mistral Cloud2": {
       "ai_embedding": [
@@ -548,7 +548,7 @@
       "name": "Personal"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-10-30T16:58:45.000Z",
+  "triggerCount": 1,
+  "updatedAt": "2025-11-02T18:06:33.000Z",
   "versionId": "7b401a8f-46bb-475e-862b-bdfb7cf04592"
 }
