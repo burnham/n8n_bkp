@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -91,7 +91,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        160,
+        224,
         0
       ],
       "id": "e08a68d8-14c5-481b-ac2a-824d4a7b9c22",
@@ -106,7 +106,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2,
       "position": [
-        320,
+        448,
         0
       ],
       "id": "e21368fb-05c0-41eb-bee4-b80c3c552293",
@@ -126,7 +126,7 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        512,
+        672,
         0
       ],
       "id": "7cf2f136-d359-4f25-ae98-23f6fa920fac",
@@ -145,7 +145,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        720,
+        896,
         0
       ],
       "id": "ae414675-a87e-4f0a-aa82-b7bd7a56694d",
@@ -188,6 +188,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-30T08:15:30.000Z",
-  "versionId": "9df4e011-06bb-4f81-a670-386d408c4692"
+  "updatedAt": "2025-11-03T05:35:23.000Z",
+  "versionId": "22ccfbb9-c482-40ff-8f6e-ca2bfe82eedd"
 }
