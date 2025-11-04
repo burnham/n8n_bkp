@@ -1,0 +1,1263 @@
+{
+  "active": false,
+  "connections": {
+    "Sugerir Horarios Cercanos": {
+      "main": [
+        [
+          {
+            "node": "Huecos libres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mirar Disponibilidad": {
+      "main": [
+        [
+          {
+            "node": "Are Slots Available",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Comienzo y Final": {
+      "main": [
+        [
+          {
+            "node": "Mirar Disponibilidad",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Are Slots Available": {
+      "main": [
+        [
+          {
+            "node": "Sugerir Horarios Cercanos",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No hay huecos libres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Elegir Herramienta": {
+      "main": [
+        [
+          {
+            "node": "Comienzo y Final",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Agendar Cita",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Setear Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agendar Cita": {
+      "main": [
+        [
+          {
+            "node": "Cita agendada con exito",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cita no agendada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setear Variables": {
+      "main": [
+        [
+          {
+            "node": "Elegir Herramienta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Variables Post-llamada": {
+      "main": [
+        [
+          {
+            "node": "Evaluar Logica",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluar Logica": {
+      "main": [
+        [
+          {
+            "node": "¿Llamada Cogida?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Llamada Cogida?": {
+      "main": [
+        [
+          {
+            "node": "Registrar Llamada Cogida",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Registrar Llamada Sin Responder",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Registrar Llamada Sin Responder",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Set Variables Post-llamada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Citas": {
+      "main": [
+        [
+          {
+            "node": "ID de Cita",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cancelar Cita": {
+      "main": [
+        [
+          {
+            "node": "Cita Cancelada con exito",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cita No Cancelada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ID de Cita": {
+      "main": [
+        [
+          {
+            "node": "Cancelar Cita",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook2": {
+      "main": [
+        [
+          {
+            "node": "Setear Variables1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setear Variables1": {
+      "main": [
+        [
+          {
+            "node": "Obtener Citas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-04T19:11:41.565Z",
+  "id": "7InkkD6925E8WkR3",
+  "isArchived": false,
+  "meta": null,
+  "name": "AGENTE DE CITAS",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "// --- FUNCIÓN PARA FORMATEAR HORA ---\nfunction formatoHoraEspañol(dateTime) {\n  const hora = dateTime.hour;\n  const minuto = dateTime.minute;\n  const minutoStr = minuto === 0 ? '' : `:${minuto.toString().padStart(2, '0')}`;\n  let horaDoce = hora % 12; if (horaDoce === 0) horaDoce = 12;\n  let periodo = (hora < 12) ? \" de la mañana\" : (hora < 20) ? \" de la tarde\" : \" de la noche\";\n  return (horaDoce === 1) ? `La 1${minutoStr}${periodo}` : `Las ${horaDoce}${minutoStr}${periodo}`;\n}\n\n// --- 1) INPUT + TZ ---\nconst args = $('Webhook').item.json.body.message.toolCalls[0].function.arguments;\nconst TZ = args.zonaHoraria || 'Europe/Madrid';\nconst citaSolicitadaISO = args.citaSolicitada;\nconst req = DateTime.fromISO(citaSolicitadaISO).setZone(TZ).startOf('minute');\nconst reqMillisUTC = req.toUTC().toMillis();\n\n// --- 2) SLOTS DE LA API (solo el MISMO DÍA) ---\nconst data = $('Mirar Disponibilidad').item.json.data || {};\nconst sameDayKey = req.toISODate(); // p.ej. \"2025-09-09\"\nconst rawSlots = data[sameDayKey] || [];\nconst slots = rawSlots.map(s => DateTime.fromISO(s.start).setZone(TZ).startOf('minute'));\n\n// --- 3) ¿ESTÁ DISPONIBLE EXACTO? (comparación robusta) ---\nconst isAvailable = slots.some(dt => dt.toUTC().toMillis() === reqMillisUTC);\n\n// --- 4) MENSAJE + SUGERENCIAS (2 más cercanas del MISMO DÍA) ---\nlet message = \"\";\nif (isAvailable) {\n  message = \"Sí, ese horario está disponible. ¿Quieres que te agende la cita?\";\n} else if (slots.length > 0) {\n  const sugerencias = slots\n    .map(dt => ({ dt, diff: Math.abs(dt.toMillis() - req.toMillis()) }))\n    .sort((a, b) => a.diff - b.diff)\n    .slice(0, 2)\n    .map(x => formatoHoraEspañol(x.dt));\n  message = `Vaya, la hora que solicitaste no está disponible. Pero tengo estos horarios cercanos: ${sugerencias.join(' y ')}. ¿Te gustaría reservar alguno de ellos?`;\n} else {\n  message = \"Lo siento, no he encontrado ningún hueco disponible para ese día. ¿Quieres intentar con otra fecha?\";\n}\n\n// --- 5) SALIDA ---\nreturn [{\n  json: {\n    isAvailable,\n    message\n    // opcional debug:\n    // requested: req.toISO(),\n    // slots: slots.map(s => s.toISO())\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        -128
+      ],
+      "id": "59236305-0192-48e1-8051-0e3db2eb1338",
+      "name": "Sugerir Horarios Cercanos"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"results\": [\n        {\n            \"toolCallId\": \"{{ $('Webhook').item.json.body.message.toolCalls[0].id }}\",\n            \"result\": \"No esta disponible ese horario, intenta seleccionar otro día u hora.\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        464,
+        64
+      ],
+      "id": "fb498e61-3d87-4674-ba11-008d48557664",
+      "name": "No hay huecos libres"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"results\": [\n        {\n            \"toolCallId\": \"{{ $('Webhook').item.json.body.message.toolCalls[0].id }}\",\n            \"result\": \"{{ $('Sugerir Horarios Cercanos').item.json.message }}\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        688,
+        -128
+      ],
+      "id": "17bd335f-95d5-41bc-bab9-58857234609f",
+      "name": "Huecos libres"
+    },
+    {
+      "parameters": {
+        "url": "https://api.cal.com/v2/slots",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "username",
+              "value": "={{ $('Setear Variables').item.json.username }}"
+            },
+            {
+              "name": "eventTypeSlug",
+              "value": "={{ $('Setear Variables').item.json.eventTypeSlug }}"
+            },
+            {
+              "name": "start",
+              "value": "={{ $json.start }}"
+            },
+            {
+              "name": "end",
+              "value": "={{ $json.end }}"
+            },
+            {
+              "name": "=timeZone",
+              "value": "={{$('Webhook').item.json.body.message.toolCalls[0].function.arguments.zonaHoraria || 'Europe/Madrid'}}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "cal-api-version",
+              "value": "2024-09-04"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        16,
+        -32
+      ],
+      "id": "0e31f229-3e3e-4d49-aa1b-d407035f1f15",
+      "name": "Mirar Disponibilidad"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "22767100-ef1c-4356-aa4a-3b58d4f81075",
+              "name": "start",
+              "value": "={{ DateTime.fromISO($('Webhook').item.json.body.message.toolCalls[0].function.arguments.citaSolicitada).setZone($('Webhook').item.json.body.message.toolCalls[0].function.arguments.zonaHoraria).startOf('day').toISO() }}",
+              "type": "string"
+            },
+            {
+              "id": "0f4d3db6-9958-4cff-a310-3536c544e19d",
+              "name": "end",
+              "value": "={{ DateTime.fromISO($('Webhook').item.json.body.message.toolCalls[0].function.arguments.citaSolicitada).setZone($('Webhook').item.json.body.message.toolCalls[0].function.arguments.zonaHoraria).startOf('day').plus({ days: 1 }).toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -208,
+        -32
+      ],
+      "id": "e67dbf35-7bd3-409b-bfe2-4b68fbb2c129",
+      "name": "Comienzo y Final"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "46aadd77-eb8f-4351-8b88-26c7fcb82e03",
+              "leftValue": "={{ $json.data }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        -32
+      ],
+      "id": "eb238d44-cdb9-4ede-8857-d24e1777586b",
+      "name": "Are Slots Available"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Webhook').item.json.body.message.toolCalls[0].function.name }}",
+                    "rightValue": "mirar_disponibilidad_clinica",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "5fa12cfb-483b-4fda-89b2-33908d2a727e"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "mirarDisponibilidad"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b2678560-ec05-4e9d-bb66-6944e049ff7f",
+                    "leftValue": "={{ $('Webhook').item.json.body.message.toolCalls[0].function.name }}",
+                    "rightValue": "agendar_cita_clinica",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "agendarCita"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -432,
+        160
+      ],
+      "id": "3e31d042-35f1-48aa-aa0c-9a44ec799dcc",
+      "name": "Elegir Herramienta"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "545026d0-60db-4a72-860a-80bec6d1dd6d",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -880,
+        160
+      ],
+      "id": "47a98030-7af2-4d9b-bb35-b6eb7afd5990",
+      "name": "Webhook",
+      "webhookId": "ee663f68-fa21-45a1-ae83-2ba5ce950a65"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.cal.com/v2/bookings",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "cal-api-version",
+              "value": "2024-08-13"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"attendee\": {\n    \"language\": \"es\",\n    \"name\": \"{{ $('Webhook').item.json.body.message.toolCalls[0].function.arguments.nombre }}\",\n    \"timeZone\": \"{{ $('Webhook').item.json.body.message.toolCalls[0].function.arguments.zonaHoraria }}\",\n    \"email\": \"{{ $('Webhook').item.json.body.message.toolCalls[0].function.arguments.correo }}\"\n  },\n  \"start\": \"{{ $('Webhook').item.json.body.message.toolCalls[0].function.arguments.citaSolicitada }}\",\n  \"eventTypeSlug\": \"{{ $('Setear Variables').item.json.eventTypeSlug }}\",\n  \"username\": \"{{ $('Setear Variables').item.json.username }}\"\n}\n\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -208,
+        256
+      ],
+      "id": "f9ec4c67-c448-4539-9342-5f4f6661f94c",
+      "name": "Agendar Cita",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"results\": [\n        {\n            \"toolCallId\": \"{{ $('Webhook').item.json.body.message.toolCalls[0].id }}\",\n            \"result\": \"La cita ha sido agendada con éxito.\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        16,
+        160
+      ],
+      "id": "a79232e4-29a1-4ab9-9aa7-720a02d2e2ce",
+      "name": "Cita agendada con exito"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"results\": [\n        {\n            \"toolCallId\": \"{{ $('Webhook').item.json.body.message.toolCalls[0].id }}\",\n            \"result\": \"La reserva no se ha realizado con éxito. Prueba con otro día u hora.\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        16,
+        352
+      ],
+      "id": "5473385f-5507-446c-9874-c25191e376de",
+      "name": "Cita no agendada"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "23cae85f-0868-4a99-9fd4-a8f379728d1b",
+              "name": "username",
+              "value": "victor-perez-ozqerz",
+              "type": "string"
+            },
+            {
+              "id": "9d111618-82d3-4cbe-a2ea-07d87060b551",
+              "name": "eventTypeSlug",
+              "value": "30min",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -656,
+        160
+      ],
+      "id": "4ee72384-dee1-46ca-97f4-bc93a50980b3",
+      "name": "Setear Variables"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "913e0841-7113-4b38-94d0-ece3888d9bab",
+              "name": "fecha_y_hora",
+              "value": "={{ $json.assistantOverrides.variableValues.current_day }}",
+              "type": "string"
+            },
+            {
+              "id": "cfb7e845-402b-4d2e-8b61-8ee1031c1da9",
+              "name": "phone_number",
+              "value": "={{ $json.customer.number }}",
+              "type": "string"
+            },
+            {
+              "id": "d32d6b27-d88b-43b5-be53-8494da319e2b",
+              "name": "outbound_phone",
+              "value": "={{ $json.phoneNumberId }}",
+              "type": "string"
+            },
+            {
+              "id": "dce04ae1-2199-4e4f-9dbb-52104a848abc",
+              "name": "first_name",
+              "value": "={{ $json.analysis.structuredData.first_name }}",
+              "type": "string"
+            },
+            {
+              "id": "250cb55d-36e1-4c18-bc87-ef6d6a8a3f18",
+              "name": "scheduled",
+              "value": "={{ $json.analysis.structuredData.scheduled }}",
+              "type": "string"
+            },
+            {
+              "id": "b637d61d-f723-4502-ade4-5d4abd915f8f",
+              "name": "doNotCall",
+              "value": "={{ $json.analysis.structuredData.doNotCall }}",
+              "type": "string"
+            },
+            {
+              "id": "8179e0f9-5616-4082-98a0-76951b7a6397",
+              "name": "mainTopics",
+              "value": "={{ $json.analysis.structuredData.mainTopics }}",
+              "type": "string"
+            },
+            {
+              "id": "b0ac260b-c8e8-4707-a39a-a80cb4b534f3",
+              "name": "importantQnA",
+              "value": "={{ $json.analysis.structuredData.importantQnA }}",
+              "type": "string"
+            },
+            {
+              "id": "1bebfb72-1a75-442e-bd24-87bdbcafeaf6",
+              "name": "otherNeeds",
+              "value": "={{ $json.analysis.structuredData.otherNeeds }}",
+              "type": "string"
+            },
+            {
+              "id": "62bb6c1e-5747-4d3e-8882-aadea77dc313",
+              "name": "scheduledDate",
+              "value": "={{ $json.analysis.structuredData.scheduledDate }}",
+              "type": "string"
+            },
+            {
+              "id": "78988756-849c-443d-bb5e-aa72ceec7f8c",
+              "name": "scheduledTime",
+              "value": "={{ $json.analysis.structuredData.scheduledTime }}",
+              "type": "string"
+            },
+            {
+              "id": "45b7d555-448e-4793-be96-2e1900b253d5",
+              "name": "reasonNotScheduled",
+              "value": "={{ $json.analysis.structuredData.reasonNotScheduled }}",
+              "type": "string"
+            },
+            {
+              "id": "961275c4-d753-465d-902c-f158708775f8",
+              "name": "extrainfo",
+              "value": "={{ $json.analysis.structuredData.extraInfo }}",
+              "type": "string"
+            },
+            {
+              "id": "51a19a4a-548a-44e7-8deb-062a512608cd",
+              "name": "sentiment",
+              "value": "={{ $json.analysis.structuredData.sentiment }}",
+              "type": "string"
+            },
+            {
+              "id": "36ea50dd-860d-4262-b82b-1005efacb2e6",
+              "name": "scheduledPhrase",
+              "value": "={{ $json.analysis.structuredData.scheduledPhrase }}",
+              "type": "string"
+            },
+            {
+              "id": "b94f8679-060d-4753-a83e-011f11fedce4",
+              "name": "messageType",
+              "value": "={{ $('Webhook1').item.json.body.message.type }}",
+              "type": "string"
+            },
+            {
+              "id": "e16bdd92-b90d-488d-92eb-dca56f7ddfc3",
+              "name": "transcript",
+              "value": "={{ $json.transcript }}",
+              "type": "string"
+            },
+            {
+              "id": "764f4236-4f20-4630-bf8d-707229795354",
+              "name": "summary",
+              "value": "={{ $json.summary }}",
+              "type": "string"
+            },
+            {
+              "id": "e0d368b6-d9d2-48c2-b4ed-00382c315c50",
+              "name": "endedReason",
+              "value": "={{ $json.endedReason }}",
+              "type": "string"
+            },
+            {
+              "id": "1190ed9a-fb02-452f-85b5-bca73d29d055",
+              "name": "call_id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -656,
+        1184
+      ],
+      "id": "bdd053ec-7fca-431a-be07-2c6c902f93b1",
+      "name": "Set Variables Post-llamada"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nlet decision = \"sin_clasificar\";  // Valor por defecto\nlet noteBody = \"\";\nconst timestamp = $now.toFormat('dd/MM/yyyy HH:mm');\n\n// Obtener los campos relevantes del informe post-llamada\nconst endedReason = input.endedReason || null;\nconst summary = input.summary || \"\";\nconst transcript = input.transcript || \"\";\n\n// 1. Decidir clasificación según endedReason\nif (endedReason === \"voicemail\") {\n  decision = \"llamada_falsa\";  // Buzón de voz detectado\n} else if (endedReason === \"customer-did-not-answer\" || endedReason === \"customer-busy\") {\n  decision = \"no_respondida\";  // No respondió o línea ocupada\n} else if (\n  (endedReason === \"customer-ended-call\" \n    || endedReason?.startsWith(\"assistant-ended-call\") \n    || endedReason === \"assistant-forwarded-call\"\n    || endedReason === \"silence-timed-out\"\n  ) \n  && transcript.length > 10  // Hay transcripción suficiente que indica conversación\n) {\n  decision = \"llamada_cogida\";  // Hubo conversación con el cliente\n} else if (endedReason && endedReason.toLowerCase().includes(\"error\")) {\n  decision = \"sin_clasificar\"; // Errores diversos o motivo desconocido\n}\n\n// 2. Construir el cuerpo de la nota (noteBody) según la decisión\nswitch (decision) {\n  case \"llamada_cogida\":\n    // Si no se agendó cita, incluir el motivo; si se agendó con éxito, mensaje por defecto\n    const motivo = input.reasonNotScheduled \n      ? `Motivo no agendado: ${input.reasonNotScheduled}` \n      : \"Cita agendada con éxito.\";\n    noteBody = `Llamada IA - ${timestamp} - Resultado: Conversación.\\n${motivo}\\nResumen IA: ${summary}`;\n    break;\n  case \"llamada_falsa\":\n    noteBody = `Llamada IA - ${timestamp} - Resultado: **Buzón de voz detectado**.\\nResumen IA: ${summary}`;\n    break;\n  case \"no_respondida\":\n    noteBody = `Llamada IA - ${timestamp} - Resultado: **La llamada no fue respondida**.`;\n    break;\n  case \"sin_clasificar\":\n  default:\n    noteBody = `Llamada IA - ${timestamp} - Resultado: **Sin clasificar** (Motivo: ${endedReason}).`;\n    break;\n}\n\n// 3. Devolver el resultado con la decisión y la nota\nreturn [{\n  json: {\n    ...input,\n    decision,\n    noteBody\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -432,
+        1184
+      ],
+      "id": "a792b184-575d-4b5c-ab7a-48c2056ee761",
+      "name": "Evaluar Logica"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.decision }}",
+                    "rightValue": "llamada_cogida",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "ee134c63-3edc-4d7a-942b-73e03eede877"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Llamada Cogida"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0ca702c0-b44b-4bdd-a364-c0dc9bbdbe99",
+                    "leftValue": "={{ $json.decision }}",
+                    "rightValue": "llamada_falsa",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Llamada Falsa"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f22b7649-7cd2-4119-b025-ad3272150d9c",
+                    "leftValue": "={{ $json.decision }}",
+                    "rightValue": "no_respondida",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Llamada Sin Responder "
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ea76b6a5-a082-47b7-83fe-7e76a8b5da5c",
+                    "leftValue": "={{ $json.decision }}",
+                    "rightValue": "sin_clasificar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Sin Clasificar"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -208,
+        1152
+      ],
+      "id": "f42d42ad-fb7a-47a1-b835-0b4c2ff5027e",
+      "name": "¿Llamada Cogida?"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        16,
+        1376
+      ],
+      "id": "77e531d6-15b9-4e53-814a-caefa0f7d236",
+      "name": "No Operation, do nothing1"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Z0VHsKlUy7X_hYC3en1iMfk6NQq-CUTw3lckT0e6JmI",
+          "mode": "list",
+          "cachedResultName": "CRM - Llamadas Cogidas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Z0VHsKlUy7X_hYC3en1iMfk6NQq-CUTw3lckT0e6JmI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Z0VHsKlUy7X_hYC3en1iMfk6NQq-CUTw3lckT0e6JmI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha y hora": "={{ $json.fecha_y_hora }}",
+            "Call_id": "={{ $json.call_id }}",
+            "Télefono": "={{ $json.phone_number }}",
+            "Nombre": "={{ $json.first_name }}",
+            "Agendado": "={{ $json.scheduled }}",
+            "Fecha Agendada": "={{ $json.scheduledDate }}",
+            "Hora Agendada": "={{ $json.scheduledTime }}",
+            "Razón No Agendado": "={{ $json.reasonNotScheduled }}",
+            "recordingURL": "={{ $('Obtener Informe Post-llamada').item.json.recordingUrl }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Fecha y hora",
+              "displayName": "Fecha y hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Call_id",
+              "displayName": "Call_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Télefono",
+              "displayName": "Télefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Agendado",
+              "displayName": "Agendado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha Agendada",
+              "displayName": "Fecha Agendada",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hora Agendada",
+              "displayName": "Hora Agendada",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Razón No Agendado",
+              "displayName": "Razón No Agendado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "recordingURL",
+              "displayName": "recordingURL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        16,
+        992
+      ],
+      "id": "f51b750a-e5e8-485c-a0ff-35f270959316",
+      "name": "Registrar Llamada Cogida"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Y0xltZNeUYg72fl-R6HjehHosqNrK0UCAebpjQWX60U",
+          "mode": "list",
+          "cachedResultName": "CRM - Llamadas Sin Responder",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Y0xltZNeUYg72fl-R6HjehHosqNrK0UCAebpjQWX60U/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Y0xltZNeUYg72fl-R6HjehHosqNrK0UCAebpjQWX60U/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha y hora": "={{ $json.fecha_y_hora }}",
+            "Call_id": "={{ $json.call_id }}",
+            "Télefono": "={{ $json.phone_number }}",
+            "Nombre": "={{ $json.first_name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Fecha y hora",
+              "displayName": "Fecha y hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Call_id",
+              "displayName": "Call_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Télefono",
+              "displayName": "Télefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        16,
+        1184
+      ],
+      "id": "8c981e32-c6a4-472f-b6a8-9abab0369887",
+      "name": "Registrar Llamada Sin Responder"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "36061bfe-8de1-461c-8e64-2c6828b3c912",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -880,
+        1184
+      ],
+      "id": "41331bb6-465c-48b2-8762-90608bbb82e3",
+      "name": "Webhook1",
+      "webhookId": "36061bfe-8de1-461c-8e64-2c6828b3c912"
+    },
+    {
+      "parameters": {
+        "url": "https://api.cal.com/v2/bookings",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "attendeeEmail",
+              "value": "={{ $('Webhook2').item.json.body.message.toolCalls[0].function.arguments.correo }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "cal-api-version",
+              "value": "2024-08-13"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -432,
+        672
+      ],
+      "id": "de5f9cf9-72a8-409e-b2fb-b0f891c62df1",
+      "name": "Obtener Citas"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.cal.com/v2/bookings/{{ $json.citaID }}/cancel ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "cal-api-version",
+              "value": "2024-08-13"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "cancellationReason",
+              "value": "={{ $('Webhook2').item.json.body.message.toolCalls[0].function.arguments.razonCancelacion }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        16,
+        672
+      ],
+      "id": "d115e8c9-7b84-44e8-a932-dd544c2c5333",
+      "name": "Cancelar Cita",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"results\": [\n        {\n            \"toolCallId\": \"{{ $('Webhook2').item.json.body.message.toolCalls[0].id }}\",\n            \"result\": \"La cita ha sido cancelada con éxito. ¿Quieres que te ayude a reagendar la cita para otro día?.\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        240,
+        576
+      ],
+      "id": "b2b733f4-cb61-4072-b6ca-30c1c6bede8e",
+      "name": "Cita Cancelada con exito"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"results\": [\n        {\n            \"toolCallId\": \"{{ $('Webhook2').item.json.body.message.toolCalls[0].id }}\",\n            \"result\": \"No he podido cancelar la cita, prueba a decirme tu nombre y correo electrónico otra vez a ver si la encuentro.\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        240,
+        768
+      ],
+      "id": "6376e881-84a7-4370-bde6-4ace4b95c851",
+      "name": "Cita No Cancelada"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f4de0725-a5be-40d9-b2b1-44bc0293a029",
+              "name": "citaID",
+              "value": "={{ $json.data[0].uid }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -208,
+        672
+      ],
+      "id": "2e763561-052e-4b23-b434-9681890813f4",
+      "name": "ID de Cita"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "5afc28ae-901d-45ca-92ed-e27c8e494098",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -880,
+        672
+      ],
+      "id": "ef97d4be-42c9-4ecc-88e3-bcc70b51c6e3",
+      "name": "Webhook2",
+      "webhookId": "5afc28ae-901d-45ca-92ed-e27c8e494098"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a9907bb8-231d-444e-96dc-df43547a4853",
+              "name": "username",
+              "value": "[aqui-tu-username]",
+              "type": "string"
+            },
+            {
+              "id": "4530d79c-c759-427e-ac6e-d97fd098564e",
+              "name": "eventTypeSlug",
+              "value": "30min",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -656,
+        672
+      ],
+      "id": "e7946525-db9b-4832-b856-e066732f3c5b",
+      "name": "Setear Variables1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-04T19:11:41.574Z",
+      "createdAt": "2025-11-04T19:11:41.574Z",
+      "role": "workflow:owner",
+      "workflowId": "7InkkD6925E8WkR3",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-04T20:00:26.000Z",
+  "versionId": "03dd708a-58cf-428b-b4f2-2759fc1b092a"
+}
