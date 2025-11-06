@@ -1,0 +1,289 @@
+{
+  "active": false,
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Descargar Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Conectar con TMDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Conectar con TMDB": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Imagen": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Evolution API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-06T05:05:10.150Z",
+  "id": "yeaLqeAMvLl4utLb",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "API ejercicio 1 - COnexión con TMDB",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5aa62c65-8020-4abb-8ab7-751b9a8dcf2e",
+              "name": "Cartel",
+              "value": "=https://image.tmdb.org/t/p/w500{{ $json.results[0].poster_path }}",
+              "type": "string"
+            },
+            {
+              "id": "3e692043-4f4d-4cbd-8f6c-9f4a6518a3bc",
+              "name": "Titulo",
+              "value": "={{ $json.results[0].title }}",
+              "type": "string"
+            },
+            {
+              "id": "73d3f41f-b414-4018-9e95-e69f8b200847",
+              "name": "Fecha",
+              "value": "={{ $json.results[0].release_date }}",
+              "type": "string"
+            },
+            {
+              "id": "3376481b-f860-4db4-ae15-b89db5643850",
+              "name": "Resumen",
+              "value": "={{ $json.results[0].overview }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        512,
+        240
+      ],
+      "id": "fe623409-0a1a-4bf1-bf32-8d5d84159c14",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\n  formatted_date: new Date($input.first().json.Fecha)\n    .toLocaleDateString(\"es-ES\", { day: \"2-digit\", month: \"2-digit\", year: \"numeric\" })\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        48
+      ],
+      "id": "9428d9ce-97bd-44a5-b859-c0c4987c5171",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        832,
+        384
+      ],
+      "id": "5f4fcb8b-093a-4c69-b5bd-2a6132f7c7d4",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "operation": "send-image",
+        "instanceName": "Georgios",
+        "remoteJid": "={{ $('Webhook').item.json.body.data.key.remoteJid.split('@')[0] }}",
+        "media": "={{ $json.data }}",
+        "caption": "=Titulo:\n{{ $('Descargar Imagen').item.json.Titulo }}\n\nFecha:\n{{ $json.formatted_date }}\n\nResumen:\n{{ $('Edit Fields').item.json.Resumen }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        224
+      ],
+      "id": "42fd05cd-f20c-4c95-9482-2104e0526b09",
+      "name": "Evolution API",
+      "credentials": {
+        "evolutionApi": {
+          "id": "xx7NQwgqrCANhFMj",
+          "name": "Evolution GEORGIOS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "datospeli",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        80,
+        240
+      ],
+      "id": "8aaef7fd-7d77-4939-85d0-d42d90a1408d",
+      "name": "Webhook",
+      "webhookId": "e30453bf-d9a6-4c8a-8559-24d6db9f8c4d"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.themoviedb.org/3/search/movie?api_key=ae3395032e3ec300d523a6200c54a40b&query={{ $json.body.data.message.conversation }}&language=es-ES&page=1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        304,
+        240
+      ],
+      "id": "db59ec89-9789-4b33-8a7d-4c7d506603ed",
+      "name": "Conectar con TMDB"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.Cartel }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        688,
+        384
+      ],
+      "id": "5f41d292-aeb7-48dc-9ccc-ed04edf3fd93",
+      "name": "Descargar Imagen"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1168,
+        224
+      ],
+      "id": "49b7f248-c822-4b14-9a9d-afe6ff59cf4b",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "content": "## Ejemplo API 1\nConexión con TMDB\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAutor: Jorge Benítez Rosa",
+        "height": 560,
+        "width": 1560,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "49e0d72a-8b7f-4a79-b429-1e9ec9fd48ee",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-06T05:05:10.159Z",
+      "createdAt": "2025-11-06T05:05:10.159Z",
+      "role": "workflow:owner",
+      "workflowId": "yeaLqeAMvLl4utLb",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-06T05:04:46.253Z",
+      "createdAt": "2025-11-06T05:04:46.253Z",
+      "id": "lwtZcOkMbkSBOj9H",
+      "name": "Futuro Digital Pro"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-06T05:46:43.000Z",
+  "versionId": "b1eed5c8-04f3-45ee-a5fb-b37b5f3014ad"
+}
