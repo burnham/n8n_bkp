@@ -1,0 +1,223 @@
+{
+  "active": false,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Evolution API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-06T05:47:10.628Z",
+  "id": "BULccXXgwmqbPSy3",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "API ejercicio 2 - Conexión con WikiPedia",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://es.wikipedia.org/w/api.php?action=query&list=search&srsearch={{ encodeURIComponent($json[\"body\"][\"data\"][\"message\"][\"conversation\"]) }}&format=json\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        432,
+        128
+      ],
+      "id": "a4798b62-c7d2-4f8a-a04b-c37c0142d181",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "Georgios",
+        "remoteJid": "={{ $('Webhook').item.json.body.data.key.remoteJid.split('@')[0] }}",
+        "messageText": "={{ $json.title }}\n\nURL:\n{{ $json.content_urls.mobile.page }}\n\nResumen:\n{{ $json.extract }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        960,
+        128
+      ],
+      "id": "d961685d-1d28-46ff-b736-eb7d52a1f825",
+      "name": "Evolution API",
+      "credentials": {
+        "evolutionApi": {
+          "id": "IfDB9SN9fRaLbVwX",
+          "name": "Evolution NonRealXR"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "wiki",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        64,
+        128
+      ],
+      "id": "ec662a53-1735-4ff9-b43c-d48b8ce0cce7",
+      "name": "Webhook",
+      "webhookId": "5cd6de3f-f05d-45a1-ae44-7fa548fe9847"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fb1eb061-7016-4c1d-9e45-dab2fa1beef1",
+              "name": "body.data.message.conversation",
+              "value": "={{ $json.body.data.message.conversation.replaceAll(\" \",\"_\") }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        128
+      ],
+      "id": "6e5f6f2b-69d3-42d4-8d6f-8a6e29052664",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "211d4a1f-64de-4628-b301-0952482b1cda",
+              "name": "TituloWikipedia",
+              "value": "={{ $json.query.search[0].title }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        608,
+        128
+      ],
+      "id": "75e43afe-2228-4816-b318-487f6ce680a5",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "url": "=https://es.wikipedia.org/api/rest_v1/page/summary/{{ encodeURIComponent( $json.TituloWikipedia).replace(/%20/g, \"_\") }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        784,
+        128
+      ],
+      "id": "5a4f85ef-5523-4cde-be1e-fc76ba7bdec5",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "content": "## Ejemplo API 2\nConexión con WikiPedia\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAutor: Jorge Benítez Rosa",
+        "height": 360,
+        "width": 1160,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "adad50a6-07e6-47cf-8f3c-296cab744007",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-06T05:47:10.638Z",
+      "createdAt": "2025-11-06T05:47:10.638Z",
+      "role": "workflow:owner",
+      "workflowId": "BULccXXgwmqbPSy3",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-06T05:04:46.253Z",
+      "createdAt": "2025-11-06T05:04:46.253Z",
+      "id": "lwtZcOkMbkSBOj9H",
+      "name": "Futuro Digital Pro"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-06T06:57:35.000Z",
+  "versionId": "a0422795-7d2c-40d4-b2f9-15f3ca478b8f"
+}
