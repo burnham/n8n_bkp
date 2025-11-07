@@ -68,8 +68,8 @@
       ]
     }
   },
-  "createdAt": "2025-11-07T06:41:37.500Z",
-  "id": "Od1GkZEb3OHi5yj4",
+  "createdAt": "2025-11-07T06:41:33.808Z",
+  "id": "ftlj2keF3uyGHU8z",
   "isArchived": false,
   "meta": null,
   "name": "Imagen OpenAI",
@@ -283,16 +283,16 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-11-07T06:41:37.505Z",
-      "createdAt": "2025-11-07T06:41:37.505Z",
+      "updatedAt": "2025-11-07T06:41:33.817Z",
+      "createdAt": "2025-11-07T06:41:33.817Z",
       "role": "workflow:owner",
-      "workflowId": "Od1GkZEb3OHi5yj4",
+      "workflowId": "ftlj2keF3uyGHU8z",
       "projectId": "epI1cymQzCzDlQMH"
     }
   ],
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-07T06:41:37.500Z",
-  "versionId": "45cecf07-2c76-48a0-aa92-d152ec6c1fdb"
+  "updatedAt": "2025-11-07T06:41:33.000Z",
+  "versionId": "6bfb33db-3313-4a84-9a48-fc0c4386f5c7"
 }
