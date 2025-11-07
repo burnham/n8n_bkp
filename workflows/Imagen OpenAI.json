@@ -1,0 +1,298 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Obtener Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Variables": {
+      "main": [
+        [
+          {
+            "node": "Llamada API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Llamada API": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setear Salida": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Setear Salida",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-07T06:41:37.500Z",
+  "id": "Od1GkZEb3OHi5yj4",
+  "isArchived": false,
+  "meta": null,
+  "name": "Imagen OpenAI",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "genimage",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        64,
+        144
+      ],
+      "id": "681a06dd-0141-4726-8f6f-c73ed88702e8",
+      "name": "Webhook",
+      "webhookId": "0b2dbb01-1b50-44cb-a12c-64f916fd9899"
+    },
+    {
+      "parameters": {
+        "content": "## Generación de imágenes\n[nacaIA](https://nacaia.com)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJorge Benítez Rosa",
+        "height": 360,
+        "width": 1360,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3882996e-a7e7-441f-9116-33b533f1cabd",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3e94f2f1-118a-46a2-969a-73d062683faf",
+              "name": "Prompt",
+              "value": "={{ $json.body.prompt }}",
+              "type": "string"
+            },
+            {
+              "id": "e9e303de-5fd4-483a-8463-43e106f74e90",
+              "name": "Apikey",
+              "value": "={{ $json.body.apikey }}",
+              "type": "string"
+            },
+            {
+              "id": "89093419-28c2-4dbe-b1d1-f14c0613ca35",
+              "name": "Size",
+              "value": "={{ $json.body.size }}",
+              "type": "string"
+            },
+            {
+              "id": "b41f85ae-7ff1-416b-917b-07bc9a798b68",
+              "name": "Quality",
+              "value": "={{ $json.body.quality }}",
+              "type": "string"
+            },
+            {
+              "id": "b5e5149a-3799-4641-9700-c9d173f219bf",
+              "name": "Formato_salida",
+              "value": "={{ $json.body.response_format }}",
+              "type": "string"
+            },
+            {
+              "id": "46a4f2e1-446e-4170-9bdd-3df6d699bcf3",
+              "name": "N_imagenes",
+              "value": "={{ $json.body.n }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        144
+      ],
+      "id": "2ee2d43b-144a-4dd8-8293-197686cc70ee",
+      "name": "Obtener Variables"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/images/generations",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.Apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "gpt-image-1"
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $json.Prompt }}"
+            },
+            {
+              "name": "size",
+              "value": "={{ $json.Size }}"
+            },
+            {
+              "name": "quality",
+              "value": "={{ $json.Quality }}"
+            },
+            {
+              "name": "output_format",
+              "value": "={{ $json.Formato_salida }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        400,
+        144
+      ],
+      "id": "9b92b0a5-80c8-4d9d-813e-31c3145824fe",
+      "name": "Llamada API"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6f520ee4-90a1-4bbe-8b4f-fd4a2001c33f",
+              "name": "=image_b64",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        944,
+        144
+      ],
+      "id": "4ffdbf45-1e38-4a4f-b33d-5cc8a6320910",
+      "name": "Setear Salida"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data[0].b64_json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        592,
+        144
+      ],
+      "id": "de91f9e0-e08b-46e5-a9de-8e347a335765",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        784,
+        144
+      ],
+      "id": "d28a7bde-bace-44de-a92f-6356b1a07cca",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"image_b64\": \"{{ $json.image_b64 }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1120,
+        144
+      ],
+      "id": "99c25cea-cd54-471a-aa40-c32837ad0a26",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-07T06:41:37.505Z",
+      "createdAt": "2025-11-07T06:41:37.505Z",
+      "role": "workflow:owner",
+      "workflowId": "Od1GkZEb3OHi5yj4",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-07T06:41:37.500Z",
+  "versionId": "45cecf07-2c76-48a0-aa92-d152ec6c1fdb"
+}
