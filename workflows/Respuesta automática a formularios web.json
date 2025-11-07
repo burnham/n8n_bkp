@@ -1,0 +1,298 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Enviar Respuesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-07T04:28:27.459Z",
+  "id": "qb9JRX4mk4MWY5Ye",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Respuesta automática a formularios web",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "obtenerdatos",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        336
+      ],
+      "id": "bbbf980c-7136-4812-aab5-37f792de35fc",
+      "name": "Webhook",
+      "webhookId": "1107cc01-fc9a-4a9b-9c44-1a3e9561e3a4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "591e2cbb-88c1-4ef9-b922-0485ff75b34b",
+              "name": "body.name",
+              "value": "={{ $json.body.name }}",
+              "type": "string"
+            },
+            {
+              "id": "d58bb732-0f4b-46ba-88eb-f2cd277f6e9e",
+              "name": "body.email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "6f80e7fa-1ff3-487d-9a26-e9061259e0c1",
+              "name": "body.mobile",
+              "value": "={{ $json.body.mobile }}",
+              "type": "string"
+            },
+            {
+              "id": "1dc65af5-6c5e-4d9e-bbe0-8d75a7d503f1",
+              "name": "body.message",
+              "value": "={{ $json.body.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        112,
+        336
+      ],
+      "id": "b6655f4e-9a84-48e5-9d70-b1a6cb8ad990",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Eres un gestor de asistencia en el departamento de marketing, tu funcion es dar respuesta a las preguntas solicitadas por nuestros clientes por email. \nHoy es {{$today}} y el cliente se llama:  {{ $json.body.name }}.\nNO añadas al final del mensaje [tunombre]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        352,
+        336
+      ],
+      "id": "8cfd11f9-da50-4881-8579-ab832074ce7c",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "217411cf-367b-4b50-a79b-9655d364f383",
+              "name": "message.content",
+              "value": "={{ $json.message.content.replace(/\\n/g, \"<br>\") }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        336
+      ],
+      "id": "8e86145d-e101-4832-92a2-de84d40b19d8",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "content": "## Ejemplo Nodo Trigger 2\nNodo Webhoock\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAutor: Jorge Benítez Rosa",
+        "height": 400,
+        "width": 1380,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        176
+      ],
+      "id": "b7ac340b-4afd-4bf2-a8b0-b67fc27f3b86",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "TRIGGERS (Inicia la acción)",
+        "height": 240,
+        "width": 220,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        288
+      ],
+      "id": "238b0e81-2470-43d6-995b-f1e251844de3",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "Almacenamos solo los campos que nos interesan",
+        "height": 240,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        48,
+        288
+      ],
+      "id": "87df3aa8-792a-4b3e-9ae8-ebdd94706a31",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "Almacenamos solo los campos que nos interesan",
+        "height": 240,
+        "width": 260,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        640,
+        288
+      ],
+      "id": "d16b1d90-3119-4e1f-ac74-fdd8bd1d16b9",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "fromEmail": "g.burnham@gmail.com",
+        "toEmail": "={{ $('Edit Fields').item.json.body.email }}",
+        "html": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Correo NacaIA</title>\n  <!--[if mso]>\n  <style type=\"text/css\">\n    table {border-collapse: collapse;}\n    td {font-family: Arial, sans-serif;}\n    .rounded {border-radius: 8px;}\n  </style>\n  <![endif]-->\n</head>\n<body style=\"margin: 0; padding: 0; background-color: #f9f9f9;\">\n  <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color: #f9f9f9;\">\n    <tr>\n      <td align=\"center\" style=\"padding: 20px 0;\">\n        <table role=\"presentation\" width=\"65%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color: #ffffff; border: 1px solid #dddddd; border-radius: 8px; overflow: hidden;\">\n          \n          <!-- Header -->\n          <tr>\n            <td align=\"center\" style=\"padding: 20px; background-color: #ffffff; border-bottom: 1px solid #dddddd;\">\n              <img src=\"https://nacaia.com/assets/img/logo.png\" alt=\"NacaIA Logo\" width=\"380\" style=\"display: block; margin: 0 auto;\">\n              <p style=\"color: #ce9b53; font-size: 20px; font-family: Arial, sans-serif; margin: 5px 0; font-weight: 600;\">Soluciones Tecnológicas Avanzadas</p>\n            </td>\n          </tr>\n          \n          <!-- Contenido principal -->\n          <tr>\n            <td style=\"padding: 30px 20px; font-family: Arial, sans-serif; line-height: 1.6; color: #333333;\">\n              <p style=\"font-size: 16px; color: #2a4d69; font-weight: 600; margin: 0 0 20px;\">\n\t\t\t  {{ $json.message.content }}\n\t\t\t  </p>                           \n\t\t\t  </p>\n            </td>\n          </tr>\t        \t  \n\n          <!-- Footer -->\n          <tr>\n            <td style=\"background-color: #ce9b53; padding: 15px; text-align: center; font-family: Arial, sans-serif; font-size: 12px; color: #333333;\">\n              <p style=\"margin: 0;\"><strong>info@nacaia.com</strong> | <a href=\"https://nacaia.com\" target=\"_blank\" style=\"color: #2a4d69; text-decoration: none;\">nacaia.com</a></p>\n              <p style=\"margin: 10px 0 0;\"><strong>ADVERTENCIA LEGAL:</strong> Este correo electrónico, y en su caso, cualquier fichero anexo al mismo, contiene información de carácter confidencial, exclusivamente dirigida a su destinatario, salvo error u omisión involuntarios. Queda prohibida su divulgación, copia o distribución a terceros, sin la previa autorización por escrito de su remitente. En el caso de haber recibido este mensaje por error, se ruega comunique esta circunstancia mediante su reenvío a la dirección electrónica del remitente y proceda a su eliminación, así como la de cualquier documento adjunto al mismo.</p>\n              <p style=\"margin: 10px 0 0;\">nacaIA ha adoptado todas las medidas a su alcance para impedir la implantación de virus informáticos en este correo y su documentación adjunta hasta el momento de su emisión, sin que asuma responsabilidad alguna por los eventuales daños o pérdidas que pueda ocasionar la recepción del mismo</p>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n  </table>\n</body>\n</html>\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        944,
+        336
+      ],
+      "id": "37aeb0ba-defa-4442-a3af-27469dfb6ab6",
+      "name": "Enviar Respuesta",
+      "webhookId": "35c1dd1d-de4d-4ffa-b6d2-3dd8be604066",
+      "credentials": {
+        "smtp": {
+          "id": "kPjyJYIMf46hG5Jo",
+          "name": "SMTP GB NRXR account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Creamos la respuesta con IA",
+        "height": 240,
+        "width": 320
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        304,
+        288
+      ],
+      "id": "099121ca-33de-4ebd-b79c-2e7a76c5db11",
+      "name": "Sticky Note4"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-07T04:28:27.470Z",
+      "createdAt": "2025-11-07T04:28:27.470Z",
+      "role": "workflow:owner",
+      "workflowId": "qb9JRX4mk4MWY5Ye",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-06T05:04:46.253Z",
+      "createdAt": "2025-11-06T05:04:46.253Z",
+      "id": "lwtZcOkMbkSBOj9H",
+      "name": "Futuro Digital Pro"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-07T04:33:58.000Z",
+  "versionId": "25f97338-4b9c-4459-b870-ed4b82915535"
+}
