@@ -1,0 +1,245 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-08T02:47:25.791Z",
+  "id": "AFsV8xV9kL98kXbU",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "12 - Loop Over Items",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "84712e17-7acc-4dd5-8405-38967d3a12b9",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/tecnologia/portada",
+        "options": {}
+      },
+      "id": "e0e25d36-941e-406f-8063-e9074d136336",
+      "name": "RSS Read",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        32,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 5,
+        "options": {
+          "reset": false
+        }
+      },
+      "id": "08b63f68-d8b7-44f3-9e3b-a9c6a5270e27",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        208,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1O1CzLWsuySxMFPGO3uEssdG2X8iH8WT5cAeQi0Lne0Y",
+          "mode": "list",
+          "cachedResultName": "MonetizIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O1CzLWsuySxMFPGO3uEssdG2X8iH8WT5cAeQi0Lne0Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FesJBvsAX2hBFYSD6AxrtayUJPKECUaU7pHxrCrU3BE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha": "={{ $('Loop Over Items').item.json.isoDate }}",
+            "Título": "={{ $('Loop Over Items').item.json.title }}",
+            "Autor": "={{ $('Loop Over Items').item.json.creator }}",
+            "Descripción": "={{ $('Loop Over Items').item.json.content }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Título",
+              "displayName": "Título",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Descripción",
+              "displayName": "Descripción",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Autor",
+              "displayName": "Autor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "b2106552-2cd0-463d-a310-e88c257cd0fa",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        608,
+        -32
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2b278f35-6f3e-474a-a377-647baf03bcca",
+              "name": "titulo_modificado",
+              "value": "=VA360: {{ $json.title }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "61336c58-7c3d-4c04-b887-85ab8317cef1",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        448,
+        -32
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-08T02:47:25.802Z",
+      "createdAt": "2025-11-08T02:47:25.802Z",
+      "role": "workflow:owner",
+      "workflowId": "AFsV8xV9kL98kXbU",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T04:17:58.571Z",
+      "createdAt": "2025-11-08T04:17:58.571Z",
+      "id": "kfnzru1ekik6v4r2",
+      "name": "🔵 MonetizaAI Learning"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-08T04:19:29.000Z",
+  "versionId": "232d1fa4-72f6-41e6-9616-b267aa8678b4"
+}
