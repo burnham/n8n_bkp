@@ -1,0 +1,115 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-08T03:43:58.716Z",
+  "id": "k7K0FaVTsMwZupjF",
+  "isArchived": false,
+  "meta": null,
+  "name": "14 - Transformación de datos",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "453847b3-f9a9-4aed-b551-33aedb82b001",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://www.theverge.com/rss/index.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "24a56cd9-dba0-42b6-93bd-653b754adcec",
+      "name": "RSS Read"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code (JavaScript)\n// Toma item.json.content (HTML), extrae la primera <img> y guarda la URL en item.json.image\n\nfunction decodeEntities(str = \"\") {\n  return String(str)\n    .replace(/&amp;/gi, \"&\")\n    .replace(/&#038;/gi, \"&\")\n    .replace(/&quot;/gi, '\"')\n    .replace(/&#39;/gi, \"'\")\n    .replace(/&lt;/gi, \"<\")\n    .replace(/&gt;/gi, \">\");\n}\n\nfunction normalizeUrl(url) {\n  if (!url) return null;\n  url = decodeEntities(url.trim());\n  // Completar URLs tipo //domain/path\n  if (url.startsWith(\"//\")) return \"https:\" + url;\n  return url;\n}\n\nfunction firstImageUrlFromHtml(html = \"\") {\n  const h = String(html).replace(/[\\n\\r\\t]+/g, \" \");\n\n  // 1) Intentar src / data-src / data-original en el propio <img>\n  const srcAttr = /<img\\b[^>]*?(?:src|data-src|data-original)\\s*=\\s*[\"']([^\"']+)[\"'][^>]*>/i;\n  const m1 = srcAttr.exec(h);\n  if (m1 && m1[1]) return normalizeUrl(m1[1]);\n\n  // 2) Intentar srcset: coger la primera URL del srcset\n  const srcsetAttr = /<img\\b[^>]*?srcset\\s*=\\s*[\"']([^\"']+)[\"'][^>]*>/i;\n  const m2 = srcsetAttr.exec(h);\n  if (m2 && m2[1]) {\n    // srcset es \"url1 w, url2 w, ...\" -> coger la primera URL antes del espacio/coma\n    const firstEntry = m2[1].split(\",\")[0].trim();\n    const firstUrl = firstEntry.split(/\\s+/)[0];\n    if (firstUrl) return normalizeUrl(firstUrl);\n  }\n\n  // 3) Como último recurso, cualquier src dentro de una <img>\n  const anySrc = /<img\\b[^>]*?src\\s*=\\s*[\"']([^\"']+)[\"']/i;\n  const m3 = anySrc.exec(h);\n  if (m3 && m3[1]) return normalizeUrl(m3[1]);\n\n  return null;\n}\n\nconst out = items.map(item => {\n  const contentHtml = item.json?.content || \"\";\n  const imageUrl = firstImageUrlFromHtml(contentHtml);\n  return {\n    json: {\n      ...item.json,\n      image: imageUrl // null si no encuentra imagen\n    }\n  };\n});\n\nreturn out;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        -160
+      ],
+      "id": "b27a0d52-da59-4a14-8a31-19e78315ea73",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Añade el prefijo \"NonRealXR: \" al título existente\nconst items = $input.all();\n\nconst updatedItems = items.map(item => {\n  const title = item.json.title || \"\";\n  item.json.title = `NonRealXR: ${title}`;\n  return item;\n});\n\nreturn updatedItems;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        352,
+        48
+      ],
+      "id": "dc359a94-d1bd-4fac-87c3-0e275afabf37",
+      "name": "Code in JavaScript1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-08T03:43:58.723Z",
+      "createdAt": "2025-11-08T03:43:58.723Z",
+      "role": "workflow:owner",
+      "workflowId": "k7K0FaVTsMwZupjF",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T04:17:58.571Z",
+      "createdAt": "2025-11-08T04:17:58.571Z",
+      "id": "kfnzru1ekik6v4r2",
+      "name": "🔵 MonetizaAI Learning"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-08T04:18:11.000Z",
+  "versionId": "2d098c0a-69ae-4050-a3e2-d75b19c5d26a"
+}
