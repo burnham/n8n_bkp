@@ -1,0 +1,565 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GetImage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Add To Time",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract part of time",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Format a date",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Substract date",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Compression",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetImage": {
+      "main": [
+        [
+          {
+            "node": "Image Format",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rename Keys": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Rename Keys",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-08T03:14:20.978Z",
+  "id": "6xDQD7kqV9qlA9j7",
+  "isArchived": false,
+  "meta": null,
+  "name": "13. Manipulación de datos entre nodos",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "513a6e82-7f14-4b22-82d7-2056dcf3642d",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -768,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/ciencia/portada",
+        "options": {
+          "ignoreSSL": false
+        }
+      },
+      "id": "7fc91ab1-55b3-4283-85a7-a1c695bd264a",
+      "name": "RSS Read",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        -576,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "addToDate",
+        "magnitude": "={{ $json.isoDate }}",
+        "timeUnit": "years",
+        "duration": 1,
+        "options": {}
+      },
+      "id": "e71e3fa1-ef18-4040-9c36-7c3106da1c40",
+      "name": "Add To Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "extractDate",
+        "date": "={{ $json.isoDate }}",
+        "part": "year",
+        "outputFieldName": "year",
+        "options": {
+          "includeInputFields": false
+        }
+      },
+      "id": "26ffd5e7-d73f-4367-88f3-90d93f11a527",
+      "name": "Extract part of time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        32
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $json.isoDate }}",
+        "format": "custom",
+        "customFormat": "dd-MM-yyyy",
+        "options": {}
+      },
+      "id": "b41f3684-9eb9-42a5-ba7c-8eb8a0f772d9",
+      "name": "Format a date",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "subtractFromDate",
+        "magnitude": "={{ $json.isoDate }}",
+        "timeUnit": "years",
+        "duration": 2,
+        "options": {}
+      },
+      "id": "834d0d98-8d6f-41c2-926d-f56e2a46535a",
+      "name": "Substract date",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "308bc1e5-5b7b-497b-8feb-8bcca5cf7c8f",
+              "leftValue": "={{ $json.creator }}",
+              "rightValue": "NBC",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "8c4e7615-4de8-435d-80c1-133e7b674f64",
+      "name": "Filter",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.1,
+      "position": [
+        -80,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "id": "c95c7afc-3b31-4088-a939-6b43eff9c605",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "compare": "allFieldsExcept",
+        "options": {}
+      },
+      "id": "749ea468-9a85-4d91-bf08-4c7a00096f1d",
+      "name": "Remove Duplicates",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 1.1,
+      "position": [
+        -80,
+        912
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "link",
+        "options": {}
+      },
+      "id": "c39ba7b9-01b4-4294-8688-7e393530637b",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        1056
+      ]
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "link",
+              "renameField": true,
+              "outputFieldName": "enlace"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "541a1b8e-aee1-43a4-95a8-b19125810c71",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        112,
+        1056
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/tecnologia/portada",
+        "options": {
+          "ignoreSSL": false
+        }
+      },
+      "id": "96910d00-ca8e-4c0a-9413-871383d46c5e",
+      "name": "RSS Read1",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        -560,
+        1216
+      ]
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "content"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "34a01a53-95f8-4f79-8852-020a058053a6",
+      "name": "Summarize",
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        1392
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "options": {}
+      },
+      "id": "13905852-48b7-4fda-ab10-7f4f2ae8edaa",
+      "name": "Convert to File",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -80,
+        1552
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "compress",
+        "fileName": "=data_rss_{{ $runIndex }}.zip"
+      },
+      "id": "6733d3e4-f36d-42c7-8335-9c5ee4184be3",
+      "name": "Compression",
+      "type": "n8n-nodes-base.compression",
+      "typeVersion": 1.1,
+      "position": [
+        112,
+        1552
+      ]
+    },
+    {
+      "parameters": {
+        "binaryData": true
+      },
+      "id": "a2e17643-13db-4577-8233-8240da5affcc",
+      "name": "Crypto",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        112,
+        1712
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://wallpapers.com/images/high/waving-logo-of-windows-95-om3nphkrq635dc8u.webp",
+        "options": {}
+      },
+      "id": "c4ee650d-270e-406c-afe7-036e6faae776",
+      "name": "GetImage",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -576,
+        1536
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "resize",
+        "options": {
+          "format": "jpeg"
+        }
+      },
+      "id": "7546bbf4-3896-4f49-ad6b-61fd86cbe36a",
+      "name": "Image Format",
+      "type": "n8n-nodes-base.editImage",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        1536
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "rotate",
+        "rotate": 90,
+        "options": {}
+      },
+      "id": "92a7a25e-c108-46d4-9c6c-588c821b20e4",
+      "name": "Edit Image",
+      "type": "n8n-nodes-base.editImage",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        1696
+      ]
+    },
+    {
+      "parameters": {
+        "keys": {
+          "key": [
+            {
+              "currentKey": "creator",
+              "newKey": "medio"
+            },
+            {
+              "currentKey": "title",
+              "newKey": "titulo"
+            }
+          ]
+        },
+        "additionalOptions": {}
+      },
+      "id": "8fa576d3-c194-4026-8f67-c76e890faa71",
+      "name": "Rename Keys",
+      "type": "n8n-nodes-base.renameKeys",
+      "typeVersion": 1,
+      "position": [
+        112,
+        1232
+      ]
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "pubDate"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9061536b-19a9-4f7e-b1cd-f5aa1d662c85",
+      "name": "Sort",
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        304,
+        1232
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "90edd157-c9f5-44c3-abaa-51cdbd673db4",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        -80,
+        1232
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-08T03:14:20.988Z",
+      "createdAt": "2025-11-08T03:14:20.988Z",
+      "role": "workflow:owner",
+      "workflowId": "6xDQD7kqV9qlA9j7",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T04:17:58.571Z",
+      "createdAt": "2025-11-08T04:17:58.571Z",
+      "id": "kfnzru1ekik6v4r2",
+      "name": "🔵 MonetizaAI Learning"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-08T04:18:26.000Z",
+  "versionId": "dafac4cd-d006-449a-ade3-e0feceda579e"
+}
