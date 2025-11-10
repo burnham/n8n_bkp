@@ -64,8 +64,8 @@
         "rule": {
           "interval": [
             {
-              "triggerAtHour": 10,
-              "triggerAtMinute": 3
+              "triggerAtHour": 18,
+              "triggerAtMinute": 35
             }
           ]
         }
@@ -86,7 +86,7 @@
             {
               "id": "5f130d68-c1a8-4d8e-aacd-16bc8dfa97cc",
               "name": "PROMPT",
-              "value": "Crea una imagen, para dar los buenos días que ya es hora de levantarse a mi amada esposa apasiona de la Inteligencia Artificial y las automatizaciones. ",
+              "value": "Crea una imagen, para dar los buenos noches que ya es hora de descansar a mi amado hijo de 26 años apasiona de la Inteligencia Artificial y las automatizaciones. ",
               "type": "string"
             }
           ]
@@ -142,9 +142,9 @@
         "resource": "messages-api",
         "operation": "send-image",
         "instanceName": "NonRealXR",
-        "remoteJid": "4367762491875",
+        "remoteJid": "34624356859",
         "media": "={{ $json.data }}",
-        "caption": "Hola Georgios",
+        "caption": "Hola Klavito",
         "options_message": {}
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
@@ -208,6 +208,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-30T09:05:43.000Z",
-  "versionId": "67730b06-5564-4158-b135-e8d84488ea49"
+  "updatedAt": "2025-11-10T17:37:43.000Z",
+  "versionId": "5275ce3c-3f2e-4805-ad8c-8379f0f4f1bf"
 }
