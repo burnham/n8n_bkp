@@ -1,0 +1,1344 @@
+{
+  "active": false,
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Agente principal1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recibir mensajes": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente principal1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente principal1": {
+      "main": [
+        [
+          {
+            "node": "Enviar respuesta1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear cliente1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de clientes1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar cliente1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de clientes1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente de clientes1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente principal1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leer el inventario": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente pedidos1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar inventario": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente pedidos1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar cliente6": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente pedidos1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear pedido1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente pedidos1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente pedidos1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente principal1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4o-mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente pedidos1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4o-mini6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente de clientes1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente de consultas1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente principal1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar cliente7": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de consultas1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar pedidos": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de consultas1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4o-mini7": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente de consultas1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente de pagos1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente principal1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4o-mini8": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente de pagos1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar pedido": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de pagos1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar pedidos5": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de pagos1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente de inventario1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente principal1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4o-mini9": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente de inventario1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leer el inventario5": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de inventario1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar inventario5": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de inventario1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5o-nano1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente principal1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-10T05:20:47.471Z",
+  "id": "Cz6v20isYjlN7FiM",
+  "isArchived": false,
+  "meta": null,
+  "name": "Multiagente - Malangazo",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Multi-Agente IA en n8n: Automatiza Tu Negocio por WhatsApp\n\n¿Te imaginas tener un equipo de agentes de IA trabajando 24/7 por ti? 🚀\nEn este video te muestro cómo crear un Sistema Multiagente de Inteligencia Artificial con n8n, conectado a WhatsApp, capaz de gestionar un negocio completo: clientes, pedidos, inventario, pagos y mucho más.\n\nAdemás, te regalo la PLANTILLA GRATIS para que puedas implementar este flujo en minutos y empezar a automatizar tu negocio desde hoy.\n\n🔹 ¿Qué aprenderás en este video?\nQué es un sistema multiagente y cómo funciona en la práctica.\nCasos reales de automatización: pedidos, inventario, pagos y soporte.\n\n📥 Descarga aquí la plantilla gratis: https://plantillamultiagente.carrd.co/\n👉 Suscríbete para más tutoriales de IA aplicada a negocios.\n\nConecta conmigo:\nInstagram:   / alexiszamoraia  \nLinkedIn:   / alexis-zamora-ai  \n\nRecibe una auditoría gratis para automatizar tu negocio: https://www.lumixia.tech/\n\nLinea del tiempo:\n00:00 Introducción\n00:47 Punto de dolor\n02:47 Qué es un multiagente\n03:40 Solución en n8n\n07:27 Resultados\n08:53 Recomendaciones a empresas\n09:33 Invitación a comentar\n\n#inteligenciaartificial #automatización #n8n\n\n**Double click** to edit me. [SOURCE](https://youtu.be/WJcbG7CuEh0)",
+        "height": 672,
+        "width": 1072
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1552,
+        -688
+      ],
+      "typeVersion": 1,
+      "id": "d44af9c3-635a-499a-9ef9-c753da843916",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fechaISO = $input.item.json.currentDate;\nconst fecha = new Date(fechaISO);\n\n// Configura el formato en español y con zona horaria explícita\nconst opcionesFecha = {\n  timeZone: 'America/Mexico_City', // Ajusta si necesitas otra\n  day: '2-digit',\n  month: '2-digit',\n  year: 'numeric'\n};\n\nconst opcionesHora = {\n  timeZone: 'America/Mexico_City',\n  hour: '2-digit',\n  minute: '2-digit',\n  hour12: false\n};\n\nconst fechaFormateada = new Intl.DateTimeFormat('es-MX', opcionesFecha).format(fecha);\nconst horaFormateada = new Intl.DateTimeFormat('es-MX', opcionesHora).format(fecha);\n\nreturn {\n  json: {\n    Fecha: fechaFormateada,\n    Hora: horaFormateada\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -64,
+        176
+      ],
+      "id": "5454dcae-9b3b-4321-892e-2433dff0757d",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "options": {
+          "timezone": "America/Mexico_City"
+        }
+      },
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        176
+      ],
+      "id": "cee4007d-a8c6-4666-bf5e-7e688bccfe51",
+      "name": "Date & Time"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        176
+      ],
+      "id": "80c7f2f9-8733-4474-8789-f2bcdee9c8b9",
+      "name": "Recibir mensajes",
+      "webhookId": "ba4596ed-f5a0-49c0-8062-ac72f3856fc2"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Recibir mensajes').item.json.contacts[0].wa_id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        256,
+        48
+      ],
+      "id": "a5912764-766f-43c6-b2e9-b72be095d22f",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Mensaje que recibes: \n\n{{ $('Recibir mensajes').item.json.messages[0].text.body }}\n\nFecha de hoy: \n\n{{ $('Code').item.json.Fecha }}",
+        "options": {
+          "systemMessage": "=Eres un **Agente Orquestador** que recibe solicitudes de clientes y las delega a los subagentes correctos.\n\n### CONTEXTO\nSistema de gestión de pedidos de malangas por WhatsApp que maneja:\n- Registro de clientes\n- Creación de pedidos (con cliente o local)\n- Consultas de base de datos\n- Actualización de pagos\n- Gestión de inventario\n\n### HERRAMIENTAS DISPONIBLES\n\n1. **Agente Cliente**\n   - Cuándo usar: Registro de nuevos clientes o verificación de existencia\n   - Funciones: BuscarCliente, CrearCliente\n\n2. **Agente Pedidos**\n   - Cuándo usar: Crear pedidos nuevos (con o sin cliente)\n   - Funciones: CrearPedido, VerificarInventario, ActualizarInventario\n\n3. **Agente Consultas**\n   - Cuándo usar: Consultar información de clientes, pedidos o inventario\n   - Funciones: BuscarCliente, BuscarPedido, LeerInventario\n\n4. **Agente Pagos**\n   - Cuándo usar: Actualizar estado de pago de pedidos existentes\n   - Funciones: BuscarPedido, ActualizarPedido\n\n5. **Agente Inventario**\n   - Cuándo usar: Consultar stock o modificar cantidades de inventario\n   - Funciones: LeerInventario, ActualizarInventario\n\n### REGLAS IMPORTANTES\n- Analiza la intención principal del mensaje\n- Delega al subagente adecuado según la intención\n- NO intentes ejecutar acciones tú mismo\n- Si no encaja con ninguna herramienta, responde amablemente que solo puedes ayudar con: crear clientes, crear pedidos, consultar base de datos, actualizar pagos o gestionar inventario\n- Para preguntas sobre stock/sabores/inventario → Agente Inventario\n- Para consultas de clientes/pedidos → Agente Consultas\n- Para crear pedidos → Agente Pedidos\n- Para registrar pagos → Agente Pagos\n\n### IMPORTANTE\nPasa el mensaje completo y claro al subagente para que pueda trabajar correctamente."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        160,
+        176
+      ],
+      "id": "549cdbae-e874-4063-b147-3ad28cb35399",
+      "name": "Agente principal1"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "=Crea un nuevo cliente en el sistema. Agregar nueva fila con: Nombre, \nTeléfono, Plataforma (WhatsApp/Messenger), \nNotas adicionales. \nUsar solo cuando el cliente no existe en el sistema.",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre', `Nombre del cliente del pedido`, 'string') }}",
+            "Teléfono": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Tel_fono', `Teléfono del cliente.`, 'string') }}",
+            "Plataforma": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Plataforma', `Plataforma del cliente.`, 'string') }}",
+            "Notas adicionales": "Creado automáticamente"
+          },
+          "matchingColumns": [
+            "Nombre"
+          ],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Teléfono",
+              "displayName": "Teléfono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Plataforma",
+              "displayName": "Plataforma",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notas adicionales",
+              "displayName": "Notas adicionales",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -544,
+        624
+      ],
+      "id": "92367b07-879d-42d2-a79d-dad198eec420",
+      "name": "Crear cliente1"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Buscar clientes existentes por nombre o número de teléfono. Usar esta herramienta antes de crear nuevos clientes para evitar duplicados. Devuelve información del cliente desde la hoja Clientes.",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -672,
+        624
+      ],
+      "id": "1b52da76-549b-4fc3-b548-d1fbf42eb2ea",
+      "name": "Buscar cliente1"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Usa esta herramienta solo si el Agente de Pedidos necesita crear o validar un cliente antes de registrar un pedido. No la uses de forma independiente al recibir un mensaje que ya está siendo gestionado por el Agente de Pedidos.\n\nUsa esta herramienta para gestionar clientes.\n- Primero busca si el cliente ya existe.\n- Si no existe, créalo siempre y cuando tengas al menos el nombre del cliente. El teléfono y plataforma son opcionales.\n- Si el usuario explícitamente dice que no tiene teléfono o plataforma, créalo sin esos datos.\n- Solo pregunta por datos faltantes UNA VEZ si el usuario no los mencionó. Si dice que no o no responde, procede con lo que tengas.",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "=# Rol\nEres un **Agente Cliente** especializado en gestión de clientes.\n\n# Objetivo\nVerificar si un cliente existe en la base de datos y crear nuevos clientes cuando sea necesario.\n\n# Especificaciones\n- **Campo obligatorio**: Solo el NOMBRE del cliente\n- **Campos opcionales**: Teléfono y Plataforma\n- Si el usuario dice explícitamente \"sin teléfono\" o \"no tiene plataforma\" → créalo con los datos disponibles\n- Si NO menciona teléfono/plataforma → pregunta UNA SOLA VEZ. Si dice no o no responde → procede solo con el nombre\n- Nunca inventes información\n- Nunca dupliques clientes\n\n# Herramientas\n- **BuscarCliente**: Úsala SIEMPRE primero, aunque el nombre parezca nuevo\n- **CrearCliente**: Úsala si el cliente no existe y tienes al menos el nombre\n\n# Formato de datos opcionales\n- Sin teléfono: usa \"Sin teléfono\" o deja vacío\n- Sin plataforma: usa \"Sin plataforma\" o deja vacío\n\n# Búsqueda flexible\n- Ignora mayúsculas/minúsculas y acentos al comparar\n- \"Alexis Zamora\", \"alexis zamora\", \"Álexis Zámora\" → mismo cliente\n- \"Moni rama\", \"Mon Rama\", \"Mon rama\" → mismo cliente\n\n# Flujo de trabajo\n1. Buscar cliente en base de datos\n2. Si existe → informar y devolver datos\n3. Si NO existe → preguntar UNA VEZ por datos faltantes (si aplica)\n4. Crear con los datos disponibles\n5. Confirmar al usuario la acción realizada"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        -624,
+        480
+      ],
+      "id": "265125c1-adfe-4b35-857a-9e6f97985a3a",
+      "name": "Agente de clientes1"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Leer los niveles actuales de inventario de malangas para verificar las cantidades disponibles de cada sabor. Usar esta herramienta para verificar stock antes de crear pedidos o cuando el cliente pregunte sobre disponibilidad.",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1156474706,
+          "mode": "list",
+          "cachedResultName": "Inventario",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=1156474706"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        80,
+        640
+      ],
+      "id": "7745998e-7f67-4f50-b1c6-80de9f78b2fa",
+      "name": "Leer el inventario"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Actualizar las cantidades de inventario de malangas. Usar para disminuir cantidades cuando se crean pedidos o aumentar cantidades cuando se cancelan pedidos. Especificar el número de fila y la nueva cantidad.",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1156474706,
+          "mode": "list",
+          "cachedResultName": "Inventario",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=1156474706"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Sabor": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sabor__using_to_match_', ``, 'string') }}",
+            "Cantidad disponible": "={{ $fromAI('Cantidad_disponible', 'La nueva cantidad total disponible en inventario', 'number') }}"
+          },
+          "matchingColumns": [
+            "Sabor"
+          ],
+          "schema": [
+            {
+              "id": "Sabor",
+              "displayName": "Sabor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Cantidad disponible",
+              "displayName": "Cantidad disponible",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -48,
+        640
+      ],
+      "id": "e93a9dff-39c4-4695-9813-2b3b002b4557",
+      "name": "Actualizar inventario"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Buscar clientes existentes por nombre o número de teléfono. Usar esta herramienta antes de crear nuevos clientes para evitar duplicados. Devuelve información del cliente desde la hoja Clientes.",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -176,
+        640
+      ],
+      "id": "6cf380dd-c14e-4c51-8afc-eba8f9615107",
+      "name": "Buscar cliente6"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Crea un nuevo pedido en el sistema. Usar SOLO después de verificar inventario disponible y descontar del inventario. \nGenera ID único con formato: DDMMYYYY_NombreCliente. \nParámetros: fecha, cliente, telefono, detalle, cantidad_total, estado_pago, estado_pedido, id_pedido.",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 423496573,
+          "mode": "list",
+          "cachedResultName": "Pedidos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=423496573"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha del pedido": "={{ $fromAI('fecha_pedido', 'Fecha del pedido considerando zona horaria México Central (GMT-6). Si es después de medianoche, ajustar correctamente', 'string') }}",
+            "Nombre del cliente": "={{ $fromAI('Nombre_del_cliente', `Nombre completo del cliente`, 'string') }}",
+            "Teléfono del cliente": "={{ $fromAI('telefono', 'Número de teléfono del cliente', 'string') }}",
+            "Detalle del pedido": "={{ $fromAI('detalle', 'Descripción completa del pedido con sabores y cantidades', 'string') }}",
+            "Cantidad total de malangas": "={{ $fromAI('cantidad_total', 'Número total de malangas en el pedido', 'number') }}",
+            "Estado de pago": "={{ $fromAI('estado_pago', 'Estado del pago: no pagado, pagado, o pendiente', 'string').toLowerCase() }}",
+            "Estado del pedido": "={{ $fromAI('estado_pedido', 'Estado del pedido: activo, completado, o cancelado', 'string').toLowerCase() }}",
+            "ID único del pedido": "={{ $fromAI('id_pedido', 'ID formato DDMMYYYY_Nombre usando fecha México Central', 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Fecha del pedido",
+              "displayName": "Fecha del pedido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre del cliente",
+              "displayName": "Nombre del cliente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Teléfono del cliente",
+              "displayName": "Teléfono del cliente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Detalle del pedido",
+              "displayName": "Detalle del pedido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cantidad total de malangas",
+              "displayName": "Cantidad total de malangas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado de pago",
+              "displayName": "Estado de pago",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado del pedido",
+              "displayName": "Estado del pedido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID único del pedido",
+              "displayName": "ID único del pedido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -304,
+        640
+      ],
+      "id": "c0777689-68b4-487e-9769-11357acaf041",
+      "name": "Crear pedido1"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Usa esta herramienta para registrar pedidos de malangas.\n\nSi el mensaje incluye un nombre → PEDIDO CON CLIENTE:\n- Busca si existe el cliente\n- Si NO existe, puedes crear el pedido con los datos del mensaje\n- Verifica stock, descuenta y crea pedido\n- ID: YYYYMMDD_NombreCliente\n\nSi el mensaje NO incluye nombre → PEDIDO LOCAL:\n- NO busques cliente\n- Verifica stock, descuenta y crea pedido\n- ID: YYYYMMDD_LOCAL\n\nEstados por defecto: pago=\"no_pagado\", pedido=\"activo\"\nFecha de hoy: {{ $json.Fecha }}",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "=# Rol\nEres un **Agente Pedidos** especializado en registrar pedidos de malangas.\n\n# Modalidades de pedido\n\n## A) Pedido con cliente (mensaje incluye nombre)\nEjemplo: \"Para Ness Castillo 2 jalapeño\"\n1. Buscar cliente en base de datos\n2. Si NO existe → Informar y OFRECER crear el pedido con los datos del mensaje (nombre, teléfono si lo menciona)\n3. Si existe → usar sus datos completos\n4. Verificar stock → Descontar → Crear pedido\n5. ID formato: YYYYMMDD_NombreCliente\n\n## B) Pedido sin cliente (solo menciona sabores/cantidades)\nEjemplo: \"Pedido 2 habanero y 1 jalapeño\"\n1. NO buscar cliente\n2. Verificar stock → Descontar → Crear pedido\n3. ID formato: YYYYMMDD_LOCAL\n4. Campos: dejar vacíos nombre, teléfono, plataforma\n\n# Flujo correcto de creación\n1. **Verificar inventario** con LeerInventario\n2. **Crear pedido** con CrearPedido (si hay stock)\n3. **Actualizar inventario** con ActualizarInventario (descontar unidades)\n\n# Estados por defecto\n- Estado de pago: \"no_pagado\"\n- Estado del pedido: \"activo\"\n\n# Generación de ID único\n- Con cliente: `YYYYMMDD_NombreDelCliente` (sin espacios ni tildes)\n- Sin cliente: `YYYYMMDD_LOCAL`\n- Usa la fecha actual proporcionada\n\n# Importante\n- Si no hay stock suficiente → informar al usuario y NO crear el pedido\n- NO es obligatorio que el cliente esté registrado previamente\n- Puedes crear pedidos con datos proporcionados en el mensaje\n- Devuelve un resumen claro del pedido creado + nuevo stock de los sabores pedidos\n\nFecha de hoy: {{ $json.Fecha }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        -192,
+        480
+      ],
+      "id": "8ad2ac29-614c-4786-b9f2-2c9512d5265a",
+      "name": "Agente pedidos1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -176,
+        368
+      ],
+      "id": "6dd2684f-7033-4d8a-bbd7-c3f423d296dd",
+      "name": "4o-mini"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -624,
+        368
+      ],
+      "id": "b2101420-ab30-4034-b0c2-f9984908cea3",
+      "name": "4o-mini6"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Usa esta herramienta para consultas sobre clientes y pedidos.\n\n- Clientes → datos de clientes registrados\n- Pedidos → pedidos activos, pendientes o agendados por fecha\n- Formato de fecha: DD/MM/YYYY (ejemplo: 13/10/2025)\n\nBúsqueda flexible: ignora mayúsculas/minúsculas y acentos.",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "=# Rol\nEres un **Agente Consultas** especializado en búsqueda de información en la base de datos.\n\n# Objetivo\nRecuperar información sobre clientes, pedidos o inventario de forma clara y precisa.\n\n# Especificaciones\n- Identifica si la consulta es sobre: clientes, pedidos o inventario\n- Usa SOLO funciones de lectura (nunca edites datos)\n- Presenta resultados de forma clara y útil\n- Si no encuentras resultados → responde: \"No encontré información para tu consulta\"\n\n# Herramientas\n- **BuscarCliente**: para consultas sobre clientes registrados\n- **BuscarPedido**: para consultas sobre pedidos\n- **LeerInventario**: para consultas de stock disponible\n\n# Manejo de fechas\n- Si el usuario dice \"hoy\" → usa la fecha actual en formato DD/MM/YYYY\n- Si dice \"mañana\" → suma 1 día a la fecha actual\n- Si dice día específico (ej. \"viernes\") → calcula la fecha correspondiente\n- **Formato de búsqueda**: DD/MM/YYYY (ejemplo: 13/10/2025)\n\n# Búsqueda flexible de clientes\n- Ignora mayúsculas/minúsculas y acentos\n- \"Mon Rama\", \"Moni rama\", \"mon rama\" → busca todas las variaciones posibles\n- Si no encuentras exacto, busca nombres similares\n\n# Formato de respuesta\n- Presenta la información en lenguaje natural, no solo datos crudos\n- Sé conciso pero completo\n- Si hay múltiples resultados, organízalos claramente\n\n# Ejemplo de respuesta\n\"Encontré 2 pedidos para hoy 13/10/2025:\n1. Pedido LOCAL - 2 pepino habanero (no pagado, activo)\n2. Pedido de Juan Pérez - 3 jalapeño (pagado, activo)\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        480
+      ],
+      "id": "d772f11b-c480-44f4-b4d0-1bbba578d497",
+      "name": "Agente de consultas1"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Buscar clientes existentes por nombre o número de teléfono. Usar esta herramienta antes de crear nuevos clientes para evitar duplicados. Devuelve información del cliente desde la hoja Clientes.",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        432,
+        640
+      ],
+      "id": "4a1e8e75-7269-472e-b44c-77cdf6b0667f",
+      "name": "Buscar cliente7"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Buscar pedidos existentes por nombre de cliente, fecha o ID de pedido. Usar para consultas de pedidos, verificación de estado o cuando el cliente quiere modificar/cancelar pedidos.",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 423496573,
+          "mode": "list",
+          "cachedResultName": "Pedidos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=423496573"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        272,
+        640
+      ],
+      "id": "229f5600-70f0-4fae-86b4-e463840f677f",
+      "name": "Buscar pedidos"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        368
+      ],
+      "id": "4aaf8cb4-61eb-4ee2-b784-2241ace86f5f",
+      "name": "4o-mini7"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Usa esta herramienta para actualizar el estado de pago de un pedido.\n\n1. Busca el pedido (flexible con nombres y fechas)\n2. Si existe → actualiza estado de pago\n3. Si NO existe → informa claramente\n\nBúsqueda flexible: \"Mon Rama\", \"Moni rama\" → mismo cliente",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "=### Rol\nEres un **Agente Pagos** especializado en gestionar el estado de pago de los pedidos.\n\n### Especificaciones\nTu flujo de trabajo SIEMPRE debe seguir estos pasos en orden:\n\n1. **BUSCAR el pedido primero**:\n   - Usa BuscarPedido con la información que te da el usuario (nombre del cliente, fecha, o ID)\n   - Analiza los resultados y extrae el campo \"ID único del pedido\"\n   - Si encuentras múltiples pedidos, pregunta al usuario cuál quiere actualizar mostrando los detalles de cada uno\n\n2. **VALIDAR antes de actualizar**:\n   - Verifica que obtuviste un ID único válido de la búsqueda\n   - Confirma el estado actual del pago\n   - Si el pedido ya tiene el estado solicitado, informa al usuario\n\n3. **ACTUALIZAR el pedido**:\n   - Usa ActualizarPedido pasando:\n     - id_pedido: El ID único que obtuviste en la búsqueda (ej. \"20251012_LOCAL\")\n     - nuevo_estado_pago: El nuevo estado que solicita el usuario\n   \n4. **CONFIRMAR al usuario**:\n   - Informa claramente qué pedido se actualizó\n   - Muestra el ID, fecha, cliente y el cambio de estado realizado\n\n### Identificación de pedidos\nEl usuario puede referirse al pedido de varias formas:\n- Por nombre del cliente: \"el pedido de Caro\"\n- Por fecha: \"el pedido de hoy\", \"el pedido del 12/10/2025\"\n- Por ID directo: \"el pedido 20251012_LOCAL\"\n\n**IMPORTANTE**: Sin importar cómo lo solicite, SIEMPRE debes buscar primero para obtener el ID único.\n\n### Estados de pago válidos\nSolo puedes usar estos valores (en minúsculas):\n- \"pagado\"\n- \"no_pagado\"\n- \"pendiente\"\n\n### Herramientas disponibles\n\n**BuscarPedido**: \n- Úsala SIEMPRE como primer paso\n- Busca por: nombre del cliente, fecha (DD/MM/YYYY o YYYY-MM-DD), o ID único\n- Te devuelve todos los datos del pedido, incluyendo el \"ID único del pedido\" que es CRÍTICO para actualizar\n- La búsqueda es flexible con nombres (ignora mayúsculas/minúsculas y acentos)\n\n**ActualizarPedido**:\n- Úsala SOLO después de obtener el ID mediante BuscarPedido\n- Requiere exactamente estos parámetros:\n  - id_pedido: String con el ID único completo (ej. \"20251012_Caro\" o \"20251012_LOCAL\")\n  - nuevo_estado_pago: String con el nuevo estado (\"pagado\", \"no_pagado\" o \"pendiente\")\n- Si falla, es porque el ID no coincide exactamente o el formato es incorrecto\n\n### Reglas importantes\n\n❌ **NUNCA hagas esto**:\n- Intentar actualizar sin haber buscado el pedido primero\n- Inventar o asumir el ID de un pedido\n- Modificar campos que no sean el estado de pago\n- Actualizar si no encontraste el pedido en la búsqueda\n\n✅ **SIEMPRE haz esto**:\n- Buscar antes de actualizar\n- Usar el ID exacto que devuelve la búsqueda\n- Informar claramente al usuario si hay múltiples opciones\n- Confirmar la actualización con todos los detalles\n\n### Formatos de ID\n- Pedidos con cliente: `YYYYMMDD_NombreCliente` (ej. \"20251012_Caro\")\n- Pedidos locales: `YYYYMMDD_LOCAL` (ej. \"20251012_LOCAL\")\n\n### Manejo de errores\n\n**Si no encuentras el pedido**:\n\"No encontré ningún pedido con esos datos. ¿Puedes verificar:\n- ¿El nombre del cliente es correcto?\n- ¿La fecha del pedido es correcta?\n- ¿Tienes el ID del pedido?\"\n\n**Si encuentras múltiples pedidos**:\n\"Encontré [X] pedidos de [Cliente]:\n1. ID: [ID1], Fecha: [Fecha1], Estado actual: [Estado1]\n2. ID: [ID2], Fecha: [Fecha2], Estado actual: [Estado2]\n¿Cuál quieres actualizar?\"\n\n**Si la actualización falla**:\n\"Encontré el pedido pero no pude actualizar el estado de pago. \n- Pedido encontrado: ID [ID], Cliente: [Nombre]\n- Error: [descripción del error]\n¿Quieres que lo intente de nuevo?\"\n\n### Ejemplos de flujo correcto\n\n**Ejemplo 1:**\nUsuario: \"El pedido de Caro ya fue pagado\"\n\nPaso 1: Usar BuscarPedido con búsqueda por nombre=\"Caro\"\nResultado: Encuentra pedido con ID=\"20251012_LOCAL\", fecha=\"12/10/2025\", estado=\"no_pagado\"\n\nPaso 2: Usar ActualizarPedido con id_pedido=\"20251012_LOCAL\", nuevo_estado_pago=\"pagado\"\n\nPaso 3: Confirmar al usuario:\n\"✅ Actualicé el estado de pago del pedido:\n- ID: 20251012_LOCAL\n- Cliente: Caro\n- Fecha: 12/10/2025\n- Estado anterior: no_pagado\n- Estado nuevo: pagado\"\n\n**Ejemplo 2:**\nUsuario: \"Actualiza el pago con ID 20251012_LOCAL\"\n\nPaso 1: Usar BuscarPedido con búsqueda por ID=\"20251012_LOCAL\"\nResultado: Encuentra el pedido con todos sus detalles\n\nPaso 2: Como el usuario no especificó el nuevo estado, preguntar:\n\"Encontré el pedido 20251012_LOCAL (Caro, 12/10/2025). \nEstado actual: no_pagado\n¿A qué estado quieres cambiarlo? (pagado/no_pagado/pendiente)\"\n\n[Usuario responde: \"pagado\"]\n\nPaso 3: Usar ActualizarPedido con id_pedido=\"20251012_LOCAL\", nuevo_estado_pago=\"pagado\"\n\nPaso 4: Confirmar actualización\n\n### Recordatorio final\n🔑 **CLAVE DEL ÉXITO**: El ID único del pedido es tu puente entre la búsqueda y la actualización. Sin él, la actualización fallará. SIEMPRE obtenlo de BuscarPedido antes de usar ActualizarPedido."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        576,
+        480
+      ],
+      "id": "7fa19868-ae6b-49e2-80f8-2d6e6132cd41",
+      "name": "Agente de pagos1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        576,
+        368
+      ],
+      "id": "457beabe-1007-4d7c-bbe1-628d6ea254a7",
+      "name": "4o-mini8"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "=Actualiza un pedido existente. Buscar por ID único del pedido (DDMMYYYY_NombreCliente).\nUsar para: cambiar estado de pago, cancelar pedidos, modificar detalles.\nIMPORTANTE: Si se cancela pedido, también restaurar inventario con otra tool.",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 423496573,
+          "mode": "list",
+          "cachedResultName": "Pedidos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=423496573"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha del pedido": "={{ $fromAI('Fecha_del_pedido', ``, 'string') }}",
+            "Nombre del cliente": "={{ $fromAI('Nombre_del_cliente', ``, 'string') }}",
+            "Estado de pago": "={{ $fromAI('nuevo_estado_pago', 'Nuevo estado de pago', 'string').toLowerCase() }}",
+            "Estado del pedido": "={{ $fromAI('nuevo_estado_pedido', 'Nuevo estado del pedido', 'string').toLowerCase() }}",
+            "ID único del pedido": "={{ $fromAI('id_pedido', 'ID único del pedido a actualizar. Debe obtenerlo de la búsqueda previa (formato: YYYYMMDD_NombreCliente o YYYYMMDD_LOCAL)', 'string') }}"
+          },
+          "matchingColumns": [
+            "ID único del pedido"
+          ],
+          "schema": [
+            {
+              "id": "Fecha del pedido",
+              "displayName": "Fecha del pedido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre del cliente",
+              "displayName": "Nombre del cliente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Teléfono del cliente",
+              "displayName": "Teléfono del cliente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Detalle del pedido",
+              "displayName": "Detalle del pedido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cantidad total de malangas",
+              "displayName": "Cantidad total de malangas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Estado de pago",
+              "displayName": "Estado de pago",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado del pedido",
+              "displayName": "Estado del pedido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID único del pedido",
+              "displayName": "ID único del pedido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        784,
+        640
+      ],
+      "id": "60115595-0947-48f3-8f0c-5390bf0a1a9c",
+      "name": "Actualizar pedido"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Buscar pedidos existentes por nombre de cliente, fecha o ID de pedido. Usar para consultas de pedidos, verificación de estado o cuando el cliente quiere modificar/cancelar pedidos.",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 423496573,
+          "mode": "list",
+          "cachedResultName": "Pedidos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=423496573"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        608,
+        640
+      ],
+      "id": "9d466d94-a243-4a51-aa0b-796031567a8c",
+      "name": "Buscar pedidos5"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Usa esta herramienta solo cuando el usuario pregunte explícitamente por inventario o pida modificar cantidades de stock.\n\nNO la uses como parte del registro de pedidos (el Agente de Pedidos ya valida inventario).",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "=# Rol\nEres un **Agente Inventario** especializado en consulta y actualización de stock de malangas.\n\n# Objetivo\nConsultar y modificar cantidades de inventario según instrucciones del usuario.\n\n# Especificaciones\n\n## Consultas de inventario\n- Devuelve el stock actual del sabor solicitado\n- Si no especifica sabor → muestra todos los sabores con stock\n\n## Actualizaciones de inventario\n- **\"Añadir inventario\"** → suma a la cantidad actual\n- **\"Quitar inventario\"** → resta de la cantidad actual\n- **\"Actualizar inventario\"** → establece valor nuevo directo\n\n# Herramientas\n- **LeerInventario**: para consultar cantidades actuales\n- **ActualizarInventario**: para modificar stock\n\n# Sabores disponibles\nnatural, especias, adobo, queso, toreado, chipotle, jalapeño, habanero, pepino habanero, fuego, guacamole, salsa negra\n\n# Manejo de sabores no disponibles\n- Si el usuario pide un sabor que NO está en la lista → responde UNA SOLA VEZ:\n  \"El sabor '[sabor]' no está disponible en nuestro inventario actual. Los sabores disponibles son: natural, especias, adobo, queso, toreado, chipotle, jalapeño, habanero, pepino habanero, fuego, guacamole y salsa negra. ¿Te gustaría consultar o pedir alguno de estos?\"\n- NO repitas el mismo mensaje si el usuario insiste\n- Si vuelve a pedir sabor no disponible → \"Lamento confirmar que no contamos con ese sabor\"\n\n# Formato de respuesta\n\n## Para consultas:\n\"Stock actual de jalapeño: 18 unidades\"\n\n## Para actualizaciones:\n\"Inventario actualizado. Nuevo stock de jalapeño: 15 unidades (se restaron 3)\"\n\n# Importante\n- Si no especifica sabor en actualización → pregunta una vez\n- Nunca inventes sabores que no existan en la lista\n- Sé claro y conciso en las respuestas"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        960,
+        480
+      ],
+      "id": "fa79a07e-7a48-48fb-a3be-fd8217085423",
+      "name": "Agente de inventario1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        960,
+        368
+      ],
+      "id": "db6f1c20-d560-477e-aba2-13a98d4eea56",
+      "name": "4o-mini9"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Leer los niveles actuales de inventario de malangas para verificar las cantidades disponibles de cada sabor. Usar esta herramienta para verificar stock antes de crear pedidos o cuando el cliente pregunte sobre disponibilidad.",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1156474706,
+          "mode": "list",
+          "cachedResultName": "Inventario",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=1156474706"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        1168,
+        640
+      ],
+      "id": "2ed98106-f589-4543-bc7a-5ccf0e6b0d37",
+      "name": "Leer el inventario5"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Actualizar las cantidades de inventario de malangas. Usar para disminuir cantidades cuando se crean pedidos o aumentar cantidades cuando se cancelan pedidos. Especificar el número de fila y la nueva cantidad.",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c",
+          "mode": "list",
+          "cachedResultName": "Base de datos maestra malangapp",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1156474706,
+          "mode": "list",
+          "cachedResultName": "Inventario",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1E2OIaB69WVVAtCkjQeOtKcP55bszpjq3P_hrjj8fI_c/edit#gid=1156474706"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Sabor": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sabor__using_to_match_', ``, 'string') }}",
+            "Cantidad disponible": "={{ $fromAI('Cantidad_disponible', 'La nueva cantidad total disponible en inventario', 'number') }}"
+          },
+          "matchingColumns": [
+            "Sabor"
+          ],
+          "schema": [
+            {
+              "id": "Sabor",
+              "displayName": "Sabor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Cantidad disponible",
+              "displayName": "Cantidad disponible",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        992,
+        640
+      ],
+      "id": "b60d00a4-48a5-42aa-968a-2d27ce53f69b",
+      "name": "Actualizar inventario5"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "762056083660630",
+        "recipientPhoneNumber": "={{ $('Recibir mensajes').item.json.messages[0].from }}",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        512,
+        176
+      ],
+      "id": "a56a9be3-383b-4442-99b4-ad9ad9112145",
+      "name": "Enviar respuesta1",
+      "webhookId": "e20b82d6-95b1-439a-bef8-e39d53b0d57f"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-5-nano"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        160,
+        48
+      ],
+      "id": "927c328e-5670-445c-b833-20c0e5196dec",
+      "name": "5o-nano1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-10T05:20:47.485Z",
+      "createdAt": "2025-11-10T05:20:47.485Z",
+      "role": "workflow:owner",
+      "workflowId": "Cz6v20isYjlN7FiM",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-10T05:25:07.000Z",
+  "versionId": "3e1df137-597f-47fa-b6b4-376d97451d04"
+}
