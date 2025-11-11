@@ -1,0 +1,1831 @@
+{
+  "active": false,
+  "connections": {
+    "Agente de IA": {
+      "main": [
+        [
+          {
+            "node": "Enviar Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Docs #2": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets #2": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail #2": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar #2": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI #2": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memoria Simple": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat GPT #2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat GPT #1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor #2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor #2": {
+      "main": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrador #2": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor #2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger #2": {
+      "main": [
+        [
+          {
+            "node": "Filtrador #2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-11T18:29:39.383Z",
+  "id": "Hoi6UA1TPLAz5RZP",
+  "isArchived": false,
+  "meta": null,
+  "name": "Guía N8N",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "base",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        320,
+        192
+      ],
+      "id": "a96b2b09-86e3-45f4-ab42-e65738b2b064",
+      "name": "Airtable"
+    },
+    {
+      "parameters": {
+        "resource": "calendar",
+        "calendar": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        544,
+        16
+      ],
+      "id": "1d19b07a-7987-440c-b955-dad657cbb2b4",
+      "name": "Google Calendar"
+    },
+    {
+      "parameters": {
+        "operation": "copy",
+        "fileId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        768,
+        16
+      ],
+      "id": "d03aec84-1189-4909-9ac4-34a4ceab96f4",
+      "name": "Google Drive"
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.shopify",
+      "typeVersion": 1,
+      "position": [
+        768,
+        560
+      ],
+      "id": "4a74f99d-ccb0-4db4-8503-3ab527366413",
+      "name": "Shopify"
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.payPal",
+      "typeVersion": 1,
+      "position": [
+        544,
+        560
+      ],
+      "id": "9c2f0a9c-54b5-4059-9f5f-819c8d990580",
+      "name": "PayPal"
+    },
+    {
+      "parameters": {
+        "resource": "customer",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.wooCommerce",
+      "typeVersion": 1,
+      "position": [
+        976,
+        560
+      ],
+      "id": "0e078e43-9fa3-4bfa-86fb-d872c84fc13e",
+      "name": "WooCommerce"
+    },
+    {
+      "parameters": {
+        "resource": "company",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 2.1,
+      "position": [
+        544,
+        192
+      ],
+      "id": "e9cc84bf-f455-41e1-9eb8-4f1f84471aef",
+      "name": "HubSpot"
+    },
+    {
+      "parameters": {
+        "resource": "account",
+        "operation": "addNote",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.salesforce",
+      "typeVersion": 1,
+      "position": [
+        768,
+        192
+      ],
+      "id": "6e1d94ad-fcf5-4c92-aa3a-a1377e023648",
+      "name": "Salesforce"
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.zohoCrm",
+      "typeVersion": 1,
+      "position": [
+        976,
+        192
+      ],
+      "id": "d77078d2-191a-4e2a-8e47-464edce8d367",
+      "name": "Zoho CRM"
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        320,
+        16
+      ],
+      "id": "5276c43d-ad6b-4b07-bdc5-1ed1d32ff73e",
+      "name": "Google Sheets"
+    },
+    {
+      "parameters": {
+        "resource": "chat"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        768,
+        384
+      ],
+      "id": "cbd9e9ec-e63e-4b93-b83a-9fc3a1bd1da7",
+      "name": "Telegram",
+      "webhookId": "5e6bd777-5bdb-4051-8bab-fc81823b2ecb"
+    },
+    {
+      "parameters": {
+        "guildId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        976,
+        384
+      ],
+      "id": "88d60fd1-8b2c-4536-92c7-9bee05ebf676",
+      "name": "Discord",
+      "webhookId": "04bac325-fbde-4978-a2c3-ed8580fb186e"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        320,
+        560
+      ],
+      "id": "9f1b3379-4a58-4708-bcdc-9fd98192d1b4",
+      "name": "Stripe"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        976,
+        16
+      ],
+      "id": "488e3a0d-cc49-451b-b8c9-5e1bb91a8c4b",
+      "name": "Gmail",
+      "webhookId": "bb63e1ec-4bdb-4c88-9785-f26ece74b166"
+    },
+    {
+      "parameters": {
+        "content": "## MÁS DE 400 CONEXIONES",
+        "height": 800,
+        "width": 880,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        256,
+        -48
+      ],
+      "id": "1dc852cc-bc57-40f7-97ba-ceb51f40fe55",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFile",
+        "fileToWatch": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        384
+      ],
+      "id": "e3c073ee-f15d-4d34-9404-5a3324006423",
+      "name": "Google Drive Trigger"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1840,
+        384
+      ],
+      "id": "bcda7f56-c0ef-422a-947a-024d0cb8e0c1",
+      "name": "Gmail Trigger"
+    },
+    {
+      "parameters": {
+        "content": "## TRIGGERS\n\nUn trigger (o disparador) es una acción o evento que inicia automáticamente un proceso o flujo de trabajo. Funciona como un interruptor que, cuando ocurre una condición específica, activa una serie de pasos predefinidos.\n\n\nPor ejemplo, en un chatbot de WhatsApp con n8n, un trigger podría ser cuando un usuario envía un mensaje, lo que haría que el chatbot responda automáticamente. \n\n\n\n\n\n\n\n\n\n\n\n\n\nOtros: Más Triggers\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWebhook Trigger: Este Trigger activa el flujo de trabajo cuando recibe una solicitud HTTP externa. Es útil para recibir datos de aplicaciones externas o cuando quieres que tu flujo de trabajo comience al recibir información desde un servicio web\n\n\n\n\n\n\n\n\n\n\n\n\n\nTrigger Manual: Este Trigger activa el flujo de trabajo manualmente al hacer click. Esto permite ejecutar el flujo bajo demanda, ideal para pruebas o procesos que quieres controlar manualmente.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSchedule Trigger: Este Trigger activa el flujo de trabajo en intervalos de tiempo predefinidos (Cada minuto, hora, día, etc...)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhen Chat Message Receive: Este Trigger activa el flujo de trabajo cuando se recibe un mensaje del chat \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExecute Worklow Trigger: Este Trigger permite ejecutar otro flujo de trabajo de n8n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOtros Triggers\n- n8n Form Trigger: Este Trigger activa el flujo de trabajo cuando se envía un formulario dentro de n8n\n- Local File Trigger: Este Trigger monitorea un archo local y ejecuta el flujo de trabajo cuando ese archivo se modifica o se actualiza",
+        "height": 2080,
+        "width": 840,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1408,
+        -48
+      ],
+      "id": "42692048-e914-49f4-85eb-d4229690fe27",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "eventsUi": {
+          "eventValues": [
+            {
+              "name": "conversation.deletion"
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.hubspotTrigger",
+      "typeVersion": 1,
+      "position": [
+        1648,
+        384
+      ],
+      "id": "7306913e-7f21-495a-99be-d8f4546fc73b",
+      "name": "HubSpot Trigger",
+      "webhookId": "6bcba2c3-3a91-4ab3-8a0f-76572705c69e"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1744,
+        1072
+      ],
+      "id": "2e95e76c-1e06-415c-b4a9-e4c60cb08d07",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1744,
+        1520
+      ],
+      "id": "d1f51681-caba-482f-9910-9c69817d8732",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "triggerOn": "file",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.localFileTrigger",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        1824
+      ],
+      "id": "04305cb5-0675-4afb-90da-734011b3a3bb",
+      "name": "Local File Trigger"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        1888,
+        1824
+      ],
+      "id": "fa2c5657-daeb-4746-a4dd-5ba8528d22fc",
+      "name": "On form submission",
+      "webhookId": "2237361b-a379-4933-a0d7-d52d2c004294"
+    },
+    {
+      "parameters": {
+        "content": "## NODOS AUXILIARES\n\nUn nodo auxiliar es una herramienta puntual que permite modificar los datos que recibimos entre una conexión u otra.\n\nExisten muchos nodos pero los más importantes son: \n\nCode: Permite ejecutar código personalizado en JavaScript o Python dentro del flujo de trabajo.\n\n\n\n\n\n\n\n\n\n\n\n\n\nSet (Edit Fields): Permite renombrar variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHTTP Request: Envía solicitudes HTTP a otras aplicaciones o servicios web. Te permite interactuar con APIs externas.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIf: Evalúa una condición y bifurca el flujo hacia dos caminos: uno si la conexión es verdadera y otro si es falsa.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSwitch: Permite redirigir el flujo de trabajo por diferentes ramas según las reglas que definas.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFilter: Permite filtrar solamente los datos que nos interesan.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSplit Out: Divide un conjunto de datos en elementos individuales para procesarlos uno por uno.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAggregate: Toma múltiples elementos y los combina en uno solo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMerge: Combina datos de múltiples flujos en uno solo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoop Over Items: Permite ejecutar una serie de acciones repetidamente sobre un conjunto de elementos.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLimit: Restringe el número de elementos que pasan a través de un flujo de trabajo.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+        "height": 2700,
+        "width": 720,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2384,
+        -48
+      ],
+      "id": "e2b21c91-df59-4ede-ab7b-97cd82db379d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Genera 1 item con un array \"pedidos\"\nreturn [{\n  json: {\n    cliente: 'ACME Corp',\n    pedidos: [\n      { id: 101, importe: 99.99, estado: 'pendiente' },\n      { id: 102, importe: 149.50, estado: 'pagado' },\n      { id: 103, importe: 79.00,  estado: 'pendiente' },\n    ],\n  },\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2656,
+        176
+      ],
+      "id": "e1b9c75d-026b-428c-a3dd-d0fe4c44f817",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4f17cb7b-2c92-408c-838a-dd0c1e35c078",
+              "leftValue": "={{ $json.chatInput }}",
+              "rightValue": "ho",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        2656,
+        1280
+      ],
+      "id": "149d016e-8af4-4c23-9e27-0d9c22134213",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2656,
+        1712
+      ],
+      "id": "ce670441-3112-49c2-9733-a7a781c2ba90",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "pedidos",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2656,
+        1504
+      ],
+      "id": "3971538b-6f7c-4e27-a973-f78c5ea971e5",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e6277da0-afeb-4eb1-8469-19a6ce0c9ef4",
+              "leftValue": "={{ $json.chatInput }}",
+              "rightValue": "o",
+              "operator": {
+                "type": "string",
+                "operation": "endsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2656,
+        832
+      ],
+      "id": "52d89585-39b5-4714-9204-f8790889298d",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2656,
+        1952
+      ],
+      "id": "e2642643-ac9b-4700-a694-e4d96bbb371d",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2656,
+        2192
+      ],
+      "id": "536cf28d-c8b1-4cf6-b42d-19940750839e",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.asisttente.com/webhook/33d4204f-f106-475b-a96e-4c8c67140305",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2656,
+        592
+      ],
+      "id": "565f8acd-407b-4ef6-90c8-367dfa2de1bb",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "content": "## INTELIGENCIA ARTIFICIAL",
+        "height": 2400,
+        "width": 2580,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3376,
+        -48
+      ],
+      "id": "c8f27ebc-c262-4259-a638-0f60c6aa694d",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        3664,
+        256
+      ],
+      "id": "7e536c26-d34b-415f-828d-88321d5dc137",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        4320,
+        112
+      ],
+      "id": "b7b3acec-082f-4783-803f-4ba8cd7112af",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryMotorhead",
+      "typeVersion": 1.3,
+      "position": [
+        4608,
+        112
+      ],
+      "id": "a288c68a-81d4-4df2-9451-2f71b6b3a2dc",
+      "name": "Motorhead"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        4880,
+        112
+      ],
+      "id": "0fd1d679-9a01-4ea9-8593-87c748173dd6",
+      "name": "Postgres Chat Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.4,
+      "position": [
+        5040,
+        112
+      ],
+      "id": "f8b5707d-3f52-414a-904f-18b52f690b2e",
+      "name": "Redis Chat Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryXata",
+      "typeVersion": 1.4,
+      "position": [
+        4736,
+        112
+      ],
+      "id": "6c3bd234-9cd3-41cc-a950-12ce3b5f2092",
+      "name": "Xata"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryZep",
+      "typeVersion": 1.3,
+      "position": [
+        4464,
+        112
+      ],
+      "id": "3a3f850e-a3d4-4ff8-8842-612a81ba3105",
+      "name": "Zep"
+    },
+    {
+      "parameters": {
+        "content": "MEMORIA",
+        "height": 240,
+        "width": 940,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4256,
+        32
+      ],
+      "id": "e44f0d5a-2f29-4f6a-81c0-f6a66b4a0c72",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        4496,
+        400
+      ],
+      "id": "57e4ec7e-aaf7-422f-a1ea-8228af9e9a39",
+      "name": "Anthropic Chat Model1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAzureOpenAi",
+      "typeVersion": 1,
+      "position": [
+        5744,
+        400
+      ],
+      "id": "62728730-5999-4ace-8848-9f13214c1784",
+      "name": "Azure OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAwsBedrock",
+      "typeVersion": 1,
+      "position": [
+        5568,
+        400
+      ],
+      "id": "c4083d7e-3323-4833-8a84-cd5d6876353d",
+      "name": "AWS Bedrock Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        5184,
+        400
+      ],
+      "id": "bbccd8aa-e2a5-4bc2-8536-49637b730d31",
+      "name": "DeepSeek Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        4320,
+        400
+      ],
+      "id": "248174b5-203d-4a8f-8ae2-d56c246206bb",
+      "name": "Google Gemini Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        4656,
+        400
+      ],
+      "id": "310cb012-65a4-4b0e-9805-54b4b9e77c44",
+      "name": "Groq Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        4848,
+        400
+      ],
+      "id": "3b0eab06-f608-47bd-9e49-9173a2290a67",
+      "name": "Mistral Cloud Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        5024,
+        400
+      ],
+      "id": "73920fd9-07f2-41e2-8e31-9977ef95ea99",
+      "name": "Ollama Chat Model"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        5360,
+        400
+      ],
+      "id": "7bbda677-9b9a-4a6d-bbec-053ddb79989c",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "content": "LLM: MODELOS DE LENGUAJE",
+        "height": 240,
+        "width": 1660,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4256,
+        320
+      ],
+      "id": "4daf0990-c3ea-47c4-9107-87326b4b7035",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "HERRAMIENTAS\n\nVector Store Tool: Almacena y gestiona datos en forma de vectores para búsquedas o análisis avanzados.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCall n8n Workflow: Llama a otro flujo de trabajo de n8n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode Tool: Ejecuta fragmentos de código personalizado\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCalculadora: Para operaciones matemáticas\n\n\n\n\n\n\n\n\n\n\n\n\nWikipedia: Realizar una búsqueda en wikipedia\n\n\n\n\n\n\n\n\n\n\n\n\nSerpAPI: Realizar búsquedas de Google y obtener resultados en tiempo reals\n\n\n\n\n\n\n\n\n\n\n\n\nOtras: Drive, Gmail, etc...\n\n\n\n\n\n\n",
+        "height": 1640,
+        "width": 720,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4240,
+        592
+      ],
+      "id": "574a0c5a-b594-459b-af95-aa8cbc743002",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "AGENTES DE IA\n\nUn AI Agent es un asistente inteligente que puede tomar decisiones y realizar tareas de forma autónoma basándose en reglas, datos o inteligencia artificial.\n\nPor ejemplo, un AI Agent en n8n podría analizar mensajes de clientes, interpretar su intención y responder automáticamente o redirigir la consulta a la persona adecuada. Funciona como un ayudante digital que piensa y actúa según lo programado.",
+        "height": 440,
+        "width": 740,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3440,
+        32
+      ],
+      "id": "9cf99a72-4e35-47ff-a4c6-0d8cfaf47a92",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "NODOS\n\nQuestion and Answer Chain: Realiza preguntas y responde basándose en la información proporcionada.\n\nPor ejemplo, un AI Agent en n8n podría analizar mensajes de clientes, interpretar su intención y responder automáticamente o redirigir la consulta a la persona adecuada. Funciona como un ayudante digital que piensa y actúa según lo programado.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBasic LLM Chain: Utiliza un modelo de lenguaje (LLM) para procesar texto y generar respuestas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nText Classifier: Clasifica textos según categorías predefinidas utilizando IA\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInformation Extractor: Extrae datos importantes o específicos de un texto\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSentiment Analysis: Analiza el sentimiento de un texto, indicando si es positivo, negativo o neutral.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSummarization Chain: Resume un texto largo para proporcionar la información clave.",
+        "height": 1700,
+        "width": 740,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3440,
+        544
+      ],
+      "id": "ce7f90ac-f848-45ce-a13e-cc4c1ea28d4c",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.4,
+      "position": [
+        3664,
+        720
+      ],
+      "id": "be19e40b-2f6e-4cd6-a871-9ca143200133",
+      "name": "Question and Answer Chain"
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {},
+            {}
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        3664,
+        976
+      ],
+      "id": "5a21bab8-02a9-4b4e-a58d-73df74828d4b",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "categories": {
+          "categories": [
+            {},
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        3664,
+        1232
+      ],
+      "id": "06287680-e8d7-4d43-9538-02da46f63ea6",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
+      "typeVersion": 1,
+      "position": [
+        3664,
+        1776
+      ],
+      "id": "0d30af18-98f2-4510-8583-ad1758cda954",
+      "name": "Sentiment Analysis"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        3664,
+        1520
+      ],
+      "id": "f83634bc-fc93-43a3-a700-30faafef5550",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        3664,
+        2032
+      ],
+      "id": "8a22128e-e0cb-464a-89c7-3771d529e863",
+      "name": "Summarization Chain"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        4464,
+        736
+      ],
+      "id": "ab4f8397-38d2-4cb2-a3e9-831e2c75c872",
+      "name": "Answer questions with a vector store"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4544,
+        976
+      ],
+      "id": "3a1177d6-7be5-4453-860d-b07ce659e50e",
+      "name": "Call n8n Workflow Tool"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "typeVersion": 1.1,
+      "position": [
+        4544,
+        1200
+      ],
+      "id": "c44b3b04-a659-4cc9-908e-c9e98b5c0ff7",
+      "name": "Code Tool"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "typeVersion": 1,
+      "position": [
+        4544,
+        1552
+      ],
+      "id": "d5bacb6f-d84e-4404-aab8-f29aacca9755",
+      "name": "Wikipedia"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        4544,
+        1392
+      ],
+      "id": "7bb73386-51f3-4d6a-8c9f-8390f545db13",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        4544,
+        1760
+      ],
+      "id": "2b02f6fd-8404-4e54-a703-6287b1536eb5",
+      "name": "SerpAPI"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        4480,
+        1936
+      ],
+      "id": "c9572529-3a58-42cd-a6eb-57b7b5a89990",
+      "name": "Gmail1",
+      "webhookId": "3b1aa5dd-be7f-4ef4-b70d-004e3e5b1509"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Filtrador #2').item.json.text.body }}",
+        "options": {
+          "systemMessage": "=# **Rol**\n\nEres Eva, una asesora de atención al cliente en **AmorCanino**, un criadero especializado en criar y vender perros de raza con amor, cuidado y dedicación. Con más de 20 años de experiencia en el sector, destacas por tu habilidad para entender las necesidades de las familias y personas interesadas en comprar un compañero peludo, ayudándolos a elegir la raza y el cachorro ideal para ellos.\n\n# **Tareas**\n\n1. **Venta de cachorro:** Tu tarea principal es conseguir la venta de un cachorro, debes perseguir este objetivo por encima de todo\n2. **Responder preguntas**: Tu tarea secundaria es responder dudas sobre especificaciones de raza, temperamento, cuidados, garantías, precios, etc…\n\n# **Contexto**\n\n**AmorCanino** es un criadero reconocido por su trato ético y personalizado hacia los perros y los clientes, ofreciendo cachorros de raza criados con estándares de calidad, cuidados veterinarios completos y un enfoque en encontrar el hogar perfecto para cada cachorro.\n\n# Proceso de Compra\n\n## 1. Averiguar Raza de Perro Ideal\n\n**Primero,** tienes que preguntarle al cliente si tiene alguna raza de perro en mente o si está buscando recomendaciones:\n\nSi **SI** tiene claro la raza de perro que quiere, no le hagas ninguna pregunta, sigue con el proceso de compra.\n\nSi **NO** tiene claro la raza de perro que quiere, tu trabajo es ayudarle a encontrar su raza de perro ideal, para ello, tienes que distinguir si:\n\n**El cliente NO te da datos sobre lo que busca, tendrás que:**\n\n- Hacerle las preguntas del apartado de “Asesoramiento”.\n- Activar la herramienta “Base de Datos” y ofrecerle razas de perros que cumplan con sus gustos.\n\n**El cliente SI te da datos sobre lo que busca o te da cualquier información, tendrás que:**\n\n- Activar la herramienta “Base de Datos” y ofrecerle razas de perros que cumplan con sus gustos.\n\n## 2. Averiguar Sexo y Color de Perro Ideal\n\n**Segundo,** después de que sepas la raza de perro que quiere el cliente, envíale un simple mensaje preguntándole qué sexo y color de perro quiere.\n\n## 3. Enviar Fotos\n\n**Tercero,** después de que el cliente te diga que raza quiere y que sexo o color. [raza, sexo, color], tienes que:\n\n- Activar **SIEMPRE** la herramienta “fotos”\n- Si recibies un “response” de la herramienta “fotos”, ten en cuenta el mensaje para incluirlo en tu respuesta\n- Si recibies un “response” de la herramienta “fotos” vacío, significa que ahora mismo no tenemos disponible la raza que el cliente busca\n\n### **Notas Identificar Método de Recogida**\n\n- **NUNCA** preguntes al cliente si quiere ver fotos de nuestros cachorros, toma la iniciativa y activa la herramienta “fotos” cuando sepas la raza, sexo y color\n\n## 4. Identificar Método de Recogida\n\n**Cuarto,** después de enviarle fotos al cliente de su raza ideal, explícale nuestros 2 métodos de recogida, que son:\n\n- **Asistir a nuestras instalaciones.**\n- **Envío** del cachorro en **transporte especializado y autorizado** a su casa o a un punto de recogida, según disponibilidad en su zona.\n\n### **Notas Identificar Método de Recogida**\n\n- **NO** repitas los datos del cliente\n\n## 5. Recoger Datos del Cliente\n\n**Quinto,** después de que sepas que el método de recogida del cliente, envíale un simple mensaje preguntándole los “Datos del Cliente” (Su nombre, teléfono y correo electrónico).\n\n## 6. Enviar Horario\n\n**Sexto,** después de que sepas los datos del cliente, envíale un simple mensaje diciéndole nuestro horario y preguntándole la hora a la que le gustaría venir a visitar nuestras instalaciones.\n\n### Notas Horario\n\n- **NO** repitas los datos del cliente\n\n## **7. Hacer Resumen**\n\n**Septimo,** después de que sepas los datos del Cliente (Nombre, Teléfono y Correo Electrónico), los datos de Visita (Fecha y Hora) y los datos de Perro (Raza, Sexo, Color), **envíale el mensaje del apartado de “Resumen”.**\n\n## 8. Agendar Visita\n\n**Octavo,** después de enviarle al cliente un “Resumen” de la conversación y que te diga que está bien, tienes que:\n\n1. **Activar la herramienta “visitas”**\n2. Enviarle al cliente el mensaje del apartado de **“Visita Confirmada”**.\n\n### Notas Visita\n\n- Es **OBLIGATORIO** hacer estas 2 acciones **JUNTAS**\n\n# Mensaje de Bienvenida\n\n**Si el cliente es “Nuevo”, envíale SIEMPRE un mensaje diciendo tu nombre y preguntándole el suyo, envíale textualmente el siguiente mensaje:**\n”¡Hola, soy Eva! Encantada, cómo te llamas? 😊 [respuesta a la pregunta del cliente]”\n\n**Si el cliente es “Viejo” y te saluda, envíale SIEMPRE un mensaje sin decir tu nombre ni  preguntándole el suyo, como este:**\n\n¡Hola! 😊 [respuesta a la pregunta]\n\n# **Asesoramiento**\n\n**Si el cliente NO te da datos sobre lo que busca, tendrás que preguntar:**\n\n- “¿Tienes alguna preferencia en cuanto al tamaño?”\n- “¿Tienes alguna preferencia en cuanto al carácter?”\n- “¿Tienes niños u otras mascotas en casa?”\n- “¿Qué tan activa es tu rutina diaria?”\n\nEstas preguntas me ayudarán a entender mejor tus necesidades y hacerte algunas recomendaciones. 🐾\n\nTambién puedes echarle un ojo a nuestra web, donde encontrarás las razas que criamos y sus características. 🐶✨\n\n## Precios\n\n**SIEMPRE que le envíes a un cliente el precio de un perro, escribe TEXTUALMENTE (la parte de** [PRECIO] rellenarla con el precio de la raza USANDO LA HERRAMIENTA “Base de Datos”  **) el siguiente mensaje en este mismo formato y estructura, asegurate que cuando mandes este mensaje aparezca el precio de la raza que te solicita:**\n\n💶 Precio: [PRECIO] €\n\nNuestros cachorros los entregamos a partir de los 2 meses, con:\n\n🐶 3 vacunas\n💊 2 desparasitaciones\n📍 Microchip colocado\n📘 Cartilla sanitaria\n🧾 Condiciones de garantía por escrito\n🛡️ Garantía: 15 días para parvo y moquillo + 1 año para displasia de cadera\n\n# Disponibilidad\n\n**SIEMPRE que el cliente pregunte por la disponibilidad de una raza, activa la herramienta “**Base de Datos**”:**\n\n**Si su raza tiene la etiqueta ”SI TENEMOS ESTA RAZA”, usa la herramienta “fotos” y escribe TEXTUALMENTE la parte de** [PRECIO] rellenarla con el precio de la raza USANDO LA HERRAMIENTA “Base de Datos”   **) el siguiente mensaje en este mismo formato y estructura, asegurate que cuando mandes este mensaje aparezca el precio de la raza que te solicita:**\n\n¡Sí! 🎉 Tenemos [RAZA QUE SOLICITA] disponibles 🐾\n\n💶 Precio: [PRECIO] €\n\nNuestros cachorros los entregamos a partir de los 2 meses, con:\n\n🐶 3 vacunas\n💊 2 desparasitaciones\n📍 Microchip colocado\n📘 Cartilla sanitaria\n🧾 Condiciones de garantía por escrito\n🛡️ Garantía: 15 días para parvo y moquillo + 1 año para displasia de cadera\n\n**Si su raza SI tiene la etiqueta ”NO QUEDAN ACTUALMENTE”, escribe TEXTUALMENTE el siguiente mensaje en este mismo formato y estructura:**\n\nAhora mismo no tenemos [raza]. Si quieres puedo abrirte una ficha de cliente para avisarte en cuanto tengamos disponibilidad. 📋🔔 ¡Serás de los primeros/as en enterarte!\n\nPara ello, necesitaría estos datos:\n\n👤 Nombre y apellidos\n\n🆔 DNI\n\n🏡 Dirección completa (con CP, población y provincia)\n\n📧 Correo electrónico\n\n🐕‍🦺 ¿Buscas macho o hembra?\n\n🎨 ¿Algún color en especial? (si esta raza tiene más de uno)\n\nPuedes copiar, rellenar y reenviarme todo por aquí 😊.\n\n# Datos del Cliente\n\n**Antes de agendar una visita, pregunta los siguientes datos al cliente, en este mismo formato y estructura:**\n\n- Nombre\n- Correo Electrónico\n- Número de Teléfono\n\nCon estos datos podremos agendar tu visita! 🐾✨\n\n# Horario\n\n**SIEMPRE que un cliente pregunta por el horario o tienes que dárselo, escribe textualmente el siguiente mensaje:**\n\nNuestro horario de visita es:\n\n- De Lunes a Viernes: De 9:00 a 13:00 y De 15:00 a 19:00\n- Sábado: De 10:00 a 13:00\n\nEs imprescindible venir con cita previa, así que dime. ¿A qué hora te gustaría venir a visitarnos? 🕔🐶\n\n## Notas Horario\n\n**AmorCanino** **NO** acepta visitas los Domingos\n\n**AmorCanino** **NO** acepta visitas estos dias (festivos):\n\n- 15 de agosto\n- 10 de Octubre\n- 13 de octubre\n- 1 de noviembre\n- 6 de diciembre\n- 8 de diciembre\n- 25 de diciembre\n\nSi un cliente quiere agendar una visita estos días, dile que elija otro día\n\n# Resumen\n\n**SIEMPRE que tengas que enviar el texto de resumen, escribe textualmente el siguiente mensaje:**\n\n¡Genial! 🐶✨\n\nEntonces, estás interesado en venir a ver a nuestros [Raza] y te gustaría venir el [Fecha].\n\nQueremos asegurarnos de que todo esté correcto. ¿Te va bien esta fecha o prefieres otra? ¡Cuéntanos y agendamos tu visita! 🐾💕\n\n# **Métodos de pago:**\n\n**SIEMPRE que un cliente te pregunte por nuestros métodos de pagos, escribe textualmente el siguiente mensaje:**\n\nEstas son nuestras opciones de pago disponibles:\n\n1. **Transferencia Bancaria:** Puedes realizar una transferencia a nuestra cuenta bancaria. Te proporcionaremos los detalles de la cuenta una vez que confirmes la compra.\n2. **Tarjeta de Crédito o Débito**: Aceptamos pagos con tarjeta, ya sea en persona en nuestras instalaciones o a través de un enlace seguro que te enviaremos.\n3. **Efectivo**: Si decides recoger el cachorro en nuestras instalaciones, puedes pagar en efectivo al momento de la recogida. En caso de que el importe del cachorro sea mayor que 1.000€, se podrás completar el pago con cualquiera de los métodos anteriores.\n\nUna vez que elijas el método de pago que prefieras, te proporcionaremos toda la información necesaria para completar la transacción. ¿Hay algo más en lo que pueda ayudarte? 🐾💰\n\n# Camadas\n\n**SIEMPRE que un cliente te pregunte sobre las camadas, escribe textualmente el siguiente mensaje:**\n\nEn cuanto a las camadas… Si lo quieres para más adelante, cuando lo quieras comprar me dices y te enseño la disponibilidad que habrá en ese momento, porque va cambiando cada día.  ☺️\n\nEl proceso de compra es el siguiente:\n\n👉🏼 Cuando lo puedas/quieras tener, te enseñaré lo que hay disponible en ese momento, te informaré del precio, etc...\n\n👉🏼 Si te cuadra y te gusta, te pediré tus datos para enlazarte con el número de microchip del cachorro que te haya gustado.\n\n👉🏼 En el momento de la reserva te pediré una paga y señal de 100€ y cuando el cachorro haya cumplido los 2 meses de edad te lo podremos entregar.\n\n👉🏼 Todos nuestros cachorros llevan el microchip insertado.  Los entregamos con 2 desparasitaciones, 3 vacunas, garantía de 15 días para parvo y moquillo y un año para displasia de cadera.\n\n👉🏼 Puedes venir a buscarlo tú mismo ó te lo podemos enviar con transporte autorizado para mascotas.\n\nEsperamos que nos vuelvas a contactar cuando puedas / quieras tener a tu cachorro, gracias!!! 🥰\n\n# Cruces entre Razas y Genética\n\n**SIEMPRE que un cliente te pregunta sobre temas genéticos o cruces de razas de nuestros cachorros, escribe textualmente el siguiente mensaje:**\n\nEn **AmorCanino** nos tomamos muy en serio la salud y el bienestar de nuestro cachorros.\n\nEn la crianza de perros hay una ley no escrita y por la que nos regimos a raja tabla, y es que no se cruzan sangres.  No hacemos pruebas genéticas y tenemos muy en cuenta esta condición para realizar los cruces. 🐶💛\n\n# **Transferir Mensajes**\n\n**SIEMPRE que un cliente quiera hablar con una persona (con mensaje o por llamada), escribe textualmente el siguiente mensaje:**\n\nSi prefieres hablar con un asesor, puedes llamar a este mismo número. Nuestro horario de atención telefónica es: Lunes a Viernes de 9:00 a 13:00 y de 15h-19h. Los sábados de 10h-13h. ¿Hay algo más en lo que pueda ayudarte por ahora? 😊🐾\n\n# Ejemplo De Conversación\n\n- **Cliente:** “Quiero un cockapoo”\n- **Eva**: “¡Excelente elección! Los Cockapoos son perros sociables, cariñosos e inteligentes. Dime, ¿qué sexo y color de Cockapoo te gustaría? 🐾”\n- **Cliente:** “macho, marrón”\n- **Eva: “**¡Genial! 🐶✨ Ahora, ¿te gustaría ver fotos de nuestros Cockapoos? 🐾📷”\n\n# NO se Adopta\n\nEn **AmorCanino** **NO** ofrecemos el servicio de adopción\n\n# Formato de Respuesta\n\n- *NUNCA respondas utilizando negrita o utilizando el símbolo ***\n\n# **Notas**\n\n1. **Cordialidad y profesionalismo**: Mantente siempre cordial y profesional, transmitiendo confianza y pasión por los perros.\n2. **Proactividad:** Debes de ser proactiva y comercial para conseguir la venta del cachorro como objetivo principal\n3. **Respuestas:** **NUNCA** termines la conversación, responde **SIEMPRE** de forma abierta para continuar la conversación para conseguir vender el cachorro\n4. **Humano:** Envía en cada mensaje emoticonos que tengan que ver con perros para hacer la conversación más amigable.\n5. **Proceso de compra:** Asegúrate de seguir los pasos del proceso de compra en orden | Nunca hagas sentir al cliente que está siendo dirigido por un paso a paso, NUNCA digas cosas como “como siguiente paso…” o “si estás listo para avanzar en la compra”\n6. **Importante: NO** proporcionamos historial médico de ningún cachorro | **NO** ofrecemos garantías de salud | **NO** hacemos pruebas genéticas | **NO** ofrecemos asesoramiento postventa.\n7. **Ortografía: NO** utilices **NUNCA** las siguientes frases: “ha cometido un error en la escritura”, “ha habido un error”, “Te gustaría saber qué sexo prefieres”, “pedido”, “humano”, “stock”\n8. **Antiguedad:** Recuerda **SIEMPRE** decirle tu nombre y preguntarle al cliente el suyo si es “Nuevo”\n9. Base de Datos**:** Recuerda activar la herramienta “Base de Datos” para resolver dudas sobre disponibilidad y características de nuestros cachorros\n10. **Transportes:** Recuerda activar la herramienta “transportes” para dar información sobre rutas y transportes.\n11. **Visitas:** Recuerda activar la herramienta “visitas” para agendar, cambiar o eliminar visitas\n12. **Fotos:** Recuerda activar la herramineta “fotos” para enviar fotos de nuestros cachorros.\n13. **Apertura: NUNCA** intenes finalizar la conversación (**NO** digas finalizar, **SI** di continuar)\n14. **Estilo: Nunca** uses doble asterisco [(**)texto,()]**. Si necesitas resaltar algo, utiliza *un solo asterisco* a cada lado [(**)texto (*)]*. Evita la negrita siempre que sea posible.\n15. **Edad: Siempre que una persona pregunte por la edad de un perro contestaras que tiene 2 meses de edad.**\n\n# Uso de Herramientas\n\n## Base de Datos\n\nNombre: `Base de Datos`\n\n**Utiliza SIEMPRE la herramienta “Base de Datos” para:**\n\n- Obtener información sobre nuestros perros (disponibilidad, precios, tamaño, carácter, color disponible, personalidad y temperamento, vacunas, desparasitaciones, garantías sanitarias, la tramitación de alta del microchip, la inscripción en la asociación cinológica de Aragón, las devoluciones, o consejos y cuidados básicos sobre perros)\n\n## Cuándo usar la herramienta “Base de Datos”?\n\n**Tienes que utilizar esta herramienta cuando el cliente diga cosas como:**\n\n- Qué perros teneis?\n- Tenéis [raza]?\n- Tienen [raza]?\n- Tienen disponibilidad de [raza]\n- Cual es el precio de [raza]?\n- Cuánto cuesta?\n- Cuánto pesa?\n- Cómo es?\n- Qué colores tenéis?\n- Colores?\n- Cómo es su personalidad?\n- Cómo es su temperamento?\n\n## Calculadora\n\nNombre: `Calculadora`\n\n**Utiliza SIEMPRE la herramienta “Calculadora” para operaciones matemáticas**\n\n## Fecha actual: “`{{ $now }}`\""
+        }
+      },
+      "id": "2d7d37d6-3057-4371-9ab9-ab3d7c213e3b",
+      "name": "Agente de IA",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        4784,
+        2896
+      ],
+      "typeVersion": 1.6
+    },
+    {
+      "parameters": {
+        "content": "## WhatsApp Trigger",
+        "height": 300,
+        "width": 280,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3536,
+        2800
+      ],
+      "typeVersion": 1,
+      "id": "448969ff-a446-4f52-8d3e-df5dae457861",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "## Filtrador",
+        "height": 300,
+        "width": 280,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3920,
+        2800
+      ],
+      "typeVersion": 1,
+      "id": "ce4a366c-5465-4ca4-aac6-9ae913f50977",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "## Agente de IA",
+        "height": 300,
+        "width": 440,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        4704,
+        2800
+      ],
+      "typeVersion": 1,
+      "id": "dc774b93-fe76-4e41-a5c6-30f4884cd040",
+      "name": "Sticky Note23"
+    },
+    {
+      "parameters": {
+        "content": "## Information Extractor",
+        "height": 300,
+        "width": 360,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        4288,
+        2800
+      ],
+      "typeVersion": 1,
+      "id": "a4bf58a5-5871-4559-acc1-62a9dab0e44e",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "## EJEMPLO DE FLUJO",
+        "height": 940,
+        "width": 2420
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3488,
+        2512
+      ],
+      "id": "bfc9731d-d35e-4b0c-a38a-e78bcd0e5744",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "content": "## HERRAMIENTAS",
+        "height": 240,
+        "width": 720,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4848,
+        3136
+      ],
+      "id": "98f77fed-f26e-4dcc-bdf8-dd3a4231c665",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "content": "## MEMORIA",
+        "height": 240,
+        "width": 160,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4640,
+        3136
+      ],
+      "id": "94371fee-c6ff-438d-9c67-6d6cdfcdcaea",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        1648,
+        176
+      ],
+      "id": "e155bdbc-809a-4875-bdb7-c5f21e4d6a0d",
+      "name": "WhatsApp Trigger",
+      "webhookId": "92095478-5138-4e1e-9637-5c5ecce01f7d"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1888,
+        176
+      ],
+      "id": "92ccd34f-69b7-47f3-8bb1-ca38a41269b9",
+      "name": "Telegram Trigger",
+      "webhookId": "bb9c9296-19a6-40b8-b649-158b24db088a"
+    },
+    {
+      "parameters": {
+        "event": "order.created"
+      },
+      "type": "n8n-nodes-base.wooCommerceTrigger",
+      "typeVersion": 1,
+      "position": [
+        2048,
+        384
+      ],
+      "id": "97e8c100-cad3-4d24-af0a-f5b8a6e07de4",
+      "name": "WooCommerce Trigger",
+      "webhookId": "4c436caa-4fcd-4211-9072-df59fc16f47c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": []
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2656,
+        384
+      ],
+      "id": "ba928f8d-e94a-4d8d-a60b-cf7542bf2068",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        2656,
+        2464
+      ],
+      "id": "09eb1bc6-b2c2-4891-8334-711544a441ce",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "f790ad73-8a05-4305-a912-83ae6fbd41cb"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2656,
+        1056
+      ],
+      "id": "b19f26ca-35b3-433f-9280-3e7871df0d14",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "1EXO6awc258gL319jpXN_NF2LrLMYMtH8tG2A0tOmCPY"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        4624,
+        1936
+      ],
+      "id": "02cd8c9c-f31e-47bd-a594-3121aca3aaf0",
+      "name": "Docs"
+    },
+    {
+      "parameters": {
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTool",
+      "typeVersion": 3,
+      "position": [
+        4336,
+        1936
+      ],
+      "id": "65e6ddc6-5caa-4301-a5d9-d064dbdd433a",
+      "name": "Drive"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1IwC4jXuOvYiQfRdatlNen7lHrpU80lHDfzNNXFaKFGo",
+          "mode": "list",
+          "cachedResultName": "Características Perros",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IwC4jXuOvYiQfRdatlNen7lHrpU80lHDfzNNXFaKFGo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 227866817,
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IwC4jXuOvYiQfRdatlNen7lHrpU80lHDfzNNXFaKFGo/edit#gid=227866817"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        4768,
+        1936
+      ],
+      "id": "e59804f8-0926-4ec2-9212-be7ec4ae3fa7",
+      "name": "Sheets"
+    },
+    {
+      "parameters": {
+        "content": "OTROS",
+        "height": 400,
+        "width": 720,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        5168,
+        1824
+      ],
+      "id": "b806617e-8d6b-473c-a545-027876978b3a",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        5488,
+        1952
+      ],
+      "id": "29cd47f2-88bd-4602-b05c-5e0c112a4387",
+      "name": "Generate audio"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Doc_ID_or_URL', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        5024,
+        3232
+      ],
+      "id": "c990850c-dd03-48f6-a8cd-76372d193aa4",
+      "name": "Docs #2"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        4880,
+        3232
+      ],
+      "id": "f198b146-66f2-4169-a65a-ea75c6958a22",
+      "name": "Sheets #2"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        5168,
+        3232
+      ],
+      "id": "46da81bf-9ab8-4b3c-a1ef-19f58f5dc55d",
+      "name": "Gmail #2",
+      "webhookId": "0dc4c3dc-cbe8-4084-8f19-8ec118d86bfe"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        5296,
+        3232
+      ],
+      "id": "c7d7d699-9a9a-4b9b-9d71-dc7ba83e2db8",
+      "name": "Calendar #2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        5440,
+        3232
+      ],
+      "id": "5d6ce6ec-8ff7-4fb1-9aa3-2c1aab9437be",
+      "name": "SerpAPI #2"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Filtrador #2').item.json.from }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        4688,
+        3232
+      ],
+      "id": "a1be19ac-8588-4ce7-a2e0-9d979784b938",
+      "name": "Memoria Simple"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "4f2e2f69-882b-4d90-ae09-0a3837754710",
+      "name": "Chat GPT #2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        5024,
+        2672
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        4528,
+        2672
+      ],
+      "id": "4b65508c-24eb-435e-a39d-139a7fc71617",
+      "name": "Chat GPT #1"
+    },
+    {
+      "parameters": {
+        "text": "={{ $('Filtrador #2').item.json.text.body }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "Nombre",
+              "description": "=El nombre del cliente"
+            },
+            {
+              "name": "Correo Electrónico",
+              "description": "=El correo electrónico del cliente"
+            },
+            {
+              "name": "Número de Teléfono",
+              "description": "=El número de teléfono del cliente"
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "=Tienes que extraer las siguiente información:\n\n- Nombre: El nombre del cliente (Marc, Pedro, Juan, Roberto)\n\n- Correo Electrónico: El correo electrónico del cliente (@gmail.com, @hotmail.com)\n\n- Número de Teléfono: El número de teléfono del cliente ({{ $json.from }})\n\nNunca inventes datos, si no consigues extraer una variable pasa la vacía, pero jamás te la inventes.\n\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        4336,
+        2896
+      ],
+      "id": "bf4d1d42-2d53-42e1-82fb-937a3ef4f0b4",
+      "name": "Information Extractor #2"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "messages",
+        "options": {}
+      },
+      "id": "b18c6988-41e0-4a4e-a6a2-8097c432feed",
+      "name": "Filtrador #2",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        4016,
+        2896
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## LLM",
+        "width": 180,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4464,
+        2640
+      ],
+      "id": "d6af250c-4bd4-4865-97f4-58846973e866",
+      "name": "Sticky Note17"
+    },
+    {
+      "parameters": {
+        "content": "## LLM",
+        "width": 180,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4960,
+        2640
+      ],
+      "id": "e110589e-e2d9-4961-bfc9-360792f6ced3",
+      "name": "Sticky Note18"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        3616,
+        2896
+      ],
+      "id": "31f4d1c8-bdbb-4c5c-b861-9e0c1668fb35",
+      "name": "WhatsApp Trigger #2",
+      "webhookId": "c9d7218d-3670-40a1-b821-6b4792e72d4d"
+    },
+    {
+      "parameters": {
+        "content": "## WhatsApp Trigger",
+        "height": 300,
+        "width": 280,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        5184,
+        2800
+      ],
+      "typeVersion": 1,
+      "id": "7d2e8569-a4ff-417f-9088-262569022797",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "616116878254396",
+        "recipientPhoneNumber": "={{ $('Filtrador #2').item.json.from }}",
+        "textBody": "={{ $('Agente de IA').item.json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5264,
+        2896
+      ],
+      "id": "2383aab7-14b4-4d4c-ab72-9de3135a29cc",
+      "name": "Enviar Mensaje",
+      "webhookId": "5a9e8357-bd36-4915-907f-c1669dd5bc05"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        544,
+        384
+      ],
+      "id": "5efdd69d-d5b8-4524-b0e5-2ce3b41aea74",
+      "name": "Send message",
+      "webhookId": "dbcda7d1-b853-4a83-9dfb-475b774a0f65"
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        320,
+        384
+      ],
+      "id": "da1b9388-5cfe-45ce-86c3-d65f3d00120b",
+      "name": "Create a post"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1744,
+        832
+      ],
+      "id": "889cbd67-c9d3-4ebf-b85f-4c896034d2f4",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1744,
+        1280
+      ],
+      "id": "605f79cd-ae33-4b00-9333-57a7d378ec5d",
+      "name": "When chat message received",
+      "webhookId": "5df0ea2a-3d8f-4b88-bd34-3f085cd5309e"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "33d4204f-f106-475b-a96e-4c8c67140305",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1744,
+        624
+      ],
+      "id": "31fee325-a327-4ba7-a2a4-0dbe8b689ad7",
+      "name": "Webhook",
+      "webhookId": "33d4204f-f106-475b-a96e-4c8c67140305"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-11T18:29:39.391Z",
+      "createdAt": "2025-11-11T18:29:39.391Z",
+      "role": "workflow:owner",
+      "workflowId": "Hoi6UA1TPLAz5RZP",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-11T18:29:39.000Z",
+  "versionId": "6be66468-8531-40df-91ed-bfd92cc4c6a5"
+}
