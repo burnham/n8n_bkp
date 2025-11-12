@@ -1,0 +1,1959 @@
+{
+  "active": false,
+  "connections": {
+    "Extract from Excel": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract PDF Text": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "File Created": {
+      "main": [
+        [
+          {
+            "node": "Datos Relevantes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from Text File": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "File Updated": {
+      "main": [
+        [
+          {
+            "node": "Datos Relevantes #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Old Doc Rows": {
+      "main": [
+        [
+          {
+            "node": "Download File #2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Datos Relevantes": {
+      "main": [
+        [
+          {
+            "node": "Download File #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download File #1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete a file": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter1": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader2",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Datos Relevantes #1": {
+      "main": [
+        [
+          {
+            "node": "Delete Old Doc Rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download File #2": {
+      "main": [
+        [
+          {
+            "node": "Switch #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Extract PDF Text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from Text File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from Excel",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convertir a Doc",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convertir a Doc",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convertir a Doc",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convertir a Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch #1": {
+      "main": [
+        [
+          {
+            "node": "Extract PDF Text #1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from Text File #1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from Excel #1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convertir a Doc #1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convertir a Doc #1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convertir a Doc #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract PDF Text #1": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from Text File #1": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from Excel #1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file #1": {
+      "main": [
+        [
+          {
+            "node": "Switch #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete a file #1": {
+      "main": [
+        [
+          {
+            "node": "Download file #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader2": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store #1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI #1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store #1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize #1": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate #1": {
+      "main": [
+        [
+          {
+            "node": "Summarize #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convertir a Doc": {
+      "main": [
+        [
+          {
+            "node": "Delete a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convertir a Doc #1": {
+      "main": [
+        [
+          {
+            "node": "Delete a file #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-12T04:46:56.633Z",
+  "id": "6GeRJHnR7PbQVxXa",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Sistema RAG_",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "id": "b021bacb-10d1-4079-8f48-3213d3c95101",
+      "name": "Extract PDF Text",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        112,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {}
+      },
+      "id": "0c45ffae-0010-442c-958a-9958cb8874f5",
+      "name": "Extract from Excel",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        112,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 100,
+        "options": {
+          "splitCode": "markdown"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        1568,
+        448
+      ],
+      "id": "20d86d9f-0d90-464c-86b8-a125e2269c65",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        1152,
+        448
+      ],
+      "id": "08fbd3c2-3d9a-4eb7-88ed-7281970a58e3",
+      "name": "Embeddings OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1kKUtPF92g5VTSqGHDmQEvL0zJP5feJ0W",
+          "mode": "list",
+          "cachedResultName": "RAG_",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1kKUtPF92g5VTSqGHDmQEvL0zJP5feJ0W"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "id": "b8586d35-f6c4-4b91-ac7f-6b791d0d70c9",
+      "name": "File Created",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1104,
+        448
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "id": "a22f4c3e-e93f-4a74-a1ec-128a9ee71be9",
+      "name": "Extract from Text File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        112,
+        240
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "tableId": "rag_chunks",
+        "filterType": "string",
+        "filterString": "=metadata->>file_id=like.*{{ $('Datos Relevantes #1').item.json.file_id }}*"
+      },
+      "id": "eff958d8-9ffa-45b0-aedf-dd26b480c922",
+      "name": "Delete Old Doc Rows",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        1552
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "mbJSdzurznBn21j8",
+          "name": "Supabase Burnham ACC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1OGib9pfjTyyLG61vZbtFKyfbabr1T0HK",
+          "mode": "list",
+          "cachedResultName": "RAG",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1OGib9pfjTyyLG61vZbtFKyfbabr1T0HK"
+        },
+        "event": "fileUpdated",
+        "options": {}
+      },
+      "id": "7428be22-e03d-4ba6-ba78-22a6647fad70",
+      "name": "File Updated",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1088,
+        1552
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Base de Datos",
+        "height": 240,
+        "width": 420,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1088,
+        64
+      ],
+      "typeVersion": 1,
+      "id": "270fdf60-03b9-4987-a613-2acf86d9c43d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 🛠️Cerebro/Herramientas\n",
+        "height": 240,
+        "width": 620,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1088,
+        368
+      ],
+      "typeVersion": 1,
+      "id": "fbf570b5-e62b-4cfa-aa57-d09622d4340d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.data || $json.text || $json.concatenated_data }}",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "=file_id",
+                "value": "={{ $('Datos Relevantes').item.json.file_id }}"
+              },
+              {
+                "name": "=version",
+                "value": "v1"
+              },
+              {
+                "name": "=creator",
+                "value": "={{ $('File Created').item.json.owners[0].displayName }}"
+              },
+              {
+                "name": "=created_at",
+                "value": "={{ $('File Created').item.json.createdTime }}"
+              },
+              {
+                "name": "last_modified",
+                "value": "={{ $('File Created').item.json.modifiedTime }}"
+              },
+              {
+                "name": "folder_path",
+                "value": "projects"
+              },
+              {
+                "name": "file_name",
+                "value": "={{ $('File Created').item.json.name }}"
+              },
+              {
+                "name": "file_extension",
+                "value": "={{ $('File Created').item.json.mimeType }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "390bc72d-248a-4942-a809-809d74c726fe",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "content": "\n",
+        "height": 240,
+        "width": 300
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        720,
+        368
+      ],
+      "typeVersion": 1,
+      "id": "9b0f1e5b-5194-4421-bf7b-0e23eca054a1",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 240,
+        "width": 300
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        368,
+        368
+      ],
+      "typeVersion": 1,
+      "id": "7715a760-c639-4bd6-9156-8d728b0de4f6",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "content": "## 🛠️ Switch",
+        "height": 480,
+        "width": 300,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -368,
+        272
+      ],
+      "typeVersion": 1,
+      "id": "b86c7850-e804-40c8-b0de-f26df8ffa3ae",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "content": "\n",
+        "height": 620,
+        "width": 300,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "b1be9d7f-1476-4b93-a37e-72dabcd58b17",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "content": "## 🏁 Trigger Google drive",
+        "height": 260,
+        "width": 220
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1168,
+        368
+      ],
+      "typeVersion": 1,
+      "id": "d021806a-d5ab-430d-bc20-1f0e4111f9b5",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## 📚 Descarga de archivos",
+        "height": 260
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -656,
+        368
+      ],
+      "typeVersion": 1,
+      "id": "51bbbf8f-aaf9-47ff-817a-35000ec6408f",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {
+        "content": "## Descarga documento Word\n\n\n\n",
+        "height": 280,
+        "width": 720,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        688
+      ],
+      "typeVersion": 1,
+      "id": "8c66b180-1681-4230-a3d4-163dc77dd977",
+      "name": "Sticky Note17"
+    },
+    {
+      "parameters": {
+        "content": "## 🤯 Filtrador",
+        "height": 260,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -880,
+        368
+      ],
+      "typeVersion": 1,
+      "id": "1c0fd8ab-bee4-44aa-8b8d-d3df82aef4a4",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "10646eae-ae46-4327-a4dc-9987c2d76173",
+              "name": "file_id",
+              "value": "={{ $('File Created').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "f4536df5-d0b1-4392-bf17-b8137fb31a44",
+              "name": "file_type",
+              "value": "={{ $('File Created').item.json.mimeType }}{{ $json.mimeType }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "417de702-ef60-4826-a90f-88d22843a52a",
+      "name": "Datos Relevantes",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -864,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Datos Relevantes').item.json.file_id }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
+      },
+      "id": "0eaadfda-375a-4912-9cac-9b41aa1cd7dc",
+      "name": "Download File #1",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -576,
+        448
+      ],
+      "executeOnce": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Convertir a Doc').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/pdf"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        528,
+        768
+      ],
+      "id": "d931e387-429d-4bfe-8bb0-eb46e8301450",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteFile",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Download File #1').item.json.file_id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        352,
+        768
+      ],
+      "id": "7d61763f-77c3-4a02-b4d9-c2ab51f8838f",
+      "name": "Delete a file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "aggregation": "concatenate",
+              "field": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d3358503-8428-472f-ac3e-68fff871c0b1",
+      "name": "Summarize",
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1,
+      "position": [
+        800,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "e5f80062-e36d-4ad0-88a5-77d6c49d3bfd",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        464,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 100,
+        "options": {
+          "splitCode": "markdown"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        1904,
+        1552
+      ],
+      "id": "89096175-13d7-441a-ac31-d6a62dd7d5b8",
+      "name": "Recursive Character Text Splitter1"
+    },
+    {
+      "parameters": {
+        "content": "## Base de Datos",
+        "height": 240,
+        "width": 420,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1424,
+        1168
+      ],
+      "typeVersion": 1,
+      "id": "4eac15b7-dcd3-4b43-85ce-4d69b9e0e41c",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## 🛠️Cerebro/Herramientas\n",
+        "height": 240,
+        "width": 620,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1424,
+        1472
+      ],
+      "typeVersion": 1,
+      "id": "654d56cb-096b-4810-bbd4-0ad6f1e34e9d",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Resumir\n\n",
+        "height": 240,
+        "width": 300
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1072,
+        1472
+      ],
+      "typeVersion": 1,
+      "id": "1d23c263-e288-4e31-9f84-2c8704298b00",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "## Agrupar\n",
+        "height": 240,
+        "width": 300
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        704,
+        1472
+      ],
+      "typeVersion": 1,
+      "id": "a4ee3283-8bb7-4f3a-874a-7b5b5e6a091a",
+      "name": "Sticky Note18"
+    },
+    {
+      "parameters": {
+        "content": "## 🚀 Transformadores\n\n",
+        "height": 620,
+        "width": 300,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        352,
+        1104
+      ],
+      "typeVersion": 1,
+      "id": "272798d0-ff0d-41df-b9f8-46ecc75b0fa5",
+      "name": "Sticky Note19"
+    },
+    {
+      "parameters": {
+        "content": "## Descarga documento Word\n\n\n\n",
+        "height": 280,
+        "width": 720,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        352,
+        1792
+      ],
+      "typeVersion": 1,
+      "id": "34f90729-bbc3-4279-88b6-22e0269a4111",
+      "name": "Sticky Note20"
+    },
+    {
+      "parameters": {
+        "content": "## 📚 Descarga de archivos",
+        "height": 260
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -320,
+        1472
+      ],
+      "typeVersion": 1,
+      "id": "aae1d78c-4cae-44bf-aa46-0592b293a688",
+      "name": "Sticky Note21"
+    },
+    {
+      "parameters": {
+        "content": "## 🛠️ Switch",
+        "height": 480,
+        "width": 300,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -16,
+        1360
+      ],
+      "typeVersion": 1,
+      "id": "99263bda-8f11-474a-b3a1-80095ba830b4",
+      "name": "Sticky Note22"
+    },
+    {
+      "parameters": {
+        "content": "## 🏁 Trigger Google drive",
+        "height": 260,
+        "width": 220
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1136,
+        1472
+      ],
+      "typeVersion": 1,
+      "id": "358bbdc1-9c83-4f76-bfdc-ea0e8d5e9756",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "## 🤯 Filtrador",
+        "height": 260,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -864,
+        1472
+      ],
+      "typeVersion": 1,
+      "id": "432ca9e8-1a68-493b-9476-8fcb8c82c305",
+      "name": "Sticky Note23"
+    },
+    {
+      "parameters": {
+        "content": "## 🗑️ Eliminar Datos",
+        "height": 260,
+        "width": 250
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -640,
+        1472
+      ],
+      "typeVersion": 1,
+      "id": "f377db59-9c6c-4f9f-9eb4-856a73df881a",
+      "name": "Sticky Note24"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "10646eae-ae46-4327-a4dc-9987c2d76173",
+              "name": "file_id",
+              "value": "={{ $('File Updated').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "f4536df5-d0b1-4392-bf17-b8137fb31a44",
+              "name": "file_type",
+              "value": "={{ $('File Updated').item.json.mimeType }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "18b6df4d-64df-4478-8a34-9239a8893f5b",
+      "name": "Datos Relevantes #1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -848,
+        1552
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Datos Relevantes #1').item.json.file_id }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
+      },
+      "id": "1f0e83e2-aadd-4d4a-a140-43b9586af23a",
+      "name": "Download File #2",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -240,
+        1552
+      ],
+      "executeOnce": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.file_type }}",
+                    "rightValue": "application/pdfapplication/pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "78d597d7-d11b-4539-8e0b-d64693ab7a16"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PDF"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "fc193b06-363b-4699-a97d-e5a850138b0e",
+                    "leftValue": "={{ $json.file_type }}",
+                    "rightValue": "application/vnd.google-apps.document",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Google Docs"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "2ae7faa7-a936-4621-a680-60c512163034",
+                    "leftValue": "={{ $json.file_type }}",
+                    "rightValue": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Excel"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "7ddfa924-1c26-4ee3-9890-5c9d2b96717a",
+                    "leftValue": "={{ $json.file_type }}",
+                    "rightValue": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Docs #1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "f53caf8b-7a8f-4d1e-98f4-deaf0e0171f0",
+                    "leftValue": "={{ $json.file_type }}",
+                    "rightValue": "application/msword",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Docs #2"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "cd9ca627-d00d-4c30-903a-41f603c8e36f",
+                    "leftValue": "={{ $json.file_type }}",
+                    "rightValue": "application/vnd.ms-word",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Docs #3"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "9d386a3c-5e5d-4cb0-aae5-2fb95dcad82f",
+                    "leftValue": "={{ $json.file_type }}",
+                    "rightValue": "application/mswordapplication/msword",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Docs #3"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": 2
+        }
+      },
+      "id": "40764470-284f-4e1a-a098-79fba1cb7bfa",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        -288,
+        384
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.metadata.file_extension }}",
+                    "rightValue": "application/pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "78d597d7-d11b-4539-8e0b-d64693ab7a16"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PDF"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "fc193b06-363b-4699-a97d-e5a850138b0e",
+                    "leftValue": "={{ $json.metadata.file_extension }}",
+                    "rightValue": "application/vnd.google-apps.document",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Google Docs"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "2ae7faa7-a936-4621-a680-60c512163034",
+                    "leftValue": "={{ $json.metadata.file_extension }}",
+                    "rightValue": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Excel"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "7ddfa924-1c26-4ee3-9890-5c9d2b96717a",
+                    "leftValue": "={{ $json.metadata.file_extension }}",
+                    "rightValue": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Docs #1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "f53caf8b-7a8f-4d1e-98f4-deaf0e0171f0",
+                    "leftValue": "={{ $json.metadata.file_extension }}",
+                    "rightValue": "application/msword",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Docs #2"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "cd9ca627-d00d-4c30-903a-41f603c8e36f",
+                    "leftValue": "={{ $json.metadata.file_extension }}",
+                    "rightValue": "application/vnd.ms-word",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Docs #3"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": 2
+        }
+      },
+      "id": "a98c5c72-25cd-443a-b201-920ed1fadad1",
+      "name": "Switch #1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        64,
+        1488
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "id": "7a315efd-836f-4682-bd62-70d3d684f555",
+      "name": "Extract PDF Text #1",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        448,
+        1184
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "id": "850bb878-b28e-47be-a663-884d216c2f00",
+      "name": "Extract from Text File #1",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        448,
+        1344
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {}
+      },
+      "id": "a93cd71b-d754-4345-afc3-a7e5e669724e",
+      "name": "Extract from Excel #1",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        448,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Convertir a Doc #1').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/pdf"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        864,
+        1872
+      ],
+      "id": "19477fa8-28d8-4930-9305-81ef3b7a2d59",
+      "name": "Download file #1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteFile",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Loop #1').item.json.file_id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        688,
+        1872
+      ],
+      "id": "5bfa6eed-681c-43a4-9503-451101dd7fbe",
+      "name": "Delete a file #1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.data || $json.text || $json.concatenated_data }}",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "=file_id",
+                "value": "={{ $('Datos Relevantes #1').item.json.file_id }}"
+              },
+              {
+                "name": "=version",
+                "value": "v1"
+              },
+              {
+                "name": "=creator",
+                "value": "={{ $('File Updated').item.json.owners[0].displayName }}"
+              },
+              {
+                "name": "=created_at",
+                "value": "={{ $('File Updated').item.json.createdTime }}"
+              },
+              {
+                "name": "last_modified",
+                "value": "={{ $('File Updated').item.json.modifiedTime }}"
+              },
+              {
+                "name": "folder_path",
+                "value": "projects"
+              },
+              {
+                "name": "file_name",
+                "value": "={{ $('File Updated').item.json.name }}"
+              },
+              {
+                "name": "file_extension",
+                "value": "={{ $('File Updated').item.json.mimeType }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "91e7ffda-8213-4249-a069-11d82e07767c",
+      "name": "Default Data Loader2",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        1552
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        1488,
+        1552
+      ],
+      "id": "27f680e6-6f56-4de1-ab3d-ae407223e506",
+      "name": "Embeddings OpenAI #1",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "value": "rag_chunks",
+          "mode": "list",
+          "cachedResultName": "rag_chunks"
+        },
+        "options": {
+          "queryName": "match_documents"
+        }
+      },
+      "id": "a5c78a28-ccef-4022-b7ba-e408fa5c6bc5",
+      "name": "Supabase Vector Store #1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1,
+      "position": [
+        1472,
+        1264
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "mbJSdzurznBn21j8",
+          "name": "Supabase Burnham ACC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {
+          "queryName": "match_documents"
+        }
+      },
+      "id": "78e9ab69-8b0e-41bb-bc5e-733100975624",
+      "name": "Supabase Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        160
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "mbJSdzurznBn21j8",
+          "name": "Supabase Burnham ACC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "aggregation": "concatenate",
+              "field": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "464c867c-2697-41c6-942a-2603c8d588c6",
+      "name": "Summarize #1",
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1,
+      "position": [
+        1152,
+        1552
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "5052a15d-1f53-4adb-897b-91d7e3bfff6f",
+      "name": "Aggregate #1",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        800,
+        1552
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $json.file_id }}/copy",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "={{ $json.file_id }}"
+            },
+            {
+              "name": "mimeType",
+              "value": "application/vnd.google-apps.document"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3e6fbc54-2aa0-448f-bf99-60e37c75c7cc",
+      "name": "Convertir a Doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        160,
+        768
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $json.file_id }}/copy",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "={{ $json.file_id }}"
+            },
+            {
+              "name": "mimeType",
+              "value": "application/vnd.google-apps.document"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "398303aa-2c58-480a-9964-4e573082f419",
+      "name": "Convertir a Doc #1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        512,
+        1872
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Tres reglas de oro para que la película salga bien 🎬\nElige chunk size ≈ 500-1 000 caracteres y un overlap del 10-20 % si vas a responder preguntas.\n\nPon metadatos útiles en el Loader (título, URL, sección) para que luego puedas citar la fuente o filtrar resultados.\n\nAjusta separadores si tu contenido tiene estructura especial (Markdown, código, transcripciones con timestamps).",
+        "height": 340,
+        "width": 460
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1824,
+        272
+      ],
+      "id": "4041c910-8a50-4500-9f2b-e19d26332391",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "### Este Sistema RAG lo Cambia TODO\n## [VIDEO](https://www.youtube.com/watch?v=IoHNchWcglA)",
+        "height": 96,
+        "width": 368
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -224,
+        -208
+      ],
+      "typeVersion": 1,
+      "id": "4b088f44-478f-468a-aa98-2ac4f1fceab1",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "```\n-- ═════════════════════════════════════════════════════════════════════════════\n-- 0. Limpiar por si hubiera restos anteriores\n-- ═════════════════════════════════════════════════════════════════════════════\ndrop function if exists match_documents(jsonb, int, vector);\ndrop table   if exists rag_chunks cascade;\n\n-- ═════════════════════════════════════════════════════════════════════════════\n-- 1. Extensión pgvector (tipo vector)\n-- ═════════════════════════════════════════════════════════════════════════════\ncreate extension if not exists vector;\n\n-- ═════════════════════════════════════════════════════════════════════════════\n-- 2. Tabla única para RAG: un chunk por fila\n-- ═════════════════════════════════════════════════════════════════════════════\ncreate table rag_chunks (\n  id        bigserial primary key,\n  content   text            not null,          -- texto del chunk\n  metadata  jsonb  default '{}'::jsonb,        -- ej. {\"page\": 12}\n  embedding vector(1536)    not null           -- ajusta la dimensión a tu modelo\n);\n\n-- ═════════════════════════════════════════════════════════════════════════════\n-- 3. Índice HNSW (recomendado por Supabase para producción)\n-- ═════════════════════════════════════════════════════════════════════════════\ncreate index rag_chunks_embedding_hnsw\n  on rag_chunks\n  using hnsw (embedding vector_cosine_ops)\n  with (m = 8, ef_construction = 128);\n\n-- ═════════════════════════════════════════════════════════════════════════════\n-- 4. RPC match_documents  (firma exacta que usa n8n: filter, match_count, query)\n--    ► SIN valores DEFAULT (regla 42P13) y con alias 'r.' para evitar 42702\n-- ═════════════════════════════════════════════════════════════════════════════\ncreate or replace function match_documents(\n  filter          jsonb,\n  match_count     int,\n  query_embedding vector(1536)\n)\nreturns table (\n  id         bigint,\n  content    text,\n  metadata   jsonb,\n  similarity float\n)\nlanguage plpgsql\nas $$\nbegin\n  return query\n  select r.id,\n         r.content,\n         r.metadata,\n         1 - (r.embedding <=> query_embedding) as similarity\n  from   rag_chunks r\n  where  r.metadata @> filter\n  order  by r.embedding <=> query_embedding\n  limit  match_count;\nend; $$;\n\n-- ═════════════════════════════════════════════════════════════════════════════\n-- 5. Permisos: deja ejecutar la RPC al rol 'anon' (o 'authenticated')\n-- ═════════════════════════════════════════════════════════════════════════════\ngrant execute on function match_documents(jsonb, int, vector) to anon;\n\n-- ═════════════════════════════════════════════════════════════════════════════\n-- 6. Forzar a PostgREST a recargar su caché de esquema\n-- ═════════════════════════════════════════════════════════════════════════════\nnotify pgrst, 'reload schema';\n```",
+        "height": 592,
+        "width": 1056
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1504,
+        -288
+      ],
+      "typeVersion": 1,
+      "id": "b6c828df-cd68-47fb-a850-b5630d7417df",
+      "name": "Sticky Note5"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-12T04:46:56.641Z",
+      "createdAt": "2025-11-12T04:46:56.641Z",
+      "role": "workflow:owner",
+      "workflowId": "6GeRJHnR7PbQVxXa",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-12T09:14:45.000Z",
+  "versionId": "c6f3dec0-87ce-49c2-bb35-faf1457c17b6"
+}
