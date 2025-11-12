@@ -268,7 +268,7 @@
         "promptType": "define",
         "text": "=Recibes el siguiente mensaje:\n{{ $json.message.text }}",
         "options": {
-          "systemMessage": "=# Rol\n\nEres un ayudante útil\n\n# Tare\n\nUsa la herramienta para buscar información en tu base de datos"
+          "systemMessage": "=# Rol\n\nEres un ayudante útil\n\n# Tarea\n\nUsa la herramienta para buscar información en tu base de datos"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -796,11 +796,11 @@
   ],
   "staticData": {
     "node:Drive Trigger": {
-      "lastTimeChecked": "2025-11-12T07:47:13Z"
+      "lastTimeChecked": "2025-11-12T13:25:15Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2025-11-12T08:35:38.000Z",
-  "versionId": "3a46ad6e-24fe-4409-82fa-9e766e05cf0c"
+  "updatedAt": "2025-11-12T13:26:56.000Z",
+  "versionId": "f4ebd68a-ddb8-4dc0-995d-fcc37a6733ef"
 }
