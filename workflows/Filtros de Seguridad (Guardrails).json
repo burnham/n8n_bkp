@@ -1,0 +1,648 @@
+{
+  "active": false,
+  "connections": {
+    "Contactos": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memoria": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-12T14:22:58.760Z",
+  "id": "jwj7M5nub3upV6NT",
+  "isArchived": false,
+  "meta": null,
+  "name": "Filtros de Seguridad (Guardrails)",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Recibes el siguiente mensaje:\n\n{{ $('Chat Trigger').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "=# Contexto\n\nEres el asistente personal definitivo. Tu trabajo es enviar la consulta del usuario a la herramienta correcta. Nunca debes redactar correos electrónicos ni crear resúmenes; solo necesitas llamar a la herramienta correcta.\n\n# Herramientas\n\nagente_gmail: Usa esta herramienta para realizar acciones en el correo electrónico.\n\nagente_calendar: Usa esta herramienta para realizar acciones en el calendario.\n\nagente_contactos: Usa esta herramienta para obtener, actualizar o añadir contactos.\n\nagente_sheets: Usa esta herramienta para obtener, actualizar o añadir clientes.\n\npensamiento: Usa esta herramienta cuando se necesite razonamiento complejo o cierta memoria temporal.\n\n# Reglas\n\nAlgunas acciones requieren que primero busques información de contacto.\n\nPara las siguientes acciones, debes obtener la dirección de correo electrónico y enviársela al agente que la necesite:\n\nEnviar correos electrónicos\n\nRedactar correos electrónicos\n\nCrear un evento de calendario con un asistente\n\n# Tarea\n\nLlamar a las herramientas necesarias según la solicitud del usuario.\n\nLlamar la herramienta \"pensamiento\" para verificar que tomaste los pasos correctos. Esta herramienta debe ser llamada cada vez.\n\n# Especificaciones\n\nSi tienes que listar una serie de Clientes de Sheets, hazlo con salto de linea y con -\n\n# Ejemplos\n\n## Input\n\nEnvía un correo electrónico a Pau Berenguer preguntándole cómo le va el día.\n\n## Acciones\n\n1. Llamar a la herramienta de “sheets” para obtener al cliente.\n2. Llamar a la herramienta de “agente_gmail” para enviar el correo electrónico.\n\n## Output\n\nAcabo de enviar el correo que me has pedido a Pau ¿Hay algo más en lo que pueda ayudarte?\n\n# Notas\n\n- Se amigable pero profesional, utiliza algún que otro emoticono.\n- No respondas con cuerpos de correo, mensajes breves y conversacionales\n\n# Reglas\n\n- Si el usuario te pide crear un borrador, se refiere a que utilices la herramienta de agente_correo con la operación de crear un borrador\n- Siempre que te pida que busques una noticia diferente, hazlo aunque ya tengas una\n\n# Fecha y hora actuales:\n\n`{{ $now }}`"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        592,
+        800
+      ],
+      "id": "5ed3ab78-a8d1-4e19-9c33-30cc5a203016",
+      "name": "Agente Principal"
+    },
+    {
+      "parameters": {
+        "name": "agente_contactos",
+        "description": "Utiliza esta herrmienta para acciones de Contactos",
+        "workflowId": {
+          "__rl": true,
+          "value": "LgHyedMd3hRi8TnA",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/LgHyedMd3hRi8TnA",
+          "cachedResultName": "Asistente Personal | Sub Agente Contacts"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre', ``, 'string') }}",
+            "Correo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Correo', ``, 'string') }}",
+            "Operación": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Operaci_n', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "Mensaje"
+          ],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Operación",
+              "displayName": "Operación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        720,
+        1056
+      ],
+      "id": "6eb20f50-3acb-4c13-a595-dd44994bb45d",
+      "name": "Contactos"
+    },
+    {
+      "parameters": {
+        "name": "agente_calendar",
+        "description": "Utiliza esta herrmienta para acciones de Calendar",
+        "workflowId": {
+          "__rl": true,
+          "value": "Pp4etFrFFzL9FaHu",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/Pp4etFrFFzL9FaHu",
+          "cachedResultName": "Asistente Personal | Sub Agente Calendar"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre', ``, 'string') }}",
+            "Correo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Correo', ``, 'string') }}",
+            "Fecha Inicio": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Fecha_Inicio', ``, 'string') }}",
+            "Fecha Fin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Fecha_Fin', ``, 'string') }}",
+            "Operación": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Operaci_n', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "query"
+          ],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Fecha Inicio",
+              "displayName": "Fecha Inicio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Fecha Fin",
+              "displayName": "Fecha Fin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Operación",
+              "displayName": "Operación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        560,
+        1056
+      ],
+      "id": "bdf7156e-658c-4b34-88f3-4003088daf00",
+      "name": "Calendar"
+    },
+    {
+      "parameters": {
+        "name": "agente_gmail",
+        "description": "Utiliza esta herrmienta para acciones de Gmail",
+        "workflowId": {
+          "__rl": true,
+          "value": "RgJz4x4m2PjULaJd",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/RgJz4x4m2PjULaJd",
+          "cachedResultName": "Asistente Personal | Sub Agente Gmail"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre', ``, 'string') }}",
+            "Correo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Correo', ``, 'string') }}",
+            "Operación": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Operaci_n', ``, 'string') }}",
+            "Mensaje": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Mensaje', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "query"
+          ],
+          "schema": [
+            {
+              "id": "Mensaje",
+              "displayName": "Mensaje",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Operación",
+              "displayName": "Operación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        400,
+        1056
+      ],
+      "id": "b51f71e2-b195-493c-a950-af7540a121aa",
+      "name": "Gmail"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        1056,
+        1056
+      ],
+      "id": "afc8413e-3e85-487b-8293-89d1850a5ed5",
+      "name": "SerpAPI"
+    },
+    {
+      "parameters": {
+        "name": "agente_sheets",
+        "description": "Utiliza esta herrmienta para acciones de Base de Datos",
+        "workflowId": {
+          "__rl": true,
+          "value": "o2cW2ouxxC0enezv",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/o2cW2ouxxC0enezv",
+          "cachedResultName": "Asistente Personal | Sub Agente Sheets"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre', ``, 'string') }}",
+            "Empresa": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Empresa', ``, 'string') }}",
+            "Telefono": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Telefono', ``, 'string') }}",
+            "Correo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Correo', ``, 'string') }}",
+            "Operación": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Operaci_n', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "query"
+          ],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Empresa",
+              "displayName": "Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "Operación",
+              "displayName": "Operación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        880,
+        1056
+      ],
+      "id": "455d07e6-6af3-44a3-a7a3-f7188b9d848e",
+      "name": "Sheets"
+    },
+    {
+      "parameters": {
+        "description": "=Usa la herramienta para reflexionar. Simplemente añade el pensamiento al registro. Úsala cuando se necesite razonamiento complejo o cierta memoria temporal.\n\nNunca uses agente_contactos"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
+      "position": [
+        1216,
+        1056
+      ],
+      "id": "79747f18-012f-4db4-bb80-3080ec922f7a",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Chat Trigger').item.json.chatInput }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        752,
+        656
+      ],
+      "id": "59a06b1a-c093-4541-b2b6-bb5c2c98ba05",
+      "name": "Memoria"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        608,
+        656
+      ],
+      "id": "7a4a12a8-2510-464e-b279-6162422852c3",
+      "name": "GPT"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        144,
+        800
+      ],
+      "id": "ad6a4044-d16e-4a2b-a4ca-f3c99346db3b",
+      "name": "Chat Trigger",
+      "webhookId": "48a3a1e2-23cd-4390-920e-12e00fb99c33"
+    },
+    {
+      "parameters": {
+        "content": "### 🧼 Guardrails — Sanitize Text\n\n**Función:**  \nLimpia el texto de datos sensibles antes de procesarlo.\n\n**Ejemplos de lo que elimina o reemplaza:**\n- Correos (`juan@empresa.com` → `[EMAIL_REDACTED]`)\n- Números de tarjeta o cuentas\n- URLs no permitidas\n- Información personal (PII)\n\n**Uso recomendado:**  \n➡️ Coloca este nodo **antes de enviar texto a un agente IA o a otro servicio**.  \nPermite continuar el flujo sin exponer información privada.\n",
+        "height": 512,
+        "width": 512,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        640,
+        0
+      ],
+      "id": "773b02ca-d545-4b2c-ab49-1da48653149c",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "### 🧠 Guardrails — Check Text for Violations\n\n**Función:**  \nEvalúa el texto para detectar **violaciones de políticas** o **contenido inapropiado**.\n\n**Ejemplos de detección:**\n- Contenido ofensivo o NSFW  \n- Datos personales sensibles  \n- Inyección de prompts o manipulación de IA  \n- Texto malicioso o inseguro\n\n**Uso recomendado:**  \n➡️ Coloca este nodo **antes o después de una llamada a IA**  \npara decidir si el flujo debe **continuar, bloquearse o bifurcarse** según el resultado.\n",
+        "height": 512,
+        "width": 576
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "17432d52-e86e-47ff-8763-abae376430e8",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.guardrails",
+      "typeVersion": 1,
+      "position": [
+        848,
+        352
+      ],
+      "id": "452bcd5f-98ed-471c-b02e-547ea1790420",
+      "name": "Guardrails (Sanitize)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bb680342-1352-48fd-b74c-1ffb2f64a440",
+              "name": "Respuesta",
+              "value": "=Lo siento, pero no puedo ayudarte con eso ;)",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        128,
+        1120
+      ],
+      "id": "f67feb3d-6b46-4b97-82e8-f7887a3d9f71",
+      "name": "Respuesta",
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.guardrails",
+      "typeVersion": 1,
+      "position": [
+        128,
+        352
+      ],
+      "id": "822d3dbd-2e9a-4312-bbb8-6e3296b27c10",
+      "name": "Guardrails (Check)"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 192,
+        "width": 192,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        80,
+        1088
+      ],
+      "id": "7fb06994-4f00-437f-b462-9824e69bbddf",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## ⭐️ Por **Pau Berenguer**\n\nSi estás viendo este flujo, recuerda que fue creado con cariño por **Pau Berenguer**, prometo que no lleva *bugs*, solo **buenas vibras** ✨\n\n🔗 **Conecta Conmigo:**  \n- YouTube: [@PauBerenguerAI](https://www.youtube.com/@PauBerenguerAI)  \n- Skool: [The AI Blueprint Plus](https://www.skool.com/the-ai-blueprint-plus)  \n- Instagram: [@pauberenguer_](https://www.instagram.com/pauberenguer_)  \n- LinkedIn: [Pau Berenguer AI](https://www.linkedin.com/in/pauberenguer-ai)  \n\n\n👉🏻 *Si esta automatización te ahorró tiempo o te sacó una sonrisa, puedes darme las gracias por cualquiera de esos enlaces*",
+        "height": 336,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1408,
+        640
+      ],
+      "id": "4e755328-a6a3-448f-9d19-9494143df95a",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Cómo Proteger tus Agentes de IA en N8N con Filtros de Seguridad (Guardrails)\n\n\n# [VIDEO](https://youtu.be/Taumz5Va6_0)",
+        "height": 272,
+        "width": 432
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1200,
+        224
+      ],
+      "typeVersion": 1,
+      "id": "1068c7c1-2b37-48b7-bced-ea6e1a1e5520",
+      "name": "Sticky Note3"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-12T14:22:58.768Z",
+      "createdAt": "2025-11-12T14:22:58.768Z",
+      "role": "workflow:owner",
+      "workflowId": "jwj7M5nub3upV6NT",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-12T14:38:29.000Z",
+  "versionId": "25a03dda-a37d-4723-b15f-6f9997ccb380"
+}
