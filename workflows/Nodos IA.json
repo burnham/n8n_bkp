@@ -1,0 +1,660 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-11-12T06:43:07.592Z",
+  "id": "YMTDPjV54miGCbE9",
+  "isArchived": false,
+  "meta": null,
+  "name": "Nodos IA",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## INTELIGENCIA ARTIFICIAL",
+        "height": 2400,
+        "width": 2580,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -992,
+        496
+      ],
+      "id": "51d18d57-4109-42d6-95de-5bfcb1cd221d",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Mensaje",
+        "options": {
+          "systemMessage": "Eres un ayudante muy util"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -704,
+        784
+      ],
+      "id": "d148969c-9005-499d-a888-457e936aa88c",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -48,
+        656
+      ],
+      "id": "1038b213-b165-405b-adc2-03d71d9cb17c",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryMotorhead",
+      "typeVersion": 1.3,
+      "position": [
+        240,
+        656
+      ],
+      "id": "2e6a941b-15e7-4833-b86a-0014a6d21106",
+      "name": "Motorhead"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        512,
+        656
+      ],
+      "id": "b4ea0872-7c13-476d-9238-cbd272b3a18a",
+      "name": "Postgres Chat Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.4,
+      "position": [
+        672,
+        656
+      ],
+      "id": "0954e86c-0f9b-48d4-993d-c08e1bdfe5da",
+      "name": "Redis Chat Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryXata",
+      "typeVersion": 1.4,
+      "position": [
+        368,
+        656
+      ],
+      "id": "61ab18de-dcf4-4b98-8d10-835ab5de530f",
+      "name": "Xata"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryZep",
+      "typeVersion": 1.3,
+      "position": [
+        96,
+        656
+      ],
+      "id": "b4ced243-8873-4f2b-9900-08360103e7f8",
+      "name": "Zep"
+    },
+    {
+      "parameters": {
+        "content": "MEMORIA",
+        "height": 240,
+        "width": 940,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        576
+      ],
+      "id": "58c0aa76-ee04-42cc-8337-7fe28a70f532",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        128,
+        928
+      ],
+      "id": "4e94663e-5cbe-4592-b11c-d83caf5f4f86",
+      "name": "Anthropic Chat Model1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAzureOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1376,
+        928
+      ],
+      "id": "64e0ef8e-84e4-46bd-97e8-5ff6869e8af5",
+      "name": "Azure OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAwsBedrock",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        928
+      ],
+      "id": "dea29daf-3eb7-4781-933d-09c034d18efd",
+      "name": "AWS Bedrock Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        816,
+        928
+      ],
+      "id": "0ba2b296-ca76-4cdb-9e1b-82bf010703a8",
+      "name": "DeepSeek Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        928
+      ],
+      "id": "c82dc9f6-c351-410a-9d78-f75daba0784e",
+      "name": "Google Gemini Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        288,
+        928
+      ],
+      "id": "cbfa901a-a343-43e2-8ebb-de7254cd99fb",
+      "name": "Groq Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        480,
+        928
+      ],
+      "id": "348194a9-d568-46d5-9eac-56e8ce4d715e",
+      "name": "Mistral Cloud Chat Model"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        656,
+        928
+      ],
+      "id": "516dda34-021d-46d7-8251-33ab6b01f1f9",
+      "name": "Ollama Chat Model"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        992,
+        928
+      ],
+      "id": "27edc5b3-c99c-486a-a9e3-db20e76f101c",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "content": "LLM: MODELOS DE LENGUAJE",
+        "height": 240,
+        "width": 1660,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        848
+      ],
+      "id": "46cfec11-7eed-45fa-9939-589743bcc5fd",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "HERRAMIENTAS\n\n\nOtras: Drive, Gmail, etc...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVector Store Tool: Almacena y gestiona datos en forma de vectores para búsquedas o análisis avanzados.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCall n8n Workflow: Llama a otro flujo de trabajo de n8n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode Tool: Ejecuta fragmentos de código personalizado\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCalculadora: Para operaciones matemáticas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWikipedia: Realizar una búsqueda en wikipedia\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSerpAPI: Realizar búsquedas de Google y obtener resultados en tiempo reals",
+        "height": 1640,
+        "width": 720,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        1136
+      ],
+      "id": "6a8ecc8b-1012-4da1-93b1-d8ff6c82e14a",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "AGENTES DE IA\n\nUn AI Agent es un asistente inteligente que puede tomar decisiones y realizar tareas de forma autónoma basándose en reglas, datos o inteligencia artificial.\n\nPor ejemplo, un AI Agent en n8n podría analizar mensajes de clientes, interpretar su intención y responder automáticamente o redirigir la consulta a la persona adecuada. Funciona como un ayudante digital que piensa y actúa según lo programado.",
+        "height": 440,
+        "width": 740,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -928,
+        576
+      ],
+      "id": "71561163-15ae-49c8-8731-f44250791560",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "NODOS\n\nQuestion and Answer Chain: Realiza preguntas y responde basándose en la información proporcionada.\n\nPor ejemplo, un AI Agent en n8n podría analizar mensajes de clientes, interpretar su intención y responder automáticamente o redirigir la consulta a la persona adecuada. Funciona como un ayudante digital que piensa y actúa según lo programado.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBasic LLM Chain: Utiliza un modelo de lenguaje (LLM) para procesar texto y generar respuestas\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nText Classifier: Clasifica textos según categorías predefinidas utilizando IA\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInformation Extractor: Extrae datos importantes o específicos de un texto\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSentiment Analysis: Analiza el sentimiento de un texto, indicando si es positivo, negativo o neutral.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSummarization Chain: Resume un texto largo para proporcionar la información clave.",
+        "height": 1700,
+        "width": 740,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -928,
+        1072
+      ],
+      "id": "26693ce1-260b-4b84-a6d8-3a33f704765b",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.4,
+      "position": [
+        -704,
+        1248
+      ],
+      "id": "dee97e09-36dc-4c7d-be3b-5c4126e33da1",
+      "name": "Question and Answer Chain"
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {},
+            {}
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -704,
+        1504
+      ],
+      "id": "7515a96e-ca0a-4cf7-a6ac-d7dd2f59f94b",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "categories": {
+          "categories": [
+            {},
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        -704,
+        1776
+      ],
+      "id": "7f547fff-f78a-4e9f-9586-7a23ab387d93",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
+      "typeVersion": 1,
+      "position": [
+        -704,
+        2304
+      ],
+      "id": "dfe635ea-c031-4808-9050-be76eb57c9ee",
+      "name": "Sentiment Analysis"
+    },
+    {
+      "parameters": {
+        "attributes": {
+          "attributes": [
+            {},
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        -704,
+        2048
+      ],
+      "id": "df6cfd1b-fd2e-469f-8069-86affaa4c271",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        -704,
+        2576
+      ],
+      "id": "eb51f7c0-9062-41f5-b025-6731a64f3c96",
+      "name": "Summarization Chain"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        176,
+        1760
+      ],
+      "id": "ba6ed12c-be06-490c-b3e8-da9414e50588",
+      "name": "Call n8n Workflow Tool"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "typeVersion": 1.1,
+      "position": [
+        176,
+        2016
+      ],
+      "id": "55d8a6b5-bd0a-4a83-aa00-015e341fef4b",
+      "name": "Code Tool"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "typeVersion": 1,
+      "position": [
+        176,
+        2432
+      ],
+      "id": "b955c6bf-ee2d-4459-aa73-cb4c2ec03e73",
+      "name": "Wikipedia"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        176,
+        2224
+      ],
+      "id": "08dc9248-e9a9-4709-87b3-976add38e69b",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        176,
+        2640
+      ],
+      "id": "bc382035-3d9d-43e7-8254-ceac532dff0e",
+      "name": "SerpAPI"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        128,
+        1248
+      ],
+      "id": "bc5889ee-aa15-4ee0-b055-5f3f6f44969e",
+      "name": "Gmail1",
+      "webhookId": "3b1aa5dd-be7f-4ef4-b70d-004e3e5b1509"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "1EXO6awc258gL319jpXN_NF2LrLMYMtH8tG2A0tOmCPY"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        272,
+        1248
+      ],
+      "id": "b11d6c23-a4d3-4043-aa78-8dbbc7c4014c",
+      "name": "Docs"
+    },
+    {
+      "parameters": {
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTool",
+      "typeVersion": 3,
+      "position": [
+        -16,
+        1248
+      ],
+      "id": "f2ea6955-8def-41e2-a5bf-a0c35d216b22",
+      "name": "Drive"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1IwC4jXuOvYiQfRdatlNen7lHrpU80lHDfzNNXFaKFGo",
+          "mode": "list",
+          "cachedResultName": "Características Perros",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IwC4jXuOvYiQfRdatlNen7lHrpU80lHDfzNNXFaKFGo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 227866817,
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IwC4jXuOvYiQfRdatlNen7lHrpU80lHDfzNNXFaKFGo/edit#gid=227866817"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        416,
+        1248
+      ],
+      "id": "28a02234-cf1d-4bc6-a97c-c07221bfff7c",
+      "name": "Sheets"
+    },
+    {
+      "parameters": {
+        "content": "OTROS",
+        "height": 400,
+        "width": 720,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        800,
+        2352
+      ],
+      "id": "4b811d46-9c00-45f1-a01f-e193a20fc3f6",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1232,
+        2496
+      ],
+      "id": "bda071f2-0618-4947-b568-22e19ccda274",
+      "name": "Generate audio"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        992,
+        2496
+      ],
+      "id": "6a054cb0-a639-4848-b75d-f69f3f596a39",
+      "name": "Analyze audio"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        80,
+        1504
+      ],
+      "id": "1b21ca73-ad1c-454a-857d-27d486e6657c",
+      "name": "Simple Vector Store"
+    },
+    {
+      "parameters": {
+        "content": "## ⭐️ Por **Pau Berenguer**\n\nSi estás viendo este flujo, recuerda que fue creado con cariño por **Pau Berenguer**, prometo que no lleva *bugs*, solo **buenas vibras** ✨\n\n🔗 **Conecta Conmigo:**  \n- YouTube: [@PauBerenguerAI](https://www.youtube.com/@PauBerenguerAI)  \n- Skool: [The AI Blueprint Plus](https://www.skool.com/the-ai-blueprint-plus)  \n- Instagram: [@pauberenguer_](https://www.instagram.com/pauberenguer_)  \n- LinkedIn: [Pau Berenguer AI](https://www.linkedin.com/in/pauberenguer-ai)  \n\n\n👉🏻 *Si esta automatización te ahorró tiempo o te sacó una sonrisa, puedes darme las gracias por cualquiera de esos enlaces*",
+        "height": 336,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "813f5dec-6ff4-4ef6-b46d-f3fe9efe51cd",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Domina los 7 Nodos de IA en N8N y Crea Automatizaciones Inteligentes\n\n[VIDEO] https://www.youtube.com/watch?v=KAPAUfhAsqU)",
+        "height": 208,
+        "width": 576
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        640,
+        208
+      ],
+      "typeVersion": 1,
+      "id": "2c28ace7-abab-46b5-acf0-659922a1b6ea",
+      "name": "Sticky Note1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-12T06:43:07.601Z",
+      "createdAt": "2025-11-12T06:43:07.601Z",
+      "role": "workflow:owner",
+      "workflowId": "YMTDPjV54miGCbE9",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-12T06:43:07.000Z",
+  "versionId": "7d97bbd3-d726-4f5b-ba8b-3d079b0be3a2"
+}
