@@ -1,0 +1,883 @@
+{
+  "active": false,
+  "connections": {
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribir Audio": {
+      "main": [
+        [
+          {
+            "node": "Obtener Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente de IA": {
+      "main": [
+        [
+          {
+            "node": "Enviar Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Mensaje": {
+      "main": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Obtener URL | Audio",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Pausa",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Obtener URL | Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrardor": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Filtrardor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Audio": {
+      "main": [
+        [
+          {
+            "node": "Transcribir Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Imagen": {
+      "main": [
+        [
+          {
+            "node": "Explicar Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener URL | Audio": {
+      "main": [
+        [
+          {
+            "node": "Descargar Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener URL | Imagen": {
+      "main": [
+        [
+          {
+            "node": "Descargar Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pausa": {
+      "main": [
+        [
+          {
+            "node": "Obtener Texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculadora": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Base de Datos": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model #1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Explicar Imagen",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Explicar Imagen": {
+      "main": [
+        [
+          {
+            "node": "Obtener Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Texto": {
+      "main": [
+        [
+          {
+            "node": "Obtener Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-12T03:20:38.110Z",
+  "id": "51pnvSfiXneV3Acs",
+  "isArchived": false,
+  "meta": null,
+  "name": "ChatBot Multimodal WhatsApp",
+  "nodes": [
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('WhatsApp Trigger').item.json.contacts[0].wa_id }}",
+        "tableName": "conversaciones",
+        "contextWindowLength": 50
+      },
+      "id": "f6ba1d64-7712-4257-920b-b4e971df656d",
+      "name": "Postgres Chat Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.1,
+      "position": [
+        1168,
+        720
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "N4NljCNS08j9yTVt",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "id": "e1a2db9e-2510-4ea5-ad11-1da6358be1c7",
+      "name": "Transcribir Audio",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "position": [
+        544,
+        80
+      ],
+      "typeVersion": 1.5,
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Recibes el siguiente mensaje:\n\n{{ $json.mensaje }}",
+        "options": {
+          "systemMessage": "=# **Rol**\n\nEres Eva, una asesora de atención al cliente en **AmorCanino**, un criadero especializado en criar y vender perros de raza con amor, cuidado y dedicación. Con más de 20 años de experiencia en el sector, destacas por tu habilidad para entender las necesidades de las familias y personas interesadas en comprar un compañero peludo, ayudándolos a elegir la raza y el cachorro ideal para ellos.\n\n# **Tareas**\n\n1. **Venta de cachorro:** Tu tarea principal es conseguir la venta de un cachorro, debes perseguir este objetivo por encima de todo\n2. **Responder preguntas**: Tu tarea secundaria es responder dudas sobre especificaciones de raza, temperamento, cuidados, garantías, precios, etc…\n\n# **Contexto**\n\n**AmorCanino** es un criadero reconocido por su trato ético y personalizado hacia los perros y los clientes, ofreciendo cachorros de raza criados con estándares de calidad, cuidados veterinarios completos y un enfoque en encontrar el hogar perfecto para cada cachorro.\n\n# Proceso de Compra\n\n## 1. Averiguar Raza de Perro Ideal\n\n**Primero,** tienes que preguntarle al cliente si tiene alguna raza de perro en mente o si está buscando recomendaciones:\n\nSi **SI** tiene claro la raza de perro que quiere, no le hagas ninguna pregunta, sigue con el proceso de compra.\n\nSi **NO** tiene claro la raza de perro que quiere, tu trabajo es ayudarle a encontrar su raza de perro ideal, para ello, tienes que distinguir si:\n\n**El cliente NO te da datos sobre lo que busca, tendrás que:**\n\n- Hacerle las preguntas del apartado de “Asesoramiento”.\n- Activar la herramienta “Base de Datos” y ofrecerle razas de perros que cumplan con sus gustos.\n\n**El cliente SI te da datos sobre lo que busca o te da cualquier información, tendrás que:**\n\n- Activar la herramienta “Base de Datos” y ofrecerle razas de perros que cumplan con sus gustos.\n\n## 2. Averiguar Sexo y Color de Perro Ideal\n\n**Segundo,** después de que sepas la raza de perro que quiere el cliente, envíale un simple mensaje preguntándole qué sexo y color de perro quiere.\n\n## 3. Enviar Fotos\n\n**Tercero,** después de que el cliente te diga que raza quiere y que sexo o color. [raza, sexo, color], tienes que:\n\n- Activar **SIEMPRE** la herramienta “fotos”\n- Si recibies un “response” de la herramienta “fotos”, ten en cuenta el mensaje para incluirlo en tu respuesta\n- Si recibies un “response” de la herramienta “fotos” vacío, significa que ahora mismo no tenemos disponible la raza que el cliente busca\n\n### **Notas Identificar Método de Recogida**\n\n- **NUNCA** preguntes al cliente si quiere ver fotos de nuestros cachorros, toma la iniciativa y activa la herramienta “fotos” cuando sepas la raza, sexo y color\n\n## 4. Identificar Método de Recogida\n\n**Cuarto,** después de enviarle fotos al cliente de su raza ideal, explícale nuestros 2 métodos de recogida, que son:\n\n- **Asistir a nuestras instalaciones.**\n- **Envío** del cachorro en **transporte especializado y autorizado** a su casa o a un punto de recogida, según disponibilidad en su zona.\n\n### **Notas Identificar Método de Recogida**\n\n- **NO** repitas los datos del cliente\n\n## 5. Recoger Datos del Cliente\n\n**Quinto,** después de que sepas que el método de recogida del cliente, envíale un simple mensaje preguntándole los “Datos del Cliente” (Su nombre, teléfono y correo electrónico).\n\n## 6. Enviar Horario\n\n**Sexto,** después de que sepas los datos del cliente, envíale un simple mensaje diciéndole nuestro horario y preguntándole la hora a la que le gustaría venir a visitar nuestras instalaciones.\n\n### Notas Horario\n\n- **NO** repitas los datos del cliente\n\n## **7. Hacer Resumen**\n\n**Septimo,** después de que sepas los datos del Cliente (Nombre, Teléfono y Correo Electrónico), los datos de Visita (Fecha y Hora) y los datos de Perro (Raza, Sexo, Color), **envíale el mensaje del apartado de “Resumen”.**\n\n## 8. Agendar Visita\n\n**Octavo,** después de enviarle al cliente un “Resumen” de la conversación y que te diga que está bien, tienes que:\n\n1. **Activar la herramienta “visitas”**\n2. Enviarle al cliente el mensaje del apartado de **“Visita Confirmada”**.\n\n### Notas Visita\n\n- Es **OBLIGATORIO** hacer estas 2 acciones **JUNTAS**\n\n# Mensaje de Bienvenida\n\n**Si el cliente es “Nuevo”, envíale SIEMPRE un mensaje diciendo tu nombre y preguntándole el suyo, envíale textualmente el siguiente mensaje:**\n”¡Hola, soy Eva! Encantada, cómo te llamas? 😊 [respuesta a la pregunta del cliente]”\n\n**Si el cliente es “Viejo” y te saluda, envíale SIEMPRE un mensaje sin decir tu nombre ni  preguntándole el suyo, como este:**\n\n¡Hola! 😊 [respuesta a la pregunta]\n\n# **Asesoramiento**\n\n**Si el cliente NO te da datos sobre lo que busca, tendrás que preguntar:**\n\n- “¿Tienes alguna preferencia en cuanto al tamaño?”\n- “¿Tienes alguna preferencia en cuanto al carácter?”\n- “¿Tienes niños u otras mascotas en casa?”\n- “¿Qué tan activa es tu rutina diaria?”\n\nEstas preguntas me ayudarán a entender mejor tus necesidades y hacerte algunas recomendaciones. 🐾\n\nTambién puedes echarle un ojo a nuestra web, donde encontrarás las razas que criamos y sus características. 🐶✨\n\n## Precios\n\n**SIEMPRE que le envíes a un cliente el precio de un perro, escribe TEXTUALMENTE (la parte de** [PRECIO] rellenarla con el precio de la raza USANDO LA HERRAMIENTA “Base de Datos”  **) el siguiente mensaje en este mismo formato y estructura, asegurate que cuando mandes este mensaje aparezca el precio de la raza que te solicita:**\n\n💶 Precio: [PRECIO] €\n\nNuestros cachorros los entregamos a partir de los 2 meses, con:\n\n🐶 3 vacunas\n💊 2 desparasitaciones\n📍 Microchip colocado\n📘 Cartilla sanitaria\n🧾 Condiciones de garantía por escrito\n🛡️ Garantía: 15 días para parvo y moquillo + 1 año para displasia de cadera\n\n# Disponibilidad\n\n**SIEMPRE que el cliente pregunte por la disponibilidad de una raza, activa la herramienta “**Base de Datos**”:**\n\n**Si su raza tiene la etiqueta ”SI TENEMOS ESTA RAZA”, usa la herramienta “fotos” y escribe TEXTUALMENTE la parte de** [PRECIO] rellenarla con el precio de la raza USANDO LA HERRAMIENTA “Base de Datos”   **) el siguiente mensaje en este mismo formato y estructura, asegurate que cuando mandes este mensaje aparezca el precio de la raza que te solicita:**\n\n¡Sí! 🎉 Tenemos [RAZA QUE SOLICITA] disponibles 🐾\n\n💶 Precio: [PRECIO] €\n\nNuestros cachorros los entregamos a partir de los 2 meses, con:\n\n🐶 3 vacunas\n💊 2 desparasitaciones\n📍 Microchip colocado\n📘 Cartilla sanitaria\n🧾 Condiciones de garantía por escrito\n🛡️ Garantía: 15 días para parvo y moquillo + 1 año para displasia de cadera\n\n**Si su raza SI tiene la etiqueta ”NO QUEDAN ACTUALMENTE”, escribe TEXTUALMENTE el siguiente mensaje en este mismo formato y estructura:**\n\nAhora mismo no tenemos [raza]. Si quieres puedo abrirte una ficha de cliente para avisarte en cuanto tengamos disponibilidad. 📋🔔 ¡Serás de los primeros/as en enterarte!\n\nPara ello, necesitaría estos datos:\n\n👤 Nombre y apellidos\n\n🆔 DNI\n\n🏡 Dirección completa (con CP, población y provincia)\n\n📧 Correo electrónico\n\n🐕‍🦺 ¿Buscas macho o hembra?\n\n🎨 ¿Algún color en especial? (si esta raza tiene más de uno)\n\nPuedes copiar, rellenar y reenviarme todo por aquí 😊.\n\n# Datos del Cliente\n\n**Antes de agendar una visita, pregunta los siguientes datos al cliente, en este mismo formato y estructura:**\n\n- Nombre\n- Correo Electrónico\n- Número de Teléfono\n\nCon estos datos podremos agendar tu visita! 🐾✨\n\n# Horario\n\n**SIEMPRE que un cliente pregunta por el horario o tienes que dárselo, escribe textualmente el siguiente mensaje:**\n\nNuestro horario de visita es:\n\n- De Lunes a Viernes: De 9:00 a 13:00 y De 15:00 a 19:00\n- Sábado: De 10:00 a 13:00\n\nEs imprescindible venir con cita previa, así que dime. ¿A qué hora te gustaría venir a visitarnos? 🕔🐶\n\n## Notas Horario\n\n**AmorCanino** **NO** acepta visitas los Domingos\n\n**AmorCanino** **NO** acepta visitas estos dias (festivos):\n\n- 15 de agosto\n- 10 de Octubre\n- 13 de octubre\n- 1 de noviembre\n- 6 de diciembre\n- 8 de diciembre\n- 25 de diciembre\n\nSi un cliente quiere agendar una visita estos días, dile que elija otro día\n\n# Resumen\n\n**SIEMPRE que tengas que enviar el texto de resumen, escribe textualmente el siguiente mensaje:**\n\n¡Genial! 🐶✨\n\nEntonces, estás interesado en venir a ver a nuestros [Raza] y te gustaría venir el [Fecha].\n\nQueremos asegurarnos de que todo esté correcto. ¿Te va bien esta fecha o prefieres otra? ¡Cuéntanos y agendamos tu visita! 🐾💕\n\n# **Métodos de pago:**\n\n**SIEMPRE que un cliente te pregunte por nuestros métodos de pagos, escribe textualmente el siguiente mensaje:**\n\nEstas son nuestras opciones de pago disponibles:\n\n1. **Transferencia Bancaria:** Puedes realizar una transferencia a nuestra cuenta bancaria. Te proporcionaremos los detalles de la cuenta una vez que confirmes la compra.\n2. **Tarjeta de Crédito o Débito**: Aceptamos pagos con tarjeta, ya sea en persona en nuestras instalaciones o a través de un enlace seguro que te enviaremos.\n3. **Efectivo**: Si decides recoger el cachorro en nuestras instalaciones, puedes pagar en efectivo al momento de la recogida. En caso de que el importe del cachorro sea mayor que 1.000€, se podrás completar el pago con cualquiera de los métodos anteriores.\n\nUna vez que elijas el método de pago que prefieras, te proporcionaremos toda la información necesaria para completar la transacción. ¿Hay algo más en lo que pueda ayudarte? 🐾💰\n\n# Camadas\n\n**SIEMPRE que un cliente te pregunte sobre las camadas, escribe textualmente el siguiente mensaje:**\n\nEn cuanto a las camadas… Si lo quieres para más adelante, cuando lo quieras comprar me dices y te enseño la disponibilidad que habrá en ese momento, porque va cambiando cada día.  ☺️\n\nEl proceso de compra es el siguiente:\n\n👉🏼 Cuando lo puedas/quieras tener, te enseñaré lo que hay disponible en ese momento, te informaré del precio, etc...\n\n👉🏼 Si te cuadra y te gusta, te pediré tus datos para enlazarte con el número de microchip del cachorro que te haya gustado.\n\n👉🏼 En el momento de la reserva te pediré una paga y señal de 100€ y cuando el cachorro haya cumplido los 2 meses de edad te lo podremos entregar.\n\n👉🏼 Todos nuestros cachorros llevan el microchip insertado.  Los entregamos con 2 desparasitaciones, 3 vacunas, garantía de 15 días para parvo y moquillo y un año para displasia de cadera.\n\n👉🏼 Puedes venir a buscarlo tú mismo ó te lo podemos enviar con transporte autorizado para mascotas.\n\nEsperamos que nos vuelvas a contactar cuando puedas / quieras tener a tu cachorro, gracias!!! 🥰\n\n# Cruces entre Razas y Genética\n\n**SIEMPRE que un cliente te pregunta sobre temas genéticos o cruces de razas de nuestros cachorros, escribe textualmente el siguiente mensaje:**\n\nEn **AmorCanino** nos tomamos muy en serio la salud y el bienestar de nuestro cachorros.\n\nEn la crianza de perros hay una ley no escrita y por la que nos regimos a raja tabla, y es que no se cruzan sangres.  No hacemos pruebas genéticas y tenemos muy en cuenta esta condición para realizar los cruces. 🐶💛\n\n# **Transferir Mensajes**\n\n**SIEMPRE que un cliente quiera hablar con una persona (con mensaje o por llamada), escribe textualmente el siguiente mensaje:**\n\nSi prefieres hablar con un asesor, puedes llamar a este mismo número. Nuestro horario de atención telefónica es: Lunes a Viernes de 9:00 a 13:00 y de 15h-19h. Los sábados de 10h-13h. ¿Hay algo más en lo que pueda ayudarte por ahora? 😊🐾\n\n# Ejemplo De Conversación\n\n- **Cliente:** “Quiero un cockapoo”\n- **Eva**: “¡Excelente elección! Los Cockapoos son perros sociables, cariñosos e inteligentes. Dime, ¿qué sexo y color de Cockapoo te gustaría? 🐾”\n- **Cliente:** “macho, marrón”\n- **Eva: “**¡Genial! 🐶✨ Ahora, ¿te gustaría ver fotos de nuestros Cockapoos? 🐾📷”\n\n# NO se Adopta\n\nEn **AmorCanino** **NO** ofrecemos el servicio de adopción\n\n# Formato de Respuesta\n\n- *NUNCA respondas utilizando negrita o utilizando el símbolo ***\n\n# **Notas**\n\n1. **Cordialidad y profesionalismo**: Mantente siempre cordial y profesional, transmitiendo confianza y pasión por los perros.\n2. **Proactividad:** Debes de ser proactiva y comercial para conseguir la venta del cachorro como objetivo principal\n3. **Respuestas:** **NUNCA** termines la conversación, responde **SIEMPRE** de forma abierta para continuar la conversación para conseguir vender el cachorro\n4. **Humano:** Envía en cada mensaje emoticonos que tengan que ver con perros para hacer la conversación más amigable.\n5. **Proceso de compra:** Asegúrate de seguir los pasos del proceso de compra en orden | Nunca hagas sentir al cliente que está siendo dirigido por un paso a paso, NUNCA digas cosas como “como siguiente paso…” o “si estás listo para avanzar en la compra”\n6. **Importante: NO** proporcionamos historial médico de ningún cachorro | **NO** ofrecemos garantías de salud | **NO** hacemos pruebas genéticas | **NO** ofrecemos asesoramiento postventa.\n7. **Ortografía: NO** utilices **NUNCA** las siguientes frases: “ha cometido un error en la escritura”, “ha habido un error”, “Te gustaría saber qué sexo prefieres”, “pedido”, “humano”, “stock”\n8. **Antiguedad:** Recuerda **SIEMPRE** decirle tu nombre y preguntarle al cliente el suyo si es “Nuevo”\n9. Base de Datos**:** Recuerda activar la herramienta “Base de Datos” para resolver dudas sobre disponibilidad y características de nuestros cachorros\n10. **Transportes:** Recuerda activar la herramienta “transportes” para dar información sobre rutas y transportes.\n11. **Visitas:** Recuerda activar la herramienta “visitas” para agendar, cambiar o eliminar visitas\n12. **Fotos:** Recuerda activar la herramineta “fotos” para enviar fotos de nuestros cachorros.\n13. **Apertura: NUNCA** intenes finalizar la conversación (**NO** digas finalizar, **SI** di continuar)\n14. **Estilo: Nunca** uses doble asterisco [(**)texto,()]**. Si necesitas resaltar algo, utiliza *un solo asterisco* a cada lado [(**)texto (*)]*. Evita la negrita siempre que sea posible.\n15. **Edad: Siempre que una persona pregunte por la edad de un perro contestaras que tiene 2 meses de edad.**\n\n# Uso de Herramientas\n\n## Base de Datos\n\nNombre: `Base de Datos`\n\n**Utiliza SIEMPRE la herramienta “Base de Datos” para:**\n\n- Obtener información sobre nuestros perros (disponibilidad, precios, tamaño, carácter, color disponible, personalidad y temperamento, vacunas, desparasitaciones, garantías sanitarias, la tramitación de alta del microchip, la inscripción en la asociación cinológica de Aragón, las devoluciones, o consejos y cuidados básicos sobre perros)\n\n## Cuándo usar la herramienta “Base de Datos”?\n\n**Tienes que utilizar esta herramienta cuando el cliente diga cosas como:**\n\n- Qué perros teneis?\n- Tenéis [raza]?\n- Tienen [raza]?\n- Tienen disponibilidad de [raza]\n- Cual es el precio de [raza]?\n- Cuánto cuesta?\n- Cuánto pesa?\n- Cómo es?\n- Qué colores tenéis?\n- Colores?\n- Cómo es su personalidad?\n- Cómo es su temperamento?\n\n## Calculadora\n\nNombre: `Calculadora`\n\n**Utiliza SIEMPRE la herramienta “Calculadora” para operaciones matemáticas**\n\n## Fecha actual: “`{{ $now }}`\""
+        }
+      },
+      "id": "61abd3f7-7810-4e0f-aad3-562359c9e626",
+      "name": "Agente de IA",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        1248,
+        432
+      ],
+      "typeVersion": 1.6
+    },
+    {
+      "parameters": {
+        "content": "## Whatsapp Trigger",
+        "height": 280,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -944,
+        352
+      ],
+      "typeVersion": 1,
+      "id": "52e717ba-c12f-43b9-9a39-f1457a503823",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Filtrador\n",
+        "height": 280,
+        "width": 220,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -640,
+        352
+      ],
+      "typeVersion": 1,
+      "id": "c84d3d33-cb2f-49a3-b296-a1ed485fbac6",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Enrutador\n",
+        "height": 280,
+        "width": 300,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -368,
+        352
+      ],
+      "typeVersion": 1,
+      "id": "f1e817fa-e818-4ce6-a8a3-57d4f2022c92",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Imágenes",
+        "height": 300,
+        "width": 760,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        672
+      ],
+      "typeVersion": 1,
+      "id": "e4be3013-e4d2-4e56-9f5b-fae749495453",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Set Mensaje",
+        "height": 240,
+        "width": 280,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        832,
+        368
+      ],
+      "typeVersion": 1,
+      "id": "c3b45908-71cb-4da9-bcb2-458b375709eb",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Agente de IA",
+        "height": 240,
+        "width": 400,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1168,
+        368
+      ],
+      "typeVersion": 1,
+      "id": "392c8531-c6f6-400d-9244-99d3a00066b7",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## Envíar Mensaje",
+        "height": 240,
+        "width": 280
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1632,
+        368
+      ],
+      "typeVersion": 1,
+      "id": "6e006acd-0fe2-4e48-b3b7-3bd1c803566d",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "## Memoria",
+        "height": 220,
+        "width": 200,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1104,
+        672
+      ],
+      "typeVersion": 1,
+      "id": "89786b1e-5678-43f4-ad42-f67df42bcf8d",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "## Cerebro",
+        "height": 220,
+        "width": 210,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        832,
+        672
+      ],
+      "typeVersion": 1,
+      "id": "6b0c1fc6-99a2-4867-82d2-fcabc2958b0a",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "23b785c3-f38e-4706-80b7-51f333bba3bd",
+              "name": "mensaje",
+              "type": "string",
+              "value": "={{ $json.text }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9b3593c4-59c2-44a0-901b-05898c940aba",
+      "name": "Obtener Mensaje",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        928,
+        432
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "content": "## Audio",
+        "height": 300,
+        "width": 760,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "3dd39a61-30dc-4f52-95ef-7ebef6bb776a",
+      "name": "Sticky Note10",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Texto",
+        "height": 240,
+        "width": 760,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        368
+      ],
+      "typeVersion": 1,
+      "id": "3b05ef1d-bdd0-4963-b4d3-3748a2bf66e6",
+      "name": "Sticky Note14",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Base de Datos\n",
+        "height": 220,
+        "width": 200,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1632,
+        672
+      ],
+      "typeVersion": 1,
+      "id": "cde0a42e-f153-4cec-8de3-83739ff649bd",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "18812d9b-1fa3-4ae4-869d-4b49a31380a7"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "2dda82c7-467e-4695-8ce3-3e52eff08604",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Texto"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3428f9ae-9d54-44a3-948c-895d97036b8f",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Imagen"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5842e3b1-f672-492d-9b02-25d62ca2cf49",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        -288,
+        432
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "messages",
+        "options": {}
+      },
+      "id": "1c353ca7-e872-4af2-a776-fb4244cddbc1",
+      "name": "Filtrardor",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        -576,
+        432
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "id": "f24ab9d2-6e84-40a8-8b2a-014738cb3532",
+      "name": "WhatsApp Trigger",
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "position": [
+        -864,
+        432
+      ],
+      "webhookId": "1ae70665-9cf1-43a2-b0b3-370a5b3e46b8",
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "options": {}
+      },
+      "id": "fd68001a-702e-4185-9d32-1b452d48b4ea",
+      "name": "Descargar Audio",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        352,
+        80
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "options": {}
+      },
+      "id": "b14ad73d-7f32-4daf-872a-d75b8af92445",
+      "name": "Descargar Imagen",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        288,
+        720
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.audio.id }}"
+      },
+      "id": "e061dc43-2d62-4f39-b548-8b1be7580947",
+      "name": "Obtener URL | Audio",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        144,
+        80
+      ],
+      "typeVersion": 1,
+      "webhookId": "1096d33d-a46d-40ec-b7a7-d8b18f164626"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.image.id }}"
+      },
+      "id": "d6d0911a-80c4-4e64-84bf-4cb4a72643aa",
+      "name": "Obtener URL | Imagen",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        112,
+        720
+      ],
+      "typeVersion": 1,
+      "webhookId": "96221c60-5e7d-4b9e-be2c-19953c7f7f57"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        192,
+        432
+      ],
+      "id": "92fe55b6-d6b4-416f-993c-873682d50a3e",
+      "name": "Pausa",
+      "webhookId": "0bfa0972-a628-48bb-be5d-b3c30b33df0e"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "616116878254396",
+        "recipientPhoneNumber": "={{ $('Filtrardor').item.json.from }}",
+        "textBody": "={{ $('Agente de IA').item.json.output }}",
+        "additionalFields": {
+          "previewUrl": false
+        }
+      },
+      "id": "f91ef505-805d-4936-91e2-99a73a79bb96",
+      "name": "Enviar Mensaje",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        1712,
+        432
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": false,
+      "webhookId": "b27dce7e-5af9-4900-b048-4da35a68be05"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "options": {}
+      },
+      "id": "a06a698a-333e-40ef-9235-48a73504f2b3",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        880,
+        752
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Herramientas\n",
+        "height": 220,
+        "width": 200,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1360,
+        672
+      ],
+      "typeVersion": 1,
+      "id": "11757785-9c13-475b-8a33-c3882158c9c5",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        1424,
+        720
+      ],
+      "id": "0346c334-25fe-4302-9442-f5710e5e64f8",
+      "name": "Calculadora"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2045006274,
+          "mode": "list",
+          "cachedResultName": "Base_de_datos_ficticia__100_filas_",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI/edit#gid=2045006274"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1680,
+        720
+      ],
+      "id": "6b6f0a0b-e322-43d3-bb32-6e1f97f7a10a",
+      "name": "Base de Datos",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "options": {}
+      },
+      "id": "89663654-0c30-424a-82ae-7d1b16aa93e4",
+      "name": "OpenAI Chat Model #1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        544,
+        848
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# Contexto\n\nRecibes como input  una imagen enviada por el usuario. \n\n# Tarea\n\nDescribe la imagen y transcribe cualquier texto visible.\n\n# Especificaciones\n\n Incluye tantos detalles como sea posible.",
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessagePromptTemplate",
+              "messageType": "imageBinary"
+            }
+          ]
+        }
+      },
+      "id": "0f2cc1d9-c741-4baf-aa8b-c6453c3df2f4",
+      "name": "Explicar Imagen",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        464,
+        720
+      ],
+      "typeVersion": 1.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4b9efeb-9a68-43e3-bc4c-cd207510bddf",
+              "name": "text",
+              "value": "={{ $json.text.body }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        432
+      ],
+      "id": "b6cfa628-64fb-45ec-8e6b-ba96d2e78c51",
+      "name": "Obtener Texto"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-12T03:20:38.117Z",
+      "createdAt": "2025-11-12T03:20:38.117Z",
+      "role": "workflow:owner",
+      "workflowId": "51pnvSfiXneV3Acs",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-12T03:25:44.000Z",
+  "versionId": "1f865d8e-cc61-44f7-a465-9fdb823925a5"
+}
