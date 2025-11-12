@@ -1,0 +1,1868 @@
+{
+  "active": false,
+  "connections": {
+    "Workflow Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Workflow Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Workflow Base Datos": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Obtener Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Obtener URL | Audio",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Pausa",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Obtener URL | Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Audio": {
+      "main": [
+        [
+          {
+            "node": "Transcribir Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Imagen": {
+      "main": [
+        [
+          {
+            "node": "Explicar Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener URL | Audio": {
+      "main": [
+        [
+          {
+            "node": "Descargar Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener URL | Imagen": {
+      "main": [
+        [
+          {
+            "node": "Descargar Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pausa": {
+      "main": [
+        [
+          {
+            "node": "Obtener Texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model #1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Explicar Imagen",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Texto": {
+      "main": [
+        [
+          {
+            "node": "Obtener Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribir Audio": {
+      "main": [
+        [
+          {
+            "node": "Obtener Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Explicar Imagen": {
+      "main": [
+        [
+          {
+            "node": "Obtener Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Mensaje": {
+      "main": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrardor": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memoria": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pensamiento": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Principal",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4.1-mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "marcar como no leido": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "enviar email": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "responder email": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "etiquetar email": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener etiquetas": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener email": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear borrador": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4.1-mini1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear evento": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear evento asistente": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "eliminar evento": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "actualizar evento": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener eventos": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4.1-mini5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Sheets",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "leer": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Sheets",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Sheets",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "actualizar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Sheets",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-12T05:44:12.092Z",
+  "id": "qxzaUxlqzz6CQ8KO",
+  "isArchived": false,
+  "meta": null,
+  "name": "Sub Agente Base Datos",
+  "nodes": [
+    {
+      "parameters": {
+        "name": "agente_gmail",
+        "description": "Utiliza esta herrmienta para acciones de Gmail",
+        "workflowId": {
+          "__rl": true,
+          "value": "NOLMTAtN2UQ08A1E",
+          "mode": "list",
+          "cachedResultName": "Sub Agente Gmail"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        624,
+        832
+      ],
+      "id": "3db2f65b-107a-4bc1-8541-efa76a7c1a26",
+      "name": "Workflow Gmail"
+    },
+    {
+      "parameters": {
+        "name": "agente_calendar",
+        "description": "Utiliza esta herrmienta para acciones de Calendar",
+        "workflowId": {
+          "__rl": true,
+          "value": "564NDyTrCZOD6ZW9",
+          "mode": "list",
+          "cachedResultName": "Sub Agente Calendar"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        864,
+        832
+      ],
+      "id": "08ef80bf-4e40-4785-a001-99f8b27a5694",
+      "name": "Workflow Calendar"
+    },
+    {
+      "parameters": {
+        "name": "agente_base_datos",
+        "description": "Utiliza esta herrmienta para acciones de Base de Datos",
+        "workflowId": {
+          "__rl": true,
+          "value": "x0D7Lgzc6vazD1ry",
+          "mode": "list",
+          "cachedResultName": "Sub Agente Base Datos"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        832
+      ],
+      "id": "6829a473-530d-4a3f-83f8-7af3973f4e30",
+      "name": "Workflow Base Datos"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "23b785c3-f38e-4706-80b7-51f333bba3bd",
+              "name": "mensaje",
+              "type": "string",
+              "value": "={{ $json.text }}"
+            },
+            {
+              "id": "85bc9d96-8a06-4b61-ad6f-84a5331492c4",
+              "name": "mensaje",
+              "value": "={{ $json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "58d156e2-efa5-41ad-b8e6-2b1cd426197b",
+      "name": "Obtener Mensaje",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        448,
+        576
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 240,
+        "width": 280,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        336,
+        512
+      ],
+      "typeVersion": 1,
+      "id": "e0c607f1-7faa-4c8e-9dad-1a63764c3c73",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 220,
+        "width": 460,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1488,
+        432
+      ],
+      "typeVersion": 1,
+      "id": "44bcc3c4-2277-4c35-9a8d-83bedbce6e58",
+      "name": "Sticky Note17"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        80,
+        -112
+      ],
+      "id": "c10a957c-85e4-4118-97a8-f06580524759",
+      "name": "When chat message received",
+      "webhookId": "c9def6ab-202c-4f3f-9365-e5613bfdaead"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 280,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        16,
+        -192
+      ],
+      "typeVersion": 1,
+      "id": "58dccb99-e579-4700-950f-6a042dead7b8",
+      "name": "Sticky Note18"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "id": "761ca069-9bb5-4758-9b19-2b15e25373c1",
+      "name": "Transcribir Audio",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "position": [
+        64,
+        240
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "content": "## Texto",
+        "height": 240,
+        "width": 760,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -480,
+        512
+      ],
+      "typeVersion": 1,
+      "id": "e38e85d9-695d-49da-9ead-f090640f5499",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "18812d9b-1fa3-4ae4-869d-4b49a31380a7"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "2dda82c7-467e-4695-8ce3-3e52eff08604",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Texto"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3428f9ae-9d54-44a3-948c-895d97036b8f",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Imagen"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0dd6b4be-55a6-4d24-8927-397a2d509b84",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        -768,
+        576
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "options": {}
+      },
+      "id": "a5f1a825-4b2c-43f8-89ec-08de16c5530a",
+      "name": "Descargar Audio",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -144,
+        240
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "options": {}
+      },
+      "id": "77770ab4-9319-4453-a873-3f2778fcc3b6",
+      "name": "Descargar Imagen",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -208,
+        880
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.audio.id }}"
+      },
+      "id": "92263332-9258-4c12-ab66-4c855e2b8ca3",
+      "name": "Obtener URL | Audio",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        -352,
+        240
+      ],
+      "typeVersion": 1,
+      "webhookId": "1096d33d-a46d-40ec-b7a7-d8b18f164626"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.image.id }}{{ $json.image.id }}"
+      },
+      "id": "3aefb01e-4cd7-4cee-8be8-157f0a72632a",
+      "name": "Obtener URL | Imagen",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        -384,
+        880
+      ],
+      "typeVersion": 1,
+      "webhookId": "96221c60-5e7d-4b9e-be2c-19953c7f7f57"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -304,
+        576
+      ],
+      "id": "44dc0db3-99bd-4347-8f0a-0aaf7852302d",
+      "name": "Pausa",
+      "webhookId": "0bfa0972-a628-48bb-be5d-b3c30b33df0e"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "options": {}
+      },
+      "id": "adf2254b-145d-4e79-a413-4542cb9b51f8",
+      "name": "OpenAI Chat Model #1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        64,
+        992
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# Contexto\n\nRecibes como input  una imagen enviada por el usuario. \n\n# Tarea\n\nDescribe la imagen y transcribe cualquier texto visible.\n\n# Especificaciones\n\n Incluye tantos detalles como sea posible.",
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessagePromptTemplate",
+              "messageType": "imageBinary"
+            }
+          ]
+        }
+      },
+      "id": "ad00ea61-7c63-4f0a-9f2b-27befe8711a2",
+      "name": "Explicar Imagen",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        -32,
+        880
+      ],
+      "typeVersion": 1.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4b9efeb-9a68-43e3-bc4c-cd207510bddf",
+              "name": "text",
+              "value": "={{ $json.text.body }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        576
+      ],
+      "id": "30cf4a81-e1c5-4506-af41-ecd91853dcc5",
+      "name": "Obtener Texto"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 240,
+        "width": 260,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -848,
+        512
+      ],
+      "typeVersion": 1,
+      "id": "6653c336-043f-4aca-8b13-6b06c833250c",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## Imágenes",
+        "height": 300,
+        "width": 760,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -480,
+        816
+      ],
+      "typeVersion": 1,
+      "id": "987e0be3-2ccd-4de9-9d86-9b40a378ff1b",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 300,
+        "width": 760,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -480,
+        160
+      ],
+      "typeVersion": 1,
+      "id": "258e5469-4eb3-4848-8500-0dcff733b41e",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "width": 160,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        576,
+        816
+      ],
+      "id": "a7a65baf-d268-4c0b-8faa-9c0703cedf4a",
+      "name": "Sticky Note21"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "width": 160,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        816,
+        816
+      ],
+      "id": "58920c39-b2b3-40e6-b34a-975da46c8cb4",
+      "name": "Sticky Note22"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "width": 160,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1056,
+        816
+      ],
+      "id": "874e23a4-4d9e-4df5-9d23-de0802e66fc7",
+      "name": "Sticky Note23"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "616116878254396",
+        "recipientPhoneNumber": "={{ $('Filtrardor').item.json.from }}",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        576
+      ],
+      "id": "e49ce1e8-c848-4d53-a6d1-728065cc3e7b",
+      "name": "WhatsApp Business Cloud1",
+      "webhookId": "a9431cc9-02a7-4f65-a62e-4c4d0b64ef57",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 240,
+        "width": 400,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        688,
+        512
+      ],
+      "typeVersion": 1,
+      "id": "36c93604-a9c2-44fa-bb59-ff9ab7793252",
+      "name": "Sticky Note25"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 240,
+        "width": 280
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1136,
+        512
+      ],
+      "typeVersion": 1,
+      "id": "cdc223e6-2079-4385-8a6f-cdf8a9de8175",
+      "name": "Sticky Note26"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1424,
+        576
+      ],
+      "id": "a25c7f24-2957-48b1-a91d-aff9792fd650",
+      "name": "WhatsApp Trigger",
+      "webhookId": "257b7dbc-dd98-4278-a4a7-9ac8bc4a7737",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Recibes el siguiente mensaje:\n\n{{ $json.mensaje }}",
+        "options": {
+          "systemMessage": "=# Contexto\n\nEres el asistente personal definitivo. Tu trabajo es enviar la consulta del usuario a la herramienta correcta. Nunca debes redactar correos electrónicos ni crear resúmenes; solo necesitas llamar a la herramienta correcta.\n\n# Herramientas\n\npensamiento: Usa esto para pensar profundamente o si te quedas atascado.\n\nagente_gmail: Usa esta herramienta para realizar acciones en el correo electrónico.\n\nagente_calendar: Usa esta herramienta para realizar acciones en el calendario.\n\nagente_base_datos: Usa esta herramienta para obtener, actualizar o añadir contactos.\n\n# Reglas\n\nAlgunas acciones requieren que primero busques información de contacto. Para las siguientes acciones, debes obtener la dirección de correo electrónico y enviársela al agente que la necesite:\n\nEnviar correos electrónicos\n\nRedactar correos electrónicos\n\nCrear un evento de calendario con un asistente\n\n# Tarea\n\nLlamar a las herramientas necesarias según la solicitud del usuario.\n\nLlamar la herramienta \"pensamiento\" para verificar que tomaste los pasos correctos. Esta herramienta debe ser llamada cada vez.\n\n# Especificaciones\n\nSi tienes que listar una serie de Clientes de Sheets, hazlo con salto de linea y con -\n\n# Ejemplos\n\n## Input\n\nEnvía un correo electrónico a Pau Berenguer preguntándole cómo le va el día.\n\n## Acciones\n\n1. Llamar a la herramienta de “agente_base_datos” para obtener al cliente.\n2. Llamar a la herramienta de  “agente_gmail” para enviar el correo electrónico.\n3. Llamar a la herramienta “pensamiento” para comprobar que todas las tareas han sido completadas.\n\n## Output\n\nAcabo de enviar el correo que me has pedido a Pau ¿Hay algo más en lo que pueda ayudarte?\n\n# Notas\n\nFecha y hora actuales: `{{ $now }}`"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        736,
+        576
+      ],
+      "id": "4eca1e32-e805-4bdf-98c7-2060278328b8",
+      "name": "Agente Principal"
+    },
+    {
+      "parameters": {
+        "content": "# IMPORTANTE ‼️\n\n### Recuerda poner el cada herramienta de Workflow al Sub Agente Corresponiente para que funcione correctamente\n\n## (Puedes eliminar esta nota)",
+        "height": 340,
+        "width": 440,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        960,
+        80
+      ],
+      "id": "d248c929-6d1b-4e4c-8a9c-98f3d2aaeda4",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 240,
+        "width": 260,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1184,
+        512
+      ],
+      "typeVersion": 1,
+      "id": "f0428ddc-75e0-4bbc-9f95-312e0beb8af8",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "messages",
+        "options": {}
+      },
+      "id": "a2789639-a00c-4bfa-bd09-0f473874341b",
+      "name": "Filtrardor",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        -1104,
+        576
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 240,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1504,
+        512
+      ],
+      "typeVersion": 1,
+      "id": "4104f7b8-4aaf-47c2-9811-1cc4c58ed9e3",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1664,
+        496
+      ],
+      "id": "73a0e6e4-d8c9-49f5-a4bf-4095037ac23e",
+      "name": "GPT"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "=Key"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1808,
+        496
+      ],
+      "id": "041819f6-1b60-40b7-85ad-b6121dd3c34c",
+      "name": "Memoria"
+    },
+    {
+      "parameters": {
+        "description": "=Utiliza esta herramienta para pensar en algo. No tomes nueva información ni modifiques la base de datos, sino que se limitará a añadir el pensamiento al registro. Utilízala cuando necesites un razonamiento complejo o algo de memoria caché."
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        1536,
+        496
+      ],
+      "id": "36ae3130-0ed2-4a33-a35e-a9b515d9c757",
+      "name": "Pensamiento"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "4b20a5cf-5848-4347-92f3-d9d4925eeb46",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -320,
+        1456
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        96,
+        1296
+      ],
+      "id": "8f19ed6a-e35e-4467-8093-d9235afa6d1e",
+      "name": "4.1-mini"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=# Rol\n\nEres un asistente de gestión de Correo Electrónico. \n\n# Especificaciones\n\nTodos los correos electrónicos deben tener un formato profesional en HTML y estar firmados como \"Pau Berenguer\".\n\n# Herramientas\n\n- Usa \"enviar email\" para enviar correos electrónicos.\n- Usa \"crear borrador\" si el usuario pide un borrador.\n- Usa \"marcar como no leido\" para marcar un correo electrónico como no leído. Primero debes usar \"Get Emails\" para tener el ID del mensaje del correo electrónico que deseas marcar.\n- Usa \"etiquetar email\" para etiquetar un correo electrónico. Primero debes usar \"obtener etiqueta\" para tener el ID del mensaje del correo electrónico que deseas etiquetar. Luego debes usar \"Get Labels\" para tener el ID de la etiqueta.\n- Usa \"responder email\" para responder a un correo electrónico. Primero debes usar \"obtener email\" para tener el ID del mensaje del correo electrónico al que deseas responder.\n\n# Notas\n\nFecha y hora actuales: {{ $now }}"
+        }
+      },
+      "id": "163622bf-ca9a-4b5e-a3fb-ecaac3f48f9a",
+      "name": "Agente Gmail",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        -64,
+        1456
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 200,
+        "width": 220
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -384,
+        1424
+      ],
+      "id": "28ff037d-6464-4ce5-af58-f893be9dece7",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 140,
+        "width": 150,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        48,
+        1280
+      ],
+      "id": "59cf2f7a-411a-47ac-8b3f-39f01ff51cb4",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 180,
+        "width": 980,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -384,
+        1664
+      ],
+      "id": "ab1932c4-f22d-4d2a-aa39-e8f25a4c9b7d",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "operation": "markAsUnread",
+        "messageId": "={{ $fromAI(\"messageID\") }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -352,
+        1696
+      ],
+      "id": "2a1106d7-13b7-49af-808d-aaf99136c27b",
+      "name": "marcar como no leido",
+      "webhookId": "a35af9d8-f67d-4ff9-803f-59ec6356e795"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $fromAI(\"emailAddress\") }}",
+        "subject": "={{ $fromAI(\"subject\") }}",
+        "message": "={{ $fromAI(\"emailBody\") }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -208,
+        1696
+      ],
+      "id": "238f764e-3e77-47e0-874b-2920c30ea033",
+      "name": "enviar email",
+      "webhookId": "86c8c4b1-13bb-4ebe-acb9-30e1d7082d55"
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $fromAI(\"ID\",\"the message ID\") }}",
+        "message": "={{ $fromAI(\"emailBody\") }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -64,
+        1696
+      ],
+      "id": "cc47ec75-bbd0-4c26-9163-567435c5e70e",
+      "name": "responder email",
+      "webhookId": "114785e6-a859-432b-81b4-c490c1c35b1c"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $fromAI(\"ID\",\"the ID of the message\") }}",
+        "labelIds": "={{ $fromAI(\"labelID\") }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        80,
+        1696
+      ],
+      "id": "c36d7945-6125-4429-ab81-96442a373e06",
+      "name": "etiquetar email",
+      "webhookId": "0e951529-2e6d-40bf-ac40-fc0947e242e2"
+    },
+    {
+      "parameters": {
+        "resource": "label",
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        1696
+      ],
+      "id": "b89d0fb8-0a36-456d-ab9e-b3cd751d460b",
+      "name": "obtener etiquetas",
+      "webhookId": "9e08b59e-792d-4566-83f1-9263c9ad86ae"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": "={{ $fromAI(\"limit\",\"how many emails the user wants\") }}",
+        "simple": false,
+        "filters": {
+          "sender": "={{ $fromAI(\"sender\",\"who the emails are from\") }}"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        352,
+        1696
+      ],
+      "id": "387b0572-919f-4074-9488-101ff346b44b",
+      "name": "obtener email",
+      "webhookId": "af4b3298-9037-44b0-aa12-2acbfbb5e66f"
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ $fromAI(\"subject\") }}",
+        "emailType": "html",
+        "message": "={{ $fromAI(\"emailBody\") }}",
+        "options": {
+          "threadId": "={{ $fromAI(\"threadID\") }}",
+          "sendTo": "={{ $fromAI(\"emailAddress\") }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        480,
+        1696
+      ],
+      "id": "9d487ead-f9c1-4cde-b635-a8fd4f7e7fe0",
+      "name": "crear borrador",
+      "webhookId": "17016bce-d7d7-428a-a56c-f6ea122db8be"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 180,
+        "width": 320,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        1424
+      ],
+      "id": "8682ebe5-09d9-4410-9379-36c25b8d81b0",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1200,
+        1248
+      ],
+      "id": "946005dd-e033-4825-829d-87b36a407744",
+      "name": "4.1-mini1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=# Rol\n\nEres un asistente de Calendario. \n\n# Contexto\n\nTus responsabilidades incluyen crear, obtener y eliminar eventos en el calendario del usuario.\n\n# Herramientas\n\n- Usa \"crear evento asistente\" cuando un evento incluye un participante.\n- Usa \"crear evento\" para eventos individuales.\n- Usa \"obtener eventos\" para buscar horarios del calendario cuando se solicite.\n- Usa \"eliminar evento\" para borrar un evento. Primero debes usar \"Obtener eventos\" para conseguir el ID del evento a eliminar.\n- Usa \"actualizar evento\" para actualizar un evento. Primero debes usar \"Obtener eventos\" para conseguir el ID del evento a actualizar.\n\n# Notas\n\nFecha y hora actuales: {{ $now }}\n\nSi no se especifica la duración de un evento, asume que será de una hora."
+        }
+      },
+      "id": "68e2c33a-d54b-4f4f-9714-f2c6b23f2669",
+      "name": "Agente Calendario",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        1040,
+        1408
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "pauberenguerlabella@gmail.com",
+          "mode": "list",
+          "cachedResultName": "pauberenguerlabella@gmail.com"
+        },
+        "start": "={{ $fromAI(\"eventStart\") }}",
+        "end": "={{ $fromAI(\"eventEnd\") }}",
+        "additionalFields": {
+          "attendees": [],
+          "summary": "={{ $fromAI(\"eventTitle\") }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1392,
+        1648
+      ],
+      "id": "77affc99-378a-4608-92b3-4d9da1edbc6b",
+      "name": "crear evento"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "pauberenguerlabella@gmail.com",
+          "mode": "list",
+          "cachedResultName": "pauberenguerlabella@gmail.com"
+        },
+        "start": "={{ $fromAI(\"eventStart\") }}",
+        "end": "={{ $fromAI(\"eventEnd\") }}",
+        "additionalFields": {
+          "attendees": [
+            "={{ $fromAI(\"eventAttendeeEmail\") }}"
+          ],
+          "summary": "={{ $fromAI(\"eventTitle\") }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1280,
+        1648
+      ],
+      "id": "56fe3937-906e-4069-b1dc-20cec2cd45fb",
+      "name": "crear evento asistente"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "pauberenguerlabella@gmail.com",
+          "mode": "list",
+          "cachedResultName": "pauberenguerlabella@gmail.com"
+        },
+        "eventId": "={{ $fromAI(\"eventID\") }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1152,
+        1648
+      ],
+      "id": "a1e35990-bd1d-4c87-8241-cea11366f5a5",
+      "name": "eliminar evento"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "pauberenguerlabella@gmail.com",
+          "mode": "list",
+          "cachedResultName": "pauberenguerlabella@gmail.com"
+        },
+        "eventId": "={{ $fromAI(\"eventID\") }}",
+        "updateFields": {
+          "end": "={{ $fromAI(\"endTime\") }}",
+          "start": "={{ $fromAI(\"startTime\") }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1024,
+        1648
+      ],
+      "id": "6a184b74-afab-4536-ba62-df28c6b1e605",
+      "name": "actualizar evento"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "pauberenguerlabella@gmail.com",
+          "mode": "list",
+          "cachedResultName": "pauberenguerlabella@gmail.com"
+        },
+        "timeMin": "={{ $fromAI(\"dayBefore\",\"the day before the date the user requested\") }}",
+        "timeMax": "={{ $fromAI(\"dayAfter\",\"the day after the date the user requested\") }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        880,
+        1648
+      ],
+      "id": "ce8672fa-7d43-4891-a342-f54132eaf82e",
+      "name": "obtener eventos"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 200,
+        "width": 220
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        720,
+        1360
+      ],
+      "id": "f910ccfc-69ff-42d0-805e-ebd978d03666",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 180,
+        "width": 320,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        992,
+        1360
+      ],
+      "id": "54e0ddb0-2dd1-489b-975a-7cfedb4efeec",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 180,
+        "width": 680,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        832,
+        1600
+      ],
+      "id": "c882f7eb-7c23-4ca5-8488-7115d49ceb68",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 140,
+        "width": 150,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1152,
+        1216
+      ],
+      "id": "f82a9616-91fe-4daf-82ff-dac229efb35b",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2112,
+        1248
+      ],
+      "id": "a47601ac-2279-4b2c-a0de-a1a939150390",
+      "name": "4.1-mini5"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=# Rol\n\nEres un asistente de gestión de Base de Datos. \n\n# Especificaciones\n\nTus responsabilidades incluyen leer (buscar), crear y actualizar información de los clientes en nuestra base de datos.\n\n# Herramientas\n\n- Usa \"leer\" para revisar los clientes de nuestra base de datos.\n- Usa \"crear\" para crear nuevos clientes y añadirlos a nuestra base de datos.\n- Usa \"actualizar\" para cambiar actualizar información de los clientes en la base de datos."
+        }
+      },
+      "id": "b5e4f32f-cc14-4210-a107-496968f58b78",
+      "name": "Agente Sheets",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        1952,
+        1408
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2045006274,
+          "mode": "list",
+          "cachedResultName": "Base_de_datos_ficticia__100_filas_",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI/edit#gid=2045006274"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        2032,
+        1616
+      ],
+      "id": "226e61b7-5e2f-40bf-85d7-5a8a5515ef2a",
+      "name": "leer"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "documentId": {
+          "__rl": true,
+          "value": "1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI/edit?usp=drivesdk"
+        },
+        "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1920,
+        1616
+      ],
+      "id": "1b6b1391-023e-4681-b391-b9de575f7b45",
+      "name": "crear"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2045006274,
+          "mode": "list",
+          "cachedResultName": "Base_de_datos_ficticia__100_filas_",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI/edit#gid=2045006274"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre', ``, 'string') }}",
+            "Correo Electrónico": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Correo_Electr_nico', ``, 'string') }}",
+            "Teléfono": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Tel_fono', ``, 'string') }}",
+            "Empresa": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Empresa', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Correo Electrónico",
+              "displayName": "Correo Electrónico",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Teléfono",
+              "displayName": "Teléfono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Empresa",
+              "displayName": "Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        2160,
+        1616
+      ],
+      "id": "352b0047-d659-46e9-befc-4ce061b3adc4",
+      "name": "actualizar"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 200,
+        "width": 220
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1632,
+        1360
+      ],
+      "id": "fd522cc3-fc88-4e3a-b5ac-2bc160395969",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 180,
+        "width": 320,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        1360
+      ],
+      "id": "a84f7295-ee52-4c17-93e3-16ae2e5fd01d",
+      "name": "Sticky Note19"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "width": 400,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1872,
+        1600
+      ],
+      "id": "f6c27048-fcfa-4dda-aaf3-998ee48b03ec",
+      "name": "Sticky Note20"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 140,
+        "width": 150,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        1216
+      ],
+      "id": "73348483-40a7-4f20-97fc-87006ba3091d",
+      "name": "Sticky Note24"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-12T05:44:12.116Z",
+      "createdAt": "2025-11-12T05:44:12.116Z",
+      "role": "workflow:owner",
+      "workflowId": "qxzaUxlqzz6CQ8KO",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-12T04:49:35.964Z",
+      "createdAt": "2025-11-12T04:49:35.964Z",
+      "id": "FSFCRUJRQgBqMwY7",
+      "name": "Pau Berenguer"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-12T05:44:12.000Z",
+  "versionId": "6f33f58c-ab79-4321-8249-c6deb9c514f3"
+}
