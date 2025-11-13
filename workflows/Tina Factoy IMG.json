@@ -1,0 +1,1004 @@
+{
+  "active": false,
+  "connections": {
+    "get_prompt": {
+      "main": [
+        [
+          {
+            "node": "asigna_nombres_archivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "genera_prompt",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "prepara_img": {
+      "main": [
+        [
+          {
+            "node": "formatea_sms",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "formatea_sms": {
+      "main": [
+        [
+          {
+            "node": "configura_parametros",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "limpia_prompts": {
+      "main": [
+        [
+          {
+            "node": "get_prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "asigna_nombres_archivo": {
+      "main": [
+        [
+          {
+            "node": "crea_img",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "genera_prompt": {
+      "main": [
+        [
+          {
+            "node": "limpia_prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "configura_parametros": {
+      "main": [
+        [
+          {
+            "node": "genera_prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "analiza_img": {
+      "main": [
+        [
+          {
+            "node": "prepara_img",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "prepara_audio": {
+      "main": [
+        [
+          {
+            "node": "formatea_sms",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "prepara_sms": {
+      "main": [
+        [
+          {
+            "node": "formatea_sms",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "convertir_img": {
+      "main": [
+        [
+          {
+            "node": "analiza_img",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "transcribe": {
+      "main": [
+        [
+          {
+            "node": "prepara_audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "extrae_img": {
+      "main": [
+        [
+          {
+            "node": "convertir_img",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_audio": {
+      "main": [
+        [
+          {
+            "node": "transcribe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_img": {
+      "main": [
+        [
+          {
+            "node": "extrae_img",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clasifica": {
+      "main": [
+        [
+          {
+            "node": "prepara_sms",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "get_audio",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "normaliza_file_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "recibe_sms": {
+      "main": [
+        [
+          {
+            "node": "/start?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "normaliza_file_id": {
+      "main": [
+        [
+          {
+            "node": "existe_img?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "existe_img?": {
+      "main": [
+        [
+          {
+            "node": "get_img",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "error_img",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "/start?": {
+      "main": [
+        [
+          {
+            "node": "clasifica",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "stop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crea_img": {
+      "main": [
+        [
+          {
+            "node": "envia_img",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-13T06:19:53.642Z",
+  "id": "gaqtfLriHL2Re9JX",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Tina Factoy IMG",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "return $input.first().json.image_prompt.map(prompt => ({\n  json: {\n    body: {\n      prompt: prompt,\n  \"image_size\": {\n    \"width\": $('configura_parametros').first().json.width,\n    \"height\": $('configura_parametros').first().json.height\n  },\n  \"num_inference_steps\": 12,\n  \"guidance_scale\": 3.5,\n  \"num_images\": 1,\n  \"enable_safety_checker\": true,\n}\n    }\n  }\n));"
+      },
+      "id": "d6c2b697-88f3-4dce-86b2-005dcaf49961",
+      "name": "get_prompt",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        864,
+        64
+      ],
+      "typeVersion": 2,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "options": {
+          "maxOutputTokens": 5000,
+          "temperature": 0.3,
+          "topK": 40,
+          "topP": 0.9,
+          "safetySettings": {
+            "values": [
+              {
+                "category": "HARM_CATEGORY_HARASSMENT",
+                "threshold": "BLOCK_NONE"
+              },
+              {
+                "category": "HARM_CATEGORY_HATE_SPEECH",
+                "threshold": "BLOCK_NONE"
+              },
+              {
+                "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                "threshold": "BLOCK_NONE"
+              },
+              {
+                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                "threshold": "BLOCK_NONE"
+              }
+            ]
+          }
+        }
+      },
+      "id": "c38e7487-1d6b-4623-8c27-04a662066196",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "position": [
+        1232,
+        464
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "3EyDEi6TLF6i554X",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "38db2cc4-cf7c-4d8c-9cc6-7bb362c7fc64",
+              "name": "instruccion",
+              "value": "={{ $json.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        464,
+        448
+      ],
+      "id": "8a49ad15-3fed-4357-8a12-48c1a08d08e4",
+      "name": "prepara_img"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "85a6333f-1850-4ff1-a020-9a8a156b019d",
+              "name": "usermessage",
+              "value": "={{ \n  $json.instruccion ||\n  $json.transcripcion ||\n  $json.caption ||\n  '' \n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        656,
+        256
+      ],
+      "id": "97511815-c4b5-40da-b677-5bc216fd3c61",
+      "name": "formatea_sms"
+    },
+    {
+      "parameters": {
+        "jsCode": "function cleanAndExtractJSON(response) {\n    try {\n        const result = { image_prompt: [] };\n        const lines = response.split('\\n');\n        let currentPrompt = '';\n        for (const line of lines) {\n            if (line.includes('\"prompt\":')) {\n                if (currentPrompt) result.image_prompt.push(currentPrompt.trim());\n                currentPrompt = line.split('\"prompt\":')[1].trim();\n            }\n        }\n        if (currentPrompt) result.image_prompt.push(currentPrompt.trim());\n        return { json: result };\n    } catch (error) {\n        return { json: { image_prompt: [] } };\n    }\n}\nconst response = $input.first().json.output;\nreturn cleanAndExtractJSON(response);"
+      },
+      "id": "01b7cd43-80bd-473c-b2ce-1ffbe5c508e8",
+      "name": "limpia_prompts",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        688,
+        64
+      ],
+      "executeOnce": false,
+      "typeVersion": 2,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "for (let i = 0; i < items.length; i++) { items[i].json.fileName = `images_${(i + 1).toString().padStart(3, '0')}.png`; } return items;"
+      },
+      "id": "7cad53e8-918c-4788-8d81-dafc01612000",
+      "name": "asigna_nombres_archivo",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1040,
+        64
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "={{ $('recibe_sms').item.json.message.from.id }}",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "id": "c1cab661-4a16-4859-b5dc-6da41c5b5801",
+      "name": "envia_img",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        1392,
+        64
+      ],
+      "webhookId": "<<WEBHOOK_ID_AUTOGENERADO_N8N>>",
+      "typeVersion": 1.2,
+      "credentials": {
+        "telegramApi": {
+          "id": "cljhbY7TT13yiHcw",
+          "name": "Telegram BurnhamBot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('formatea_sms').item.json.usermessage }}",
+        "options": {
+          "systemMessage": "=You are an AI image-prompt creation expert. ... (texto acortado para brevedad) ..."
+        }
+      },
+      "id": "e61356eb-57e2-41d2-8f4f-f2aaeb4fbc4a",
+      "name": "genera_prompt",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        1232,
+        256
+      ],
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4e04fec4-441e-45f7-acea-0017a4b5c104",
+              "name": "model",
+              "type": "string",
+              "value": "flux"
+            },
+            {
+              "id": "aa80cd68-1c82-4032-b1d7-e098856eec38",
+              "name": "width",
+              "type": "string",
+              "value": "1080"
+            },
+            {
+              "id": "da6d305f-aece-49bd-ae02-52df59915c60",
+              "name": "height",
+              "type": "string",
+              "value": "1920"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ac5ebe34-313a-4b0b-b86c-e9a53cbeedee",
+      "name": "configura_parametros",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        864,
+        256
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "text": "=Analyze what's in this image?",
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        272,
+        448
+      ],
+      "id": "68496081-2305-4c61-b08a-b2cfeb57417c",
+      "name": "analiza_img",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1a09389f-bf41-4d21-b680-2f194be1cbca",
+              "name": "instruccion",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        96,
+        256
+      ],
+      "id": "1e9e7e8e-5790-4078-950c-60f32d90b7b0",
+      "name": "prepara_audio"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b683041b-f959-4c31-9a1b-81017acb6ef4",
+              "name": "instruccion",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -80,
+        48
+      ],
+      "id": "0af489c4-13b5-4f84-83a6-146f63abbf29",
+      "name": "prepara_sms"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        96,
+        448
+      ],
+      "id": "5eb8e9a2-6b9c-4368-b4fb-b10fe4adf528",
+      "name": "convertir_img"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -80,
+        256
+      ],
+      "id": "30af5427-0170-408c-9181-94b52a5a2e49",
+      "name": "transcribe",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        448
+      ],
+      "id": "e8e1ec40-cb62-4243-a1f0-7872b8c2c2d1",
+      "name": "extrae_img",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -256,
+        256
+      ],
+      "id": "e06ee24a-fb66-4a1f-b06a-ba4797692eb6",
+      "name": "get_audio",
+      "webhookId": "<<WEBHOOK_ID_AUTOGENERADO_N8N>>",
+      "credentials": {
+        "telegramApi": {
+          "id": "cljhbY7TT13yiHcw",
+          "name": "Telegram BurnhamBot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -256,
+        448
+      ],
+      "id": "b4b17c23-8cbc-44fd-b246-2c314fab045d",
+      "name": "get_img",
+      "webhookId": "<<WEBHOOK_ID_AUTOGENERADO_N8N>>",
+      "credentials": {
+        "telegramApi": {
+          "id": "cljhbY7TT13yiHcw",
+          "name": "Telegram BurnhamBot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "8b0207cd-fbbc-454b-aa57-1ce8032e7fc3"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "texto"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c9e1326b-c565-46e8-90a0-0befa232c8e8",
+                    "leftValue": "={{ $json.message.voice }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f07d7a89-fb18-4f17-90ec-50b93c633858",
+                    "leftValue": "={{ $json.message.photo }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "imagen"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -880,
+        240
+      ],
+      "id": "d5055966-492a-4be1-9c03-01ef62e8d57a",
+      "name": "clasifica"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {
+          "download": true
+        }
+      },
+      "id": "bd242682-aeef-41df-b653-c5ba9ade79eb",
+      "name": "recibe_sms",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "position": [
+        -1248,
+        272
+      ],
+      "webhookId": "<<WEBHOOK_ID_AUTOGENERADO_N8N>>",
+      "typeVersion": 1.2,
+      "credentials": {
+        "telegramApi": {
+          "id": "cljhbY7TT13yiHcw",
+          "name": "Telegram BurnhamBot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const msg = $json.message || {};\nlet file_id = msg.document?.file_id || (Array.isArray(msg.photo) ? msg.photo[msg.photo.length - 1]?.file_id : undefined) || msg.animation?.file_id || msg.video?.file_id || msg.sticker?.file_id;\nreturn [{ file_id, chat_id: msg.chat?.id, caption: msg.caption || msg.text || '' }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -704,
+        464
+      ],
+      "id": "70f1d65d-148a-433f-aa95-cb467f5088b4",
+      "name": "normaliza_file_id"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6bb27015-e295-463b-89ab-b86bb7ff8529",
+              "leftValue": "={{$json.file_id}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -496,
+        464
+      ],
+      "id": "c108f07f-f6e9-460d-9653-547001336fc4",
+      "name": "existe_img?"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('recibe_sms').item.json.message.from.id }}",
+        "text": "Ups, no detecté ninguna imagen 🖼️❌. Envíame una foto o adjunta un .jpg/.png, por favor",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -384,
+        624
+      ],
+      "id": "4d8b4357-b4e5-456a-9f72-98fb6403bea3",
+      "name": "error_img",
+      "webhookId": "<<WEBHOOK_ID_AUTOGENERADO_N8N>>",
+      "credentials": {
+        "telegramApi": {
+          "id": "cljhbY7TT13yiHcw",
+          "name": "Telegram BurnhamBot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7c176ae7-5785-40ca-a0aa-6b91d4a67166",
+              "leftValue": "={{ $json.message.text }}",
+              "rightValue": "/start",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1072,
+        272
+      ],
+      "id": "b970176f-4d7b-4b1f-bc48-249fac63a0d4",
+      "name": "/start?"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -944,
+        624
+      ],
+      "id": "ef7e9a8a-5c31-4f60-963a-8280b7a1d942",
+      "name": "stop"
+    },
+    {
+      "parameters": {
+        "url": "=https://image.pollinations.ai/prompt/{{ encodeURIComponent($('get_prompt').item.json.body.prompt) }}",
+        "sendQuery": true,
+        "specifyQuery": "json",
+        "jsonQuery": "={\n  \"width\": {{ $('configura_parametros').item.json.width }},\n  \"height\": {{ $('configura_parametros').item.json.height }},\n  \"model\": \"{{ $('configura_parametros').item.json.model }}\",\n  \"seed\": 42,\n  \"nologo\": true\n}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a2c614b6-f127-433b-b906-5b620b0996e6",
+      "name": "crea_img",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1216,
+        64
+      ],
+      "retryOnFail": true,
+      "typeVersion": 4.2,
+      "alwaysOutputData": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "content": "## TEXTO \n",
+        "height": 192
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -144,
+        -16
+      ],
+      "typeVersion": 1,
+      "id": "83391a90-e865-40f9-8633-843d62f28371",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## AUDIO \n",
+        "height": 176,
+        "width": 544,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -304,
+        208
+      ],
+      "typeVersion": 1,
+      "id": "10c13406-ad2c-428a-a41e-d74a08afe58b",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## IMAGEN \n",
+        "height": 336,
+        "width": 1296,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -720,
+        416
+      ],
+      "typeVersion": 1,
+      "id": "a5f94354-15c1-4af2-88db-83f24d790ba5",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## CREACIÓN DE IMAGENES\n# [SOURCE](https://www.skool.com/futuro-digital-pro/imagenes-infinitas-gratis)",
+        "height": 208,
+        "width": 384
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -848,
+        -96
+      ],
+      "typeVersion": 1,
+      "id": "70a9d0b8-d693-4c5b-8007-936a2b6a8350",
+      "name": "Sticky Note3"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-13T06:19:53.655Z",
+      "createdAt": "2025-11-13T06:19:53.655Z",
+      "role": "workflow:owner",
+      "workflowId": "gaqtfLriHL2Re9JX",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-13T06:51:21.000Z",
+  "versionId": "27a8751c-22ab-4d18-9002-a01a0ba2094e"
+}
