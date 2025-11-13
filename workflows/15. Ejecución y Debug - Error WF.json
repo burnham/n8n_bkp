@@ -71,8 +71,15 @@
     }
   ],
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T04:17:58.571Z",
+      "createdAt": "2025-11-08T04:17:58.571Z",
+      "id": "kfnzru1ekik6v4r2",
+      "name": "🔵 MonetizaAI Learning"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-08T04:25:21.000Z",
-  "versionId": "e1b92ede-bbad-4340-83c3-377beb946aac"
+  "updatedAt": "2025-11-13T00:45:44.000Z",
+  "versionId": "fb75cdc5-5384-4cf4-a66d-c538f09163df"
 }
