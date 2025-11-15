@@ -435,17 +435,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI",
+          "value": "15ukS7eshR_RzEHev30LpFKlndheT8OL71DGmOpxPQnM",
           "mode": "list",
-          "cachedResultName": "Clientes",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI/edit?usp=drivesdk"
+          "cachedResultName": "Amorcanino",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15ukS7eshR_RzEHev30LpFKlndheT8OL71DGmOpxPQnM/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
-          "value": 2045006274,
+          "value": 288710566,
           "mode": "list",
-          "cachedResultName": "Base_de_datos_ficticia__100_filas_",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZZk9cxQIiVNQSj9VPx4qaQWt30WWCoPsANg33lsReeI/edit#gid=2045006274"
+          "cachedResultName": "base_datos_perros_amorcanino",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15ukS7eshR_RzEHev30LpFKlndheT8OL71DGmOpxPQnM/edit#gid=288710566"
         },
         "options": {}
       },
@@ -627,7 +627,7 @@
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Telegram Trigger').item.json.message.from.username }}",
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.from.id }}",
         "tableName": "conversaciones",
         "contextWindowLength": 50
       },
@@ -641,8 +641,8 @@
       ],
       "credentials": {
         "postgres": {
-          "id": "N4NljCNS08j9yTVt",
-          "name": "Postgres account"
+          "id": "Qj7SJsgBVpgDaruL",
+          "name": "Postgres Supabase"
         }
       }
     },
@@ -668,7 +668,7 @@
     },
     {
       "parameters": {
-        "chatId": "TU_CHAT_ID (MIRAR VIDEO)",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
         "text": "={{ $json.output }}",
         "additionalFields": {
           "appendAttribution": false
@@ -745,7 +745,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-11-12T03:22:02.000Z",
-  "versionId": "b6abe449-d0a0-42e6-ada5-16cca9879950"
+  "triggerCount": 1,
+  "updatedAt": "2025-11-14T18:17:03.000Z",
+  "versionId": "312edf4c-b5f5-4555-8ebc-acce72c79499"
 }
