@@ -1,0 +1,417 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "marcar como no leido": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "enviar email": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "responder email": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "etiquetar email": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener etiquetas": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener email": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear borrador": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat GPT #1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Gmail",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-14T08:41:40.759Z",
+  "id": "hun2fDw5x3DxzdyG",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Sub Agente Gmail",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "a399ccbc-f50d-4372-bb8b-f2cdb2f6d759",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -480,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=# Rol\n\nEres un asistente de gestión de Correo Electrónico. \n\n# Especificaciones\n\nTodos los correos electrónicos deben tener un formato profesional en HTML y estar firmados como \"Pau Berenguer\".\n\n# Herramientas\n\n- Usa \"enviar email\" para enviar correos electrónicos.\n- Usa \"crear borrador\" si el usuario pide un borrador.\n- Usa \"marcar como no leido\" para marcar un correo electrónico como no leído. Primero debes usar \"Get Emails\" para tener el ID del mensaje del correo electrónico que deseas marcar.\n- Usa \"etiquetar email\" para etiquetar un correo electrónico. Primero debes usar \"obtener etiqueta\" para tener el ID del mensaje del correo electrónico que deseas etiquetar. Luego debes usar \"Get Labels\" para tener el ID de la etiqueta.\n- Usa \"responder email\" para responder a un correo electrónico. Primero debes usar \"obtener email\" para tener el ID del mensaje del correo electrónico al que deseas responder.\n\n# Notas\n\nFecha y hora actuales: {{ $now }}"
+        }
+      },
+      "id": "8ee4d7e0-18b7-4c67-bb67-e76e20fe9b53",
+      "name": "Agente Gmail",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        -224,
+        272
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 200,
+        "width": 220
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -544,
+        224
+      ],
+      "id": "fb3d4a38-72b4-414e-9f4f-cea123480c39",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 180,
+        "width": 320,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        224
+      ],
+      "id": "5c97869f-0b23-4cfe-89d5-02dc53aa1cad",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 140,
+        "width": 150,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        80
+      ],
+      "id": "2ca4a978-c9ab-419a-adce-1252aefdaae7",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 180,
+        "width": 980,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -544,
+        464
+      ],
+      "id": "77ce30f7-85e3-4dd2-b51a-7d08815ce3f6",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "operation": "markAsUnread",
+        "messageId": "={{ $fromAI(\"messageID\") }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -496,
+        512
+      ],
+      "id": "179118ab-c15c-46ea-8e53-5b194aad544a",
+      "name": "marcar como no leido",
+      "webhookId": "a35af9d8-f67d-4ff9-803f-59ec6356e795",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RACKunhqsGrQUqMd",
+          "name": "Gmail GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $fromAI(\"emailAddress\") }}",
+        "subject": "={{ $fromAI(\"subject\") }}",
+        "message": "={{ $fromAI(\"emailBody\") }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -352,
+        512
+      ],
+      "id": "27b2e342-a77a-4e9e-b323-acb0a25f3263",
+      "name": "enviar email",
+      "webhookId": "86c8c4b1-13bb-4ebe-acb9-30e1d7082d55",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RACKunhqsGrQUqMd",
+          "name": "Gmail GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $fromAI(\"ID\",\"the message ID\") }}",
+        "message": "={{ $fromAI(\"emailBody\") }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -224,
+        512
+      ],
+      "id": "e9833f69-1b0a-4657-a90f-52a893da73b7",
+      "name": "responder email",
+      "webhookId": "114785e6-a859-432b-81b4-c490c1c35b1c",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RACKunhqsGrQUqMd",
+          "name": "Gmail GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $fromAI(\"ID\",\"the ID of the message\") }}",
+        "labelIds": "={{ $fromAI(\"labelID\") }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -80,
+        512
+      ],
+      "id": "2a8e12eb-3a81-4edc-a8f9-8c69665e75c5",
+      "name": "etiquetar email",
+      "webhookId": "0e951529-2e6d-40bf-ac40-fc0947e242e2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RACKunhqsGrQUqMd",
+          "name": "Gmail GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "label",
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        64,
+        512
+      ],
+      "id": "5b49f37b-8456-439f-8180-ba2310049456",
+      "name": "obtener etiquetas",
+      "webhookId": "9e08b59e-792d-4566-83f1-9263c9ad86ae",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RACKunhqsGrQUqMd",
+          "name": "Gmail GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": "={{ $fromAI(\"limit\",\"how many emails the user wants\") }}",
+        "simple": false,
+        "filters": {
+          "sender": "={{ $fromAI(\"sender\",\"who the emails are from\") }}"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        512
+      ],
+      "id": "7d446550-e619-427c-bdac-af138aae81de",
+      "name": "obtener email",
+      "webhookId": "af4b3298-9037-44b0-aa12-2acbfbb5e66f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RACKunhqsGrQUqMd",
+          "name": "Gmail GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ $fromAI(\"subject\") }}",
+        "emailType": "html",
+        "message": "={{ $fromAI(\"emailBody\") }}",
+        "options": {
+          "threadId": "={{ $fromAI(\"threadID\") }}",
+          "sendTo": "={{ $fromAI(\"emailAddress\") }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        336,
+        512
+      ],
+      "id": "a670f434-1efe-4597-bdb3-323d52b1cfea",
+      "name": "crear borrador",
+      "webhookId": "17016bce-d7d7-428a-a56c-f6ea122db8be",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RACKunhqsGrQUqMd",
+          "name": "Gmail GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -64,
+        112
+      ],
+      "id": "7a6fad1b-d73e-4828-9c8c-ba2d6dbc9042",
+      "name": "Chat GPT #1",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-14T08:41:40.764Z",
+      "createdAt": "2025-11-14T08:41:40.764Z",
+      "role": "workflow:owner",
+      "workflowId": "hun2fDw5x3DxzdyG",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-14T08:41:40.000Z",
+  "versionId": "cfa719fb-9c4f-4a6a-b02a-9323176a035c"
+}
