@@ -1,0 +1,137 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Crear_Asistente",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "herramienta_link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-13T13:57:55.680Z",
+  "id": "hTn7xDshGJgvCxWF",
+  "isArchived": false,
+  "meta": null,
+  "name": "crear_vapi",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        112,
+        224
+      ],
+      "id": "3b83c65d-32ba-4a8f-83f7-94ce80b1f34f",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.vapi.ai/assistant",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 3e3edc90-f4d9-4457-a05c-8895c25c15d7"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n  \"name\": \"Definitivo_Marcos\",\n  \"voice\": {\n    \"model\": \"eleven_turbo_v2_5\",\n    \"voiceId\": \"zRUArUmK0DWSP7K6mmLW\",\n    \"provider\": \"11labs\",\n    \"stability\": 0.5,\n    \"similarityBoost\": 0.7\n  },\n  \"model\": {\n    \"model\": \"gpt-4o\",\n    \"provider\": \"openai\",\n    \"temperature\": 0.2,\n    \"messages\": [\n      {\n        \"role\": \"system\",\n        \"content\": \"Personalidad:\\n\\nEres Marcos, un asistente de voz IA del restaurante Olimpo. Te encargas de la comunicación con los clientes. Te caracterizan tu profesionalismo, actitud positiva y amplia experiencia brindando experiencias de cliente de alta calidad.\\nNo proporciones información de la que no dispongas.\\n\\nTarea:\\n\\nTu tarea principal es mantener una conversación profesional, positiva y abierta con los clientes, responder a sus preguntas y ayudarles a crear reservas si lo solicitan.\\n\\nInformación del Servicio:\\n\\nUtiliza la información de la base de conocimientos para responder preguntas sobre el restaurante.\\n\\nReservas:\\n\\nOlimpo permite crear reservas para el restaurante. Aceptamos reservas de lunes a sábado entre 13:00 y 22:00 horas.\\n\\n\\t• Fecha actual: {{date}} !!!RECUERDA MARCA DE TIEMPO!!! \\n\\t• Hora actual:!!!RECUERDA MARCA DE TIEMPO!!!\\n\\nInstrucciones para crear una reserva:\\n\\nSi el cliente quiere reservar:\\n\\nPrimero necesitas saber: el día, la hora, y para cuántas personas.\\nPor ejemplo, puedes decir: “Claro, dime por favor el día, la hora y cuántas personas serían.”\\n\\nConsulta si hay disponibilidad con **checkAvailability**.\\nMientras consultas disponibilidad, sé lo más natural posible. Por ejemplo: “Un segundo, reviso si tenemos disponibilidad para ese momento…” y no repitas esto. \\n\\nDespués dile si hay disponibilidad o si, por el contrario, tenemos alternativas disponibles. \\n\\nEn caso de que elija alguna alternativa de las que le propones, siempre usa **checkAvailability** por última vez y confirma. \\n\\nEn caso de no tener alternativas para ese día, pregúntale si quiere consultar otra fecha.\\n\\nLuego, pregunta el nombre del cliente.\\n\\n“Perfecto, ahora mismo realizo la reserva.” y ya está. No uses ninguna tool y dices: \\n“Genial, pues quedamos así. Te reservo para el [día] a las [hora]. Recuerda que recibirás un Whatsapp donde te agradeceríamos mucho confirmación. En caso de querer cancelar, puedes hacerlo desde ahí mismo.”\\n\\nAl terminar, puedes añadir:\\n“Y ya sabes, si más adelante quieres cambiar algo o hacer otra reserva, puedes hacerlo también por aquí sin problema.”\\n\\nFinalización:\\n\\nCuando termines la conversación, finaliza la llamada.\\n\\nEscalado:\\n\\nPuedes transferir la llamada al Encargado si:\\n– El cliente lo pide directamente.\\n– El cliente no está satisfecho con tu servicio.\\n\\nDile: “Voy a intentar conectarte con el Encargado” y transfiere la llamada.\\n\\nEstilo:\\n\\n– Sé informal pero profesional, con frases como: “Mmm…”, “Bueno…”, “Claro…” y “Quiero decir…”.\\n– Sé directo: frases cortas, respuestas concisas, sin adornos innecesarios.\\n– Haz siempre una sola pregunta a la vez.\\n– Después de ayudar, puedes decir algo como: “¿Hay algo más en lo que pueda ayudarte?” o “¿Puedo hacer algo más por ti?”\\n– Nunca pidas el número de teléfono del cliente, ya lo tienes.\\n– Nunca digas palabras como “función”, “herramienta”, ni nombres técnicos.\\n– Nunca digas “buena elección” después de una respuesta del cliente.\\n– Nunca digas “estaría encantado de…”; simplemente actúa.\"\n      }\n    ]\n  },\n  \"firstMessage\": \"Hola! Soy Marcos\",\n  \"voicemailMessage\": \"Please call back when you're available.\",\n  \"endCallMessage\": \"Goodbye.\",\n  \"transcriber\": {\n    \"model\": \"nova-2\",\n    \"language\": \"es\",\n    \"provider\": \"deepgram\"\n  },\n  \"clientMessages\": [\"hang\"],\n  \"serverMessages\": [\"end-of-call-report\", \"tool-calls\"],\n  \"serverUrl\": \"https://ailink.app.n8n.cloud/webhook-test/4a9f1aaa-f97d-4dd5-be78-a0c36b504e45\",\n  \"backgroundDenoisingEnabled\": false,\n  \"backchannelingEnabled\": false,\n  \"analysisPlan\": {\n    \"structuredDataPrompt\": \"Se te dará una transcripción de una llamada y el mensaje del sistema para el participante con IA. Extrae los parámetros listados.\\nRespondes en español\\nLa fecha actual es: {{date}}\\nLa hora actual es: {{time}}\",\n    \"structuredDataSchema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"Reserva\": { \"type\": \"boolean\" },\n        \"reserva_hora\": { \"type\": \"string\" },\n        \"reserva_fecha\": { \"type\": \"string\" },\n        \"reserva_nombre\": { \"type\": \"string\" },\n        \"reserva_invitados\": { \"type\": \"number\" }\n      },\n      \"required\": [\"Reserva\"]\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        320,
+        144
+      ],
+      "id": "f3d965f7-34ef-405c-a483-c914656a2495",
+      "name": "Crear_Asistente"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.vapi.ai/tool",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 3e3edc90-f4d9-4457-a05c-8895c25c15d7"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n  \"type\": \"function\",\n  \"function\": {\n    \"name\": \"extractReservationData\",\n    \"async\": false,\n    \"description\": \"Extrae los datos clave de una reserva a partir de la transcripción de la llamada.\",\n    \"parameters\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"hora\": {\n          \"description\": \"Hora de la reserva en formato de 24H, por ejemplo: 19:00\",\n          \"type\": \"string\"\n        },\n        \"nombre\": {\n          \"description\": \"Nombre de la persona que solicita la reserva\",\n          \"type\": \"string\"\n        },\n        \"reserva_fecha\": {\n          \"description\": \"Fecha de la reserva en formato \\\"yyyy-mm-dd\\\", por ejemplo: 2025-12-12\",\n          \"type\": \"string\"\n        },\n        \"reserva_invitados\": {\n          \"description\": \"Número de invitados en la reserva por ejemplo: 3\",\n          \"type\": \"number\"\n        }\n      },\n      \"required\": [\n        \"hora\",\n        \"nombre\",\n        \"reserva_fecha\",\n        \"reserva_invitados\"\n      ]\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        320,
+        352
+      ],
+      "id": "0f97fa51-598d-4257-856f-ad1547f4dd30",
+      "name": "herramienta_link"
+    },
+    {
+      "parameters": {
+        "content": "## Este flujo os creará automaticamente en VAPI el proyecto\n\nRecordad configurar la API key de VAPI después de \"Bearer\" dentro del nodo.\n",
+        "height": 560,
+        "width": 620,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "96617e70-cffa-41e7-a0dd-8c80ef4a2bf6",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-13T13:57:55.687Z",
+      "createdAt": "2025-11-13T13:57:55.687Z",
+      "role": "workflow:owner",
+      "workflowId": "hTn7xDshGJgvCxWF",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-13T17:01:43.000Z",
+  "versionId": "4ccf22dd-2e69-4366-ba4d-89e172dbd9ff"
+}
