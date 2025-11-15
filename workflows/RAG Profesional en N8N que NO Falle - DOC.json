@@ -1,0 +1,44 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-11-14T07:55:34.978Z",
+  "id": "XGT1bE77NcniCOta",
+  "isArchived": false,
+  "meta": null,
+  "name": "RAG Profesional en N8N que NO Falle - DOC",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Cómo Hacer un RAG Profesional en N8N que NO Falle (La Clave que Nadie Te Cuenta)\n\n# [Guide](https://youtu.be/46kMz-RAj9s)",
+        "height": 272,
+        "width": 640
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -176,
+        16
+      ],
+      "typeVersion": 1,
+      "id": "88813553-b8ef-45e2-a7f1-11f7d6e851e7",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-14T07:55:34.987Z",
+      "createdAt": "2025-11-14T07:55:34.987Z",
+      "role": "workflow:owner",
+      "workflowId": "XGT1bE77NcniCOta",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-14T07:55:34.000Z",
+  "versionId": "6311d0a8-b6bc-4fa4-b8ba-8f1070ccdcec"
+}
