@@ -1,0 +1,1555 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "tool_call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "reserva": {
+      "main": [
+        [
+          {
+            "node": "Reserva",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "borrar_bloqueo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alternativas": {
+      "main": [
+        [
+          {
+            "node": "Alternativas?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Alternativas2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reserva": {
+      "main": [
+        [
+          {
+            "node": "Act_dispo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tool_call": {
+      "main": [
+        [
+          {
+            "node": "disponibilidad2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "reserva",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "disponibilidad2": {
+      "main": [
+        [
+          {
+            "node": "Disponible?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Disponible?": {
+      "main": [
+        [
+          {
+            "node": "temporal",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Alternativas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alternativas?": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "no_dispo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "temporal": {
+      "main": [
+        [
+          {
+            "node": "Existe_disponibilidad",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Act_dispo": {
+      "main": [
+        [
+          {
+            "node": "info_llamada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "info_llamada": {
+      "main": [
+        [
+          {
+            "node": "Conf_cliente2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-13T13:56:39.001Z",
+  "id": "QjbdllaWDQLZVE2p",
+  "isArchived": false,
+  "meta": null,
+  "name": "Reserva_restaurante",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "4a9f1aaa-f97d-4dd5-be78-a0c36b504e45",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -480,
+        544
+      ],
+      "id": "7fdcded0-a745-47c0-b9c3-a23f9441a558",
+      "name": "Webhook",
+      "webhookId": "4a9f1aaa-f97d-4dd5-be78-a0c36b504e45"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6ddbc843-aceb-4923-b2e2-c42e4aef568a",
+              "leftValue": "={{ $json.body.message.analysis.structuredData.Reserva }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        848
+      ],
+      "id": "480fa150-ac01-4240-bc66-9b54f0913c1d",
+      "name": "reserva"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"results\":[\n        {\n            \"toolCallId\":\"{{ $('Webhook').first().json.body.message.toolCalls[0].id }}\",\n            \"result\":\"disponible:{{ $('Disponible?').item.json.Estado }} \"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        672,
+        224
+      ],
+      "id": "3edb17ad-a472-47c4-b201-ef6dd0aa9110",
+      "name": "Existe_disponibilidad"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appGrWg2QNhDx9kk6",
+          "mode": "list",
+          "cachedResultName": "Restaurant_Management",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblAxvB06ZIIZMnUA",
+          "mode": "list",
+          "cachedResultName": "Table_Availability",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6/tblAxvB06ZIIZMnUA"
+        },
+        "filterByFormula": "=AND(\n  {Estado} = \"Disponible\",\n  {Fecha} = \"{{ $('tool_call').item.json.body.message.toolCalls[0].function.arguments.reserva_fecha }}\",\n  {ID_Mesa} = \"T{{ $('tool_call').item.json.body.message.toolCalls[0].function.arguments.reserva_invitados }}\",\n  VALUE(SUBSTITUTE({Hora_disponible}, \":\", \"\")) > VALUE(SUBSTITUTE(\"{{ $('tool_call').item.json.body.message.toolCalls[0].function.arguments.hora }}\", \":\", \"\"))\n)",
+        "returnAll": false,
+        "options": {},
+        "sort": {
+          "property": [
+            {
+              "field": "Hora_disponible"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        512,
+        528
+      ],
+      "id": "7756393c-e4b4-436c-994c-fd054906466b",
+      "name": "Alternativas",
+      "notesInFlow": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "Hora_disponible"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        912,
+        448
+      ],
+      "id": "289f3990-18f3-4259-ad1a-27785f90254d",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"results\":[\n        {\n            \"toolCallId\":\"{{ $('Webhook').first().json.body.message.toolCalls[0].id }}\",\n            \"result\":\"No hay disponibilidad, alternativas: {{ $json.Hora_disponible }}\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1104,
+        448
+      ],
+      "id": "b1f6bc98-c3a1-48b7-9bed-a36f0911d356",
+      "name": "Alternativas2"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"results\":[\n        {\n            \"toolCallId\":\"{{ $('Webhook').first().json.body.message.toolCalls[0].id }}\",\n            \"result\":\"No hay disponibilidad para este día\"\n        }\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        928,
+        608
+      ],
+      "id": "0cf550ef-5ce5-459e-9cde-e57334ac2631",
+      "name": "no_dispo"
+    },
+    {
+      "parameters": {
+        "content": "## Consulta disponibilidad",
+        "height": 240,
+        "width": 360,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        16,
+        288
+      ],
+      "id": "03b1666b-d054-4595-9e2f-721b39d93240",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Reserva mesa\n",
+        "height": 240,
+        "width": 880,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        144,
+        784
+      ],
+      "id": "85d83f20-94b6-4509-8a38-32876e876920",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appGrWg2QNhDx9kk6",
+          "mode": "list",
+          "cachedResultName": "Restaurant_Management",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblEfvAEJnuRjzKSR",
+          "mode": "list",
+          "cachedResultName": "Reservas",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6/tblEfvAEJnuRjzKSR"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Phone": "324234324",
+            "Invitados": "={{ $('Webhook').item.json.body.message.analysis.structuredData.reserva_invitados }}",
+            "ID_Reserva": "=RES{{ Math.floor(Math.random() * 100000) }}",
+            "Fecha": "={{ $('Webhook').item.json.body.message.analysis.structuredData.reserva_fecha }}",
+            "Hora": "={{ $('Webhook').item.json.body.message.analysis.structuredData.reserva_hora }}",
+            "ID_Mesa": "=T{{ $('Webhook').item.json.body.message.analysis.structuredData.reserva_invitados }}",
+            "Nombre": "={{ $('Webhook').item.json.body.message.analysis.structuredData.reserva_nombre }}",
+            "Estado": "Reservado ",
+            "Notas": "={{ $('Webhook').item.json.body.message.analysis.summary }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "ID_Reserva",
+              "displayName": "ID_Reserva",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Hora",
+              "displayName": "Hora",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ID_Mesa",
+              "displayName": "ID_Mesa",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Invitados",
+              "displayName": "Invitados",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Confirmado",
+                  "value": "Confirmado"
+                },
+                {
+                  "name": "Reservado ",
+                  "value": "Reservado "
+                },
+                {
+                  "name": "Cancelado",
+                  "value": "Cancelado"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Notas",
+              "displayName": "Notas",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Actualizado",
+              "displayName": "Actualizado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        416,
+        832
+      ],
+      "id": "32830b58-3420-46a0-8a7a-1f08f23b999e",
+      "name": "Reserva"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "449c0432-7006-497a-941a-8e25a85ad869",
+              "leftValue": "={{ $json.body.message.type }}",
+              "rightValue": "tool-calls",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -192,
+        656
+      ],
+      "id": "3c546553-a0fb-4715-857c-5a5ed0378fc2",
+      "name": "tool_call"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appGrWg2QNhDx9kk6",
+          "mode": "list",
+          "cachedResultName": "Restaurant_Management",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblAxvB06ZIIZMnUA",
+          "mode": "list",
+          "cachedResultName": "Table_Availability",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6/tblAxvB06ZIIZMnUA"
+        },
+        "filterByFormula": "=AND(\n  OR(\n    {Estado} = \"Disponible\",\n    AND(\n      {Estado} = \"Disponible\",\n      {ID} = \"{{ $json.body.message.call.id }}\" \n    )\n  ),\n  {Fecha} = \"{{ $json.body.message.toolCalls[0].function.arguments.reserva_fecha }}\",\n  {Hora_disponible} = \"{{ $json.body.message.toolCalls[0].function.arguments.hora }}\",\n  {ID_Mesa} = \"T{{ $json.body.message.toolCalls[0].function.arguments.reserva_invitados }}\"\n)",
+        "returnAll": false,
+        "options": {},
+        "sort": {
+          "property": [
+            {
+              "field": "Hora_disponible"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        368
+      ],
+      "id": "5a296939-c1ef-45e1-b019-0b7ea839897c",
+      "name": "disponibilidad2",
+      "notesInFlow": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "de69280a-b65d-4f80-b367-7fb106afc7ce",
+              "leftValue": "={{ $json.Estado }}",
+              "rightValue": "Disponible",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        368
+      ],
+      "id": "d3093318-2f01-44e3-80e0-5d1ca945d40b",
+      "name": "Disponible?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "de69280a-b65d-4f80-b367-7fb106afc7ce",
+              "leftValue": "={{ $json.Estado }}",
+              "rightValue": "Disponible",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        528
+      ],
+      "id": "993eaf58-36c2-462b-b54f-6cc26803c0b0",
+      "name": "Alternativas?"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appGrWg2QNhDx9kk6",
+          "mode": "list",
+          "cachedResultName": "Restaurant_Management",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblAxvB06ZIIZMnUA",
+          "mode": "list",
+          "cachedResultName": "Disponibilidad_mesas",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6/tblAxvB06ZIIZMnUA"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_Mesa": "={{ $json.ID_Mesa }}",
+            "Hora_disponible": "={{ $('disponibilidad2').item.json.Hora_disponible }}",
+            "Fecha": "={{ $json.Fecha }}",
+            "Estado": "Temporal",
+            "ID": "={{ $('disponibilidad2').item.json.id }}"
+          },
+          "matchingColumns": [
+            "Hora_disponible",
+            "Fecha",
+            "ID_Mesa"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ID_Mesa",
+              "displayName": "ID_Mesa",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "T1",
+                  "value": "T1"
+                },
+                {
+                  "name": "T2",
+                  "value": "T2"
+                },
+                {
+                  "name": "T3",
+                  "value": "T3"
+                },
+                {
+                  "name": "T4",
+                  "value": "T4"
+                },
+                {
+                  "name": "T5",
+                  "value": "T5"
+                },
+                {
+                  "name": "ID Mesa",
+                  "value": "ID Mesa"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Hora_disponible",
+              "displayName": "Hora_disponible",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "12:00",
+                  "value": "12:00"
+                },
+                {
+                  "name": "13:00",
+                  "value": "13:00"
+                },
+                {
+                  "name": "14:00",
+                  "value": "14:00"
+                },
+                {
+                  "name": "15:00",
+                  "value": "15:00"
+                },
+                {
+                  "name": "19:00",
+                  "value": "19:00"
+                },
+                {
+                  "name": "20:00",
+                  "value": "20:00"
+                },
+                {
+                  "name": "21:00",
+                  "value": "21:00"
+                },
+                {
+                  "name": "Hora disponibilidad ",
+                  "value": "Hora disponibilidad "
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Estado",
+                  "value": "Estado"
+                },
+                {
+                  "name": "Disponible",
+                  "value": "Disponible"
+                },
+                {
+                  "name": "Reservada",
+                  "value": "Reservada"
+                },
+                {
+                  "name": "Confirmada",
+                  "value": "Confirmada"
+                },
+                {
+                  "name": "Temporal",
+                  "value": "Temporal"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ID Reserva",
+              "displayName": "ID Reserva",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        512,
+        224
+      ],
+      "id": "4330543e-2e7e-40fe-b169-92aae74b382f",
+      "name": "temporal"
+    },
+    {
+      "parameters": {
+        "content": "## Alternativas",
+        "height": 340,
+        "width": 840,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        464,
+        416
+      ],
+      "id": "59579cde-ebeb-4c4c-88fd-81291106fdb2",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Existe disponibilidad + bloqueo temporal",
+        "height": 220,
+        "width": 480,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        464,
+        144
+      ],
+      "id": "042b93c4-91bf-4d6a-ab88-9ff0f6f51e2a",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appGrWg2QNhDx9kk6",
+          "mode": "list",
+          "cachedResultName": "Restaurant_Management",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblAxvB06ZIIZMnUA",
+          "mode": "list",
+          "cachedResultName": "Disponibilidad_mesas",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6/tblAxvB06ZIIZMnUA"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Hora_disponible": "={{ $json.fields.Hora_disponible }}",
+            "Fecha": "={{ $json.fields.Fecha }}",
+            "Estado": "Disponible",
+            "ID": "="
+          },
+          "matchingColumns": [
+            "Hora_disponible",
+            "Fecha"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ID_Mesa",
+              "displayName": "ID_Mesa",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "T1",
+                  "value": "T1"
+                },
+                {
+                  "name": "T2",
+                  "value": "T2"
+                },
+                {
+                  "name": "T3",
+                  "value": "T3"
+                },
+                {
+                  "name": "T4",
+                  "value": "T4"
+                },
+                {
+                  "name": "T5",
+                  "value": "T5"
+                },
+                {
+                  "name": "ID Mesa",
+                  "value": "ID Mesa"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Hora_disponible",
+              "displayName": "Hora_disponible",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "11:00",
+                  "value": "11:00"
+                },
+                {
+                  "name": "11:30",
+                  "value": "11:30"
+                },
+                {
+                  "name": "12:00",
+                  "value": "12:00"
+                },
+                {
+                  "name": "12:30",
+                  "value": "12:30"
+                },
+                {
+                  "name": "13:00",
+                  "value": "13:00"
+                },
+                {
+                  "name": "13:30",
+                  "value": "13:30"
+                },
+                {
+                  "name": "14:00",
+                  "value": "14:00"
+                },
+                {
+                  "name": "14:30",
+                  "value": "14:30"
+                },
+                {
+                  "name": "15:00",
+                  "value": "15:00"
+                },
+                {
+                  "name": "19:00",
+                  "value": "19:00"
+                },
+                {
+                  "name": "19:30",
+                  "value": "19:30"
+                },
+                {
+                  "name": "20:00",
+                  "value": "20:00"
+                },
+                {
+                  "name": "20:30",
+                  "value": "20:30"
+                },
+                {
+                  "name": "18:30",
+                  "value": "18:30"
+                },
+                {
+                  "name": "21:00",
+                  "value": "21:00"
+                },
+                {
+                  "name": "18:00",
+                  "value": "18:00"
+                },
+                {
+                  "name": "21:30",
+                  "value": "21:30"
+                },
+                {
+                  "name": "Hora disponibilidad ",
+                  "value": "Hora disponibilidad "
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Estado",
+                  "value": "Estado"
+                },
+                {
+                  "name": "Disponible",
+                  "value": "Disponible"
+                },
+                {
+                  "name": "Reservada",
+                  "value": "Reservada"
+                },
+                {
+                  "name": "Confirmada",
+                  "value": "Confirmada"
+                },
+                {
+                  "name": "Temporal",
+                  "value": "Temporal"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ID Reserva",
+              "displayName": "ID Reserva",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        432,
+        1152
+      ],
+      "id": "e4e821bb-24d8-48bf-8ab4-d8ad5c252e05",
+      "name": "borrar_bloqueo"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appGrWg2QNhDx9kk6",
+          "mode": "list",
+          "cachedResultName": "Restaurant_Management",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblAxvB06ZIIZMnUA",
+          "mode": "list",
+          "cachedResultName": "Disponibilidad_mesas",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6/tblAxvB06ZIIZMnUA"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_Mesa": "={{ $json.fields.ID_Mesa }}",
+            "Hora_disponible": "={{ $json.fields.Hora }}",
+            "Fecha": "={{ $json.fields.Fecha }}",
+            "Estado": "Reservada",
+            "ID Reserva": "={{ $json.fields.ID_Reserva }}"
+          },
+          "matchingColumns": [
+            "Fecha",
+            "Hora_disponible",
+            "ID_Mesa"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ID_Mesa",
+              "displayName": "ID_Mesa",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "T1",
+                  "value": "T1"
+                },
+                {
+                  "name": "T2",
+                  "value": "T2"
+                },
+                {
+                  "name": "T3",
+                  "value": "T3"
+                },
+                {
+                  "name": "T4",
+                  "value": "T4"
+                },
+                {
+                  "name": "T5",
+                  "value": "T5"
+                },
+                {
+                  "name": "ID Mesa",
+                  "value": "ID Mesa"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Hora_disponible",
+              "displayName": "Hora_disponible",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "12:00",
+                  "value": "12:00"
+                },
+                {
+                  "name": "13:00",
+                  "value": "13:00"
+                },
+                {
+                  "name": "14:00",
+                  "value": "14:00"
+                },
+                {
+                  "name": "15:00",
+                  "value": "15:00"
+                },
+                {
+                  "name": "19:00",
+                  "value": "19:00"
+                },
+                {
+                  "name": "20:00",
+                  "value": "20:00"
+                },
+                {
+                  "name": "21:00",
+                  "value": "21:00"
+                },
+                {
+                  "name": "Hora disponibilidad ",
+                  "value": "Hora disponibilidad "
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Estado",
+                  "value": "Estado"
+                },
+                {
+                  "name": "Disponible",
+                  "value": "Disponible"
+                },
+                {
+                  "name": "Reservada",
+                  "value": "Reservada"
+                },
+                {
+                  "name": "Confirmada",
+                  "value": "Confirmada"
+                },
+                {
+                  "name": "Temporal",
+                  "value": "Temporal"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ID Reserva",
+              "displayName": "ID Reserva",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        576,
+        832
+      ],
+      "id": "7d1967bc-969f-496e-9235-05e084cb9631",
+      "name": "Act_dispo"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appGrWg2QNhDx9kk6",
+          "mode": "list",
+          "cachedResultName": "Gestión_restaurante",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl3PpK7HO6zy0c0f",
+          "mode": "list",
+          "cachedResultName": "Información",
+          "cachedResultUrl": "https://airtable.com/appGrWg2QNhDx9kk6/tbl3PpK7HO6zy0c0f"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Res ID": "={{ $json.fields['ID Reserva'] }}",
+            "Telefóno": "698450348",
+            "Duracion_llamada": "={{ $('reserva').item.json.body.message.durationSeconds }}",
+            "Fecha_llamada": "={{ $('reserva').item.json.body.message.startedAt }}",
+            "motivo_finalizacion": "={{ $('reserva').item.json.body.message.endedReason }}",
+            "coste_llamada": "={{ $('tool_call').item.json.body.message.cost }}",
+            "peticiones_adicionales": "={{ $('reserva').item.json.body.message.analysis.summary }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Res ID",
+              "displayName": "Res ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Telefóno",
+              "displayName": "Telefóno",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Fecha_llamada",
+              "displayName": "Fecha_llamada",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Duracion_llamada",
+              "displayName": "Duracion_llamada",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "motivo_finalizacion",
+              "displayName": "motivo_finalizacion",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "peticiones_adicionales",
+              "displayName": "peticiones_adicionales",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "coste_llamada",
+              "displayName": "coste_llamada",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        736,
+        832
+      ],
+      "id": "7a72482e-1a1c-4eab-8eaa-4a1e62ae72b1",
+      "name": "info_llamada"
+    },
+    {
+      "parameters": {
+        "from": "=",
+        "toWhatsapp": true,
+        "message": "=🍷 ¡Hola {{ $('Reserva').item.json.fields.Nombre }}!\n\nTe habla el equipo de *Restaurante Olimpo*.  \nTienes una reserva pendiente para el día *{{ $('Reserva').item.json.fields.Fecha }}* a las *{{ $('Reserva').item.json.fields.Hora }}*. Para {{ $('Reserva').item.json.fields.Invitados }} personas. \n\n¿Podés confirmar tu asistencia?  \nSolo respondé con 👉 *“Sí confirmo”*\n\nAsí preparamos tu mesa con todo listo 🕯️  \n¡Te esperamos con ganas de sorprenderte!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        864,
+        832
+      ],
+      "id": "5f034d08-24c6-4548-b47f-a8f532c26bde",
+      "name": "Conf_cliente2"
+    },
+    {
+      "parameters": {
+        "content": "## Reset",
+        "height": 260,
+        "width": 380,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        288,
+        1072
+      ],
+      "id": "9523a436-37ee-47af-b482-ea8acb551b74",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## 🚨Agente telefónico restaurante🚨\n \n# [Guide](https://www.skool.com/ailink-2010/nuevo-video-agente-telefonico-restaurante)",
+        "height": 112,
+        "width": 464
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -16,
+        128
+      ],
+      "typeVersion": 1,
+      "id": "bf6eaf8c-ce15-4bf6-b0cc-e9d9549414a6",
+      "name": "Sticky Note5"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-13T13:56:39.010Z",
+      "createdAt": "2025-11-13T13:56:39.010Z",
+      "role": "workflow:owner",
+      "workflowId": "QjbdllaWDQLZVE2p",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-13T17:05:38.000Z",
+  "versionId": "f6fca070-0058-43e5-9138-3bc2cf13ea5b"
+}
