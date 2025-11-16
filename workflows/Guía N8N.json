@@ -134,9 +134,9 @@
       ]
     }
   },
-  "createdAt": "2025-11-11T18:29:41.971Z",
-  "id": "apf3ggbY0yDDmBfC",
-  "isArchived": true,
+  "createdAt": "2025-11-11T18:29:39.383Z",
+  "id": "Hoi6UA1TPLAz5RZP",
+  "isArchived": false,
   "meta": null,
   "name": "Guía N8N",
   "nodes": [
@@ -1816,16 +1816,16 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-11-11T18:29:41.979Z",
-      "createdAt": "2025-11-11T18:29:41.979Z",
+      "updatedAt": "2025-11-11T18:29:39.391Z",
+      "createdAt": "2025-11-11T18:29:39.391Z",
       "role": "workflow:owner",
-      "workflowId": "apf3ggbY0yDDmBfC",
+      "workflowId": "Hoi6UA1TPLAz5RZP",
       "projectId": "epI1cymQzCzDlQMH"
     }
   ],
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-12T02:51:50.000Z",
-  "versionId": "892d1816-8218-49f0-bd65-5804d66fcaa0"
+  "updatedAt": "2025-11-11T18:29:39.000Z",
+  "versionId": "6be66468-8531-40df-91ed-bfd92cc4c6a5"
 }
