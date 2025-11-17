@@ -2695,8 +2695,15 @@
     }
   ],
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-11-17T07:13:48.866Z",
+      "createdAt": "2025-11-17T07:13:48.866Z",
+      "id": "PuezpCOhnMCJAbTs",
+      "name": "🟢 MonetizaAI"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-13T01:17:51.000Z",
-  "versionId": "53515335-8413-48e2-a6de-c6cc4cda2a87"
+  "updatedAt": "2025-11-17T07:14:09.000Z",
+  "versionId": "129a1683-149f-4a2c-a2dd-dbf6aa64f81c"
 }
