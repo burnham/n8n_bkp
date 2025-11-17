@@ -368,8 +368,15 @@
     }
   ],
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-11-17T19:03:46.445Z",
+      "createdAt": "2025-11-12T04:49:35.964Z",
+      "id": "FSFCRUJRQgBqMwY7",
+      "name": "🟤 Pau Berenguer"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-14T08:38:10.000Z",
-  "versionId": "3488f10e-db45-4df1-a17f-658c8ac1935d"
+  "updatedAt": "2025-11-17T19:04:12.000Z",
+  "versionId": "081f2c2a-229b-4db3-9499-00b205cf5279"
 }
