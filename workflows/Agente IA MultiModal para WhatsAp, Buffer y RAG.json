@@ -1,0 +1,1826 @@
+{
+  "active": false,
+  "connections": {
+    "Push Data": {
+      "main": [
+        [
+          {
+            "node": "Pausa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Data": {
+      "main": [
+        [
+          {
+            "node": "Mismo Mensaje?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Data": {
+      "main": [
+        [
+          {
+            "node": "Set Mensaje Completo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pausa": {
+      "main": [
+        [
+          {
+            "node": "Get Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Mensaje Completo": {
+      "main": [
+        [
+          {
+            "node": "Traductor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribir Audio": {
+      "main": [
+        [
+          {
+            "node": "Obtener Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente de IA": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Mensaje": {
+      "main": [
+        [
+          {
+            "node": "Push Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrardor": {
+      "main": [
+        [
+          {
+            "node": "Enrutar Mensajes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Audio": {
+      "main": [
+        [
+          {
+            "node": "Transcribir Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Imagen": {
+      "main": [
+        [
+          {
+            "node": "Explicar Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener URL | Audio": {
+      "main": [
+        [
+          {
+            "node": "Descargar Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener URL | Imagen": {
+      "main": [
+        [
+          {
+            "node": "Descargar Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Explicar Imagen": {
+      "main": [
+        [
+          {
+            "node": "Obtener Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Texto": {
+      "main": [
+        [
+          {
+            "node": "Obtener Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "servicios",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener URL | Video": {
+      "main": [
+        [
+          {
+            "node": "Descargar Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Video": {
+      "main": [
+        [
+          {
+            "node": "Analizar Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Traductor": {
+      "main": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Eliminar Carácteres",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Enviar Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analizar Video": {
+      "main": [
+        [
+          {
+            "node": "Obtener Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT #2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Eliminar Carácteres",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Traductor",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Agente de IA",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Filtrardor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Datos Relevantes": {
+      "main": [
+        [
+          {
+            "node": "Descargar Archivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Datos Relevantes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader (Texto)",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Extraer PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extraer Txt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extraer Excel",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extraer PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Archivo": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "servicios": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Video": {
+      "main": [
+        [
+          {
+            "node": "Push Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter #3": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader (Nomal)",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer PDF": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer Txt": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer Excel": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Único Mensaje?": {
+      "main": [
+        [
+          {
+            "node": "Delete Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mismo Mensaje?": {
+      "main": [
+        [
+          {
+            "node": "Delete Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Único Mensaje?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Eliminar Carácteres": {
+      "main": [
+        [
+          {
+            "node": "Elevenlabs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enrutar Mensajes": {
+      "main": [
+        [
+          {
+            "node": "Obtener URL | Audio",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Obtener URL | Video",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Obtener URL | Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Obtener Texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Explicar Imagen",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter #2": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader (Tabla)",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings #2": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Elevenlabs": {
+      "main": [
+        [
+          {
+            "node": "Enviar Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader (Tabla)": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente de IA",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-17T07:00:29.665Z",
+  "id": "TSktM5EQtIP5ep8X",
+  "isArchived": false,
+  "meta": null,
+  "name": "Agente IA MultiModal para WhatsAp, Buffer y RAG",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "push",
+        "list": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}",
+        "messageData": "={{ $json.mensaje }}",
+        "tail": true
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        848
+      ],
+      "id": "786d9e98-79da-4ae1-80d0-d341bc8ac639",
+      "name": "Push Data"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "Mensaje",
+        "key": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        848
+      ],
+      "id": "b3726403-0406-4d72-90a4-87f2512456d4",
+      "name": "Get Data"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        432,
+        848
+      ],
+      "id": "93d66ec1-b7cf-4ce3-9c57-880912ef3cdb",
+      "name": "Delete Data"
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -208,
+        848
+      ],
+      "id": "46060bce-e9c1-47c6-9aa1-9f138306b3d1",
+      "name": "Pausa",
+      "webhookId": "96c27c05-96e6-490e-ac24-3c38c75c7d9b"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        432,
+        1024
+      ],
+      "id": "f00186d2-aa34-4c89-ac54-1207bd3ffbdd",
+      "name": "NoOp"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Une los textos del array \"Mensaje\" del nodo \"Get Data\"\n// y devuelve un solo campo: \"Mensaje Completo\"\n\nconst mensajes = $node[\"Get Data\"].json[\"Mensaje\"];\n\nif (Array.isArray(mensajes)) {\n  return [\n    {\n      json: {\n        \"Mensaje Completo\": mensajes.join(', ')\n      }\n    }\n  ];\n} else {\n  return [\n    {\n      json: {\n        \"Mensaje Completo\": null\n      }\n    }\n  ];\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        848
+      ],
+      "id": "2912a8a9-1d64-4285-929e-24c5e4599ca7",
+      "name": "Set Mensaje Completo"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "id": "52d87898-5e6c-4d14-817b-421049bed431",
+      "name": "Transcribir Audio",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "position": [
+        -864,
+        528
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Recibes el siguiente mensaje: {{ $('Set Mensaje Completo').item.json['Mensaje Completo'] }}\n\n--\n\nResponde SIEMPRE en {{ $json.text }}",
+        "options": {
+          "systemMessage": "=# Rol\n\nEres **Ana**, asesora de atención al cliente en **Clínica Dental Barcelona**, una clínica odontológica moderna y especializada, situada en el corazón de Barcelona, cerca de Plaza Catalunya y con fácil acceso desde el transporte público. Destacas por tu trato cercano, claridad y profesionalidad para orientar a cada persona en la elección del tratamiento dental que mejor se adapte a sus necesidades y facilitar la cita directa en la clínica.\n\n---\n\n# Tareas\n\n1. Conseguir la reserva de una cita dental.\n2. Responder dudas sobre tratamientos dentales, servicios, ubicación, beneficios de la reserva directa, horarios y vías de contacto.\n\n---\n\n# Contexto\n\n**Clínica Dental Barcelona** dispone de modernas consultas totalmente equipadas con la última tecnología dental, todas con equipos de diagnóstico avanzado, instrumental esterilizado, rayos X digitales, sistema de aspiración centralizada, conexión Wi-Fi gratuita para pacientes, aire acondicionado y servicios de información y presupuestos sin compromiso.\n\nReservar directamente desde nuestra clínica ofrece ventajas como primera consulta gratuita, financiación sin intereses, garantía completa en tratamientos y descuentos por tratamientos múltiples.\n\n---\n\n# Proceso de Reserva\n\n## 1. Averiguar el Tipo de Tratamiento\n\n**Primero**, pregunta si el cliente ya sabe qué tipo de tratamiento dental necesita o si prefiere recomendaciones.\n\n- Si **SÍ** lo tiene claro, no hagas más preguntas y sigue el proceso.\n- Si **NO** lo tiene claro, ayúdale a elegir entre nuestras opciones:\n    - Si el cliente no da datos, haz las preguntas del apartado **\"Asesoramiento\"** y activa la herramienta **\"servicios\"** para proponer opciones.\n    - Si el cliente da alguna pista (dolor dental, limpieza, ortodoncia, estética), activa la herramienta **\"servicios\"** y sugiere opciones que encajen.\n\n## 2. Confirmar Fechas de Cita\n\n**Segundo**, cuando sepas el tipo de tratamiento, pregunta por la fecha y hora preferida para la cita.\n\n## 3. Confirmar Forma de Reserva\n\n**Tercero**, confirma que la reserva será directamente con la clínica para aplicar beneficios.\n\n## 4. Recoger Datos del Cliente\n\n**Cuarto**, cuando tengas el tipo de tratamiento y las fechas, solicita:\n\n- Nombre y Apellidos\n- Correo electrónico\n- Número de teléfono\n\n## 5. Enviar Detalles de Ubicación y Hora de Cita\n\n**Quinto**, cuando sepas los datos del cliente, explica la ubicación y confirma la hora exacta de la cita.\n\n## 6. Hacer Resumen\n\n**Sexto**, cuando tengas Datos del Cliente (nombre, teléfono, correo), Datos de Cita (fecha, hora) y Datos de Tratamiento (tipo), envía el texto del apartado **Resumen**.\n\n## Notas Resumen\n\n- No procedas a crear la cita sin antes enviar este resumen y recibir la aprobación del cliente.\n\n## 7. Confirmar Cita\n\n**Séptimo**, después de enviar el Resumen y que el cliente diga que está bien, debes:\n\n1. Activar la herramienta **\"calendario\"** para crear la cita.\n2. Enviar el mensaje de **Cita Confirmada**.\n\n---\n\n# Especificaciones\n\n## Asesoramiento\n\nSi el cliente **NO** da datos sobre lo que busca, pregunta:\n\n- \"¿Siente algún dolor o molestia dental específica?\"\n- \"¿Viene para revisión general o tiene algún problema concreto?\"\n- \"¿Necesita algún tratamiento específico como limpieza, ortodoncia o estética dental?\"\n\n## Disponibilidad\n\nSiempre que pregunten por disponibilidad de citas o fechas, activa la herramienta **\"calendario\"** con operación `comprobar_disponibilidad`.\n\n## Horario\n\n**Horario de atención:** de lunes a viernes de 9:00 a 20:00, sábados de 9:00 a 14:00\n\n**Citas de urgencia:** disponibles dentro del horario de consulta\n\n## Ubicación\n\n**Estamos ubicados en:**\n\n- Calle Pelai, 15, 2º piso, 08001 Barcelona, España\n    \n    A 100 m de Plaza Catalunya, junto a transporte público y principales líneas de metro.\n    \n\n## Métodos de contacto\n\n**Nuestros datos de contacto son:**\n\n- Teléfono: +34 93 317 85 42\n- WhatsApp: +34 666 123 456\n- Correo electrónico: [info@clinicadentalbarcelona.com](mailto:info@clinicadentalbarcelona.com)\n\n## Resumen\n\nSiempre que tengas que enviar el resumen, escribe:\n\n¡Perfecto!\n\nEntonces, le reservo una cita para **[Tipo de tratamiento]** el **[Fecha de cita]** a las **[Hora de cita]**, en Clínica Dental Barcelona (Calle Pelai, 15, 2º piso, 08001 Barcelona).\n\nIncluye ventajas de reserva directa: primera consulta gratuita, financiación sin intereses, garantía completa y descuentos por tratamientos múltiples.\n\n¿Le va bien así o prefiere modificar algún detalle?\n\n## Cita Confirmada\n\nSiempre que crees una cita, escribe:\n\nGracias por confiar en Clínica Dental Barcelona.\n\nLe esperamos el **[Fecha de cita]** a las **[Hora de cita]** para su **[Tipo de tratamiento]**.\n\nUbicación: Calle Pelai, 15, 2º piso, 08001 Barcelona.\n\nSi necesita cambiar algo, indíquelo por aquí. ¿Alguna duda más antes de su cita.\n\n## Transferir Mensajes\n\n- Número de atención: +34 93 317 85 42\n- WhatsApp: +34 666 123 456\n- Horario telefónico: lunes a viernes de 9:00 a 20:00, sábados de 9:00 a 14:00.\n- Cuándo usar: cuando el cliente solicite hablar con una persona o atención telefónica.\n\n## Listar Servicios\n\nSiempre que tengas que listar servicios, hazlo de esta forma:\n\nNombre: [NOMBRE]\n\n- Duración: [DURACIÓN]\n- Especialidad: [ESPECIALIDAD]\n- Descripción: [DESCRIPCIÓN]\n- Indicado para: [INDICACIONES]\n\n…\n\nTodos estos servicios incluyen [SERVICIOS_INCLUIDOS]\n\n### Notas Listar Servicios\n\n- **NO** utilices negrita\n- Si el cliente no especifica cuántos servicios quiere ver, lista 3\n- Los servicios incluidos escríbelos solo una vez en un párrafo separado debajo de todos los servicios\n\n---\n\n# Ejemplo de Conversación\n\n**Ana:** Hola, soy Ana de Clínica Dental Barcelona. ¿Podría indicarme su nombre y si ya sabe qué tipo de tratamiento dental necesita o si prefiere que le oriente?\n\n**Cliente:** María García. Tengo dolor en una muela.\n\n**Ana:** Lamento escuchar eso, María. Para el dolor dental necesitaríamos una cita de urgencia o evaluación. ¿Qué día y hora le vendría mejor?\n\n**Cliente:** Mañana si es posible, por la tarde.\n\n**Ana:** Lo compruebo.\n\nActivar herramienta \"calendario\": operación = comprobar_disponibilidad; fecha = mañana por la tarde; tipo = evaluación dental urgente.\n\nRespuesta herramienta \"calendario\": disponible = sí, 17:00.\n\n**Ana:** Le leo el resumen: cita para evaluación dental urgente mañana a las 17:00, en Clínica Dental Barcelona. Incluye ventajas de reserva directa. ¿Correcto?\n\n**Cliente:** Correcto.\n\n**Ana:** Procedo a reservar.\n\nActivar herramienta \"calendario\": operación = agendar_visita; fecha = mañana; hora = 17:00; tipo = evaluación urgente; nombre = María García; email = [maria@example.com](mailto:maria@example.com); teléfono = 600111222.\n\nRespuesta herramienta \"calendario\": cita_creada = sí.\n\n**Ana:** Cita confirmada. Le esperamos mañana a las 17:00. Dirección: Calle Pelai, 15, 2º piso, 08001 Barcelona. Si necesita cambiar algo, indíquelo.\n\n---\n\n# Notas\n\n1. **Cordialidad y profesionalismo:** Transmite confianza y claridad en todo momento.\n2. **Proactividad:** Orienta la conversación para cerrar la cita como objetivo principal.\n3. **Respuestas:** Nunca cierres la conversación; deja siempre una pregunta abierta para avanzar hacia la cita.\n4. **Flujo:** Sigue los pasos en orden sin decir \"como siguiente paso…\". Sé natural.\n5. **Apertura:** Nunca intentes finalizar la conversación; mantén siempre disposición para seguir atendiendo.\n\n---\n\n# Reglas (Obligatorio Cumplir)\n\n- **JAMÁS** agendar una cita sin antes enviar el mensaje de resumen y recibir aprobación del cliente.\n\n---\n\n# Uso de Herramientas\n\n## servicios\n\n**Nombre:** `servicios`\n\n### **Cuándo usarla:**\n\n- Cuando el cliente pregunte por los **tipos de tratamientos o servicios** disponibles en la clínica.\n- Cuando el cliente quiera saber las **especialidades dentales** que ofrecemos.\n- Cuando el cliente solicite **información sobre procedimientos específicos**.\n\n### **Operaciones:**\n\n- `listar` – Muestra los servicios y tratamientos disponibles en la clínica dental.\n\n### **Reglas:**\n\n1. SIEMPRE que una persona te pregunte por el precio de un servicio u otro detalle, utiliza la herramienta \"servicios\"\n\n### **Notas:**\n\n- **NUNCA** envíes una query vacía.\n\n### **Notas:**\n\n- **NUNCA** envíes una query vacía.\n- Si recibes una transcripción de imagen, lleva la conversación siempre por lo que nos interesa (El soporte), pero NUNCA devuelvas cosas como “Que gran imagen” o \"Parece una descripción interesante.\" o \"Gracias por la descripción\", simplemente di \"Gracias por la imagen, si necesitas...\"\n\n# Idioma de Salida\n\nResponde SIEMPRE en `{{ $json.text }}`\n\n# Fecha Actual\n\n`{{ $now }}`"
+        }
+      },
+      "id": "c54634c8-2df7-42a8-9169-183e75d02ca6",
+      "name": "Agente de IA",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        1040,
+        848
+      ],
+      "typeVersion": 1.6
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "23b785c3-f38e-4706-80b7-51f333bba3bd",
+              "name": "mensaje",
+              "type": "string",
+              "value": "={{ $json.text }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9f7d2739-f44c-4beb-af92-478ca3201be9",
+      "name": "Obtener Mensaje",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -576,
+        848
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "messages",
+        "options": {}
+      },
+      "id": "dd70c474-be6a-46e8-9df6-8633c18fcc2b",
+      "name": "Filtrardor",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        -1744,
+        848
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "options": {}
+      },
+      "id": "abc4192b-e106-4312-8540-4a1aae198594",
+      "name": "Descargar Audio",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -1056,
+        528
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "options": {}
+      },
+      "id": "bf4425d5-0e11-4381-9671-2b5ba4ef42d4",
+      "name": "Descargar Imagen",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -1056,
+        928
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.audio.id }}"
+      },
+      "id": "e48c28fe-1a43-4007-b854-351b09bb492c",
+      "name": "Obtener URL | Audio",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        -1248,
+        528
+      ],
+      "typeVersion": 1,
+      "webhookId": "33faa5f3-0ebc-4ce6-b1ad-8f29f3a2a833"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $('Filtrardor').item.json.image.id }}"
+      },
+      "id": "d529a3b1-3ae3-41b6-8017-8379576caa02",
+      "name": "Obtener URL | Imagen",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        -1248,
+        928
+      ],
+      "typeVersion": 1,
+      "webhookId": "99234811-660e-4194-afcc-cea39c2ce0de"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "616116878254396",
+        "recipientPhoneNumber": "={{ $('Filtrardor').item.json.from }}",
+        "textBody": "={{ $('Agente de IA').item.json.output }}",
+        "additionalFields": {
+          "previewUrl": false
+        }
+      },
+      "id": "5ed44f53-9b25-4b29-baea-b461697cbf1e",
+      "name": "Enviar Mensaje",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        1552,
+        928
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": false,
+      "webhookId": "a2c02666-5ad9-43a7-a36a-04c31dda9d55"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# Contexto\n\nRecibes como input  una imagen enviada por el usuario. ",
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessagePromptTemplate",
+              "messageType": "imageBinary"
+            },
+            {
+              "message": "=# Contexto\n\nEres parte de una automatización en N8N, tu transcripción será procesada posteriormente por una Agente de IA (ChatBot) para una clínica dental.\n\n# Tarea\n\nDescribe la imagen y transcribe cualquier texto visible.\n\n# Especificaciones\n\nTen en cuenta para quien trabajas, no hace falta añadir muchos detalles si no es relevante para el negocio."
+            }
+          ]
+        }
+      },
+      "id": "02452414-31a8-40ee-af04-96d32e67d685",
+      "name": "Explicar Imagen",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        -880,
+        928
+      ],
+      "typeVersion": 1.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4b9efeb-9a68-43e3-bc4c-cd207510bddf",
+              "name": "text",
+              "value": "={{ $json.text.body }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1056,
+        1168
+      ],
+      "id": "7d5edebd-d233-488d-a7fe-3256a8f1d095",
+      "name": "Obtener Texto"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1408,
+        1120
+      ],
+      "id": "d6eb940a-a676-49b9-9bfe-ad9236424f9e",
+      "name": "Embeddings"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.video.id }}"
+      },
+      "id": "ab9be856-9e2a-4e8c-afc1-fb1e4223a0e2",
+      "name": "Obtener URL | Video",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        -1248,
+        736
+      ],
+      "typeVersion": 1,
+      "webhookId": "a3233fa7-5c6d-4805-9e74-4b7e6ada5cf6"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "options": {}
+      },
+      "id": "6d34983a-ddd5-4145-b7f4-a9380229b568",
+      "name": "Descargar Video",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -1056,
+        736
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json['Mensaje Completo'] }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Rol\n\nEres un detector de idioma. Analizas el mensaje del usuario y devuelves únicamente el nombre del idioma detectado.\n\n# Contexto\n\nRecibes mensajes en texto libre y debes indicar el idioma principal del mensaje. Normalmente serán:\n\n- Español\n- Inglés\n- Valenciano\n- Portugués\n- Francés\n- Euskera\n\n# Tareas\n\nDetectar el idioma predominante en el mensaje.\n\nDevolver únicamente el nombre del idioma, escrito tal cual en la lista anterior.\n\n# Especificaciones\n\nSi el idioma no está en la lista, devolver “Desconocido”.\n\nSi el mensaje mezcla varios idiomas, devolver el que aparezca de forma más predominante.\n\nNo uses códigos (es, en, fr, etc.) ni explicaciones.\n\nNo añadas puntuación, comillas ni texto extra, solo el nombre exacto.\n\n# Ejemplos\n\n## Entrada: “¿Puedes ayudarme con la reserva para mañana?”\n## Salida: Español\n\n## Entrada: “Can you move my appointment to Friday?”\n## Salida: Inglés\n\n## Entrada: “Bon dia, tinc una consulta.”\n## Salida: Valenciano\n\n## Entrada: “Olá, queria confirmar a visita.”\n## Salida: Portugués\n\n## Entrada: “Bonjour, j’ai une question.”\n## Salida: Francés\n\n## Entrada: “Kaixo, nola zaude?”\n## Salida: Euskera\n\n# Notas\n\n- Si recibes un idioma que no entiendes o no tiene sentido, di que es Español"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        752,
+        848
+      ],
+      "id": "8384a7ba-d348-4d63-9983-347db1ecdcda",
+      "name": "Traductor"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "616116878254396",
+        "recipientPhoneNumber": "={{ $('Filtrardor').item.json.from }}",
+        "messageType": "audio",
+        "mediaPath": "useMedian8n",
+        "additionalFields": {}
+      },
+      "id": "c11b62fe-9ca8-405d-b7e4-2689cecff5a7",
+      "name": "Enviar Audio",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        2064,
+        752
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": false,
+      "webhookId": "a2c02666-5ad9-43a7-a36a-04c31dda9d55"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "914cc274-6889-4bb2-97f5-24dc9b51228c",
+              "leftValue": "={{ $('Filtrardor').item.json.type }}",
+              "rightValue": "audio",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1344,
+        848
+      ],
+      "id": "9ffac59c-6f37-4d82-aa0d-a4fcda59fe84",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "video",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "text": "=# Contexto\n\nRecibes como input un video enviado por el usuario. \n\n# Tarea\n\nDescribe el video, no te centres en el escenario, lo que importa es lo que dice la persona\n\n# Especificaciones\n\nLo que más me interesa es que digas qué dice la persona en el video, es lo esencial\n",
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        -864,
+        736
+      ],
+      "id": "ed6b8838-b68d-47f9-92a1-2b9fbd1dda31",
+      "name": "Analizar Video"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        1152,
+        672
+      ],
+      "id": "435f80ff-5e93-4004-b499-79eee7499c6c",
+      "name": "GPT #2"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "id": "ca873e5c-aa65-4fc4-be56-15b8f2e3d98a",
+      "name": "WhatsApp Trigger",
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "position": [
+        -1936,
+        848
+      ],
+      "webhookId": "5c26a149-2024-45f5-8a7d-cfda8ec29ece",
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "10646eae-ae46-4327-a4dc-9987c2d76173",
+              "name": "file_id",
+              "value": "={{ $('Drive Trigger').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "f4536df5-d0b1-4392-bf17-b8137fb31a44",
+              "name": "file_type",
+              "value": "={{ $('Drive Trigger').item.json.mimeType }}{{ $json.mimeType }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "526ed017-f1c0-4332-b99d-c74370e50aac",
+      "name": "Datos Relevantes",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -880,
+        1824
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "11eGHtWS8Zb8-vSvsCW-_KN01rvVZF1rk",
+          "mode": "list",
+          "cachedResultName": "RAG",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/11eGHtWS8Zb8-vSvsCW-_KN01rvVZF1rk"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "id": "25dc2961-528d-47ca-8af7-08d20143dd40",
+      "name": "Drive Trigger",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        1824
+      ]
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 100,
+        "options": {
+          "splitCode": "markdown"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        1056,
+        2064
+      ],
+      "id": "a49f9d37-291b-4491-9ebf-f9dca1bf15e1",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.file_type }}",
+                    "rightValue": "application/pdfapplication",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    },
+                    "id": "78d597d7-d11b-4539-8e0b-d64693ab7a16"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PDF"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "fc193b06-363b-4699-a97d-e5a850138b0e",
+                    "leftValue": "={{ $json.file_type }}",
+                    "rightValue": "csv",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Texto"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "2ae7faa7-a936-4621-a680-60c512163034",
+                    "leftValue": "={{ $json.file_type }}",
+                    "rightValue": "application/vnd.openxmlformats",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Excel"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "e2304a2c-c3bb-47b8-a666-4d158ada814a",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        -512,
+        1792
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Datos Relevantes').item.json.file_id }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
+      },
+      "id": "22fb37d4-2862-491e-ad9b-4093cf0273ef",
+      "name": "Descargar Archivo",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -688,
+        1824
+      ],
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "=# **Nombre:** `servicios`\n\n---\n\n# **Cuándo usarla:**\n\n- Cuando el cliente pregunte por los tipos de tratamientos o servicios disponibles en la clínica.\n- Cuando el cliente quiera saber las especialidades dentales que ofrecemos.\n- Cuando el cliente solicite información sobre procedimientos específicos.\n\n---\n\n# **Reglas críticas:**\n\n1. No inventar servicios, precios ni procedimientos que no estén disponibles en la clínica.\n2. Si el cliente pregunta por precios específicos, aclarar que la información no está publicada y ofrecer consultar directamente con la clínica.\n3. Si el cliente pide detalles médicos específicos no disponibles, indicarle que puede encontrarlos en consulta o contactar a la clínica por teléfono o email.\n\n---\n\n# Notas\n\n**NUNCA** envíes una query vacía",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {
+          "queryName": "match_documents"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.3,
+      "position": [
+        1120,
+        1120
+      ],
+      "id": "cecb30b2-d9c8-4737-9ff5-972281bc31e4",
+      "name": "servicios"
+    },
+    {
+      "parameters": {
+        "content": "## Texto",
+        "height": 240,
+        "width": 464,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        736,
+        1984
+      ],
+      "id": "303d48db-66f0-43fe-94f4-36749af211c8",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Normal",
+        "height": 224,
+        "width": 464,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        736,
+        1696
+      ],
+      "id": "20184cac-5b4d-4274-ae6e-ae38c2bb5e83",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.data || $json.text || $json.concatenated_data }}",
+        "options": {}
+      },
+      "id": "9479db92-0cbb-45e0-955c-e66176fa9b37",
+      "name": "Default Data Loader (Nomal)",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        784,
+        1760
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1c1fbe32-c8c4-4416-9871-265321201c16",
+              "name": "mensaje",
+              "value": "={{ $json.content.parts[0].text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a71b0df1-e037-4f82-8c75-b628742a38eb",
+      "name": "Obtener Video",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -576,
+        688
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 100,
+        "options": {
+          "splitCode": "markdown"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        1072,
+        1760
+      ],
+      "id": "b1095456-867e-47b3-b71c-928e43fb7fb5",
+      "name": "Recursive Character Text Splitter #3"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {
+          "queryName": "match_documents"
+        }
+      },
+      "id": "78f9c685-ddec-4ccd-8be7-b497ee06372e",
+      "name": "Supabase Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1,
+      "position": [
+        336,
+        1744
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "id": "21e4e094-6b64-4f73-896b-07ac6498cd7b",
+      "name": "Extraer PDF",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        1648
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "id": "6fc0ca11-4fe2-49ab-84c3-e812b49476b7",
+      "name": "Extraer Txt",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        1824
+      ],
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {}
+      },
+      "id": "5925c9ed-c119-447f-9421-dd794290a65f",
+      "name": "Extraer Excel",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        2016
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c6cd2b5c-67e3-4648-8c9c-26da4cb40091",
+              "leftValue": "={{ $json.Mensaje }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "array",
+                "operation": "lengthGt",
+                "rightType": "number"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        272,
+        848
+      ],
+      "id": "8863a44a-b29a-4931-b9ba-1fe4e6ec2b33",
+      "name": "Único Mensaje?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "199b9525-b40c-4b2f-bdb2-e37166159ee2",
+              "leftValue": "={{ $node[\"Get Data\"].json[\"Mensaje\"][$node[\"Get Data\"].json[\"Mensaje\"].length - 1] }}",
+              "rightValue": "={{ $node[\"Get Data\"].json[\"Mensaje\"][0] }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        112,
+        848
+      ],
+      "id": "d2f09642-cc6e-4ff4-88cc-ce9ae2a5f642",
+      "name": "Mismo Mensaje?"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.output }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Contexto\n\nVas a recibir como input un mensaje adaptado a una conversación por texto y debes adaptarla a una conversación por audio\n\n# Tarea\n\nTu trabajo consiste en transformar el input recibido en un formato plano.\n\n# Especificaciones\n\nElimina cualquier símbolo como #@/- etc.. solo quiero que que me devuelvas el texto plano.\nElimina cualquier simbolo de exclamación o interrogación\n\n# Ejemplos:\n\n## Ejemplo de Entrada:\n\nNuestro horario de visita es:\\n\\n- De Lunes a Viernes: De 9:00 a 13:00 y De 15:00 a 19:00\\n- Sábado: De 10:00 a 13:00\\n\\nEs imprescindible venir con cita previa, así que dime. ¿A qué hora te gustaría venir a visitarnos? 🕔🐶\n\n## Ejemplo de Salida:\n\nNuestro horario de visita es de Lunes a Viernes de 9 a 13 y de 15 a 19 y los sábados de 10 a 13. Es imprescindible venir con cita previa, así que dime. ¿A qué hora te gustaría venir a visitarnos?\n\n# Reglas\n\nElimina cualquier salto de linea (\\n), el output tiene que ser totalmente texto plano\n\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        1552,
+        752
+      ],
+      "id": "dd3267d6-1d53-4022-9903-c586803c314d",
+      "name": "Eliminar Carácteres"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "leftValue": "={{ $json.type == 'audio' && Boolean($json.audio) }}",
+                    "rightValue": "audio",
+                    "id": "e04acfcd-cb7b-41d7-8c2c-73e0e0f3c8fe"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "82aa5ff4-c9b6-4187-a27e-c7c5d9bfdda0",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "leftValue": "={{ $json.type == 'video' && Boolean($json.video) }}",
+                    "rightValue": ""
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Video"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "05b30af4-967b-4824-abdc-84a8292ac0e5",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "leftValue": "={{ $json.type == 'image' && Boolean($json.image) }}",
+                    "rightValue": ""
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Imagen"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "Texto"
+        }
+      },
+      "id": "a92af3a5-4fad-4683-93f3-1729d919f8fd",
+      "name": "Enrutar Mensajes",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        -1552,
+        816
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -736,
+        1136
+      ],
+      "id": "8ad772d3-3b0f-4e49-aab4-fef271bddbdc",
+      "name": "GPT"
+    },
+    {
+      "parameters": {
+        "content": "## Tabla",
+        "height": 240,
+        "width": 464,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        208,
+        1984
+      ],
+      "id": "10773950-7274-43ae-815d-28984fa4e1bd",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 100,
+        "options": {
+          "splitCode": "markdown"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        560,
+        2048
+      ],
+      "id": "ff355c79-283d-4856-ab8e-f2e21d23827d",
+      "name": "Recursive Character Text Splitter #2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node — Limpiar y estructurar servicios desde `concatenated_data`\n//\n// Entrada típica:\n// [ { json: { concatenated_data: \"[{...},{...},...]\" } } ]\n//\n// Salida:\n// [\n//   { json: { numero, servicio, categoria, duracion, descripcion, profesional, precio } },\n//   ...\n// ]\n\nconst itemsIn = $input.all();\n\n// 1) Obtener el JSON string\nconst first = itemsIn[0]?.json ?? {};\nconst raw = (first.concatenated_data ?? \"\").toString().trim();\nif (!raw) return [];\n\n// 2) Parse seguro\nlet rows = [];\ntry {\n  rows = JSON.parse(raw);\n  if (!Array.isArray(rows)) throw new Error(\"El contenido no es un array JSON.\");\n} catch (e) {\n  throw new Error(\"`concatenated_data` no es un JSON válido: \" + e.message);\n}\n\n// 3) Helpers\nfunction toNumberEU(val) {\n  if (val === null || val === undefined || val === \"\") return null;\n  if (typeof val === \"number\") return Number(val);\n  const s = String(val).trim().replace(/\\s+/g, \"\").replace(\",\", \".\");\n  const n = Number(s);\n  return Number.isFinite(n) ? n : null;\n}\n\nfunction normalizarPrecioEUR(p) {\n  let n = toNumberEU(p);\n  if (n === null) return null;\n  if (n > 100000) n = n / 100;\n  else if (n > 1000 && n % 10 === 0) n = n / 100;\n  return Number(n.toFixed(2));\n}\n\nfunction pick(r, keys) {\n  for (const k of keys) {\n    if (r[k] !== undefined && r[k] !== null && String(r[k]).trim() !== \"\") return r[k];\n  }\n  return undefined;\n}\n\n// 4) Transformar y devolver\nconst salida = rows.map((r) => {\n  const numero = pick(r, [\"Nº\", \"No\", \"Numero\", \"Número\", \"num\", \"n\"]);\n  const servicio = pick(r, [\"Servicio\", \"Tratamiento\", \"servicio\"]);\n  const categoria = pick(r, [\"Categoría\", \"Categoria\", \"Especialidad\", \"categoria\"]);\n  const duracion = pick(r, [\"Duración\", \"Duracion\", \"duracion\", \"duración\", \"Tiempo\"]);\n  const descripcion = pick(r, [\"Descripción\", \"Descripcion\", \"descripción\", \"descripcion\", \"Detalle\"]);\n  const profesional = pick(r, [\"Profesional\", \"Especialista\", \"profesional\"]);\n  const precio = pick(r, [\"Precio (€)\", \"Precio\", \"precio\", \"precio_eur\"]);\n\n  return {\n    json: {\n      numero: toNumberEU(numero),\n      servicio: String(servicio ?? \"\").trim(),\n      categoria: String(categoria ?? \"\").trim(),\n      duracion: String(duracion ?? \"\").trim(),\n      descripcion: String(descripcion ?? \"\").trim(),\n      profesional: String(profesional ?? \"\").trim(),\n      precio: normalizarPrecioEUR(precio),\n    },\n  };\n});\n\nreturn salida;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        96,
+        1504
+      ],
+      "id": "746d798b-83cd-4b7d-b01a-9c7a7f286531",
+      "name": "Estructuración (Texto)",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        464,
+        1584
+      ],
+      "id": "8fe0543d-983e-445a-8e5d-a57e427a35ee",
+      "name": "Embeddings #2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/UOIqAnmS11Reiei1Ytkc",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"text\": \"{{ $json.text }}\"\n}",
+        "options": {}
+      },
+      "id": "3c8301ae-e889-4d35-8e0d-a9975bee8c5a",
+      "name": "Elevenlabs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1872,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "=Número: {{ $json.Nº }}\nServicio: {{ $json.Servicio }}\nCategoría: {{ $json.Categoría }}\nDuración: {{ $json.Duración }}\nDescripción: {{ $json.Descripción }}\nProfesional: {{ $json.Profesional }}\nPrecio: {{ $json['Precio (€)'] }}",
+        "textSplittingMode": "custom",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "Servicio",
+                "value": "={{ $json.Servicio }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        256,
+        2048
+      ],
+      "id": "9e2b9c45-215d-42a2-940e-c692162eeda7",
+      "name": "Default Data Loader (Tabla)"
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "=Número: {{ $json.numero }}\nNombre: {{ $json.nombre }}\nCategoría: {{ $json.categoria }}\nPeso: {{ $json.peso }}\nPrecio: {{ $json.precio }}",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "Nombre",
+                "value": "={{ $json.nombre }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "3b99ed0f-c04f-44cd-93c7-8eab74e004c5",
+      "name": "Default Data Loader (Texto)",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        784,
+        2064
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 192,
+        "width": 224,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        32,
+        1472
+      ],
+      "id": "917245c1-ece1-4c11-a025-2133e2785f2e",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Filtrardor').item.json.from }}",
+        "tableName": "conversaciones",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        976,
+        1104
+      ],
+      "id": "8cb33fa0-da5a-4c74-8d67-fb9702489e9f",
+      "name": "Postgres"
+    },
+    {
+      "parameters": {
+        "content": "## ⭐️ Por **Pau Berenguer**\n\nSi estás viendo este flujo, recuerda que fue creado con cariño por **Pau Berenguer**, prometo que no lleva *bugs*, solo **buenas vibras** ✨\n\n🔗 **Conecta Conmigo:**  \n- YouTube: [@PauBerenguerAI](https://www.youtube.com/@PauBerenguerAI)  \n- Skool: [The AI Blueprint Plus](https://www.skool.com/the-ai-blueprint-plus)  \n- Instagram: [@pauberenguer_](https://www.instagram.com/pauberenguer_)  \n- LinkedIn: [Pau Berenguer AI](https://www.linkedin.com/in/pauberenguer-ai)  \n\n\n👉🏻 *Si esta automatización te ahorró tiempo o te sacó una sonrisa, puedes darme las gracias por cualquiera de esos enlaces*",
+        "height": 336,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        16
+      ],
+      "id": "6cf49cf8-05a4-4260-b401-9f4cee5b5504",
+      "name": "Sticky Note4"
+    }
+  ],
+  "pinData": {
+    "WhatsApp Trigger": [
+      {
+        "json": {
+          "messaging_product": "whatsapp",
+          "metadata": {
+            "display_phone_number": "34643336415",
+            "phone_number_id": "616116878254396"
+          },
+          "contacts": [
+            {
+              "profile": {
+                "name": "Pau Berenguer"
+              },
+              "wa_id": "34643341015"
+            }
+          ],
+          "messages": [
+            {
+              "from": "34643341015",
+              "id": "wamid.HBgLMzQ2NDMzNDEwMTUVAgASGBYzRUIwNDlGMEZBRTZCQjZDNDc0RDkwAA==",
+              "timestamp": "1762854371",
+              "type": "audio",
+              "audio": {
+                "mime_type": "audio/ogg; codecs=opus",
+                "sha256": "k+OgmivJxDpXwjKd8Q9QqX8SnFSwlKxS6Ak/rBR52IE=",
+                "id": "1306464447896538",
+                "voice": true
+              }
+            }
+          ],
+          "field": "messages"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-17T07:00:29.671Z",
+      "createdAt": "2025-11-17T07:00:29.671Z",
+      "role": "workflow:owner",
+      "workflowId": "TSktM5EQtIP5ep8X",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-17T07:00:29.000Z",
+  "versionId": "aa1ef26f-ef03-4011-b23f-500bd6b23b8f"
+}
