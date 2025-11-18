@@ -1,0 +1,361 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Agente Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "leer": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Sheets",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Sheets",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "actualizar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Sheets",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat GPT #1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Sheets",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-14T07:58:13.813Z",
+  "id": "VMbtvdeP03Xio9RW",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Sub Tele Agente Base Datos",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "98f4fefb-9d00-4b03-91ee-4852c9f121bf",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -384,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 200,
+        "width": 220
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        144
+      ],
+      "id": "7f6de699-b9e9-4522-8d23-56ab3ac69fa3",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=# Rol\n\nEres un asistente de gestión de Base de Datos. \n\n# Especificaciones\n\nTus responsabilidades incluyen leer (buscar), crear y actualizar información de los clientes en nuestra base de datos.\n\n# Herramientas\n\n- Usa \"leer\" para revisar los clientes de nuestra base de datos.\n- Usa \"crear\" para crear nuevos clientes y añadirlos a nuestra base de datos.\n- Usa \"actualizar\" para cambiar actualizar información de los clientes en la base de datos."
+        }
+      },
+      "id": "fe128813-64e8-4212-ba9a-904235810f9b",
+      "name": "Agente Sheets",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        -128,
+        192
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bT-mI1lyZy5RpTO0rqa9gz2OIshwWvbVpL_zeK0rw3k",
+          "mode": "list",
+          "cachedResultName": "Clientes Gimnasio",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bT-mI1lyZy5RpTO0rqa9gz2OIshwWvbVpL_zeK0rw3k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 912712723,
+          "mode": "list",
+          "cachedResultName": "Datos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bT-mI1lyZy5RpTO0rqa9gz2OIshwWvbVpL_zeK0rw3k/edit#gid=912712723"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        -48,
+        400
+      ],
+      "id": "85cb2139-3daa-45cf-937f-fbb8a832ff90",
+      "name": "leer",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "documentId": {
+          "__rl": true,
+          "value": "1bT-mI1lyZy5RpTO0rqa9gz2OIshwWvbVpL_zeK0rw3k",
+          "mode": "list",
+          "cachedResultName": "Clientes Gimnasio",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bT-mI1lyZy5RpTO0rqa9gz2OIshwWvbVpL_zeK0rw3k/edit?usp=drivesdk"
+        },
+        "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        -176,
+        400
+      ],
+      "id": "5d1d0b63-2a9c-4f91-81cb-55dc02a349a2",
+      "name": "crear",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1bT-mI1lyZy5RpTO0rqa9gz2OIshwWvbVpL_zeK0rw3k",
+          "mode": "list",
+          "cachedResultName": "Clientes Gimnasio",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bT-mI1lyZy5RpTO0rqa9gz2OIshwWvbVpL_zeK0rw3k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 912712723,
+          "mode": "list",
+          "cachedResultName": "Datos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bT-mI1lyZy5RpTO0rqa9gz2OIshwWvbVpL_zeK0rw3k/edit#gid=912712723"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('nombre', ``, 'string') }}",
+            "email": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('email', ``, 'string') }}",
+            "telefono": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('telefono', ``, 'string') }}",
+            "tipo_membresia": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('tipo_membresia', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "telefono",
+              "displayName": "telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tipo_membresia",
+              "displayName": "tipo_membresia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        80,
+        400
+      ],
+      "id": "28d389b9-f34e-482f-a5d2-83193838787c",
+      "name": "actualizar",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 180,
+        "width": 320,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        144
+      ],
+      "id": "cfbbb6c3-ff49-48fe-b9af-7a0079197f9b",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "width": 400,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        384
+      ],
+      "id": "210e0e22-ee1d-400a-af0e-01602713a0d0",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 140,
+        "width": 150,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a1a2072c-2088-4fa4-b18b-b2e1c3782669",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        32,
+        32
+      ],
+      "id": "d9bda695-2fb5-4384-9335-3ad6c8d7bb35",
+      "name": "Chat GPT #1",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Vienna",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "eqw231UT1jDG0Ypq"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-14T07:58:13.819Z",
+      "createdAt": "2025-11-14T07:58:13.819Z",
+      "role": "workflow:owner",
+      "workflowId": "VMbtvdeP03Xio9RW",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-17T19:03:46.445Z",
+      "createdAt": "2025-11-12T04:49:35.964Z",
+      "id": "FSFCRUJRQgBqMwY7",
+      "name": "🟤 Pau Berenguer"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-18T08:51:58.000Z",
+  "versionId": "adba170c-cd83-4dbd-9f47-86bbb166678b"
+}
