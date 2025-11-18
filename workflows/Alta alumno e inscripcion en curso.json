@@ -1,0 +1,794 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Entrada de datos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Grupo": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear Alumno": {
+      "main": [
+        [
+          {
+            "node": "Crear inscripcion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear inscripcion": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Alumno": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Salida a ArIA - Alumnos Exists",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Buscar Grupo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Entrada de datos": {
+      "main": [
+        [
+          {
+            "node": "Buscar Alumno",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Crear Alumno",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Salida a ArIA - No Curso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-18T18:07:31.905Z",
+  "id": "4cWbO49FO8zXdMDC",
+  "isArchived": false,
+  "meta": null,
+  "name": "Alta alumno e inscripcion en curso",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -816,
+        128
+      ],
+      "id": "add1f7ac-5249-4cca-b364-2df7ed94d2fd",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl68zLAVzqpeubGY",
+          "mode": "list",
+          "cachedResultName": "Grupos",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tbl68zLAVzqpeubGY"
+        },
+        "filterByFormula": "={Nombre}='{{ $('Entrada de datos').item.json.grupo }}'",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        288
+      ],
+      "id": "99979017-6067-460a-8e2e-cc5c045180b5",
+      "name": "Buscar Grupo",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbls72l7ENatHIuwj",
+          "mode": "list",
+          "cachedResultName": "Alumnos",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tbls72l7ENatHIuwj"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Estado Activo": true,
+            "Nombre Completo": "={{ $('Entrada de datos').item.json.nombre }}",
+            "Correo Electrónico": "={{ $('Entrada de datos').item.json.email }}",
+            "Teléfono": "={{ $('Entrada de datos').item.json.telefono }}",
+            "Fecha de Inscripción": "={{ new Date().toISOString() }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nombre Completo",
+              "displayName": "Nombre Completo",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Correo Electrónico",
+              "displayName": "Correo Electrónico",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Teléfono",
+              "displayName": "Teléfono",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Foto de Perfil",
+              "displayName": "Foto de Perfil",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Fecha de Nacimiento",
+              "displayName": "Fecha de Nacimiento",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Fecha de Inscripción",
+              "displayName": "Fecha de Inscripción",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Estado Activo",
+              "displayName": "Estado Activo",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Clases Reservadas",
+              "displayName": "Clases Reservadas",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Bonos de Clases",
+              "displayName": "Bonos de Clases",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Pagos Realizados",
+              "displayName": "Pagos Realizados",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Notas Adicionales",
+              "displayName": "Notas Adicionales",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Total de Clases Tomadas",
+              "displayName": "Total de Clases Tomadas",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Total de Bonos Activos",
+              "displayName": "Total de Bonos Activos",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Total Pagado",
+              "displayName": "Total Pagado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Última Clase Tomada",
+              "displayName": "Última Clase Tomada",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Clases Restantes en Bonos Activos",
+              "displayName": "Clases Restantes en Bonos Activos",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Resumen del Alumno (AI)",
+              "displayName": "Resumen del Alumno (AI)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Sugerencia de Seguimiento (AI)",
+              "displayName": "Sugerencia de Seguimiento (AI)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Inscripciones_Cursos",
+              "displayName": "Inscripciones_Cursos",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Asistencias_Sesiones",
+              "displayName": "Asistencias_Sesiones",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "IBAN",
+              "displayName": "IBAN",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "BIC",
+              "displayName": "BIC",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Facturas",
+              "displayName": "Facturas",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        352,
+        16
+      ],
+      "id": "e389ebbd-d953-483e-9a30-4de444281a87",
+      "name": "Crear Alumno"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblqyYdv3ACbgI9eU",
+          "mode": "list",
+          "cachedResultName": "Inscripciones_Cursos",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tblqyYdv3ACbgI9eU"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Alumno": "={{ $json.id }}",
+            "Grupo": "={{ $('Buscar Grupo').item.json.id }}",
+            "Fecha_Inscripcion": "={{ new Date().toISOString() }}",
+            "Estado": "Pendiente"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_Inscripcion",
+              "displayName": "ID_Inscripcion",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Alumno",
+              "displayName": "Alumno",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Grupo",
+              "displayName": "Grupo",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Fecha_Inscripcion",
+              "displayName": "Fecha_Inscripcion",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Activa",
+                  "value": "Activa"
+                },
+                {
+                  "name": "Inactiva",
+                  "value": "Inactiva"
+                },
+                {
+                  "name": "Pendiente",
+                  "value": "Pendiente"
+                },
+                {
+                  "name": "Cancelada",
+                  "value": "Cancelada"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Fecha_Baja",
+              "displayName": "Fecha_Baja",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Matricula_Pagada",
+              "displayName": "Matricula_Pagada",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Fecha_Pago_Matricula",
+              "displayName": "Fecha_Pago_Matricula",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Facturas",
+              "displayName": "Facturas",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        544,
+        144
+      ],
+      "id": "185afdfc-cb99-4aab-be81-d8992560eedb",
+      "name": "Crear inscripcion"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbls72l7ENatHIuwj",
+          "mode": "list",
+          "cachedResultName": "Alumnos",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tbls72l7ENatHIuwj"
+        },
+        "filterByFormula": "={Correo Electrónico}='{{ $json.email }}'",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -368,
+        288
+      ],
+      "id": "44ad287d-9a76-48cd-a4fd-739aaa3ad4b2",
+      "name": "Buscar Alumno",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "abc340db-b4e0-4aee-a3c0-1f0cdd94fceb",
+              "leftValue": "={{ $items().filter(item => item.json.id !== undefined).length > 0 }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -192,
+        128
+      ],
+      "id": "bde7804e-3def-40f6-a9ab-3294a512d1bc",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "abc340db-b4e0-4aee-a3c0-1f0cdd94fceb",
+              "leftValue": "={{ $items().filter(item => item.json.id !== undefined).length > 0 }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        160,
+        144
+      ],
+      "id": "8c8aee50-e659-48c8-8528-574a0525a1a2",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"nombre\": \"Juan Sanches Marin\",\n  \"email\": \"kinesis.dance.studio@gmail.com\",\n  \"telefono\": \"699888777\",\n  \"curso\": \"Raíces Vivas\",\n  \"grupo\": \"Raíces Vivas Grupo 1 Año 2025\"\n}\n  \n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -560,
+        128
+      ],
+      "id": "1ad431d0-db72-470e-a4db-b9772e567945",
+      "name": "Entrada de datos"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"mensajea ArIA\": \"Ya hay un alumno inscrito con email {{ $('Entrada de datos').item.json.email }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        336,
+        288
+      ],
+      "id": "0dcbbf9b-40ff-43d3-8fbd-8cdc197683fc",
+      "name": "Salida a ArIA - No Curso"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"mensajea ArIA\": \"Ya hay un alumno inscrito con email {{ $('Entrada de datos').item.json.email }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e119740f-02b0-4387-813e-562090c676e3",
+      "name": "Salida a ArIA - Alumnos Exists"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Entrada de datos').item.json.email }}",
+        "subject": "🔥 Ya eres parte del Ecosistema 360° de Danza",
+        "message": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Bienvenido a Kinesis</title>\n    <!--[if mso]>\n    <style type=\"text/css\">\n    body, table, td {font-family: Arial, Helvetica, sans-serif !important;}\n    </style>\n    <![endif]-->\n</head>\n<body style=\"margin:0; padding:0; background-color:#1a1a2e; font-family:Arial, Helvetica, sans-serif;\">\n    \n    <!-- Container Principal -->\n    <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#1a1a2e\">\n        <tr>\n            <td align=\"center\" style=\"padding:20px 0;\">\n                \n                <!-- Email Card -->\n                <table width=\"600\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#ffffff\" style=\"max-width:600px; border-radius:8px; overflow:hidden;\">\n                    \n                    <!-- Header con Logo -->\n                    <tr>\n                        <td align=\"center\" style=\"background:linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%); padding:30px 20px;\">\n                            <img src=\"https://kinesis.aisincronia.com/img/logo_cuadrado_blanco.png\" alt=\"Kinesis Logo\" width=\"120\" style=\"display:block; max-width:120px;\">\n                        </td>\n                    </tr>\n                    \n                    <!-- Hero Image -->\n                    <tr>\n                        <td style=\"padding:0;\">\n                            <img src=\"https://kinesis.aisincronia.com/img/hero.jpg\" alt=\"Kinesis Dance Studio\" width=\"600\" style=\"display:block; width:100%; height:auto;\">\n                        </td>\n                    </tr>\n                    \n                    <!-- ATENCIÓN -->\n                    <tr>\n                        <td style=\"padding:40px 30px 20px; text-align:center;\">\n                            <h1 style=\"margin:0 0 15px; color:#e63946; font-size:32px; line-height:1.2; font-weight:bold;\">\n                                ¡Bienvenido/a, {{ $('Entrada de datos').item.json.nombre }}!\n                            </h1>\n                            <p style=\"margin:0; color:#333; font-size:18px; line-height:1.6;\">\n                                Ya eres parte del <strong>Ecosistema 360° de Danza</strong>\n                            </p>\n                        </td>\n                    </tr>\n                    \n                    <!-- INTERÉS -->\n                    <tr>\n                        <td style=\"padding:0 30px 30px;\">\n                            <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                                <tr>\n                                    <td style=\"background:#f8f9fa; border-left:4px solid #e63946; padding:20px; border-radius:4px;\">\n                                        <p style=\"margin:0 0 10px; color:#1a1a2e; font-size:16px; font-weight:bold;\">\n                                            📍 Tu Clase de Prueba:\n                                        </p>\n                                        <p style=\"margin:0; color:#555; font-size:18px;\">\n                                            <strong>{{ $('Buscar Grupo').item.json.Nombre }}</strong>\n                                        </p>\n                                    </td>\n                                </tr>\n                            </table>\n                        </td>\n                    </tr>\n                    \n                    <!-- DESEO - Grid de 4 Imágenes -->\n                    <tr>\n                        <td style=\"padding:0 30px 30px;\">\n                            <h2 style=\"margin:0 0 20px; color:#1a1a2e; font-size:24px; text-align:center;\">\n                                ¿Por qué Kinesis?\n                            </h2>\n                            <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                                <tr>\n                                    <td width=\"48%\" style=\"padding-right:2%; vertical-align:top;\">\n                                        <img src=\"https://kinesis.aisincronia.com/img/img1.jpg\" alt=\"Excelencia Técnica\" width=\"100%\" style=\"display:block; border-radius:8px; margin-bottom:10px;\">\n                                        <p style=\"margin:0 0 15px; color:#555; font-size:14px; text-align:center;\">\n                                            ⚡ <strong>Excelencia Técnica</strong><br>\n                                            Instructores profesionales en activo\n                                        </p>\n                                    </td>\n                                    <td width=\"48%\" style=\"padding-left:2%; vertical-align:top;\">\n                                        <img src=\"https://kinesis.aisincronia.com/img/img2.jpg\" alt=\"Innovación 360\" width=\"100%\" style=\"display:block; border-radius:8px; margin-bottom:10px;\">\n                                        <p style=\"margin:0 0 15px; color:#555; font-size:14px; text-align:center;\">\n                                            🔄 <strong>Innovación 360°</strong><br>\n                                            Tecnología AIsincronIA integrada\n                                        </p>\n                                    </td>\n                                </tr>\n                                <tr>\n                                    <td width=\"48%\" style=\"padding-right:2%; vertical-align:top;\">\n                                        <img src=\"https://kinesis.aisincronia.com/img/img3.jpg\" alt=\"Comunidad\" width=\"100%\" style=\"display:block; border-radius:8px; margin-bottom:10px;\">\n                                        <p style=\"margin:0 0 15px; color:#555; font-size:14px; text-align:center;\">\n                                            👥 <strong>Comunidad Viva</strong><br>\n                                            Ambiente de respeto y conexión\n                                        </p>\n                                    </td>\n                                    <td width=\"48%\" style=\"padding-left:2%; vertical-align:top;\">\n                                        <img src=\"https://kinesis.aisincronia.com/img/img4.jpg\" alt=\"Inclusión Total\" width=\"100%\" style=\"display:block; border-radius:8px; margin-bottom:10px;\">\n                                        <p style=\"margin:0 0 15px; color:#555; font-size:14px; text-align:center;\">\n                                            🌟 <strong>Inclusión 360°</strong><br>\n                                            Para todas las edades y niveles\n                                        </p>\n                                    </td>\n                                </tr>\n                            </table>\n                        </td>\n                    </tr>\n                    \n                    <!-- ACCIÓN - CTA Principal -->\n                    <tr>\n                        <td style=\"padding:0 30px 40px; text-align:center;\">\n                            <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                                <tr>\n                                    <td style=\"background:#e63946; border-radius:50px; padding:18px 40px; text-align:center;\">\n                                        <p style=\"margin:0; color:#ffffff; font-size:18px; font-weight:bold; letter-spacing:0.5px;\">\n                                            ✨ PRUEBA GRATIS - PAGAS SOLO SI TE CONVENCE\n                                        </p>\n                                    </td>\n                                </tr>\n                            </table>\n                            <p style=\"margin:15px 0 0; color:#666; font-size:14px; font-style:italic;\">\n                                Sin pagos anticipados. Sin compromisos. Solo danza.\n                            </p>\n                        </td>\n                    </tr>\n                    \n                    <!-- Mensaje Final -->\n                    <tr>\n                        <td style=\"padding:0 30px 40px; text-align:center;\">\n                            <p style=\"margin:0; color:#333; font-size:16px; line-height:1.6;\">\n                                Cuando vengas a tu clase de prueba, <br>\n                                si te gusta lo que hacemos, <strong>completaremos los trámites</strong>.<br>\n                                <span style=\"color:#e63946; font-weight:bold;\">Ahora solo tienes que venir y disfrutar.</span>\n                            </p>\n                        </td>\n                    </tr>\n                    \n                    <!-- Footer -->\n                    <tr>\n                        <td style=\"background:#1a1a2e; padding:30px 20px; text-align:center;\">\n                            <img src=\"https://kinesis.aisincronia.com/img/logo_horizontal.png\" alt=\"Kinesis\" width=\"180\" style=\"display:block; margin:0 auto 15px; max-width:180px;\">\n                            <p style=\"margin:0 0 10px; color:#ffffff; font-size:14px;\">\n                                Centro de Danza | Zaragoza<br>\n                                📍 <a href=\"https://kinesis.aisincronia.com\" style=\"color:#e63946; text-decoration:none;\">kinesis.aisincronia.com</a>\n                            </p>\n                            <p style=\"margin:0; color:#999; font-size:12px;\">\n                                Gracias por confiar en nosotros. Tu evolución comienza aquí.\n                            </p>\n                        </td>\n                    </tr>\n                    \n                </table>\n                \n            </td>\n        </tr>\n    </table>\n    \n</body>\n</html>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        752,
+        144
+      ],
+      "id": "a9a7091b-21e2-4c6b-b6c7-3f75d2e27586",
+      "name": "Send a message",
+      "webhookId": "16dc10d7-102d-4a61-a7e2-41340853f633"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-18T18:07:31.915Z",
+      "createdAt": "2025-11-18T18:07:31.915Z",
+      "role": "workflow:owner",
+      "workflowId": "4cWbO49FO8zXdMDC",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-18T18:07:31.000Z",
+  "versionId": "1e15b4e7-d1ed-4ddc-94eb-08a7ff4459d3"
+}
