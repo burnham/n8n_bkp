@@ -1,0 +1,85 @@
+{
+  "active": false,
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-08T04:20:12.279Z",
+  "id": "eqw231UT1jDG0Ypq",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Ejecución y Debug - Error WF",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "957b9d08-02a6-4099-8a1b-b9389e2687a6",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "7016534158",
+        "text": "=¡Ha ocurrido un error con el workflow  {{ $json.workflow.name }}!\n\n🚨Error: {{ $json.execution.error.message }}\n🚨Último nodo ejecutado: {{ $json.execution.lastNodeExecuted }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "94b840bc-8110-402c-8daa-710ad5459654",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        224,
+        0
+      ],
+      "webhookId": "14f6c147-bb66-4fde-bc1d-a01613dec766",
+      "credentials": {
+        "telegramApi": {
+          "id": "cljhbY7TT13yiHcw",
+          "name": "Telegram BurnhamBot"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-08T04:20:12.285Z",
+      "createdAt": "2025-11-08T04:20:12.285Z",
+      "role": "workflow:owner",
+      "workflowId": "eqw231UT1jDG0Ypq",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T04:17:58.571Z",
+      "createdAt": "2025-11-08T04:17:58.571Z",
+      "id": "kfnzru1ekik6v4r2",
+      "name": "🔵 MonetizaAI Learning"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-18T08:22:36.000Z",
+  "versionId": "043a506a-050e-4b10-88c2-9ef4fcf014b8"
+}
