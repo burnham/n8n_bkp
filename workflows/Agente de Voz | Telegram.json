@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Transcribir Audio": {
       "main": [
@@ -792,8 +792,8 @@
       "webhookId": "aa9d0a26-9794-4748-bb23-b6ce94ffa3dd",
       "credentials": {
         "telegramApi": {
-          "id": "cljhbY7TT13yiHcw",
-          "name": "Telegram BurnhamBot"
+          "id": "hWICK7kk8Fhr7WNm",
+          "name": "Telegram Burnhams Voice Assistant"
         }
       }
     },
@@ -1006,7 +1006,11 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Europe/Vienna",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "eqw231UT1jDG0Ypq"
   },
   "shared": [
     {
@@ -1027,6 +1031,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-18T09:13:23.000Z",
-  "versionId": "3b28e595-65c9-4ed4-8d06-8be43cb41f07"
+  "updatedAt": "2025-11-18T16:47:02.000Z",
+  "versionId": "11d5a603-86c7-425e-aeea-2c57990123e5"
 }
