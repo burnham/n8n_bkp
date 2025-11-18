@@ -1,0 +1,386 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear evento": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear evento asistente": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "eliminar evento": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "actualizar evento": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener eventos": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat GPT #1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Calendario",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-14T08:37:18.391Z",
+  "id": "JqddI272aLRpLJnK",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Sub Tele Agente Calendar",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "98743fc4-5085-488c-86f0-40a1bc157ad4",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -384,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=# Rol\n\nEres un asistente de Calendario. \n\n# Contexto\n\nTus responsabilidades incluyen crear, obtener y eliminar eventos en el calendario del usuario.\n\n# Herramientas\n\n- Usa \"crear evento asistente\" cuando un evento incluye un participante.\n- Usa \"crear evento\" para eventos individuales.\n- Usa \"obtener eventos\" para buscar horarios del calendario cuando se solicite.\n- Usa \"eliminar evento\" para borrar un evento. Primero debes usar \"Obtener eventos\" para conseguir el ID del evento a eliminar.\n- Usa \"actualizar evento\" para actualizar un evento. Primero debes usar \"Obtener eventos\" para conseguir el ID del evento a actualizar.\n\n# Notas\n\nFecha y hora actuales: {{ $now }}\n\nSi no se especifica la duración de un evento, asume que será de una hora y agenda la reunión."
+        }
+      },
+      "id": "1bb596b6-eec5-4459-977e-6062eeb84db1",
+      "name": "Agente Calendario",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        -128,
+        192
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 200,
+        "width": 220
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        144
+      ],
+      "id": "561123b1-0584-4ec1-97d4-0c94bfa5d3d5",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 180,
+        "width": 320,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        144
+      ],
+      "id": "45241955-bd2d-4d94-b9b4-351bff294b8d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 180,
+        "width": 680,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        384
+      ],
+      "id": "c9c77aaa-067c-4759-9bbb-069019d31636",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 140,
+        "width": 150,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5d221777-690a-4885-8a73-6a85ecc72419",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "georgiosburnham@gmail.com",
+          "mode": "list",
+          "cachedResultName": "georgiosburnham@gmail.com"
+        },
+        "start": "={{ $fromAI(\"eventStart\") }}",
+        "end": "={{ $fromAI(\"eventEnd\") }}",
+        "additionalFields": {
+          "attendees": [],
+          "summary": "={{ $fromAI(\"eventTitle\") }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        240,
+        432
+      ],
+      "id": "119606a5-aacd-447e-bac1-1b67cef7713a",
+      "name": "crear evento",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "QM6it0rPeasJ1pJO",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "georgiosburnham@gmail.com",
+          "mode": "list",
+          "cachedResultName": "georgiosburnham@gmail.com"
+        },
+        "start": "={{ $fromAI(\"eventStart\") }}",
+        "end": "={{ $fromAI(\"eventEnd\") }}",
+        "additionalFields": {
+          "attendees": [
+            "={{ $fromAI(\"eventAttendeeEmail\") }}"
+          ],
+          "summary": "={{ $fromAI(\"eventTitle\") }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        128,
+        432
+      ],
+      "id": "6a06bfa2-ee05-42b9-927a-0e6bf7f03af3",
+      "name": "crear evento asistente",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "QM6it0rPeasJ1pJO",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "georgiosburnham@gmail.com",
+          "mode": "list",
+          "cachedResultName": "georgiosburnham@gmail.com"
+        },
+        "eventId": "={{ $fromAI(\"eventID\") }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        432
+      ],
+      "id": "a0674e43-450c-4f38-9dc9-39bb0793b804",
+      "name": "eliminar evento",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "QM6it0rPeasJ1pJO",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "georgiosburnham@gmail.com",
+          "mode": "list",
+          "cachedResultName": "georgiosburnham@gmail.com"
+        },
+        "eventId": "={{ $fromAI(\"eventID\") }}",
+        "updateFields": {
+          "end": "={{ $fromAI(\"endTime\") }}",
+          "start": "={{ $fromAI(\"startTime\") }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        -144,
+        432
+      ],
+      "id": "7dc24ca1-7912-4c21-a034-91fc8e85ba59",
+      "name": "actualizar evento",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "QM6it0rPeasJ1pJO",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "georgiosburnham@gmail.com",
+          "mode": "list",
+          "cachedResultName": "georgiosburnham@gmail.com"
+        },
+        "timeMin": "={{ $fromAI(\"dayBefore\",\"the day before the date the user requested\") }}",
+        "timeMax": "={{ $fromAI(\"dayAfter\",\"the day after the date the user requested\") }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        -288,
+        432
+      ],
+      "id": "4da5f5cd-c09e-4d6b-8396-9ca0fdd26784",
+      "name": "obtener eventos",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "QM6it0rPeasJ1pJO",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        48,
+        32
+      ],
+      "id": "830b1327-6a5c-4c92-9324-dc273405c1b9",
+      "name": "Chat GPT #1",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Vienna",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "eqw231UT1jDG0Ypq"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-14T08:37:18.405Z",
+      "createdAt": "2025-11-14T08:37:18.405Z",
+      "role": "workflow:owner",
+      "workflowId": "JqddI272aLRpLJnK",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-17T19:03:46.445Z",
+      "createdAt": "2025-11-12T04:49:35.964Z",
+      "id": "FSFCRUJRQgBqMwY7",
+      "name": "🟤 Pau Berenguer"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-18T08:51:32.000Z",
+  "versionId": "e854af1c-ca5f-4416-9bb7-ec635d09f54c"
+}
