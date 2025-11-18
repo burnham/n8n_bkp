@@ -764,7 +764,13 @@
         528
       ],
       "typeVersion": 1,
-      "webhookId": "33faa5f3-0ebc-4ce6-b1ad-8f29f3a2a833"
+      "webhookId": "33faa5f3-0ebc-4ce6-b1ad-8f29f3a2a833",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -780,7 +786,13 @@
         928
       ],
       "typeVersion": 1,
-      "webhookId": "99234811-660e-4194-afcc-cea39c2ce0de"
+      "webhookId": "99234811-660e-4194-afcc-cea39c2ce0de",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -801,7 +813,13 @@
       ],
       "typeVersion": 1,
       "alwaysOutputData": false,
-      "webhookId": "a2c02666-5ad9-43a7-a36a-04c31dda9d55"
+      "webhookId": "a2c02666-5ad9-43a7-a36a-04c31dda9d55",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -878,7 +896,13 @@
         736
       ],
       "typeVersion": 1,
-      "webhookId": "a3233fa7-5c6d-4805-9e74-4b7e6ada5cf6"
+      "webhookId": "a3233fa7-5c6d-4805-9e74-4b7e6ada5cf6",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -921,7 +945,7 @@
     {
       "parameters": {
         "operation": "send",
-        "phoneNumberId": "616116878254396",
+        "phoneNumberId": "899561879905457",
         "recipientPhoneNumber": "={{ $('Filtrardor').item.json.from }}",
         "messageType": "audio",
         "mediaPath": "useMedian8n",
@@ -936,7 +960,13 @@
       ],
       "typeVersion": 1,
       "alwaysOutputData": false,
-      "webhookId": "a2c02666-5ad9-43a7-a36a-04c31dda9d55"
+      "webhookId": "a2c02666-5ad9-43a7-a36a-04c31dda9d55",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -1024,7 +1054,13 @@
         848
       ],
       "webhookId": "5c26a149-2024-45f5-8a7d-cfda8ec29ece",
-      "typeVersion": 1
+      "typeVersion": 1,
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "x6Wq4wWeCpXjUosb",
+          "name": "WhatsApp OAuth ACC"
+        }
+      }
     },
     {
       "parameters": {
@@ -1768,44 +1804,24 @@
       ],
       "id": "6cf49cf8-05a4-4260-b401-9f4cee5b5504",
       "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Crea Agentes de IA para WhatsApp\n\n# [Guide](https://www.skool.com/the-ai-blueprint/nuevo-video-crea-agentes-de-ia-para-whatsapp-con-n8n-plantilla-gratis)",
+        "height": 192,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -832,
+        208
+      ],
+      "typeVersion": 1,
+      "id": "cb45c183-4f2d-404c-9d59-04f836c86002",
+      "name": "Sticky Note5"
     }
   ],
-  "pinData": {
-    "WhatsApp Trigger": [
-      {
-        "json": {
-          "messaging_product": "whatsapp",
-          "metadata": {
-            "display_phone_number": "34643336415",
-            "phone_number_id": "616116878254396"
-          },
-          "contacts": [
-            {
-              "profile": {
-                "name": "Pau Berenguer"
-              },
-              "wa_id": "34643341015"
-            }
-          ],
-          "messages": [
-            {
-              "from": "34643341015",
-              "id": "wamid.HBgLMzQ2NDMzNDEwMTUVAgASGBYzRUIwNDlGMEZBRTZCQjZDNDc0RDkwAA==",
-              "timestamp": "1762854371",
-              "type": "audio",
-              "audio": {
-                "mime_type": "audio/ogg; codecs=opus",
-                "sha256": "k+OgmivJxDpXwjKd8Q9QqX8SnFSwlKxS6Ak/rBR52IE=",
-                "id": "1306464447896538",
-                "voice": true
-              }
-            }
-          ],
-          "field": "messages"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
@@ -1819,8 +1835,15 @@
     }
   ],
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-11-17T19:03:46.445Z",
+      "createdAt": "2025-11-12T04:49:35.964Z",
+      "id": "FSFCRUJRQgBqMwY7",
+      "name": "🟤 Pau Berenguer"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-17T07:00:29.000Z",
-  "versionId": "aa1ef26f-ef03-4011-b23f-500bd6b23b8f"
+  "updatedAt": "2025-11-18T06:36:43.000Z",
+  "versionId": "119c31d2-cccc-49f6-bfb5-bec7e5d4dc86"
 }
