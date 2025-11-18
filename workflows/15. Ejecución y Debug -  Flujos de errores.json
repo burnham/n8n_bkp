@@ -59,7 +59,8 @@
         -416,
         80
       ],
-      "webhookId": "e3b03e6a-5b10-4fd3-8455-9d305a29de95"
+      "webhookId": "e3b03e6a-5b10-4fd3-8455-9d305a29de95",
+      "disabled": true
     },
     {
       "parameters": {
@@ -67,7 +68,8 @@
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict"
+            "typeValidation": "strict",
+            "version": 1
           },
           "conditions": [
             {
@@ -143,6 +145,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-13T00:45:43.000Z",
-  "versionId": "6ac95eae-d9f8-488d-8458-03242cd2f506"
+  "updatedAt": "2025-11-18T08:21:50.000Z",
+  "versionId": "e8cf32e1-1440-4c0f-bbd6-3c8a5a125319"
 }
