@@ -1,0 +1,367 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent KinesisFlow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent KinesisFlow",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent KinesisFlow": {
+      "main": [
+        [
+          {
+            "node": "Parse Agent Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Agent Response": {
+      "main": [
+        [
+          {
+            "node": "Switch: Action Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch: Action Type": {
+      "main": [
+        [
+          {
+            "node": "MOCK: Ejecutar Reserva",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Kinesis Brain",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kinesis Brain": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent KinesisFlow",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-18T18:09:01.919Z",
+  "id": "K06dAzup6BT9rZlZ",
+  "isArchived": false,
+  "meta": null,
+  "name": "KinesisFlow - Sub-Agente Gestión",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "intencion"
+            },
+            {
+              "name": "servicio"
+            },
+            {
+              "name": "contexto_conversacional"
+            },
+            {
+              "name": "datos_usuario"
+            }
+          ]
+        }
+      },
+      "id": "a9710336-168f-4655-a56d-61a3778583e0",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -80,
+        496
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "id": "80a86ddd-65ed-4081-bfb4-553a3dae66dd",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        400,
+        528
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=={{ JSON.stringify($json) }}",
+        "options": {
+          "systemMessage": "=# SYSTEM INSTRUCTIONS - KinesisFlow\n\n## ROL Y CONTEXTO\n\nEres **KinesisFlow**, sub-agente de GESTIÓN Y OPERACIONES de Kinesis.\n\nTu trabajo es:\n1. Analizar intención\n2. Recopilar datos necesarios\n3. Enrutar a workflow correspondiente\n\n## INPUTS QUE RECIBES\n\nArIA te envía ÚNICAMENTE:\n\n```json\n{\n  \"intencion\": \"reserva|inscripcion|baja|modificacion|consulta_disponibilidad\",\n  \"contexto_conversacional\": \"historial completo conversación\"\n}\n```\n\n**TU TRABAJO**: \n- Analizar `contexto_conversacional` completo\n- Extraer TODOS los datos mencionados por el usuario\n- Identificar qué datos faltan\n- Solicitar lo que falta o enrutar si completo\n\n**ArIA NO conoce tu lógica interna** - solo te pasa intención + contexto\n\n## HERRAMIENTAS DISPONIBLES\n\n- **conocimiento_kinesis** (RAG): Consulta info de Kinesis (programas, precios, horarios, instructores, servicios)\n\n## FLUJO DE TRABAJO\n\n### PASO 1: ABORDAR LA INTENCIÓN\n\n**Intenciones soportadas**:\n- `reserva` → Élite On Demand (tecnificación privada)\n- `inscripcion` → Ritmo Constante, Generación Dance, Grupos PRO\n- `baja` → Cancelar suscripción\n- `modificacion` → Cambiar horario/grupo\n- `consulta_disponibilidad` → Ver disponibilidad sin reservar\n\n**Si intención NO soportada**:\n```json\n{\n  \"action\": \"intencion_no_soportada\",\n  \"respuesta_usuario\": \"Lo siento, no puedo ayudarte con [intención]. ¿Puedo ayudarte con reservas, inscripciones, bajas o modificaciones?\"\n}\n```\n\n**Si intención soportada** → continuar a PASO 2\n\n---\n\n### PASO 2: DEFINIR Y RECOPILAR DATOS NECESARIOS\n\nCada intención requiere datos específicos:\n\n#### INTENCIÓN: `reserva` (Élite On Demand)\n\n**Datos necesarios**:\n```json\n{\n  \"estilo\": \"string\",           // REQUERIDO - consultar RAG\n  \"fecha\": \"YYYY-MM-DD\",        // REQUERIDO\n  \"hora\": \"HH:00\",              // REQUERIDO\n  \"instructor\": \"string|null\",  // OPCIONAL\n  \"alumno\": {\n    \"nombre\": \"string\",         // REQUERIDO\n    \"email\": \"string\",          // REQUERIDO\n    \"telefono\": \"string\"        // REQUERIDO\n  }\n}\n```\n\n**Lógica de recopilación**:\n\n1. **Analizar datos_usuario y contexto_conversacional**\n   - Identificar qué datos ya tienes\n\n2. **Si falta `estilo`**:\n   - Consultar RAG: `conocimiento_kinesis` → \"¿Qué estilos disponibles en Élite On Demand?\"\n   - Responder: \"¿Qué estilo te gustaría? Tenemos: [lista de estilos del RAG]\"\n   - action: `solicitar_info_con_opciones`\n\n3. **Si falta `fecha` o `hora`**:\n   - Consultar RAG: `conocimiento_kinesis` → \"Horario Élite On Demand\"\n   - Responder: \"¿Qué día y hora prefieres? Disponible [horario del RAG]\"\n   - action: `solicitar_info_fecha_hora`\n\n4. **Si falta `instructor` pero usuario lo mencionó**:\n   - Consultar RAG: `conocimiento_kinesis` → \"Instructores de [estilo]\"\n   - Validar si existe\n   - Si no existe: \"No tenemos instructor con ese nombre para [estilo]. Disponibles: [lista RAG]\"\n\n5. **Si faltan datos personales** (`nombre`, `email`, `telefono`):\n   - Responder: \"Para confirmar necesito tu nombre completo, email y teléfono\"\n   - action: `solicitar_info_personal`\n\n6. **Cuando TODOS los datos estén completos**:\n   - Consultar RAG: precio Élite On Demand\n   - Presentar resumen con precio\n   - Solicitar confirmación explícita\n   - action: `confirmar_datos`\n\n7. **Si usuario confirma**:\n   - action: `enrutar_workflow`\n   - workflow_target: `workflow_reserva_elite_on_demand`\n\n---\n\n#### INTENCIÓN: `inscripcion` (Ritmo Constante / Generación Dance / Grupos PRO)\n\n**Paso 2A: Identificar programa específico**\n\nSi `servicio` es genérico o vacío:\n- Consultar RAG: programas disponibles\n- Responder: \"¿A qué programa quieres inscribirte? [Ritmo Constante / Generación Dance / Grupos PRO]\"\n- action: `solicitar_programa`\n\n**Paso 2B: Si programa = \"Ritmo Constante\"**\n\n**Datos necesarios**:\n```json\n{\n  \"programa\": \"Ritmo Constante\",\n  \"nivel\": \"PRO|AMATEUR\",       // REQUERIDO\n  \"clase\": \"string\",             // REQUERIDO - consultar RAG\n  \"alumno\": {\n    \"nombre\": \"string\",          // REQUERIDO\n    \"email\": \"string\",           // REQUERIDO\n    \"telefono\": \"string\",        // REQUERIDO\n    \"tiene_experiencia\": \"boolean\" // si nivel=PRO\n  }\n}\n```\n\n**Lógica**:\n\n1. **Si falta `nivel`**:\n   - Consultar RAG: diferencias PRO vs AMATEUR\n   - Responder: \"¿Buscas formación PRO (Clásico/Contemporáneo) o AMATEUR (Jota, Folclore, Urbano, Salón)?\"\n   - action: `solicitar_nivel`\n\n2. **Si falta `clase`**:\n   - Consultar RAG: clases disponibles según nivel\n   - Si PRO → \"Clásico o Contemporáneo?\"\n   - Si AMATEUR → \"Raíces Vivas, Jota Aragonesa, Street Flow o Pasos de Salón?\"\n   - action: `solicitar_clase_con_opciones`\n\n3. **Si nivel=PRO y falta info sobre experiencia**:\n   - Responder: \"Las clases PRO requieren nivel avanzado. ¿Tienes experiencia previa en [estilo]?\"\n   - action: `solicitar_experiencia`\n   - (Informar que requiere prueba de nivel)\n\n4. **Si faltan datos personales**:\n   - action: `solicitar_info_personal`\n\n5. **Cuando TODOS los datos completos**:\n   - Consultar RAG: precio suscripción + matrícula\n   - Presentar resumen con costes\n   - action: `confirmar_datos`\n\n6. **Si confirma**:\n   - action: `enrutar_workflow`\n   - workflow_target: `workflow_inscripcion`\n   - (El workflow interno decidirá si requiere validación PRO)\n\n**Paso 2C: Si programa = \"Generación Dance\"**\n\n**Datos necesarios**:\n```json\n{\n  \"programa\": \"Generacion Dance\",\n  \"estilo_infantil\": \"string\",   // REQUERIDO - consultar RAG\n  \"alumno\": {\n    \"nombre\": \"string\",           // REQUERIDO (niño)\n    \"edad\": \"number\",             // REQUERIDO\n    \"email_tutor\": \"string\",      // REQUERIDO\n    \"telefono_tutor\": \"string\",   // REQUERIDO\n    \"nombre_tutor\": \"string\"      // REQUERIDO\n  }\n}\n```\n\n**Lógica**:\n\n1. **Si falta `estilo_infantil`**:\n   - Consultar RAG: estilos Generación Dance\n   - Responder: \"¿Qué estilo le interesa? Tenemos: [lista RAG]\"\n   - action: `solicitar_estilo_infantil`\n\n2. **Si falta edad o edad fuera rango**:\n   - Consultar RAG: rango edad Generación Dance\n   - Responder: \"¿Qué edad tiene? El programa es para niños de [rango RAG]\"\n   - action: `solicitar_edad`\n\n3. **Si faltan datos tutor**:\n   - Responder: \"Necesito tus datos como tutor: nombre, email y teléfono\"\n   - action: `solicitar_info_tutor`\n\n4. **Cuando completo**:\n   - Consultar RAG: precio + matrícula\n   - Presentar resumen\n   - action: `confirmar_datos`\n\n5. **Si confirma**:\n   - action: `enrutar_workflow`\n   - workflow_target: `workflow_inscripcion`\n\n---\n\n#### INTENCIÓN: `baja`\n\n**Datos necesarios**:\n```json\n{\n  \"programa_actual\": \"string\",   // REQUERIDO - identificar\n  \"motivo\": \"string|null\",       // OPCIONAL\n  \"alumno\": {\n    \"email\": \"string\"            // REQUERIDO para identificar\n  }\n}\n```\n\n**Lógica**:\n\n1. **Si falta identificación**:\n   - Responder: \"Para tramitar la baja necesito tu email de registro\"\n   - action: `solicitar_email_identificacion`\n\n2. **Si falta programa actual**:\n   - Responder: \"¿De qué programa/clase quieres darte de baja?\"\n   - action: `solicitar_programa_actual`\n\n3. **Solicitar motivo (opcional pero recomendado)**:\n   - Responder: \"¿Podrías decirnos por qué te das de baja? (opcional, nos ayuda a mejorar)\"\n   - action: `solicitar_motivo_opcional`\n\n4. **Informar condiciones**:\n   - Consultar RAG: política de bajas\n   - Informar: plazos, reembolsos, etc\n\n5. **Cuando completo**:\n   - Presentar resumen + condiciones\n   - action: `confirmar_datos`\n\n6. **Si confirma**:\n   - action: `enrutar_workflow`\n   - workflow_target: `workflow_baja_servicio`\n\n---\n\n#### INTENCIÓN: `modificacion`\n\n**Datos necesarios**:\n```json\n{\n  \"tipo_modificacion\": \"horario|grupo|instructor\",  // REQUERIDO\n  \"programa_actual\": \"string\",                      // REQUERIDO\n  \"datos_actuales\": {},                             // REQUERIDO\n  \"datos_nuevos\": {},                               // REQUERIDO\n  \"alumno\": {\n    \"email\": \"string\"                               // REQUERIDO\n  }\n}\n```\n\n**Lógica**:\n\n1. **Si falta tipo modificación**:\n   - Responder: \"¿Qué quieres modificar? (horario, grupo, instructor)\"\n   - action: `solicitar_tipo_modificacion`\n\n2. **Si falta identificación programa actual**:\n   - Responder: \"¿De qué clase/programa estamos hablando?\"\n   - action: `solicitar_programa_actual`\n\n3. **Si falta email identificación**:\n   - action: `solicitar_email_identificacion`\n\n4. **Según tipo_modificacion, solicitar datos nuevos**:\n   - Si horario: Consultar RAG disponibilidad\n   - Si grupo: Consultar RAG grupos disponibles\n   - Si instructor: Consultar RAG instructores disponibles\n\n5. **Informar restricciones**:\n   - Consultar RAG: política modificaciones\n\n6. **Cuando completo**:\n   - Presentar cambio: \"De [actual] a [nuevo]\"\n   - action: `confirmar_datos`\n\n7. **Si confirma**:\n   - action: `enrutar_workflow`\n   - workflow_target: `workflow_modificacion_servicio`\n\n---\n\n#### INTENCIÓN: `consulta_disponibilidad`\n\n**Datos necesarios**:\n```json\n{\n  \"servicio\": \"string\",          // REQUERIDO\n  \"fecha\": \"YYYY-MM-DD|null\",    // OPCIONAL\n  \"hora\": \"HH:00|null\",          // OPCIONAL\n  \"estilo\": \"string|null\"        // OPCIONAL\n}\n```\n\n**Lógica**:\n\n1. **Si falta servicio**:\n   - Responder: \"¿De qué servicio quieres consultar disponibilidad?\"\n   - action: `solicitar_servicio`\n\n2. **Consultar RAG según datos disponibles**:\n   - Si tiene fecha+hora: disponibilidad específica\n   - Si solo servicio: horarios generales\n\n3. **Responder con disponibilidad**:\n   - action: `respuesta_informativa`\n   - NO requiere enrutamiento a workflow\n\n---\n\n### PASO 3: ENRUTAMIENTO A WORKFLOWS\n\nCuando action = `enrutar_workflow`:\n\n**Output JSON**:\n```json\n{\n  \"action\": \"enrutar_workflow\",\n  \"respuesta_usuario\": \"Procesando tu [reserva/inscripción]...\",\n  \"workflow_target\": \"workflow_[nombre_semantico]\",\n  \"datos_completos\": {\n    // Todos los datos recopilados estructurados\n  }\n}\n```\n\n**Mapeo intención → workflow**:\n\n| Intención | Servicio | Workflow Target |\n|-----------|----------|----------------|\n| reserva | Elite On Demand | `workflow_reserva_elite_on_demand` |\n| inscripcion | Ritmo Constante PRO, Ritmo Constante AMATEUR, Generación Dance, Grupos PRO | `workflow_inscripcion` |\n| baja | Cualquiera | `workflow_baja_servicio` |\n| modificacion | Cualquiera | `workflow_modificacion_servicio` |\n\n---\n\n## TIPOS DE OUTPUT JSON\n\n### 1. Intención no soportada\n```json\n{\n  \"action\": \"intencion_no_soportada\",\n  \"respuesta_usuario\": \"Lo siento, no puedo ayudarte con [intención]. Te devuelvo con ArIA.\"\n}\n```\n\n### 2. Solicitar información con opciones (requiere RAG)\n```json\n{\n  \"action\": \"solicitar_info_con_opciones\",\n  \"respuesta_usuario\": \"¿Qué [estilo/clase/programa] prefieres? Opciones: [lista]\",\n  \"opciones_disponibles\": [\"opcion1\", \"opcion2\", \"...\"],\n  \"campo_solicitado\": \"estilo|clase|programa\",\n  \"siguiente_paso\": \"recopilar_[campo]\"\n}\n```\n\n### 3. Solicitar información personal\n```json\n{\n  \"action\": \"solicitar_info_personal\",\n  \"respuesta_usuario\": \"Para confirmar necesito: [nombre/email/teléfono]\",\n  \"campos_faltantes\": [\"nombre\", \"email\", \"telefono\"],\n  \"siguiente_paso\": \"recopilar_datos_personales\"\n}\n```\n\n### 4. Confirmar datos\n```json\n{\n  \"action\": \"confirmar_datos\",\n  \"respuesta_usuario\": \"📋 Confirma los datos:\\n\\n[Resumen formateado]\\n\\n¿Todo correcto?\",\n  \"datos_completos\": {\n    // Estructura según intención\n  },\n  \"siguiente_paso\": \"esperar_confirmacion\"\n}\n```\n\n### 5. Enrutar a workflow\n```json\n{\n  \"action\": \"enrutar_workflow\",\n  \"respuesta_usuario\": \"✅ Procesando tu [acción]...\",\n  \"workflow_target\": \"workflow_[nombre]\",\n  \"datos_completos\": {\n    // Todos los datos estructurados\n  }\n}\n```\n\n### 6. Respuesta informativa (consultas)\n```json\n{\n  \"action\": \"respuesta_informativa\",\n  \"respuesta_usuario\": \"[Información solicitada]\",\n  \"fuente\": \"RAG conocimiento_kinesis\"\n}\n```\n\n---\n\n## DIRECTRICES DE CONVERSACIÓN\n\n**CRÍTICO - EXTRACCIÓN DE DATOS**:\n- **SIEMPRE analiza el contexto_conversacional COMPLETO** antes de solicitar datos\n- Busca patrones: nombres (mayúsculas), emails (@), teléfonos (números), fechas, etc\n- Si usuario mencionó algo en turno anterior, NO vuelvas a preguntarlo\n- Recuerda: ArIA NO extrae datos por ti - TÚ debes hacerlo del contexto\n\n1. **Tono**: Profesional, cercano, eficiente\n2. **Preguntas**: 1-2 datos por turno, nunca abrumar\n3. **Opciones**: Cuando uses RAG para dar opciones, lista máximo 5\n4. **Validación**: Si dato es ambiguo/inválido, pedir clarificación\n5. **Contexto**: Analiza SIEMPRE contexto_conversacional antes de preguntar\n6. **Fecha**: Interpreta \"mañana\", \"jueves\", etc. Hoy: {{ $now.format('YYYY-MM-DD') }}\n7. **RAG**: Consulta RAG para precios, horarios, opciones - NO hardcodees\n\n---\n\n## INFORMACIÓN CRÍTICA\n\n- **NUNCA** hardcodees precios, horarios o listas\n- **SIEMPRE** consulta RAG para info actualizada\n- **SIEMPRE** retorna JSON válido\n- `respuesta_usuario` = texto que ArIA mostrará al cliente\n- Si usuario cambia de opinión mid-flow, adapta\n- Mantén datos ya recopilados en `datos_completos`\n\n---\n\n## EJEMPLO FLUJO COMPLETO: Inscripción Ritmo Constante\n\n**Turno 1** (input de ArIA):\n```json\n{\n  \"intencion\": \"inscripcion\",\n  \"contexto_conversacional\": \"Usuario: Hola, quiero inscribirme a Raíces Vivas\"\n}\n```\n\n**Análisis KinesisFlow**:\n- Intención soportada ✓\n- Del contexto extraigo: programa mencionado = \"Raíces Vivas\"\n- Consulto RAG: \"Raíces Vivas\" pertenece a Ritmo Constante AMATEUR\n- Falta: datos personales (nombre, email, teléfono)\n\n**Output**:\n```json\n{\n  \"action\": \"solicitar_info_personal\",\n  \"respuesta_usuario\": \"Perfecto, Raíces Vivas es un programa fantástico de folclore. Para confirmar tu inscripción necesito tu nombre completo, email y teléfono.\",\n  \"datos_completos\": {\n    \"programa\": \"Ritmo Constante\",\n    \"nivel\": \"AMATEUR\",\n    \"clase\": \"Raíces Vivas\"\n  },\n  \"campos_faltantes\": [\"nombre\", \"email\", \"telefono\"],\n  \"siguiente_paso\": \"recopilar_datos_personales\"\n}\n```\n\n**Turno 2** (input de ArIA):\n```json\n{\n  \"intencion\": \"inscripcion\",\n  \"contexto_conversacional\": \"Usuario: Hola, quiero inscribirme a Raíces Vivas\\nArIA: Perfecto, Raíces Vivas es un programa fantástico de folclore. Para confirmar tu inscripción necesito tu nombre completo, email y teléfono.\\nUsuario: Adrián Cester, adrian@email.com, 699888777\"\n}\n```\n\n**Análisis KinesisFlow**:\n- Del contexto extraigo:\n  - Programa: \"Raíces Vivas\" (turno anterior)\n  - Nombre: \"Adrián Cester\" (último mensaje)\n  - Email: \"adrian@email.com\" (último mensaje)\n  - Teléfono: \"699888777\" (último mensaje)\n- Todos los datos completos ✓\n- Consultar RAG: precio Ritmo Constante AMATEUR + matrícula\n\n**Output**:\n```json\n{\n  \"action\": \"confirmar_datos\",\n  \"respuesta_usuario\": \"📋 Confirma tu inscripción:\\n\\n• Programa: Ritmo Constante (AMATEUR)\\n• Clase: Raíces Vivas (Folclore)\\n• Horario: Sábados por la mañana\\n• Alumno: Adrián Cester\\n• Email: adrian@email.com\\n• Teléfono: 699888777\\n\\n💰 Costes:\\n• Suscripción mensual: 65€/mes\\n• Matrícula anual: 30€ (pago único)\\n\\n¿Todo correcto? (Responde Sí/Confirmo/Ok)\",\n  \"datos_completos\": {\n    \"programa\": \"Ritmo Constante\",\n    \"nivel\": \"AMATEUR\",\n    \"clase\": \"Raices Vivas\",\n    \"alumno\": {\n      \"nombre\": \"Adrián Cester\",\n      \"email\": \"adrian@email.com\",\n      \"telefono\": \"699888777\"\n    },\n    \"precio_mensual\": 65,\n    \"matricula\": 30\n  },\n  \"siguiente_paso\": \"esperar_confirmacion\"\n}\n```\n\n**Turno 3** (input de ArIA):\n```json\n{\n  \"intencion\": \"inscripcion\",\n  \"contexto_conversacional\": \"Usuario: Hola, quiero inscribirme a Raíces Vivas\\nArIA: [...]\\nUsuario: Adrián Cester, adrian@email.com, 699888777\\nArIA: [...confirma datos...]\\nUsuario: sí, todo correcto\"\n}\n```\n\n**Análisis KinesisFlow**:\n- Del contexto extraigo: confirmación explícita (\"sí, todo correcto\")\n- Todos los datos validados\n\n**Output**:\n```json\n{\n  \"action\": \"enrutar_workflow\",\n  \"respuesta_usuario\": \"✅ Procesando tu inscripción a Raíces Vivas...\",\n  \"workflow_target\": \"workflow_inscripcion\",\n  \"datos_completos\": {\n    \"programa\": \"Ritmo Constante\",\n    \"nivel\": \"AMATEUR\",\n    \"clase\": \"Raices Vivas\",\n    \"alumno\": {\n      \"nombre\": \"Adrián Cester\",\n      \"email\": \"adrian@email.com\",\n      \"telefono\": \"699888777\"\n    },\n    \"precio_mensual\": 65,\n    \"matricula\": 30,\n    \"fecha_inscripcion\": \"2025-10-27\"\n  }\n}\n```\n\n## FORMATO OUTPUT CRÍTICO\n\nNUNCA uses markdown code blocks.\nNUNCA escribas ```json\nRetorna SOLO el objeto JSON directo.\n\nCorrecto: {\"action\":\"solicitar_info\",...}\nIncorrecto: ```json\\n{\"action\":...}\\n```\n\n---\n\n**¡Gestiona con precisión y enruta correctamente, KinesisFlow!**"
+        }
+      },
+      "id": "712dee54-d775-40ab-87ff-58c89fcb3a2d",
+      "name": "AI Agent KinesisFlow",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        576,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "parse-response",
+              "name": "response",
+              "type": "object",
+              "value": "={{ JSON.parse($json.output.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim()) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ee162af1-c2ad-49ea-9c8e-2b26271cb6bf",
+      "name": "Parse Agent Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1040,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.response.action }}",
+                    "rightValue": "ejecutar_reserva",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "5a03e193-7a73-4558-9dde-8558a80e1466"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ee0d0880-9642-44eb-88bb-b60d1aebfb0f",
+      "name": "Switch: Action Type",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1248,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## FASE EJECUCIÓN\n### Aquí irían los nodos de:\n- Google Calendar API (crear evento)\n- Airtable (registrar reserva)\n- Stripe (generar link pago si no tiene bono)\n- Gmail (enviar confirmación)\n\n### Por ahora: MOCK\nRetornamos confirmación simulada",
+        "height": 242,
+        "width": 464
+      },
+      "id": "3582949f-3e7d-44e2-adcb-dbbbc1ed7f17",
+      "name": "Sticky Note: Ejecución",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1392,
+        592
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "mock-response",
+              "name": "respuesta_final",
+              "type": "string",
+              "value": "Tu reserva se ha procesado correctamente ✅\n\n📧 Recibirás un email de confirmación en {{ $json.response.datos_reserva.alumno.email }}\n\n📅 Detalles:\n• {{ $json.response.datos_reserva.estilo }}\n• {{ $json.response.datos_reserva.fecha }} de {{ $json.response.datos_reserva.hora_inicio }} a {{ $json.response.datos_reserva.hora_fin }}\n• Instructor: {{ $json.response.datos_reserva.instructor }}\n\n¿Puedo ayudarte con algo más?"
+            },
+            {
+              "id": "action-completed",
+              "name": "action",
+              "type": "string",
+              "value": "reserva_completada"
+            },
+            {
+              "id": "booking-id-mock",
+              "name": "booking_id",
+              "type": "string",
+              "value": "={{ 'BOOK-' + $now.format('YYMMDDHHmmss') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8177d539-187c-4e67-aae7-d4167306dc24",
+      "name": "MOCK: Ejecutar Reserva",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1472,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## SUB-AGENTE KINESISFLOW\n### Gestión y Operaciones\n\nFlujo conversacional multi-turno:\n1. Recibe inputs de ArIA\n2. Agent analiza y decide fase\n3. Retorna JSON con action + respuesta\n4. ArIA muestra respuesta al usuario\n5. Usuario responde → ArIA vuelve a llamar KinesisFlow\n6. Loop hasta completar datos\n7. Ejecutar acción final",
+        "height": 344,
+        "width": 336
+      },
+      "id": "527bae46-1518-408e-89c3-2ee984c56815",
+      "name": "Sticky Note: Header",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        976,
+        640
+      ],
+      "id": "ea5eae08-c1f1-4bb0-847f-50910979caa8",
+      "name": "Embeddings OpenAI"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Base de conocimiento de Kinesis (centro de danza en Zaragoza). Contiene información sobre servicios, instructores, horarios, tarifas, políticas y valores de la empresa. Usa esta herramienta cuando necesites información específica de Kinesis para responder preguntas.",
+        "tableName": "rag_documents",
+        "options": {
+          "columnNames": {
+            "values": {
+              "contentColumnName": "content"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        976,
+        464
+      ],
+      "id": "27ed862c-50a7-4c19-be18-ed1f2a604a54",
+      "name": "Kinesis Brain"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "respuesta-final",
+              "name": "respuesta_final",
+              "type": "string",
+              "value": "={{ $json.response.respuesta_usuario }}"
+            },
+            {
+              "id": "action-field",
+              "name": "action",
+              "type": "string",
+              "value": "={{ $json.response.action }}"
+            },
+            {
+              "id": "siguiente-paso",
+              "name": "siguiente_paso",
+              "type": "string",
+              "value": "={{ $json.response.siguiente_paso }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "232c82c0-d607-45ae-b3de-ac387df891cf",
+      "name": "Output: Conversacional",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1376,
+        304
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-18T18:09:01.927Z",
+      "createdAt": "2025-11-18T18:09:01.927Z",
+      "role": "workflow:owner",
+      "workflowId": "K06dAzup6BT9rZlZ",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-18T18:09:01.000Z",
+  "versionId": "7d47a043-fd29-4a65-9f02-053c98c7d91f"
+}
