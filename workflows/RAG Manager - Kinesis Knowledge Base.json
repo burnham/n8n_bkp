@@ -1,0 +1,517 @@
+{
+  "active": false,
+  "connections": {
+    "Delete Old File Records": {
+      "main": [
+        [
+          {
+            "node": "Split Text into Chunks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Text into Chunks": {
+      "main": [
+        [
+          {
+            "node": "Process Chunks in Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Chunks in Batches": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store": {
+      "main": [
+        [
+          {
+            "node": "Update sha256 y name File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nuevo file RAG": {
+      "main": [
+        [
+          {
+            "node": "Descarga file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descarga file": {
+      "main": [
+        [
+          {
+            "node": "Extracte contenido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extracte contenido": {
+      "main": [
+        [
+          {
+            "node": "Calcular Huela sha256 - Pyton",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Hash in RAG": {
+      "main": [
+        [
+          {
+            "node": "¿Existe huella en RAG?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Existe huella en RAG?": {
+      "main": [
+        [
+          {
+            "node": "Notify File Already Exists",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Delete Old File Records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calcular Huela sha256 - Pyton": {
+      "main": [
+        [
+          {
+            "node": "Find Hash in RAG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update sha256 y name File": {
+      "main": [
+        [
+          {
+            "node": "Notify RAG Updated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-18T18:09:20.093Z",
+  "id": "bDsmXVMpqw3QdMKz",
+  "isArchived": false,
+  "meta": null,
+  "name": "RAG Manager - Kinesis Knowledge Base",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "DELETE FROM rag_documents WHERE name_file = $1",
+        "options": {
+          "queryReplacement": "={{ $('Descarga file').item.json.name }}"
+        }
+      },
+      "id": "15f5cbf7-3a49-4c3e-aa84-d93a407f59ff",
+      "name": "Delete Old File Records",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -32,
+        432
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "9iRvr6cD7drCbVTk",
+          "name": "Postgres Supabase Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Configuración\nconst CHUNK_SIZE = 500;\nconst CHUNK_OVERLAP = 50;\nconst CHARS_PER_TOKEN = 4;\n\n// Obtener datos de nodos anteriores\nconst extractNode = $('Extracte contenido').first().json;\nconst downloadNode = $('Descarga file').first().json;\nconst hashNode = $('Calcular Huela sha256 - Pyton').first().json;\n\nconst content = extractNode.data;\nconst name_file = downloadNode.name;\nconst huella = hashNode.sha256;\n\nconst chunkSizeChars = CHUNK_SIZE * CHARS_PER_TOKEN;\nconst overlapChars = CHUNK_OVERLAP * CHARS_PER_TOKEN;\n\nconst chunks = [];\nlet start = 0;\nlet chunkIndex = 0;\n\nwhile (start < content.length) {\n  const end = Math.min(start + chunkSizeChars, content.length);\n  const chunkText = content.substring(start, end).trim();\n  \n  if (chunkText.length > 0) {\n    chunks.push({\n      json: {\n        name_file: name_file,\n        huella: huella,\n        content: chunkText,\n        chunk_index: chunkIndex,\n        total_chunks: 0\n      }\n    });\n    chunkIndex++;\n  }\n  \n  start += chunkSizeChars - overlapChars;\n}\n\nchunks.forEach(chunk => {\n  chunk.json.total_chunks = chunks.length;\n});\n\nreturn chunks;"
+      },
+      "id": "1cd8ea51-55a1-4b69-af74-64f9a3b18718",
+      "name": "Split Text into Chunks",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        176,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 5,
+        "options": {}
+      },
+      "id": "1a48d7e0-3370-497e-9aad-4d2622f428f3",
+      "name": "Process Chunks in Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        400,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "kinesis.dance.studio@gmail.com",
+        "subject": "=✅ RAG Actualizado: {{ $('Descarga file').first().json.name }}",
+        "message": "=<h2>RAG Base de Conocimiento Actualizada</h2>\n\n<p><strong>Archivo procesado:</strong> {{ $('Descarga file').first().json.name }}</p>\n<p><strong>Hash SHA256:</strong> <code>{{ $('Calcular Huela sha256 - Pyton').first().json.sha256 }}</code></p>\n<p><strong>Total chunks generados:</strong> {{ $('Split Text into Chunks').first().json.total_chunks }}</p>\n<p><strong>Fecha:</strong> {{ $now.format('dd/MM/yyyy HH:mm:ss') }}</p>\n\n<hr>\n<p><em>Sistema ArIA - Kinesis Dance Center</em></p>",
+        "options": {}
+      },
+      "id": "ae92b2ac-da50-4fec-9c47-4d7fcef66dac",
+      "name": "Notify RAG Updated",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1104,
+        272
+      ],
+      "webhookId": "6827ab54-be67-4e9d-af3f-810baa3203f5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RACKunhqsGrQUqMd",
+          "name": "Gmail GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": "rag_documents",
+        "options": {
+          "columnNames": {
+            "values": {
+              "contentColumnName": "content"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.2,
+      "position": [
+        608,
+        288
+      ],
+      "id": "25c1e762-68df-456d-9660-6ffb01dbb92c",
+      "name": "Postgres PGVector Store",
+      "credentials": {
+        "postgres": {
+          "id": "9iRvr6cD7drCbVTk",
+          "name": "Postgres Supabase Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        544
+      ],
+      "id": "07f46d30-f93f-4113-8e22-000ffbd29169",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        640,
+        560
+      ],
+      "id": "a91927cb-d221-4577-86d2-c522c94f9623",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        560,
+        704
+      ],
+      "id": "bc045b2e-e153-4d4d-9f67-c396f806e90c",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1ypfcCDsjYBm5BkROF5RtymZ989NpTXMN",
+          "mode": "list",
+          "cachedResultName": "RAG",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1ypfcCDsjYBm5BkROF5RtymZ989NpTXMN"
+        },
+        "event": "fileCreated",
+        "options": {
+          "fileType": "all"
+        }
+      },
+      "id": "14b8b4ca-1fda-4d69-9ab8-605b033a1cbc",
+      "name": "Nuevo file RAG",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1040,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        },
+        "options": {}
+      },
+      "id": "8e759dc5-b70d-46c3-a43a-0a7db4ead01d",
+      "name": "Descarga file",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -896,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -736,
+        64
+      ],
+      "id": "85afc7e6-5f8b-4579-aa3c-7199107f3d15",
+      "name": "Extracte contenido"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT COUNT(*) as n FROM rag_documents WHERE huella = $1 LIMIT 1",
+        "options": {
+          "queryReplacement": "={{ $json.sha256 }}"
+        }
+      },
+      "id": "596b1ca1-c85e-408c-af3f-da58fdefa8a4",
+      "name": "Find Hash in RAG",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -416,
+        64
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "9iRvr6cD7drCbVTk",
+          "name": "Postgres Supabase Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "condition-1",
+              "leftValue": "={{ $json.n.toNumber() }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a770b6cd-7ab8-40f7-aeba-bc03b7a84afb",
+      "name": "¿Existe huella en RAG?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -256,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "import hashlib\n\n# n8n pasa los datos de entrada en la variable `items`\n# cada item tiene un diccionario con `json`\nresults = []\nfor item in items:\n    # obtenemos el texto extraído por el nodo anterior\n    texto = _input.first().json.data\n    \n    # generamos el hash SHA-256 en hexadecimal\n    sha256_hash = hashlib.sha256(texto.encode(\"utf-8\")).hexdigest()\n    \n    # devolvemos el resultado junto con los datos originales\n    results.append({\n        \"json\": {\n            **item[\"json\"],\n            \"sha256\": sha256_hash\n        }\n    })\n\nreturn results\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -576,
+        224
+      ],
+      "id": "fd8d7033-0003-4f9f-bd9a-9490252a79bd",
+      "name": "Calcular Huela sha256 - Pyton"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE rag_documents \nSET huella = $1, name_file = $2 \nWHERE id IN (\n  SELECT id FROM rag_documents \n  WHERE huella IS NULL \n  ORDER BY created_at DESC \n  LIMIT 200\n)",
+        "options": {
+          "queryReplacement": "=={{ $('Calcular Huela sha256 - Pyton').first().json.sha256 }},={{ $('Descarga file').first().json.name }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        912,
+        384
+      ],
+      "id": "412ba7f1-1ce7-4e80-953f-5d2334b567bf",
+      "name": "Update sha256 y name File",
+      "credentials": {
+        "postgres": {
+          "id": "9iRvr6cD7drCbVTk",
+          "name": "Postgres Supabase Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "matraket20482@gmail.com",
+        "subject": "=✅ {{ $('Descarga file').first().json.name }} ya existe",
+        "message": "=<h2>Carga en RAG parada</h2>\n\n<p><strong>Archivo procesado:</strong> {{ $('Descarga file').first().json.name }}</p>\n<p><strong>Hash SHA256:</strong> <code>{{ $('Calcular Huela sha256 - Pyton').first().json.sha256 }}</code></p>\n<p><strong>Fecha:</strong> {{ $now.format('dd/MM/yyyy HH:mm:ss') }}</p>\n\n<p>La huella (Hash sha256) resultane del contenido del archivo ya existe en la base de datos vectorial. Es por este motivo que se ha parado la carga del archivo</p>\n\n<p>Si este archivo se modifica en un futuro su huella variará y sustituira su contenido actual.</p>\n\n<hr>\n\n<p><em>Sistema ArIA - Kinesis Dance Center</em></p>",
+        "options": {}
+      },
+      "id": "247af49d-b331-4fb5-87bf-b2e712de9778",
+      "name": "Notify File Already Exists",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "6827ab54-be67-4e9d-af3f-810baa3203f5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RACKunhqsGrQUqMd",
+          "name": "Gmail GB account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-18T18:09:20.098Z",
+      "createdAt": "2025-11-18T18:09:20.098Z",
+      "role": "workflow:owner",
+      "workflowId": "bDsmXVMpqw3QdMKz",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-18T18:10:29.000Z",
+  "versionId": "c9f28ed0-b3ee-4703-a5e2-c355e14e7320"
+}
