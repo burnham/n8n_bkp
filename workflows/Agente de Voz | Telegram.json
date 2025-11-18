@@ -250,7 +250,9 @@
   "createdAt": "2025-11-14T07:57:20.424Z",
   "id": "RjvnFu70dUPvQ3JK",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Agente de Voz | Telegram",
   "nodes": [
     {
@@ -378,8 +380,8 @@
       "webhookId": "d5f1c18f-b21f-40c9-bb1e-16ea4bc38407",
       "credentials": {
         "telegramApi": {
-          "id": "cljhbY7TT13yiHcw",
-          "name": "Telegram BurnhamBot"
+          "id": "hWICK7kk8Fhr7WNm",
+          "name": "Telegram Burnhams Voice Assistant"
         }
       }
     },
@@ -413,8 +415,8 @@
       "webhookId": "14ff995a-f5c1-47f0-b40b-6dd08a8a1230",
       "credentials": {
         "telegramApi": {
-          "id": "cljhbY7TT13yiHcw",
-          "name": "Telegram BurnhamBot"
+          "id": "hWICK7kk8Fhr7WNm",
+          "name": "Telegram Burnhams Voice Assistant"
         }
       }
     },
@@ -435,8 +437,8 @@
       "webhookId": "14ff995a-f5c1-47f0-b40b-6dd08a8a1230",
       "credentials": {
         "telegramApi": {
-          "id": "cljhbY7TT13yiHcw",
-          "name": "Telegram BurnhamBot"
+          "id": "hWICK7kk8Fhr7WNm",
+          "name": "Telegram Burnhams Voice Assistant"
         }
       }
     },
@@ -451,12 +453,18 @@
       "position": [
         -704,
         784
-      ]
+      ],
+      "credentials": {
+        "serpApi": {
+          "id": "JzQVACuEch96ClRe",
+          "name": "SerpAPI account"
+        }
+      }
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "https://api.elevenlabs.io/v1/text-to-speech/BjEROETieA12i9gT25f7",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/2VUqK4PEdMj16L6xTN4J",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
@@ -471,7 +479,13 @@
       "position": [
         288,
         224
-      ]
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "kMnn4cMVv5sELhHP",
+          "name": "ELEVENLABS Mighty Hyena Telegram Burnhams Voice Assistant"
+        }
+      }
     },
     {
       "parameters": {
@@ -518,7 +532,13 @@
         784
       ],
       "id": "a2cc1ef8-a920-4ed4-9f2b-b33245908e82",
-      "name": "Memoria"
+      "name": "Memoria",
+      "credentials": {
+        "postgres": {
+          "id": "9iRvr6cD7drCbVTk",
+          "name": "Postgres Supabase Credentials"
+        }
+      }
     },
     {
       "parameters": {
@@ -541,9 +561,10 @@
         "description": "Utiliza esta herrmienta para acciones de Gmail",
         "workflowId": {
           "__rl": true,
-          "value": "NOLMTAtN2UQ08A1E",
+          "value": "hun2fDw5x3DxzdyG",
           "mode": "list",
-          "cachedResultName": "Sub Agente Gmail"
+          "cachedResultUrl": "/workflow/hun2fDw5x3DxzdyG",
+          "cachedResultName": "Sub Tele Agente Gmail"
         },
         "workflowInputs": {
           "mappingMode": "defineBelow",
@@ -569,9 +590,10 @@
         "description": "Utiliza esta herrmienta para acciones de Calendar",
         "workflowId": {
           "__rl": true,
-          "value": "564NDyTrCZOD6ZW9",
+          "value": "JqddI272aLRpLJnK",
           "mode": "list",
-          "cachedResultName": "Sub Agente Calendar"
+          "cachedResultUrl": "/workflow/JqddI272aLRpLJnK",
+          "cachedResultName": "Sub Tele Agente Calendar"
         },
         "workflowInputs": {
           "mappingMode": "defineBelow",
@@ -597,9 +619,10 @@
         "description": "Utiliza esta herrmienta para acciones de Base de Datos",
         "workflowId": {
           "__rl": true,
-          "value": "x0D7Lgzc6vazD1ry",
+          "value": "kHstE1Xn8wZlaTOj",
           "mode": "list",
-          "cachedResultName": "Sub Agente Base Datos"
+          "cachedResultName": "My Sub-Workflow 1",
+          "cachedResultUrl": "/workflow/kHstE1Xn8wZlaTOj"
         },
         "workflowInputs": {
           "mappingMode": "defineBelow",
@@ -676,8 +699,8 @@
       "webhookId": "aa9d0a26-9794-4748-bb23-b6ce94ffa3dd",
       "credentials": {
         "telegramApi": {
-          "id": "cljhbY7TT13yiHcw",
-          "name": "Telegram BurnhamBot"
+          "id": "hWICK7kk8Fhr7WNm",
+          "name": "Telegram Burnhams Voice Assistant"
         }
       }
     },
@@ -1003,7 +1026,7 @@
       "name": "🟤 Pau Berenguer"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-11-17T19:03:51.000Z",
-  "versionId": "f282bf34-8cfc-4f6f-961c-2f2250eb3883"
+  "triggerCount": 1,
+  "updatedAt": "2025-11-18T09:13:23.000Z",
+  "versionId": "3b28e595-65c9-4ed4-8d06-8be43cb41f07"
 }
