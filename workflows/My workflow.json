@@ -1,45 +1,187 @@
 {
-  "active": true,
-  "connections": {},
-  "createdAt": "2025-10-30T18:29:39.621Z",
-  "id": "HhK8tvvWHvipBj9r",
+  "active": false,
+  "connections": {
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-18T01:54:53.342Z",
+  "id": "owenNIxhgJERIDI1",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "My workflow",
   "nodes": [
     {
       "parameters": {
-        "path": "FB_MSG",
-        "responseMode": "responseNode",
+        "updates": [
+          "messages"
+        ],
         "options": {}
       },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
       "position": [
         0,
         0
       ],
-      "id": "468b39f6-b5d7-4dba-9a98-990ba53b55ff",
-      "name": "Webhook",
-      "webhookId": "a815cb12-7ae7-4aa0-b9c2-e69cec10bec7"
+      "id": "667a0b58-7acd-412a-a926-e920b5b78743",
+      "name": "WhatsApp Trigger",
+      "webhookId": "e764deed-2064-4392-90e0-65a191311b89",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "x6Wq4wWeCpXjUosb",
+          "name": "WhatsApp OAuth ACC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.messages[0].text.body }}",
+        "options": {
+          "systemMessage": "You are a helpful assistant"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "57460470-18a4-47c6-be36-1fe7c66079cc",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        192
+      ],
+      "id": "c3695630-1866-468f-9899-fb75d4823913",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "899561879905457",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        0
+      ],
+      "id": "98f46b6e-bdfb-423a-9665-c1d5ed79325a",
+      "name": "Send message",
+      "webhookId": "706b353b-3c0f-4d20-9903-019776f19009",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "WhatsApp Trigger": [
+      {
+        "json": {
+          "messaging_product": "whatsapp",
+          "metadata": {
+            "display_phone_number": "4367763018249",
+            "phone_number_id": "899561879905457"
+          },
+          "contacts": [
+            {
+              "profile": {
+                "name": "Georgios Burnham H."
+              },
+              "wa_id": "4367762491875"
+            }
+          ],
+          "messages": [
+            {
+              "from": "4367762491875",
+              "id": "wamid.HBgNNDM2Nzc2MjQ5MTg3NRUCABIYIEFDNTBEOTQxQ0QyNzRBRDI1MDA2ODY3ODY2QkZCMUJFAA==",
+              "timestamp": "1763430979",
+              "text": {
+                "body": "Hola"
+              },
+              "type": "text"
+            }
+          ],
+          "field": "messages"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "shared": [
     {
-      "updatedAt": "2025-10-30T18:29:39.629Z",
-      "createdAt": "2025-10-30T18:29:39.629Z",
+      "updatedAt": "2025-11-18T01:54:53.345Z",
+      "createdAt": "2025-11-18T01:54:53.345Z",
       "role": "workflow:owner",
-      "workflowId": "HhK8tvvWHvipBj9r",
+      "workflowId": "owenNIxhgJERIDI1",
       "projectId": "epI1cymQzCzDlQMH"
     }
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2025-10-30T19:03:22.000Z",
-  "versionId": "aafcd312-9ddd-4bfa-8867-b04cacc1756e"
+  "triggerCount": 0,
+  "updatedAt": "2025-11-18T02:01:02.000Z",
+  "versionId": "fe4fe988-addd-4686-98f4-2942fd6ca03e"
 }
