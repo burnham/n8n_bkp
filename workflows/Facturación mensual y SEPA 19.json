@@ -1,0 +1,751 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Search records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search records": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Find Facturas a Remesar",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Find Factura Mes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Alumno": {
+      "main": [
+        [
+          {
+            "node": "Find Grupo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Grupo": {
+      "main": [
+        [
+          {
+            "node": "Find Curso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Curso": {
+      "main": [
+        [
+          {
+            "node": "Buscar Serie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a record": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Serie": {
+      "main": [
+        [
+          {
+            "node": "Update record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Find Alumno",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Factura Mes": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update record": {
+      "main": [
+        [
+          {
+            "node": "Create a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Facturas a Remesar": {
+      "main": [
+        [
+          {
+            "node": "Convert to XML SEPA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to XML SEPA": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Upload to Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-18T18:08:38.331Z",
+  "id": "AOuFq8rBKq1GGxar",
+  "isArchived": false,
+  "meta": null,
+  "name": "Facturación mensual y SEPA 19",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        16
+      ],
+      "id": "4cf7b64b-b077-4009-9642-7f85e69dae97",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblqyYdv3ACbgI9eU",
+          "mode": "list",
+          "cachedResultName": "Inscripciones_Cursos",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tblqyYdv3ACbgI9eU"
+        },
+        "filterByFormula": "Estado='Activa'",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -32,
+        112
+      ],
+      "id": "f0fced50-38af-423d-b48e-4fbaa6e81398",
+      "name": "Search records"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        192,
+        112
+      ],
+      "id": "bf2de695-f669-4d8a-b74a-54e6c80c5884",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblKxy28hIlo8ZjrT",
+          "mode": "list",
+          "cachedResultName": "Facturas",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tblKxy28hIlo8ZjrT"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Inscripcion": "={{ [ $('Loop Over Items').item.json.id ] }}",
+            "Importe": "={{ $('Find Curso').item.json.Precio_Mensual }}",
+            "Cliente": "={{ $('Find Alumno').item.json[\"Nombre Completo\"] }}",
+            "Concepto": "=Cuota mensual {{ $('Find Curso').item.json.Nombre }}",
+            "Fecha_Factura": "={{ new Date().toISOString() }}",
+            "Iva": 0.21,
+            "Num_Factura": "={{ $('Buscar Serie').item.json.Serie }}/{{ String($('Buscar Serie').item.json.Contador).padStart($('Buscar Serie').item.json.Relleno, '0') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Num_Factura",
+              "displayName": "Num_Factura",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Fecha_Factura",
+              "displayName": "Fecha_Factura",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Inscripcion",
+              "displayName": "Inscripcion",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Cliente",
+              "displayName": "Cliente",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Concepto",
+              "displayName": "Concepto",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Importe",
+              "displayName": "Importe",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Iva",
+              "displayName": "Iva",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Cuota",
+              "displayName": "Cuota",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Total factura",
+              "displayName": "Total factura",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        560,
+        192
+      ],
+      "id": "eb8ba575-d911-4eae-915f-cf3e0581f650",
+      "name": "Create a record"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbls72l7ENatHIuwj",
+          "mode": "list",
+          "cachedResultName": "Alumnos",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tbls72l7ENatHIuwj"
+        },
+        "id": "={{ $('Loop Over Items').item.json.Alumno }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        608
+      ],
+      "id": "dd5534a6-9839-4772-942b-fabce5bb553c",
+      "name": "Find Alumno"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblh7TCYsUf6mBdEr",
+          "mode": "list",
+          "cachedResultName": "Cursos",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tblh7TCYsUf6mBdEr"
+        },
+        "id": "={{ $('Loop Over Items').item.json.Grupo }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        448
+      ],
+      "id": "0d9b565c-4739-4d50-9619-231b10e76c42",
+      "name": "Find Grupo"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblh7TCYsUf6mBdEr",
+          "mode": "list",
+          "cachedResultName": "Cursos",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tblh7TCYsUf6mBdEr"
+        },
+        "id": "={{ $json.Curso }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        368,
+        576
+      ],
+      "id": "0fdcaca1-27c8-40fd-9e7c-3b84af2c1824",
+      "name": "Find Curso"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblOlLwtqt03okJeD",
+          "mode": "list",
+          "cachedResultName": "Series_Factura",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tblOlLwtqt03okJeD"
+        },
+        "filterByFormula": "Serie='F25'",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        560,
+        576
+      ],
+      "id": "96cae426-bef0-4845-bd09-45b4bb5173e3",
+      "name": "Buscar Serie"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblOlLwtqt03okJeD",
+          "mode": "list",
+          "cachedResultName": "Series_Factura",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tblOlLwtqt03okJeD"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}",
+            "Contador": "={{ $json.Contador + 1 }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Serie",
+              "displayName": "Serie",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Contador",
+              "displayName": "Contador",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Relleno",
+              "displayName": "Relleno",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        752,
+        352
+      ],
+      "id": "77888362-ee70-45cb-8d31-f67591f52333",
+      "name": "Update record"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "abc340db-b4e0-4aee-a3c0-1f0cdd94fceb",
+              "leftValue": "={{ $items().filter(item => item.json.id !== undefined).length > 0 }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -176,
+        528
+      ],
+      "id": "5332232b-7bf3-485a-8246-adfef92bbaf2",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblKxy28hIlo8ZjrT",
+          "mode": "list",
+          "cachedResultName": "Facturas",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tblKxy28hIlo8ZjrT"
+        },
+        "filterByFormula": "=AND(\n  {Inscripcion} = \"{{ $json.ID_Inscripcion }}\",\n  DATETIME_FORMAT({Fecha_Factura}, 'MM') = '{{ String(new Date().getMonth() + 1).padStart(2, '0') }}'\n)",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -208,
+        288
+      ],
+      "id": "990601d2-b673-4ff1-949e-0b1f4b85af42",
+      "name": "Find Factura Mes",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app4UrL5gTQL70Ttu",
+          "mode": "list",
+          "cachedResultName": "Kinesis Dance Studio",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblKxy28hIlo8ZjrT",
+          "mode": "list",
+          "cachedResultName": "Facturas",
+          "cachedResultUrl": "https://airtable.com/app4UrL5gTQL70Ttu/tblKxy28hIlo8ZjrT"
+        },
+        "filterByFormula": "=AND(\n  {Remesada} = \"Pendiente\",\n  DATETIME_FORMAT({Fecha_Factura}, 'MM') = '{{ String(new Date().getMonth() + 1).padStart(2, '0') }}'\n)",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        464,
+        -16
+      ],
+      "id": "8bf3a177-0f53-4472-ac55-4c14518537f0",
+      "name": "Find Facturas a Remesar",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "from datetime import datetime\nimport xml.etree.ElementTree as ET\n\n# Obtener facturas del input\nfacturas = [item['json'] for item in _input.all()]\n\n# Crear estructura XML SEPA pain.008.001.02\nroot = ET.Element('Document', xmlns='urn:iso:std:iso:20022:tech:xsd:pain.008.001.02')\ncstmr_drct_dbt_initn = ET.SubElement(root, 'CstmrDrctDbtInitn')\n\n# Group Header\ngrp_hdr = ET.SubElement(cstmr_drct_dbt_initn, 'GrpHdr')\nET.SubElement(grp_hdr, 'MsgId').text = f\"KINESIS-{datetime.now().strftime('%Y%m%d-%H%M%S')}\"\nET.SubElement(grp_hdr, 'CreDtTm').text = datetime.now().isoformat()\nET.SubElement(grp_hdr, 'NbOfTxs').text = str(len(facturas))\ntotal = sum(float(f.get('Total factura', 0) or 0) for f in facturas)\nET.SubElement(grp_hdr, 'CtrlSum').text = f\"{total:.2f}\"\n\n# Initiating Party\ninitg_pty = ET.SubElement(grp_hdr, 'InitgPty')\nET.SubElement(initg_pty, 'Nm').text = 'Kinesis Dance Studio'\n\n# Payment Information\npmt_inf = ET.SubElement(cstmr_drct_dbt_initn, 'PmtInf')\nET.SubElement(pmt_inf, 'PmtInfId').text = f\"PMT-{datetime.now().strftime('%Y%m')}\"\nET.SubElement(pmt_inf, 'PmtMtd').text = 'DD'\nET.SubElement(pmt_inf, 'NbOfTxs').text = str(len(facturas))\nET.SubElement(pmt_inf, 'CtrlSum').text = f\"{total:.2f}\"\n\n# Direct Debit Transaction Information (cada factura)\nfor factura in facturas:\n    drct_dbt_tx_inf = ET.SubElement(pmt_inf, 'DrctDbtTxInf')\n    \n    pmt_id = ET.SubElement(drct_dbt_tx_inf, 'PmtId')\n    ET.SubElement(pmt_id, 'EndToEndId').text = factura.get('Num_Factura', 'N/A')\n    \n    instd_amt = ET.SubElement(drct_dbt_tx_inf, 'InstdAmt', Ccy='EUR')\n    instd_amt.text = f\"{float(factura.get('Total factura', 0) or 0):.2f}\"\n    \n    dbtr = ET.SubElement(drct_dbt_tx_inf, 'Dbtr')\n    ET.SubElement(dbtr, 'Nm').text = factura.get('Cliente', 'N/A')\n\nxml_string = ET.tostring(root, encoding='unicode', method='xml')\n\nreturn [{'json': {'xml': xml_string, 'facturas_count': len(facturas), 'total_amount': total}}]"
+      },
+      "id": "16f1ed58-d7df-4447-a18a-c2b4c93a7308",
+      "name": "Convert to XML SEPA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        688,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "=data",
+        "name": "=sepa-19-{{ $now.format('yyyy-MM') }}.xml",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1s3AbNf5u4mpOjkvM7m3pgHuaGhwAJzrP"
+        },
+        "options": {}
+      },
+      "id": "228450a3-0308-43b3-ad50-4ae1dc60e2a0",
+      "name": "Upload to Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1152,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        192
+      ],
+      "id": "5c9dabc6-724a-48ed-af19-b8f4fadb835f",
+      "name": "Convert to File"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-18T18:08:38.336Z",
+      "createdAt": "2025-11-18T18:08:38.336Z",
+      "role": "workflow:owner",
+      "workflowId": "AOuFq8rBKq1GGxar",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-18T18:08:38.000Z",
+  "versionId": "9991b42c-37ba-45e6-9af9-f746943fd842"
+}
