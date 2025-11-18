@@ -217,7 +217,9 @@
   "createdAt": "2025-11-12T03:20:38.110Z",
   "id": "51pnvSfiXneV3Acs",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "ChatBot Multimodal WhatsApp",
   "nodes": [
     {
@@ -615,7 +617,13 @@
         432
       ],
       "webhookId": "1ae70665-9cf1-43a2-b0b3-370a5b3e46b8",
-      "typeVersion": 1
+      "typeVersion": 1,
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "x6Wq4wWeCpXjUosb",
+          "name": "WhatsApp OAuth ACC"
+        }
+      }
     },
     {
       "parameters": {
@@ -631,7 +639,13 @@
         352,
         80
       ],
-      "typeVersion": 4.2
+      "typeVersion": 4.2,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -647,7 +661,13 @@
         288,
         720
       ],
-      "typeVersion": 4.2
+      "typeVersion": 4.2,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -663,7 +683,13 @@
         80
       ],
       "typeVersion": 1,
-      "webhookId": "1096d33d-a46d-40ec-b7a7-d8b18f164626"
+      "webhookId": "1096d33d-a46d-40ec-b7a7-d8b18f164626",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -679,7 +705,13 @@
         720
       ],
       "typeVersion": 1,
-      "webhookId": "96221c60-5e7d-4b9e-be2c-19953c7f7f57"
+      "webhookId": "96221c60-5e7d-4b9e-be2c-19953c7f7f57",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -714,7 +746,13 @@
       ],
       "typeVersion": 1,
       "alwaysOutputData": false,
-      "webhookId": "b27dce7e-5af9-4900-b048-4da35a68be05"
+      "webhookId": "b27dce7e-5af9-4900-b048-4da35a68be05",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -878,6 +916,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-12T03:25:44.000Z",
-  "versionId": "1f865d8e-cc61-44f7-a465-9fdb823925a5"
+  "updatedAt": "2025-11-18T02:32:11.000Z",
+  "versionId": "06ad7937-783d-4cb1-8bdb-6471808c836a"
 }
