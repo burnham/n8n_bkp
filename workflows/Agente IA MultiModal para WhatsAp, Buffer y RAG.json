@@ -662,7 +662,13 @@
         -864,
         528
       ],
-      "typeVersion": 1.5
+      "typeVersion": 1.5,
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
     },
     {
       "parameters": {
@@ -732,7 +738,13 @@
         -1056,
         528
       ],
-      "typeVersion": 4.2
+      "typeVersion": 4.2,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -748,7 +760,13 @@
         -1056,
         928
       ],
-      "typeVersion": 4.2
+      "typeVersion": 4.2,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -880,7 +898,13 @@
         1120
       ],
       "id": "d6eb940a-a676-49b9-9bfe-ad9236424f9e",
-      "name": "Embeddings"
+      "name": "Embeddings",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
     },
     {
       "parameters": {
@@ -918,7 +942,13 @@
         -1056,
         736
       ],
-      "typeVersion": 4.2
+      "typeVersion": 4.2,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "TYfaJ35W59tKsMGL",
+          "name": "WhatsApp account"
+        }
+      }
     },
     {
       "parameters": {
@@ -1023,7 +1053,13 @@
         736
       ],
       "id": "ed6b8838-b68d-47f9-92a1-2b9fbd1dda31",
-      "name": "Analizar Video"
+      "name": "Analizar Video",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "3EyDEi6TLF6i554X",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
     },
     {
       "parameters": {
@@ -1037,7 +1073,13 @@
         672
       ],
       "id": "435f80ff-5e93-4004-b499-79eee7499c6c",
-      "name": "GPT #2"
+      "name": "GPT #2",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
     },
     {
       "parameters": {
@@ -1628,7 +1670,13 @@
         1136
       ],
       "id": "8ad772d3-3b0f-4e49-aab4-fef271bddbdc",
-      "name": "GPT"
+      "name": "GPT",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
     },
     {
       "parameters": {
@@ -1687,7 +1735,13 @@
         1584
       ],
       "id": "8fe0543d-983e-445a-8e5d-a57e427a35ee",
-      "name": "Embeddings #2"
+      "name": "Embeddings #2",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
     },
     {
       "parameters": {
@@ -1844,6 +1898,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-18T06:36:43.000Z",
-  "versionId": "119c31d2-cccc-49f6-bfb5-bec7e5d4dc86"
+  "updatedAt": "2025-11-19T22:56:12.000Z",
+  "versionId": "351f5e31-52f6-4007-b1ba-9a65a1a6c51c"
 }
