@@ -1,0 +1,689 @@
+{
+  "active": false,
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "OBTENER INFO DE CITA ELIMINADA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "MANDAR RECORDATORIO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OBTENER INFO DE CITA ELIMINADA": {
+      "main": [
+        [
+          {
+            "node": "QUITAR RECORDATORIO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Mandar mensaje1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mandar mensaje1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-19T22:46:47.285Z",
+  "id": "G2TKW6OPuE6lKMay",
+  "isArchived": false,
+  "meta": null,
+  "name": "Inmobiliaria recordatorios",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1v8Zc9py-6-9z2JzOzKxlU2d-HMc77QXbnNDJLP578Ss/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1v8Zc9py-6-9z2JzOzKxlU2d-HMc77QXbnNDJLP578Ss/edit#gid=0"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2240,
+        256
+      ],
+      "id": "86937375-5b50-43fd-8afb-22d1ef3a77e3",
+      "name": "Google Sheets Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Busca en todas las claves del item un valor que parezca \"fecha + hora\"\nfunction findDateTimeField(obj) {\n  const re = /(\\d{2})[\\/-](\\d{2})[\\/-](\\d{2,4}).*?(\\d{1,2}):(\\d{2})/; // dd-mm-yy/yy.. HH:MM\n  for (const [k, v] of Object.entries(obj)) {\n    if (typeof v === 'string') {\n      const text = v.normalize('NFKC').trim().replace(/[–—]/g, \"-\");\n      const m = text.match(re);\n      if (m) return { key: k, text, match: m };\n    }\n  }\n  return null;\n}\n\nconst hit = findDateTimeField($json);\nif (!hit) {\n  // Útil para depurar cuáles claves tienes realmente\n  throw new Error(\n    `No se encontró un campo con fecha/hora en el item. Claves: ${Object.keys($json).join(\", \")}`\n  );\n}\n\nlet [, dd, mm, yy, HH, MM] = hit.match;\n\n// Año a 4 dígitos\nconst year = yy.length === 2 ? 2000 + parseInt(yy, 10) : parseInt(yy, 10);\n\n// Construye la fecha/hora de INICIO (en TZ del servidor n8n)\nconst start = new Date(\n  year,\n  parseInt(mm, 10) - 1,\n  parseInt(dd, 10),\n  parseInt(HH, 10),\n  parseInt(MM, 10),\n  0,\n  0\n);\n\n// Recordatorio: 1 hora antes\nconst reminder = new Date(start.getTime() - 60 * 60 * 1000);\n\n// (Opcional) si quieres también un label local legible:\nfunction pad(n){ return String(n).padStart(2, \"0\"); }\nconst localLabel = `${start.getFullYear()}-${pad(start.getMonth()+1)}-${pad(start.getDate())} ${pad(start.getHours())}:${pad(start.getMinutes())}`;\n\nreturn {\n  campo_detectado: hit.key,\n  valor_original: hit.text,\n  start_iso: start.toISOString(),\n  reminder_iso: reminder.toISOString(),\n  start_local_label: localLabel\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2032,
+        256
+      ],
+      "id": "99f97843-90f3-48ae-8aaa-65d469bfdf2c",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://makewhatsapp-evolution-api.1takfl.easypanel.host/message/sendText/hector\n",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "DC64CCC7469D-4E50-BF80-3A2AE8436DE0"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Google Sheets Trigger1').item.json['Numero celular'] }}"
+            },
+            {
+              "name": "text",
+              "value": "=Hola! {{ $('Google Sheets Trigger').item.json.Nombre_Cliente }}\nRecuerda que tu cita es dentro de una hora\nCualquier imprevisto o duda te pido que lo comuniques conmigo, nos vemos pronto"
+            },
+            {
+              "name": "delay",
+              "value": "={{ 1000 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        368,
+        -16
+      ],
+      "id": "777bd5d4-675f-46d7-abf3-66ee88798dba",
+      "name": "MANDAR RECORDATORIO"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      executionId: $execution.id\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        -16
+      ],
+      "id": "b9730873-7471-4ee2-a5a5-0d62ac9ff826",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "=https://docs.google.com/spreadsheets/d/1v8Zc9py-6-9z2JzOzKxlU2d-HMc77QXbnNDJLP578Ss/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1v8Zc9py-6-9z2JzOzKxlU2d-HMc77QXbnNDJLP578Ss/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_CITA ": "={{ $('Google Sheets Trigger').item.json['ID_CITA '] }}",
+            "Execution_ID": "={{ $json.executionId }}"
+          },
+          "matchingColumns": [
+            "ID_CITA "
+          ],
+          "schema": [
+            {
+              "id": "ID_CITA ",
+              "displayName": "ID_CITA ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre_Cliente",
+              "displayName": "Nombre_Cliente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Numero_Cliente ",
+              "displayName": "Numero_Cliente ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ID_Propiedad",
+              "displayName": "ID_Propiedad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre_Propiedad",
+              "displayName": "Nombre_Propiedad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre_Ejecutivo",
+              "displayName": "Nombre_Ejecutivo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ID_ejecutivo",
+              "displayName": "ID_ejecutivo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Horario y Día ",
+              "displayName": "Horario y Día ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Estatus",
+              "displayName": "Estatus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Execution_ID",
+              "displayName": "Execution_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -16,
+        -16
+      ],
+      "id": "d5e3c206-0253-4147-b669-9a517a0ae20d",
+      "name": "Append or update row in sheet"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Google Sheets Trigger').item.json.Estatus }}",
+                    "rightValue": "agendado",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "0a06b0e6-720a-41b3-9810-40ec1737ba60"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Agendado"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "02d80855-4ce5-4536-b6aa-7e92575a2b94",
+                    "leftValue": "={{ $('Google Sheets Trigger').item.json.Estatus }}",
+                    "rightValue": "eliminado",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Eliminado"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -768,
+        256
+      ],
+      "id": "79d4e2c8-0f7d-493c-ad8d-15be399fda2c",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resume": "specificTime",
+        "dateTime": "={{ $('Edit Fields').item.json.reminder_iso }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        192,
+        -16
+      ],
+      "id": "c1ef0317-0747-441f-8baa-aa85b9e92714",
+      "name": "Wait",
+      "webhookId": "d3819dc0-5754-4ff4-98cb-ac11b26eb5ab"
+    },
+    {
+      "parameters": {
+        "resource": "execution",
+        "operation": "delete",
+        "executionId": "={{ $json.Execution_ID }}",
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        48,
+        368
+      ],
+      "id": "9c4de67f-2580-4a5d-be77-f6e5ec023ae8",
+      "name": "QUITAR RECORDATORIO"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "=https://docs.google.com/spreadsheets/d/1v8Zc9py-6-9z2JzOzKxlU2d-HMc77QXbnNDJLP578Ss/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1v8Zc9py-6-9z2JzOzKxlU2d-HMc77QXbnNDJLP578Ss/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "ID_CITA ",
+              "lookupValue": "={{ $('Google Sheets Trigger').item.json['ID_CITA '] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -192,
+        368
+      ],
+      "id": "1d2de128-903b-4947-93d4-86618ac3fb0c",
+      "name": "OBTENER INFO DE CITA ELIMINADA"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "98142e7f-e1e7-40e3-a0b8-a0334e0a3958",
+              "name": "valor_original",
+              "value": "={{ $json.valor_original }}",
+              "type": "string"
+            },
+            {
+              "id": "4a3e1ada-4632-44ea-bb77-1305297edfbc",
+              "name": "start_iso",
+              "value": "={{ $json.start_iso }}",
+              "type": "string"
+            },
+            {
+              "id": "556d0df0-41d2-42d0-a674-4e1e1a14d98d",
+              "name": "reminder_iso",
+              "value": "={{ $json.reminder_iso }}",
+              "type": "string"
+            },
+            {
+              "id": "9c77f1a3-2403-4c21-95fd-da33458cd884",
+              "name": "start_local_label",
+              "value": "={{ $json.start_local_label }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1792,
+        256
+      ],
+      "id": "2e6d31b3-6cd6-4925-9440-9a17dbee90c9",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/13YhkYoqpGaGRWRkDHHT1XS83hk8zMtlGnVNzUiWnxO0/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13YhkYoqpGaGRWRkDHHT1XS83hk8zMtlGnVNzUiWnxO0/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "id_vendedor",
+              "lookupValue": "={{ $('Google Sheets Trigger').item.json.ID_ejecutivo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1600,
+        256
+      ],
+      "id": "b9235f53-3637-4481-9872-2b2b10d82687",
+      "name": "Get row(s) in sheet"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "059d046c-db05-4845-9524-25c33083d398",
+              "name": "numero",
+              "value": "=521{{ $json.numero }}@s.whatsapp.net",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1312,
+        256
+      ],
+      "id": "5a92ccec-26c2-4f04-8258-e419f8231e0c",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://makewhatsapp-evolution-api.1takfl.easypanel.host/message/sendText/chatbotia",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "=8737652B1052-4BC5-ADC1-4EDC46B8B60A"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $json.numero }}"
+            },
+            {
+              "name": "text",
+              "value": "=ESTATUS: {{ $('Google Sheets Trigger').item.json.Estatus }}\nCliente: {{ $('Google Sheets Trigger').item.json.Nombre_Cliente }}\nPropiedad: {{ $('Google Sheets Trigger').item.json.Nombre_Propiedad }}\nNúmero cliente: {{ $('Google Sheets Trigger').item.json['Numero_Cliente '] }}\nHora y día: {{ $('Google Sheets Trigger').item.json['Horario y Día '] }}"
+            },
+            {
+              "name": "delay",
+              "value": "={{ 1000 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1072,
+        256
+      ],
+      "id": "b53e3753-8e5c-499a-905f-10c0f80cf113",
+      "name": "Mandar mensaje1"
+    }
+  ],
+  "pinData": {
+    "Google Sheets Trigger": [
+      {
+        "json": {
+          "ID_CITA ": "87hkoh0ekl4e4sbk20nmbbmji8",
+          "Nombre_Cliente": "Hector Rubin Gonzalez",
+          "Numero_Cliente ": 5640036624,
+          "ID_Propiedad": "P001",
+          "Nombre_Propiedad": "Casa en Chapalita",
+          "Nombre_Ejecutivo": "Arturo Rubin",
+          "ID_ejecutivo": 2,
+          "Horario y Día ": "05-09-25, 15:00 - 16:00",
+          "Estatus": "eliminado"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-19T22:46:47.289Z",
+      "createdAt": "2025-11-19T22:46:47.289Z",
+      "role": "workflow:owner",
+      "workflowId": "G2TKW6OPuE6lKMay",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-19T22:36:45.524Z",
+      "createdAt": "2025-11-19T22:36:45.524Z",
+      "id": "oOBV7K2KRexZs41J",
+      "name": "🟠 Rubin Autom. AI"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-19T22:46:47.000Z",
+  "versionId": "8f0d2a3e-f4fd-45e1-b76c-f321e33fac8f"
+}
