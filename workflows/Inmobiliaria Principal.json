@@ -1,17 +1,6 @@
 {
   "active": false,
   "connections": {
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "AI Agent": {
       "main": [
         [
@@ -56,7 +45,8 @@
             "type": "main",
             "index": 0
           }
-        ]
+        ],
+        []
       ]
     },
     "Get Audio": {
@@ -246,7 +236,7 @@
         ]
       ]
     },
-    "SHEETS AGENDAR": {
+    "UBICACION": {
       "ai_tool": [
         [
           {
@@ -257,12 +247,23 @@
         ]
       ]
     },
-    "UBICACION": {
+    "AGENDAR CITA": {
       "ai_tool": [
         [
           {
             "node": "AI Agent",
             "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook to Evolution API": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
             "index": 0
           }
         ]
@@ -277,22 +278,6 @@
   },
   "name": "Inmobiliaria Principal",
   "nodes": [
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "chatbot-ia",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -784,
-        48
-      ],
-      "id": "0eddfaa6-b7b4-4fda-a1b7-48730c353a7c",
-      "name": "Webhook",
-      "webhookId": "e33ef0d2-b6d9-483d-a180-2f45d20b3db1"
-    },
     {
       "parameters": {
         "promptType": "define",
@@ -323,8 +308,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        1248,
-        240
+        1328,
+        -112
       ],
       "id": "074888e0-85f7-4883-a6ad-d0ed2cadc36c",
       "name": "OpenAI Chat Model",
@@ -791,7 +776,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1616,
+        1744,
         16
       ],
       "id": "f1c52506-b323-4034-8f55-a3dcc5780b3b",
@@ -819,8 +804,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
       "position": [
-        1408,
-        368
+        1440,
+        -112
       ],
       "id": "add96217-a169-4be4-b532-fedccb788ca2",
       "name": "Postgres Chat Memory",
@@ -836,8 +821,10 @@
         "description": "=Nombre: fotos\nDescripción: Manda fotos de la propiedad al usuario\n\nCómo activarla:\n- Si el usuario pide fotos o imágenes de un inmueble, llama a esta herramienta.\n- Usa el `Id` si está disponible (ej. \"P012\").\n- Si no se menciona ID, usa filtros de búsqueda (zona, presupuesto, recámaras) para elegir el inmueble más probable.\n",
         "workflowId": {
           "__rl": true,
-          "value": "GpNUjrsuTbqWVrRe",
-          "mode": "id"
+          "value": "2K2cjhpRMSAKa7Xu",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/2K2cjhpRMSAKa7Xu",
+          "cachedResultName": "Inmobiliaria Imagenes"
         },
         "workflowInputs": {
           "mappingMode": "defineBelow",
@@ -875,8 +862,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2.2,
       "position": [
-        1584,
-        384
+        1856,
+        320
       ],
       "id": "00cb0f9a-613a-428c-a41e-2c54b2bc6bf9",
       "name": "IMAGENES"
@@ -885,23 +872,25 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1V3My7VgGiwj0Hl2MvmQkw3PLrEOrHqOYQqK-px231KY/edit?gid=123187836#gid=123187836",
-          "mode": "url"
+          "value": "1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8",
+          "mode": "list",
+          "cachedResultName": "INMOBILIARIA DDBB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
-          "value": 123187836,
+          "value": "gid=0",
           "mode": "list",
-          "cachedResultName": "Ejemplo_de_50_propiedades_inmobiliarias",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1V3My7VgGiwj0Hl2MvmQkw3PLrEOrHqOYQqK-px231KY/edit#gid=123187836"
+          "cachedResultName": "Propiedades",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit#gid=0"
         },
         "options": {}
       },
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        1776,
-        352
+        1552,
+        304
       ],
       "id": "a11b56f1-5b7b-4482-b649-feed4f5e200f",
       "name": "DB Propiedades",
@@ -918,23 +907,25 @@
         "toolDescription": "Utiliza esta herramienta para acceder a la db de los agentes de la inmobiliaria",
         "documentId": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/13YhkYoqpGaGRWRkDHHT1XS83hk8zMtlGnVNzUiWnxO0/edit?gid=0#gid=0",
-          "mode": "url"
+          "value": "1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8",
+          "mode": "list",
+          "cachedResultName": "INMOBILIARIA DDBB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
-          "value": "gid=0",
+          "value": 809038144,
           "mode": "list",
-          "cachedResultName": "Hoja 1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13YhkYoqpGaGRWRkDHHT1XS83hk8zMtlGnVNzUiWnxO0/edit#gid=0"
+          "cachedResultName": "Ejecutivos de ventas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit#gid=809038144"
         },
         "options": {}
       },
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        1488,
-        576
+        1312,
+        304
       ],
       "id": "a32c0c1d-863d-47cb-bc46-6db289be7217",
       "name": "AGENTES",
@@ -964,8 +955,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        1232,
-        480
+        1168,
+        304
       ],
       "id": "3a1f90ba-2ef5-41b9-b111-09120268acd5",
       "name": "AGENDAR",
@@ -978,32 +969,81 @@
     },
     {
       "parameters": {
+        "description": "Utiliza esta herramienta cuando tengas que mandar la ubicacion de la propiedad al usuario",
+        "workflowId": {
+          "__rl": true,
+          "value": "vIyDWKEmEFsErT9M",
+          "mode": "list",
+          "cachedResultName": "Inmobiliaria / Ubicacion"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id_propiedad": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id_propiedad', `Manda el id de la propiedad`, 'number') }}"
+          },
+          "matchingColumns": [
+            "id_propiedad"
+          ],
+          "schema": [
+            {
+              "id": "id_propiedad",
+              "displayName": "id_propiedad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "number",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        1728,
+        320
+      ],
+      "id": "05c12e41-ca67-4170-a0de-6b629e4c4a99",
+      "name": "UBICACION"
+    },
+    {
+      "parameters": {
+        "content": "## Automatización para Inmobiliarias\n# [Guide](https://www.skool.com/rubin-automatizaciones-ia-n8n-9701/robame-esta-automatizacion-para-inmobiliarias-3000usd-n8n-paso-a-paso)\n\nhttps://youtu.be/tULVMrIvWSg",
+        "height": 176,
+        "width": 448
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -416,
+        -336
+      ],
+      "typeVersion": 1,
+      "id": "1f449b27-3b01-411b-adcc-b3e1f0120529",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1v8Zc9py-6-9z2JzOzKxlU2d-HMc77QXbnNDJLP578Ss/edit?gid=0#gid=0",
-          "mode": "url"
+          "value": "1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8",
+          "mode": "list",
+          "cachedResultName": "INMOBILIARIA DDBB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
-          "value": "gid=0",
+          "value": 1615782114,
           "mode": "list",
-          "cachedResultName": "Hoja 1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1v8Zc9py-6-9z2JzOzKxlU2d-HMc77QXbnNDJLP578Ss/edit#gid=0"
+          "cachedResultName": "Reg. Citas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit#gid=1615782114"
         },
         "columns": {
           "mappingMode": "defineBelow",
-          "value": {
-            "ID_CITA ": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('ID_CITA_', `Utiliza el mismo id del id de google calendar al agendar la cita`, 'string') }}",
-            "Nombre_Cliente": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre_Cliente', `Nombre del cliente que hace la cita`, 'string') }}",
-            "Numero_Cliente ": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Numero_Cliente_', `Utiliza el número celular del cliente que hace la cita`, 'string') }}",
-            "ID_Propiedad": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('ID_Propiedad', `Utiliza y busca en \"db_propiedades\" el id de la propiedad`, 'string') }}",
-            "Nombre_Propiedad": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre_Propiedad', ``, 'string') }}",
-            "Nombre_Ejecutivo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre_Ejecutivo', ``, 'string') }}",
-            "ID_ejecutivo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('ID_ejecutivo', `Busca en \"agentes\" para encontrar el id del agente`, 'string') }}",
-            "Horario y Día ": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Horario_y_D_a_', `Agenda el día y hora de la cita en formato dd-mm-aa`, 'string') }}",
-            "Estatus": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Estatus', `Estatus de la cita, solamente las 2 opcioens escrito de la siguiente manera: \n\"agendado\" o \"eliminado\"`, 'string') }}"
-          },
+          "value": {},
           "matchingColumns": [],
           "schema": [
             {
@@ -1076,8 +1116,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "Estatus",
@@ -1086,8 +1125,16 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Execution_ID",
+              "displayName": "Execution_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
             }
           ],
           "attemptToConvertTypes": false,
@@ -1098,11 +1145,11 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        1712,
-        576
+        1424,
+        304
       ],
       "id": "14f4def1-bddc-489b-8605-dd426928e002",
-      "name": "SHEETS AGENDAR",
+      "name": "AGENDAR CITA",
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "UgE1zX4Tu6qFLtP2",
@@ -1112,122 +1159,22 @@
     },
     {
       "parameters": {
-        "description": "Utiliza esta herramienta cuando tengas que mandar la ubicacion de la propiedad al usuario",
-        "workflowId": {
-          "__rl": true,
-          "value": "vIyDWKEmEFsErT9M",
-          "mode": "list",
-          "cachedResultName": "Inmobiliaria / Ubicacion"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "id_propiedad": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id_propiedad', `Manda el id de la propiedad`, 'number') }}"
-          },
-          "matchingColumns": [
-            "id_propiedad"
-          ],
-          "schema": [
-            {
-              "id": "id_propiedad",
-              "displayName": "id_propiedad",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "canBeUsedToMatch": true,
-              "type": "number",
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
+        "httpMethod": "POST",
+        "path": "chatbot-ia",
+        "options": {}
       },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2.2,
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
       "position": [
-        1040,
-        400
+        -784,
+        48
       ],
-      "id": "05c12e41-ca67-4170-a0de-6b629e4c4a99",
-      "name": "UBICACION"
-    },
-    {
-      "parameters": {
-        "content": "## Automatización para Inmobiliarias\n# [Guide](https://www.skool.com/rubin-automatizaciones-ia-n8n-9701/robame-esta-automatizacion-para-inmobiliarias-3000usd-n8n-paso-a-paso)\n\nhttps://youtu.be/tULVMrIvWSg",
-        "height": 176,
-        "width": 448
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -416,
-        -336
-      ],
-      "typeVersion": 1,
-      "id": "1f449b27-3b01-411b-adcc-b3e1f0120529",
-      "name": "Sticky Note"
+      "id": "0eddfaa6-b7b4-4fda-a1b7-48730c353a7c",
+      "name": "Webhook to Evolution API",
+      "webhookId": "e33ef0d2-b6d9-483d-a180-2f45d20b3db1"
     }
   ],
-  "pinData": {
-    "Webhook": [
-      {
-        "json": {
-          "headers": {
-            "host": "servidor.techrubin.com",
-            "user-agent": "axios/1.7.9",
-            "content-length": "965",
-            "accept-encoding": "gzip, compress, deflate, br",
-            "content-type": "application/json",
-            "x-forwarded-for": "172.18.0.1",
-            "x-forwarded-host": "servidor.techrubin.com",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "160e8b7bc846",
-            "x-real-ip": "172.18.0.1"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "event": "messages.upsert",
-            "instance": "chatbotia",
-            "data": {
-              "key": {
-                "remoteJid": "5215640036624@s.whatsapp.net",
-                "fromMe": false,
-                "id": "3A3525340FFFD7AFF651"
-              },
-              "pushName": "Héctor Rubín",
-              "status": "DELIVERY_ACK",
-              "message": {
-                "conversation": "me gustaría que me dieras informes de alguna casa en chapalita",
-                "messageContextInfo": {
-                  "deviceListMetadata": {
-                    "senderKeyHash": "qAbo98Hn17Ls4Q==",
-                    "senderTimestamp": "1755623518",
-                    "recipientKeyHash": "AZhiixERCFFUQQ==",
-                    "recipientTimestamp": "1755809919"
-                  },
-                  "deviceListMetadataVersion": 2,
-                  "messageSecret": "pENMmy30Jx1Mmgt4SZAwshMCf9F7v+J96sxYF1hKnIo="
-                }
-              },
-              "messageType": "conversation",
-              "messageTimestamp": 1757023879,
-              "instanceId": "e9c0cf83-b935-4477-bc0e-a278b468dc97",
-              "source": "ios"
-            },
-            "destination": "https://servidor.techrubin.com/webhook/chatbot-ia",
-            "date_time": "2025-09-04T19:11:19.617Z",
-            "sender": "5215522194289@s.whatsapp.net",
-            "server_url": "https://makewhatsapp-evolution-api.1takfl.easypanel.host",
-            "apikey": "8737652B1052-4BC5-ADC1-4EDC46B8B60A"
-          },
-          "webhookUrl": "https://servidor.techrubin.com/webhook/chatbot-ia",
-          "executionMode": "production"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
@@ -1250,6 +1197,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-19T23:18:30.000Z",
-  "versionId": "15f7df2a-ba7b-4ce4-8dcd-094451d5916c"
+  "updatedAt": "2025-11-20T10:32:20.000Z",
+  "versionId": "c781eeea-f731-438f-840f-72be7aee1064"
 }
