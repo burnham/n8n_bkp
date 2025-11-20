@@ -1,0 +1,466 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code FOLDER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "IMÁGEN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IMÁGEN": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code FOLDER": {
+      "main": [
+        [
+          {
+            "node": "Search files and folders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search files and folders": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-20T09:50:20.245Z",
+  "id": "jD0mx0szX2f6lrzO",
+  "isArchived": false,
+  "meta": null,
+  "name": "Inmobiliaria Imagenes_2",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "id"
+            },
+            {
+              "name": "numero"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -192,
+        32
+      ],
+      "id": "3c60bd53-2d1a-41f6-8482-8ac67b2eb1cd",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "994d57d7-cffc-426a-a7f1-551ddf197aa9",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "69d9d48f-51f3-47d9-8b77-4fb523cc03b1",
+              "name": "numero",
+              "value": "={{ $json.numero }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        32,
+        32
+      ],
+      "id": "a33d3ca9-c69e-4e14-8d26-b66458048bbe",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8",
+          "mode": "list",
+          "cachedResultName": "INMOBILIARIA DDBB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Propiedades",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "ID",
+              "lookupValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        256,
+        32
+      ],
+      "id": "9bda1d3b-df02-4396-81f0-18562313b5c5",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "images",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1328,
+        32
+      ],
+      "id": "52599fe2-6a4d-4317-9b43-ff46ac5a6a2e",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "batchSize": "=1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -176,
+        352
+      ],
+      "id": "787dade9-ba01-4f4b-8c94-40546f7849bc",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.fileId }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        80,
+        368
+      ],
+      "id": "4966f361-4e2a-4f30-aabf-0669690ddbcf",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        288,
+        368
+      ],
+      "id": "e1d3eea3-f304-49c5-afe2-7bafc9e0b4bc",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://nonrealxr-evolution.hgrxjp.easypanel.host/message/sendMedia/NonRealXR\n",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "95256DD415C3-487D-BA89-7781B4152F9D"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Edit Fields').item.json.numero }}"
+            },
+            {
+              "name": "mediatype",
+              "value": "image"
+            },
+            {
+              "name": "media",
+              "value": "={{ $json.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        544,
+        368
+      ],
+      "id": "82a08132-6c0b-4e33-9209-705fe98b3392",
+      "name": "IMÁGEN",
+      "executeOnce": false,
+      "retryOnFail": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        736,
+        368
+      ],
+      "id": "9d673fdb-08d4-44f5-a917-250b63cd6c33",
+      "name": "Wait",
+      "webhookId": "f6609f27-5615-4b15-a684-ef067822a66f"
+    },
+    {
+      "parameters": {
+        "jsCode": "const folderUrl = $json[\"Imágenes\"] || \"\";\n\n// Extraer folder ID de diferentes formatos:\n// https://drive.google.com/drive/folders/FOLDER_ID\n// https://drive.google.com/drive/folders/FOLDER_ID?usp=drive_link\nlet folderId = null;\n\nconst match = folderUrl.match(/\\/folders\\/([a-zA-Z0-9_-]+)/);\nif (match) {\n  folderId = match[1];\n}\n\nif (!folderId) {\n  throw new Error(`No se pudo extraer el folder ID de: ${folderUrl}`);\n}\n\nreturn [{\n  json: {\n    folderId: folderId,\n    max_images: $json.max_images || 5,\n    originalUrl: folderUrl\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        32
+      ],
+      "id": "b61504cd-e2ae-4665-bd74-4da91ea96ae3",
+      "name": "Code FOLDER"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "queryString": "='{{ $json.folderId }}' in parents and mimeType contains 'image/'",
+        "limit": "={{ $json.max_images }}",
+        "filter": {},
+        "options": {
+          "fields": []
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        720,
+        32
+      ],
+      "id": "a6099ef5-783d-4bb5-8e7d-4b11b822754e",
+      "name": "Search files and folders",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const files = $input.all();\nconst maxImages = 5;\n\nconst images = files.slice(0, maxImages).map(file => {\n  const fileId = file.json.id;\n  return {\n    original: `https://drive.google.com/file/d/${fileId}/view`,\n    fileId: fileId,\n    fileName: file.json.name,\n    directUrl: `https://drive.google.com/uc?id=${fileId}`\n  };\n});\n\nreturn [{ json: { images } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        992,
+        32
+      ],
+      "id": "706aa757-8953-4bf9-adab-cc62d3670865",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5fae0f7d-2f18-4d7d-9f1d-111111111111",
+              "name": "success",
+              "value": "true",
+              "type": "string"
+            },
+            {
+              "id": "7b3d9f5a-0a6a-4e9b-9f9e-222222222222",
+              "name": "message",
+              "value": "Imágenes procesadas (si existían) correctamente.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1264,
+        224
+      ],
+      "id": "aa9cf8d5-d95a-4c36-ab49-f3509d165543",
+      "name": "Result"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-20T09:50:20.249Z",
+      "createdAt": "2025-11-20T09:50:20.249Z",
+      "role": "workflow:owner",
+      "workflowId": "jD0mx0szX2f6lrzO",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-20T09:50:20.000Z",
+  "versionId": "b40a52f7-2ef9-42d5-b521-6465d493dbfc"
+}
