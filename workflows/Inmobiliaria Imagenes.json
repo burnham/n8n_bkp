@@ -5,17 +5,6 @@
       "main": [
         [
           {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields": {
-      "main": [
-        [
-          {
             "node": "Get row(s) in sheet",
             "type": "main",
             "index": 0
@@ -27,85 +16,101 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Extract Folder ID",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Code": {
+    "Extract Folder ID": {
       "main": [
         [
           {
-            "node": "Split Out",
+            "node": "Filter Images Only",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Split Out": {
+    "Filter Images Only": {
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Loop Over Images",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Loop Over Items": {
+    "Loop Over Images": {
       "main": [
         [],
         [
           {
-            "node": "Download file",
+            "node": "Download Image",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Download file": {
+    "Download Image": {
       "main": [
         [
           {
-            "node": "Extract from File",
+            "node": "Extract to Base64",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Extract from File": {
+    "Extract to Base64": {
       "main": [
         [
           {
-            "node": "IMÁGEN",
+            "node": "Send Image WhatsApp",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "IMÁGEN": {
+    "Send Image WhatsApp": {
       "main": [
         [
           {
-            "node": "Wait",
+            "node": "Wait 2 Seconds",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Wait": {
+    "Wait 2 Seconds": {
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Loop Over Images",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Filter Images Only",
             "type": "main",
             "index": 0
           }
@@ -113,9 +118,9 @@
       ]
     }
   },
-  "createdAt": "2025-11-20T07:54:07.936Z",
-  "id": "116pEh13xZ0dhoIa",
-  "isArchived": true,
+  "createdAt": "2025-11-19T22:47:12.941Z",
+  "id": "2K2cjhpRMSAKa7Xu",
+  "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -137,40 +142,11 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -80,
-        16
+        -1344,
+        -48
       ],
-      "id": "5fccd654-d326-48eb-9f50-2e1afaaf7bfe",
+      "id": "809fb1b3-fb9e-4573-b0bf-32dfc65cbdec",
       "name": "When Executed by Another Workflow"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "994d57d7-cffc-426a-a7f1-551ddf197aa9",
-              "name": "id",
-              "value": "={{ $json.id }}",
-              "type": "string"
-            },
-            {
-              "id": "69d9d48f-51f3-47d9-8b77-4fb523cc03b1",
-              "name": "numero",
-              "value": "={{ $json.numero }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        128,
-        16
-      ],
-      "id": "f3d41dda-2dd8-426e-a3be-3a94f5bfc280",
-      "name": "Edit Fields"
     },
     {
       "parameters": {
@@ -201,10 +177,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        336,
-        16
+        -1120,
+        -48
       ],
-      "id": "4891bc3e-d254-4b58-a4b7-7f8194acaade",
+      "id": "d3e6b581-78cb-4ed0-989c-989bbc002c60",
       "name": "Get row(s) in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -215,51 +191,49 @@
     },
     {
       "parameters": {
-        "jsCode": "const raw = $json[\"Imágenes\"] || \"\";\nconst urls = raw.split(\",\").map(u => {\n  u = u.trim();\n  \n  // Intentar extraer fileId en distintos formatos\n  let fileId = null;\n  let m = u.match(/\\/d\\/([^/]+)\\//);       // /file/d/{id}/view\n  if (m) fileId = m[1];\n  if (!fileId) {\n    m = u.match(/[?&]id=([^&]+)/);         // ?id={id}\n    if (m) fileId = m[1];\n  }\n  \n  // Construir URL directa si hay fileId\n  let directUrl = fileId \n    ? `https://drive.google.com/uc?id=${fileId}` \n    : u;\n  \n  return { original: u, fileId, directUrl };\n});\n\n// Limitar la cantidad de imágenes\nconst max = $json.max_images || 5;\nreturn [{ json: { images: urls.slice(0, max) } }];\n"
+        "jsCode": "// Obtener el número de teléfono del trigger\nconst numero = $('When Executed by Another Workflow').item.json.numero;\n\n// Obtener la URL de la carpeta de imágenes\nconst imagenesUrl = $json[\"Imágenes\"] || \"\";\n\nif (!imagenesUrl) {\n  throw new Error('No se encontró URL de carpeta en la columna Imágenes');\n}\n\nlet folderId = null;\n\n// Extraer folderId de diferentes formatos de URL de Google Drive\nlet match = imagenesUrl.match(/\\/folders\\/([^/?]+)/);\nif (match) {\n  folderId = match[1];\n}\n\nif (!folderId) {\n  match = imagenesUrl.match(/[?&]id=([^&]+)/);\n  if (match) folderId = match[1];\n}\n\nif (!folderId && imagenesUrl.length > 10 && !imagenesUrl.includes('/')) {\n  folderId = imagenesUrl.trim();\n}\n\nif (!folderId) {\n  throw new Error('No se pudo extraer el ID de la carpeta. URL: ' + imagenesUrl);\n}\n\nreturn [{ \n  json: { \n    folderId: folderId,\n    numero: numero,\n    propertyId: $json.ID\n  } \n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        544,
-        16
+        -912,
+        -48
       ],
-      "id": "cdbc85a7-b4d8-41ec-9ace-7776609eceb6",
-      "name": "Code"
+      "id": "2f5be1f9-f1e4-45aa-bd22-9090e6c935d6",
+      "name": "Extract Folder ID"
     },
     {
       "parameters": {
-        "fieldToSplitOut": "images",
-        "options": {}
+        "jsCode": "// Filtrar solo archivos de imagen\nconst imageTypes = [\n  'image/jpeg',\n  'image/jpg', \n  'image/png',\n  'image/gif',\n  'image/webp',\n  'image/bmp'\n];\n\n// Obtener el número del nodo anterior\nconst numero = $('Extract Folder ID').item.json.numero;\n\nconst items = $input.first().json.files || [];\nconst imageFiles = items.filter(item => {\n  const mimeType = (item.mimeType || '').toLowerCase();\n  return imageTypes.includes(mimeType);\n});\n\nif (imageFiles.length === 0) {\n  throw new Error('No se encontraron imágenes en la carpeta');\n}\n\n// Agregar el número a cada item de imagen\nreturn imageFiles.map(item => ({\n  json: {\n    ...item.j    numero: numero\n  }\n}));"
       },
-      "type": "n8n-nodes-base.splitOut",
-      "typeVersion": 1,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
-        768,
-        16
+        -464,
+        -48
       ],
-      "id": "fb7dbae2-48bc-44b6-9d9a-4f1c68f585af",
-      "name": "Split Out"
+      "id": "d2c646c4-a105-4c56-b523-020f6041ce00",
+      "name": "Filter Images Only"
     },
     {
       "parameters": {
-        "batchSize": "=1",
         "options": {}
       },
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -112,
-        192
+        -240,
+        -48
       ],
-      "id": "18bc27f8-5acd-4fd2-8ba5-88f7202e83fa",
-      "name": "Loop Over Items"
+      "id": "51ae46f2-c74f-4a59-8313-a93780d9e501",
+      "name": "Loop Over Images"
     },
     {
       "parameters": {
         "operation": "download",
         "fileId": {
           "__rl": true,
-          "value": "={{ $json.fileId }}",
+          "value": "={{ $json.id }}",
           "mode": "id"
         },
         "options": {}
@@ -267,11 +241,11 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        144,
-        208
+        -240,
+        160
       ],
-      "id": "98bca8ad-06f1-49a1-8d7a-f0f10454209a",
-      "name": "Download file",
+      "id": "e246b2a3-21dd-4b26-ba2d-c41892bc439e",
+      "name": "Download Image",
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "ZsEf29K8HfuXNsa4",
@@ -287,22 +261,22 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        352,
-        208
+        -32,
+        160
       ],
-      "id": "9edaf49b-8c93-44bf-ab99-39c970b9bc89",
-      "name": "Extract from File"
+      "id": "75e5f276-440d-4e2a-8f59-d2e26bdf1703",
+      "name": "Extract to Base64"
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://makewhatsapp-evolution-api.1takfl.easypanel.host/message/sendMedia/chatbotia",
+        "url": "https://nonrealxr-evolution.hgrxjp.easypanel.host/message/sendMedia/NonRealXR",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
             {
               "name": "apikey",
-              "value": "8737652B1052-4BC5-ADC1-4EDC46B8B60A"
+              "value": "95256DD415C3-487D-BA89-7781B4152F9D"
             }
           ]
         },
@@ -311,7 +285,7 @@
           "parameters": [
             {
               "name": "number",
-              "value": "={{ $('Edit Fields').item.json.numero }}"
+              "value": "={{ $json.numero }}"
             },
             {
               "name": "mediatype",
@@ -328,12 +302,11 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        608,
-        208
+        208,
+        160
       ],
-      "id": "5e23a5da-5e56-4246-b791-5c706f0a993b",
-      "name": "IMÁGEN",
-      "executeOnce": false,
+      "id": "295c6eca-34b1-49fa-9d86-a91639b0f63e",
+      "name": "Send Image WhatsApp",
       "retryOnFail": false,
       "onError": "continueRegularOutput"
     },
@@ -344,12 +317,34 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        800,
-        208
+        416,
+        160
       ],
-      "id": "4478c067-894b-4145-9506-daeb0dc7d1ad",
-      "name": "Wait",
+      "id": "0de9f470-f6b8-49d2-bc03-15ea3f66ccb6",
+      "name": "Wait 2 Seconds",
       "webhookId": "f6609f27-5615-4b15-a684-ef067822a66f"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.googleapis.com/drive/v3/files?q='{{ $json.folderId }}' in parents and mimeType contains 'image/'&fields=files(id,name,mimeType)&pageSize=5",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -640,
+        16
+      ],
+      "id": "9de93997-dbc4-471f-9f7d-6bb62be0e1f9",
+      "name": "HTTP Request",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -358,16 +353,23 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-11-20T07:54:07.941Z",
-      "createdAt": "2025-11-20T07:54:07.941Z",
+      "updatedAt": "2025-11-19T22:47:12.946Z",
+      "createdAt": "2025-11-19T22:47:12.946Z",
       "role": "workflow:owner",
-      "workflowId": "116pEh13xZ0dhoIa",
+      "workflowId": "2K2cjhpRMSAKa7Xu",
       "projectId": "epI1cymQzCzDlQMH"
     }
   ],
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2025-11-19T22:36:45.524Z",
+      "createdAt": "2025-11-19T22:36:45.524Z",
+      "id": "oOBV7K2KRexZs41J",
+      "name": "🟠 Rubin Autom. AI"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-20T08:01:41.000Z",
-  "versionId": "96d081d3-d1dc-43c8-aa89-2afa90b32e1f"
+  "updatedAt": "2025-11-20T11:41:42.000Z",
+  "versionId": "8b3ca306-02a4-403a-8f18-25aad87d7c7f"
 }
