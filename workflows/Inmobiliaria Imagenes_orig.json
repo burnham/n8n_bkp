@@ -1,0 +1,393 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "IMÁGEN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IMÁGEN": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-20T09:50:20.245Z",
+  "id": "jD0mx0szX2f6lrzO",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Inmobiliaria Imagenes_orig",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "id"
+            },
+            {
+              "name": "numero"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -64,
+        16
+      ],
+      "id": "017a0a97-9977-4634-bfed-0dda185ef02e",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "994d57d7-cffc-426a-a7f1-551ddf197aa9",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "69d9d48f-51f3-47d9-8b77-4fb523cc03b1",
+              "name": "numero",
+              "value": "={{ $json.numero }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        144,
+        16
+      ],
+      "id": "e1570f9b-97df-418c-b818-0f41e570530a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1V3My7VgGiwj0Hl2MvmQkw3PLrEOrHqOYQqK-px231KY/edit?gid=123187836#gid=123187836",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 123187836,
+          "mode": "list",
+          "cachedResultName": "Ejemplo_de_50_propiedades_inmobiliarias",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1V3My7VgGiwj0Hl2MvmQkw3PLrEOrHqOYQqK-px231KY/edit#gid=123187836"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "ID",
+              "lookupValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        352,
+        16
+      ],
+      "id": "923044a9-4f6c-4540-8e79-a3e99d5a554f",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $json[\"Imágenes\"] || \"\";\nconst urls = raw.split(\",\").map(u => {\n  u = u.trim();\n  \n  // Intentar extraer fileId en distintos formatos\n  let fileId = null;\n  let m = u.match(/\\/d\\/([^/]+)\\//);       // /file/d/{id}/view\n  if (m) fileId = m[1];\n  if (!fileId) {\n    m = u.match(/[?&]id=([^&]+)/);         // ?id={id}\n    if (m) fileId = m[1];\n  }\n  \n  // Construir URL directa si hay fileId\n  let directUrl = fileId \n    ? `https://drive.google.com/uc?id=${fileId}` \n    : u;\n  \n  return { original: u, fileId, directUrl };\n});\n\n// Limitar la cantidad de imágenes\nconst max = $json.max_images || 5;\nreturn [{ json: { images: urls.slice(0, max) } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        16
+      ],
+      "id": "4361ea2d-1593-4e4c-982f-a5605e0a12d0",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "images",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        784,
+        16
+      ],
+      "id": "e0eda479-84ca-41cd-a8a0-d780f21e9127",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "batchSize": "=1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -96,
+        192
+      ],
+      "id": "0784536f-f4ca-4d2d-bba1-168b47f574ce",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.fileId }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        160,
+        208
+      ],
+      "id": "52d2e260-d85e-4f9a-a34a-284430c1ae09",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        368,
+        208
+      ],
+      "id": "d5e4df2e-476d-435d-9885-9f4da8d0769a",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://makewhatsapp-evolution-api.1takfl.easypanel.host/message/sendMedia/chatbotia",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "8737652B1052-4BC5-ADC1-4EDC46B8B60A"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Edit Fields').item.json.numero }}"
+            },
+            {
+              "name": "mediatype",
+              "value": "image"
+            },
+            {
+              "name": "media",
+              "value": "={{ $json.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        624,
+        208
+      ],
+      "id": "0551632c-ff3f-4ede-b00c-79c86afda966",
+      "name": "IMÁGEN",
+      "executeOnce": false,
+      "retryOnFail": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        816,
+        208
+      ],
+      "id": "d8ba12ce-d964-44e7-ad10-a51ad6672340",
+      "name": "Wait",
+      "webhookId": "f6609f27-5615-4b15-a684-ef067822a66f"
+    },
+    {
+      "parameters": {
+        "content": "## En la columna \"Imágenes\" hay que añadir una a una el url de la img"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        480,
+        -192
+      ],
+      "typeVersion": 1,
+      "id": "8a1f30dd-fc01-4a4a-b639-c5b0783f344b",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "id": "P028",
+          "numero": "5215640036624@s.whatsapp.net"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-20T09:50:20.249Z",
+      "createdAt": "2025-11-20T09:50:20.249Z",
+      "role": "workflow:owner",
+      "workflowId": "jD0mx0szX2f6lrzO",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-20T23:19:26.000Z",
+  "versionId": "f8a989b3-1850-4795-b6d2-65e53756a25b"
+}
