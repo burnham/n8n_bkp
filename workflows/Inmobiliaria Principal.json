@@ -238,13 +238,7 @@
     },
     "UBICACION": {
       "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "AGENDAR CITA": {
@@ -1197,6 +1191,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-20T10:32:20.000Z",
-  "versionId": "c781eeea-f731-438f-840f-72be7aee1064"
+  "updatedAt": "2025-11-20T19:00:59.000Z",
+  "versionId": "74e6f3a5-2bc3-40a1-b977-a4ecde578aeb"
 }
