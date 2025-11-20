@@ -113,10 +113,12 @@
       ]
     }
   },
-  "createdAt": "2025-11-19T22:47:12.941Z",
-  "id": "2K2cjhpRMSAKa7Xu",
-  "isArchived": false,
-  "meta": null,
+  "createdAt": "2025-11-20T07:54:07.936Z",
+  "id": "116pEh13xZ0dhoIa",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Inmobiliaria Imagenes",
   "nodes": [
     {
@@ -135,10 +137,10 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        0,
-        -112
+        -80,
+        16
       ],
-      "id": "d64c15c6-5f0d-4c7d-8507-bbb7e44cbf64",
+      "id": "5fccd654-d326-48eb-9f50-2e1afaaf7bfe",
       "name": "When Executed by Another Workflow"
     },
     {
@@ -164,25 +166,27 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        208,
-        -112
+        128,
+        16
       ],
-      "id": "22643cc1-5b0f-43d6-9ada-c93af42fc282",
+      "id": "f3d41dda-2dd8-426e-a3be-3a94f5bfc280",
       "name": "Edit Fields"
     },
     {
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1V3My7VgGiwj0Hl2MvmQkw3PLrEOrHqOYQqK-px231KY/edit?gid=123187836#gid=123187836",
-          "mode": "url"
+          "value": "1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8",
+          "mode": "list",
+          "cachedResultName": "INMOBILIARIA DDBB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
-          "value": 123187836,
+          "value": "gid=0",
           "mode": "list",
-          "cachedResultName": "Ejemplo_de_50_propiedades_inmobiliarias",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1V3My7VgGiwj0Hl2MvmQkw3PLrEOrHqOYQqK-px231KY/edit#gid=123187836"
+          "cachedResultName": "Propiedades",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit#gid=0"
         },
         "filtersUI": {
           "values": [
@@ -197,11 +201,17 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        416,
-        -112
+        336,
+        16
       ],
-      "id": "ea23c505-b04b-47b3-9772-9154aa9512ac",
-      "name": "Get row(s) in sheet"
+      "id": "4891bc3e-d254-4b58-a4b7-7f8194acaade",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
     },
     {
       "parameters": {
@@ -210,10 +220,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        624,
-        -112
+        544,
+        16
       ],
-      "id": "7d869de6-dd31-4429-ada7-8821cee10307",
+      "id": "cdbc85a7-b4d8-41ec-9ace-7776609eceb6",
       "name": "Code"
     },
     {
@@ -224,10 +234,10 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        848,
-        -112
+        768,
+        16
       ],
-      "id": "43c3d233-f83f-4c9a-8607-0e301b645920",
+      "id": "fb7dbae2-48bc-44b6-9d9a-4f1c68f585af",
       "name": "Split Out"
     },
     {
@@ -238,10 +248,10 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -32,
-        64
+        -112,
+        192
       ],
-      "id": "6221a8ab-90c4-4219-8be7-dc4f1ca125cf",
+      "id": "18bc27f8-5acd-4fd2-8ba5-88f7202e83fa",
       "name": "Loop Over Items"
     },
     {
@@ -257,11 +267,17 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        224,
-        80
+        144,
+        208
       ],
-      "id": "04ba76ba-c2ab-4def-a040-bf6b39c4605e",
-      "name": "Download file"
+      "id": "98bca8ad-06f1-49a1-8d7a-f0f10454209a",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZsEf29K8HfuXNsa4",
+          "name": "Google Drive GB account"
+        }
+      }
     },
     {
       "parameters": {
@@ -271,10 +287,10 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        432,
-        80
+        352,
+        208
       ],
-      "id": "4762f54a-4118-4860-84fd-811738277c20",
+      "id": "9edaf49b-8c93-44bf-ab99-39c970b9bc89",
       "name": "Extract from File"
     },
     {
@@ -312,10 +328,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        688,
-        80
+        608,
+        208
       ],
-      "id": "7b5a60dc-e378-4352-aafa-8f96dbfb1e93",
+      "id": "5e23a5da-5e56-4246-b791-5c706f0a993b",
       "name": "IMÁGEN",
       "executeOnce": false,
       "retryOnFail": false,
@@ -328,46 +344,30 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        880,
-        80
+        800,
+        208
       ],
-      "id": "cad3eeb4-7498-4467-8da2-a8c7aa8711f9",
+      "id": "4478c067-894b-4145-9506-daeb0dc7d1ad",
       "name": "Wait",
       "webhookId": "f6609f27-5615-4b15-a684-ef067822a66f"
     }
   ],
-  "pinData": {
-    "When Executed by Another Workflow": [
-      {
-        "json": {
-          "id": "P028",
-          "numero": "5215640036624@s.whatsapp.net"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
   "shared": [
     {
-      "updatedAt": "2025-11-19T22:47:12.946Z",
-      "createdAt": "2025-11-19T22:47:12.946Z",
+      "updatedAt": "2025-11-20T07:54:07.941Z",
+      "createdAt": "2025-11-20T07:54:07.941Z",
       "role": "workflow:owner",
-      "workflowId": "2K2cjhpRMSAKa7Xu",
+      "workflowId": "116pEh13xZ0dhoIa",
       "projectId": "epI1cymQzCzDlQMH"
     }
   ],
   "staticData": null,
-  "tags": [
-    {
-      "updatedAt": "2025-11-19T22:36:45.524Z",
-      "createdAt": "2025-11-19T22:36:45.524Z",
-      "id": "oOBV7K2KRexZs41J",
-      "name": "🟠 Rubin Autom. AI"
-    }
-  ],
+  "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-19T22:47:12.000Z",
-  "versionId": "24337f3a-83b5-4fd0-acd2-f30fd2bf69c9"
+  "updatedAt": "2025-11-20T08:01:41.000Z",
+  "versionId": "96d081d3-d1dc-43c8-aa89-2afa90b32e1f"
 }
