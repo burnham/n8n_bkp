@@ -1,6 +1,17 @@
 {
   "active": false,
   "connections": {
+    "Webhook to Evolution API": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "AI Agent": {
       "main": [
         [
@@ -45,8 +56,7 @@
             "type": "main",
             "index": 0
           }
-        ],
-        []
+        ]
       ]
     },
     "Get Audio": {
@@ -236,28 +246,12 @@
         ]
       ]
     },
-    "UBICACION": {
-      "ai_tool": [
-        []
-      ]
-    },
     "AGENDAR CITA": {
       "ai_tool": [
         [
           {
             "node": "AI Agent",
             "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Webhook to Evolution API": {
-      "main": [
-        [
-          {
-            "node": "Wait",
-            "type": "main",
             "index": 0
           }
         ]
@@ -274,6 +268,37 @@
   "nodes": [
     {
       "parameters": {
+        "content": "## Automatización para Inmobiliarias\n# [Guide](https://www.skool.com/rubin-automatizaciones-ia-n8n-9701/robame-esta-automatizacion-para-inmobiliarias-3000usd-n8n-paso-a-paso)\n\nhttps://youtu.be/tULVMrIvWSg",
+        "height": 176,
+        "width": 448
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -416,
+        -336
+      ],
+      "typeVersion": 1,
+      "id": "1f449b27-3b01-411b-adcc-b3e1f0120529",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chatbot-ia",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -784,
+        48
+      ],
+      "id": "0eddfaa6-b7b4-4fda-a1b7-48730c353a7c",
+      "name": "Webhook to Evolution API",
+      "webhookId": "e33ef0d2-b6d9-483d-a180-2f45d20b3db1"
+    },
+    {
+      "parameters": {
         "promptType": "define",
         "text": "={{ $json.chat_input }}",
         "options": {
@@ -283,10 +308,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2,
       "position": [
-        1328,
+        1360,
         16
       ],
-      "id": "690d73ec-2285-45c6-b71f-f6532007834c",
+      "id": "7a567d23-79c8-40ef-b399-9f32c40ec87f",
       "name": "AI Agent"
     },
     {
@@ -302,10 +327,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        1328,
+        1360,
         -112
       ],
-      "id": "074888e0-85f7-4883-a6ad-d0ed2cadc36c",
+      "id": "60cc27a7-9200-4af4-8ea7-5342bff630df",
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
@@ -402,10 +427,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -112,
+        -80,
         16
       ],
-      "id": "3fb456b8-f107-4064-ba9e-566e2aa98753",
+      "id": "49d0479e-ebf8-413e-8d01-f3f4e8596b0e",
       "name": "Switch"
     },
     {
@@ -439,10 +464,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        240,
+        272,
         -176
       ],
-      "id": "02e55d6f-7695-404f-a759-48cfafd8147c",
+      "id": "bfde7a97-e81c-40ef-bc42-6160699f2f86",
       "name": "Get Audio"
     },
     {
@@ -456,10 +481,10 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        400,
+        432,
         -176
       ],
-      "id": "b358bcb0-d71c-4ecf-bb86-fab1315e8086",
+      "id": "070da5df-0768-4b70-9350-86c7ef0e3c64",
       "name": "Convertir Audio"
     },
     {
@@ -471,10 +496,10 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        592,
+        624,
         -176
       ],
-      "id": "bc119824-32ca-46b7-a17d-79df522a381d",
+      "id": "40611067-ab5f-4829-b33f-7462239f57d4",
       "name": "Transcribe a recording",
       "credentials": {
         "openAiApi": {
@@ -500,10 +525,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        752,
+        784,
         -176
       ],
-      "id": "57fa6322-6569-496f-8257-56ea9f285eaa",
+      "id": "30792b0e-a50e-46eb-b68e-8ffdcbb9c2b0",
       "name": "Audio Content"
     },
     {
@@ -523,10 +548,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        752,
+        784,
         16
       ],
-      "id": "de6bfbc4-ef00-4df3-87e6-d2bf7ecfb2dc",
+      "id": "33aa30b4-190e-4aa5-b96f-c1ee29ba6a14",
       "name": "Audio Content1"
     },
     {
@@ -560,10 +585,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        240,
+        272,
         16
       ],
-      "id": "d732102f-5abf-4372-990e-6e98a6a44d43",
+      "id": "f4cfd941-701d-4689-b6ce-79c4e8ed2708",
       "name": "Get Image"
     },
     {
@@ -577,10 +602,10 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        400,
+        432,
         16
       ],
-      "id": "e23ddfbc-e2af-480f-89fe-4de17bd780db",
+      "id": "80a51253-2469-45ba-ac0d-cee5fd72e57b",
       "name": "Convertir Imagen"
     },
     {
@@ -600,10 +625,10 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        592,
+        624,
         16
       ],
-      "id": "1b15a48f-935f-49cd-9e57-c8cde6c7d2ac",
+      "id": "eb6c0c35-ff3c-4de9-a42f-b38fb20372a1",
       "name": "Describe imagen",
       "credentials": {
         "openAiApi": {
@@ -629,10 +654,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        752,
+        784,
         192
       ],
-      "id": "802421ad-9ff1-40ec-b4df-b33113ef888f",
+      "id": "e945c2a5-d8d9-4b8a-a20b-960787c9102e",
       "name": "Edit Fields2"
     },
     {
@@ -652,10 +677,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1088,
+        1120,
         16
       ],
-      "id": "5a42a354-a677-41cf-8b00-84d0fee473fc",
+      "id": "609d8eb2-8d7e-4a9f-9e5f-d08e9aae5354",
       "name": "Edit Fields"
     },
     {
@@ -729,10 +754,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -288,
+        -256,
         48
       ],
-      "id": "a59dcb9e-dcf0-4423-ae7d-f980c144d0cf",
+      "id": "e851c47d-9d03-47ad-b3b7-9b739ac28918",
       "name": "Normalizacion"
     },
     {
@@ -770,10 +795,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1744,
+        1776,
         16
       ],
-      "id": "f1c52506-b323-4034-8f55-a3dcc5780b3b",
+      "id": "f2b8043c-189f-4ac2-a1e5-d3eb6377f6ce",
       "name": "Mandar mensaje"
     },
     {
@@ -783,12 +808,12 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -576,
+        -544,
         48
       ],
-      "id": "f0d61145-cf2e-462e-a308-a1643fdecd69",
+      "id": "44f0a56b-f91a-4242-9453-5b2339976ab4",
       "name": "Wait",
-      "webhookId": "8e6f6347-f927-4a51-81ea-f656b1c4be4d"
+      "webhookId": "aefd52e4-7734-4e57-b602-96419e17bcf3"
     },
     {
       "parameters": {
@@ -798,10 +823,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
       "position": [
-        1440,
+        1472,
         -112
       ],
-      "id": "add96217-a169-4be4-b532-fedccb788ca2",
+      "id": "f967300b-8ee5-45d4-a58c-112039fa278f",
       "name": "Postgres Chat Memory",
       "credentials": {
         "postgres": {
@@ -856,10 +881,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2.2,
       "position": [
-        1856,
+        1888,
         320
       ],
-      "id": "00cb0f9a-613a-428c-a41e-2c54b2bc6bf9",
+      "id": "bf78fab9-2cca-469e-8b36-a446e39f0d50",
       "name": "IMAGENES"
     },
     {
@@ -883,10 +908,10 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        1552,
+        1584,
         304
       ],
-      "id": "a11b56f1-5b7b-4482-b649-feed4f5e200f",
+      "id": "378c5b41-4124-45f1-8331-b87343da7de9",
       "name": "DB Propiedades",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -918,10 +943,10 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        1312,
+        1344,
         304
       ],
-      "id": "a32c0c1d-863d-47cb-bc46-6db289be7217",
+      "id": "24daf44c-3a14-4d48-9d4f-79d853da61ae",
       "name": "AGENTES",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -949,10 +974,10 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        1168,
+        1200,
         304
       ],
-      "id": "3a1f90ba-2ef5-41b9-b111-09120268acd5",
+      "id": "b77ee259-26ac-4b5c-bf96-fdd8c5b21b53",
       "name": "AGENDAR",
       "credentials": {
         "googleCalendarOAuth2Api": {
@@ -997,26 +1022,11 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2.2,
       "position": [
-        1728,
+        1760,
         320
       ],
-      "id": "05c12e41-ca67-4170-a0de-6b629e4c4a99",
+      "id": "68acc33d-f9d9-447b-a6a8-c03d33ba19bb",
       "name": "UBICACION"
-    },
-    {
-      "parameters": {
-        "content": "## Automatización para Inmobiliarias\n# [Guide](https://www.skool.com/rubin-automatizaciones-ia-n8n-9701/robame-esta-automatizacion-para-inmobiliarias-3000usd-n8n-paso-a-paso)\n\nhttps://youtu.be/tULVMrIvWSg",
-        "height": 176,
-        "width": 448
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -416,
-        -336
-      ],
-      "typeVersion": 1,
-      "id": "1f449b27-3b01-411b-adcc-b3e1f0120529",
-      "name": "Sticky Note"
     },
     {
       "parameters": {
@@ -1139,10 +1149,10 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        1424,
+        1456,
         304
       ],
-      "id": "14f4def1-bddc-489b-8605-dd426928e002",
+      "id": "afdfb0ed-a165-46c7-9f62-759d4a825225",
       "name": "AGENDAR CITA",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -1150,22 +1160,6 @@
           "name": "Google Sheets GB account"
         }
       }
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "chatbot-ia",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -784,
-        48
-      ],
-      "id": "0eddfaa6-b7b4-4fda-a1b7-48730c353a7c",
-      "name": "Webhook to Evolution API",
-      "webhookId": "e33ef0d2-b6d9-483d-a180-2f45d20b3db1"
     }
   ],
   "pinData": {},
@@ -1191,6 +1185,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-11-20T19:00:59.000Z",
-  "versionId": "74e6f3a5-2bc3-40a1-b977-a4ecde578aeb"
+  "updatedAt": "2025-11-21T09:50:29.000Z",
+  "versionId": "1b764886-a181-4291-90df-66556e7a09a3"
 }
