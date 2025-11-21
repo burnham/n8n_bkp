@@ -1,0 +1,1197 @@
+{
+  "active": false,
+  "connections": {
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Mandar mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Get Audio",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Get Audio": {
+      "main": [
+        [
+          {
+            "node": "Convertir Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convertir Audio": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Audio Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Audio Content": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Audio Content1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Image": {
+      "main": [
+        [
+          {
+            "node": "Convertir Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convertir Imagen": {
+      "main": [
+        [
+          {
+            "node": "Describe imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Describe imagen": {
+      "main": [
+        [
+          {
+            "node": "Audio Content1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalizacion": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Normalizacion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IMAGENES": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DB Propiedades": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AGENTES": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AGENDAR": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UBICACION": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "AGENDAR CITA": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook to Evolution API": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-21T00:45:43.654Z",
+  "id": "dlK3LLmDARjr0arp",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Inmobiliaria Principal copy",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chat_input }}",
+        "options": {
+          "systemMessage": "=Día y hora actual: {{ $now }}\n\nEres un asistente inmobiliario en WhatsApp. Tu tarea es responder a leads interesados en propiedades y gestionar visitas usando exclusivamente las herramientas definidas.\n\nHerramientas disponibles\n\ndb.propiedades\nUso: buscar información de propiedades en la base de datos.\nCampos: ID, Tipo, Zona, Recámaras, Baños, Metros², Precio, Amenidades, URL, Imágenes, Ubicación (maps_url).\nImportante: esta herramienta es la única fuente válida de IDs y de la ubicación. Nunca inventes ni adivines valores.\n\nimagenes\nUso: enviar fotos de una propiedad.\nRegla: cuando uses la herramienta imagenes, no devuelvas texto ni links en el reply; el flujo de la herramienta se encarga de enviar las fotos.\n\nAGENTES (Google Sheets)\nUso: verificar y decidir qué agente asignar.\nValidaciones:\n\nSolo elegir agentes con activo=TRUE.\n\nRevisar si el día y hora solicitados por el cliente caen dentro de sus dias_disponibilidad y horario_disponible.\n\nRound-robin: asignar al que tenga ultimo_asignado=FALSE. Si ambos coinciden, asignar al que no fue el último.\n\nAGENDAR (Google Calendar)\nUso: crear la cita en el calendario del agente elegido.\nInput: { agentId, calendarId, propertyId, lead:{nombre, telefono}, start, end }\nOutput: { eventId, status }\n\ncitas_agendadas (Google Sheets)\nUso: registrar y actualizar todas las citas.\nCampos obligatorios al registrar o modificar:\n\neventId (ID real de Google Calendar, nunca inventado)\n\npropertyId (de db.propiedades)\n\nagentId / agentName\n\ncliente_nombre\n\ncliente_telefono\n\nfecha, hora (start/end)\n\nstatus → \"agendado\" o \"eliminado\" (escrito exactamente así, sin variaciones).\n\nReglas de interacción\n\nPropiedades\n\nSi el usuario menciona un ID o zona, llama a db.propiedades y devuelve ficha con tipo, zona, precio, recámaras, baños, metros², amenidades, link y ubicación.\n\nSi el usuario da filtros (presupuesto, recámaras mínimas, zona, amenidades), llama a db.propiedades con esos filtros. Devuelve 2–3 propiedades en lista con bullets y links. Si no hay match exacto, ofrece alternativas.\n\nFotos\n\nSi el usuario pide fotos, llama imagenes con el propertyId.\n\nNo agregues texto al reply; deja que la herramienta envíe las imágenes.\n\nUbicación\n\nSi el usuario pide dirección, ubicación, “dónde queda” o “mándame la ubicación”:\n\nUsa siempre el campo ubicacion de la propiedad en db.propiedades.\n\nDevuelve directamente el maps_url.\n\nNunca inventes ubicaciones ni direcciones.\n\nAgendar citas\n\nDespués de mostrar propiedades, invita:\n“¿Quieres que agendemos una visita? ¿Qué día y horario te acomoda en los próximos días?”\n\nAntes de intentar agendar, asegúrate de tener nombre y número del cliente.\n\nSi no los tienes, pregunta:\n\n“Perfecto, antes de confirmar la cita ¿me compartes tu nombre completo y número de celular?”\n\nCuando el cliente dé nombre y número → guardar en memoria lead.nombre y lead.telefono.\n\nEl cliente da un día/hora o rango → llamar AGENTES para validar disponibilidad.\n\nSi hay agente disponible → asignar con round-robin.\n\nLlamar AGENDAR con el calendarId del agente y los datos del lead.\n\nAGENDAR devuelve eventId. Ese eventId es el ID oficial de la cita.\n\nRegistrar en citas_agendadas con:\n\neventId\n\npropertyId (de db.propiedades)\n\nagentId, agentName\n\ncliente_nombre, cliente_telefono\n\nfecha/hora (start, end)\n\nstatus = \"agendado\"\n\nResponder al cliente:\n“Perfecto, tu visita quedó confirmada para {fecha} a las {hora} con {Agente}. Si necesitas cancelar o reprogramar, avísame por este medio.”\n\nCancelar citas\n\nSi el cliente pide cancelar:\n\nIdentificar la cita por su eventId (o datos que permitan buscarla en citas_agendadas).\n\nActualizar en citas_agendadas el status a \"eliminado\".\n\nConfirmar al cliente:\n“Tu cita con {Agente} para {fecha} a las {hora} fue cancelada. Si deseas, podemos reprogramar otra fecha.”\n\nEjemplo conversacional\n\nUsuario: “Quiero agendar para el jueves a las 12.”\nAsistente: “Con gusto. Antes de confirmar, ¿me compartes tu nombre completo y tu número de celular?”\n\nUsuario: “Soy Juan Pérez, mi número es 5544332211.”\nAsistente: Llama db.propiedades con filtros → obtiene propertyId=P010 y su ubicación.\nLlama AGENTES (jueves 12:00) → asigna agente.\nLuego llama AGENDAR con calendarId y lead.\nAGENDAR devuelve eventId=abc123.\nLuego registra en citas_agendadas con status=\"agendado\".\nAsistente: “Perfecto Juan, tu visita quedó confirmada para jueves 12:00 con Héctor. Si necesitas cancelar o reprogramar, avísame por este medio.”\n\nUsuario: “Mejor cancela mi cita.”\nAsistente: Busca eventId=abc123 en citas_agendadas y actualiza status=\"eliminado\".\nAsistente: “Tu cita con Héctor para jueves 12:00 fue cancelada. Si quieres, puedo proponerte otra fecha.”"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1328,
+        16
+      ],
+      "id": "05a53913-090a-4cca-b8f3-1c1e416b4df1",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1328,
+        -112
+      ],
+      "id": "ee913652-1912-4a3f-a48e-9c5972776c56",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message_content_type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "6571be58-7ae0-4b3a-9c4d-706d062d2428"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "98a252f3-df54-41c8-8d0f-705fee6eec87",
+                    "leftValue": "={{ $json.message_content_type }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Imagen"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ebf44caf-794d-434c-be9b-88adfc2d34a0",
+                    "leftValue": "={{ $json.message_content_type }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Texto"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "Otro"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -112,
+        16
+      ],
+      "id": "4db162de-8157-4aad-9bd2-1e5525ee76ec",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Normalizacion').item.json.instance_server_url }}/chat/getBase64FromMediaMessage/{{ $('Normalizacion').item.json.instance_name }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Normalizacion').item.json.instance_apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message.key.id",
+              "value": "={{ $('Normalizacion').item.json.message_id }}"
+            },
+            {
+              "name": "convertToMp4",
+              "value": "={{ Boolean(false) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        -176
+      ],
+      "id": "8df6078e-403d-4fbb-a115-7f142004d235",
+      "name": "Get Audio"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "base64",
+        "options": {
+          "mimeType": "={{ $json.mimetype }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        400,
+        -176
+      ],
+      "id": "a6c930b8-fb3e-4949-ad8c-1f99af2f5f4a",
+      "name": "Convertir Audio"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        592,
+        -176
+      ],
+      "id": "e2f65f2b-50a6-4597-bbf1-0ce44527951c",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6e2644e1-fe2b-4523-b3bc-3db62622315c",
+              "name": "content",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        752,
+        -176
+      ],
+      "id": "bb10d49c-9a7a-4142-840c-e70d295318aa",
+      "name": "Audio Content"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6e2644e1-fe2b-4523-b3bc-3db62622315c",
+              "name": "content",
+              "value": "=<imagen>\n{{ $json.content}}\n</imagen>",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        752,
+        16
+      ],
+      "id": "62127243-67cc-458e-8201-d4ebf4e8c42e",
+      "name": "Audio Content1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Normalizacion').item.json.instance_server_url }}/chat/getBase64FromMediaMessage/{{ $('Normalizacion').item.json.instance_name }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Normalizacion').item.json.instance_apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message.key.id",
+              "value": "={{ $('Normalizacion').item.json.message_id }}"
+            },
+            {
+              "name": "convertToMp4",
+              "value": "={{ Boolean(false) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        16
+      ],
+      "id": "fc977c68-4e3b-4f8e-972e-8bb64ce80480",
+      "name": "Get Image"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "base64",
+        "options": {
+          "mimeType": "={{ $json.mimetype }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        400,
+        16
+      ],
+      "id": "c19898ab-5394-4965-97fd-f61d172679f3",
+      "name": "Convertir Imagen"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "text": "Describe la imagen",
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        592,
+        16
+      ],
+      "id": "f221450b-3b76-45a6-8ac9-acd68527826a",
+      "name": "Describe imagen",
+      "credentials": {
+        "openAiApi": {
+          "id": "aKfvNfQbjB1WCvlS",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6070e65d-c2d1-475e-af7c-c8ff0a5b059a",
+              "name": "content",
+              "value": "={{ $json.message_content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        752,
+        192
+      ],
+      "id": "2a66db96-5c22-42e6-891f-70aead4287ca",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d56cc938-d653-4611-96fd-86d5eb56bf9c",
+              "name": "chat_input",
+              "value": "={{ $json.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1088,
+        16
+      ],
+      "id": "cabaa567-e6f4-4fa6-8ea3-48d1ff179fdb",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d9419665-41fc-43b9-aef7-d521a1ba2035",
+              "name": "instance_server_url",
+              "value": "={{ $json.body.server_url }}",
+              "type": "string"
+            },
+            {
+              "id": "c3cb8673-8006-4079-a304-c58ffc267226",
+              "name": "instance_name",
+              "value": "={{ $json.body.instance }}",
+              "type": "string"
+            },
+            {
+              "id": "e462da04-7f8b-4fbe-aacd-7956666c2ede",
+              "name": "instance_apikey",
+              "value": "={{ $json.body.apikey }}",
+              "type": "string"
+            },
+            {
+              "id": "b06da722-eea2-4f28-a2d4-7bcc6592b952",
+              "name": "message_id",
+              "value": "={{ $json.body.data.key.id }}",
+              "type": "string"
+            },
+            {
+              "id": "5ecbe629-f4d0-4bdf-8c78-903f311bc273",
+              "name": "message_chat_id_sender",
+              "value": "={{ $json.body.sender }}",
+              "type": "string"
+            },
+            {
+              "id": "cbb05e7c-4912-4965-bcf4-cefd9418b39f",
+              "name": "message_content_type",
+              "value": "={{ $json.body.data.message.extendedTextMessage ? 'text': '' }}{{ $json.body.data.message.conversation ? 'text': '' }}{{ $json.body.data.message.audioMessage ? 'audio': '' }}{{ $json.body.data.message.imageMessage ? 'image': '' }}",
+              "type": "string"
+            },
+            {
+              "id": "d6fa8877-dee6-468b-a51e-8fdc36dc190f",
+              "name": "message_content",
+              "value": "={{ $json.body.data.message.extendedTextMessage?.text || '' }} {{ $json.body.data.message.imageMessage?.caption || '' }} {{ $json.body.data.message.conversation || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "f122b51f-8a93-439e-85fb-c370e7f4f6b8",
+              "name": "message_timestamp",
+              "value": "={{ $json.body.date_time }}",
+              "type": "string"
+            },
+            {
+              "id": "e10a7e61-cffe-44fb-9b13-e0c199ebd866",
+              "name": "user_name",
+              "value": "={{ $json.body.data.pushName }}",
+              "type": "string"
+            },
+            {
+              "id": "1c280646-7eb8-4118-9e8d-432f04a763b7",
+              "name": "user_number",
+              "value": "={{ $json.body.data.key.remoteJid }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        48
+      ],
+      "id": "1245cc67-94d4-4e6a-98ba-f90095c79752",
+      "name": "Normalizacion"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Normalizacion').item.json.instance_server_url }}/message/sendText/{{ $('Normalizacion').item.json.instance_name }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Normalizacion').item.json.instance_apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Normalizacion').item.json.user_number }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.output }}"
+            },
+            {
+              "name": "delay",
+              "value": "={{ 1000 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1744,
+        16
+      ],
+      "id": "56014512-f36e-4bd4-bcb4-a04fddfd7deb",
+      "name": "Mandar mensaje"
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "path": "5d4a1f91-324f-4ae0-a123-78854ac49f57"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -576,
+        48
+      ],
+      "id": "804d022e-ad96-462e-9ef7-53e21f89d27f",
+      "name": "Wait",
+      "webhookId": "5d4a1f91-324f-4ae0-a123-78854ac49f57"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Normalizacion').item.json.user_number }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1440,
+        -112
+      ],
+      "id": "b8397c21-99dd-40d7-bad6-9e3ff0ad473e",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "9iRvr6cD7drCbVTk",
+          "name": "Postgres Supabase Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "=Nombre: fotos\nDescripción: Manda fotos de la propiedad al usuario\n\nCómo activarla:\n- Si el usuario pide fotos o imágenes de un inmueble, llama a esta herramienta.\n- Usa el `Id` si está disponible (ej. \"P012\").\n- Si no se menciona ID, usa filtros de búsqueda (zona, presupuesto, recámaras) para elegir el inmueble más probable.\n",
+        "workflowId": {
+          "__rl": true,
+          "value": "2K2cjhpRMSAKa7Xu",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/2K2cjhpRMSAKa7Xu",
+          "cachedResultName": "Inmobiliaria Imagenes"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id', `El ID, de la propiedad la cual el usuario quiere obtener imágenes`, 'string') }}",
+            "numero": "={{ $('Normalizacion').item.json.user_number }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "numero",
+              "displayName": "numero",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        1856,
+        320
+      ],
+      "id": "f6f62035-caa4-48d8-b884-f01973ecd559",
+      "name": "IMAGENES"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8",
+          "mode": "list",
+          "cachedResultName": "INMOBILIARIA DDBB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Propiedades",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1552,
+        304
+      ],
+      "id": "3bc18d9d-6b25-4a2d-907b-c806e2097605",
+      "name": "DB Propiedades",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Utiliza esta herramienta para acceder a la db de los agentes de la inmobiliaria",
+        "documentId": {
+          "__rl": true,
+          "value": "1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8",
+          "mode": "list",
+          "cachedResultName": "INMOBILIARIA DDBB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 809038144,
+          "mode": "list",
+          "cachedResultName": "Ejecutivos de ventas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit#gid=809038144"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1312,
+        304
+      ],
+      "id": "30236728-4ef6-4700-a4d2-098b411edfb0",
+      "name": "AGENTES",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Utiiza esta herramienta para agendar las citas",
+        "calendar": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "useDefaultReminders": false,
+        "additionalFields": {
+          "description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+          "summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1168,
+        304
+      ],
+      "id": "51756334-aa26-43ef-947b-7499f366caaa",
+      "name": "AGENDAR",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "QM6it0rPeasJ1pJO",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "Utiliza esta herramienta cuando tengas que mandar la ubicacion de la propiedad al usuario",
+        "workflowId": {
+          "__rl": true,
+          "value": "vIyDWKEmEFsErT9M",
+          "mode": "list",
+          "cachedResultName": "Inmobiliaria / Ubicacion"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id_propiedad": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id_propiedad', `Manda el id de la propiedad`, 'number') }}"
+          },
+          "matchingColumns": [
+            "id_propiedad"
+          ],
+          "schema": [
+            {
+              "id": "id_propiedad",
+              "displayName": "id_propiedad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "number",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        1728,
+        320
+      ],
+      "id": "174040b1-909a-4a9d-a5d8-6eaa6bc86b78",
+      "name": "UBICACION"
+    },
+    {
+      "parameters": {
+        "content": "## Automatización para Inmobiliarias\n# [Guide](https://www.skool.com/rubin-automatizaciones-ia-n8n-9701/robame-esta-automatizacion-para-inmobiliarias-3000usd-n8n-paso-a-paso)\n\nhttps://youtu.be/tULVMrIvWSg",
+        "height": 176,
+        "width": 448
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -416,
+        -336
+      ],
+      "typeVersion": 1,
+      "id": "06c9e1c4-dc3e-477e-96d7-72957df8cc8d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8",
+          "mode": "list",
+          "cachedResultName": "INMOBILIARIA DDBB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1615782114,
+          "mode": "list",
+          "cachedResultName": "Reg. Citas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cGPzbXAtcbcN5iuYZuyjXEf2iqgVOP38AD2Cg9gkjl8/edit#gid=1615782114"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_CITA ",
+              "displayName": "ID_CITA ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre_Cliente",
+              "displayName": "Nombre_Cliente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Numero_Cliente ",
+              "displayName": "Numero_Cliente ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID_Propiedad",
+              "displayName": "ID_Propiedad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre_Propiedad",
+              "displayName": "Nombre_Propiedad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre_Ejecutivo",
+              "displayName": "Nombre_Ejecutivo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID_ejecutivo",
+              "displayName": "ID_ejecutivo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Horario y Día ",
+              "displayName": "Horario y Día ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estatus",
+              "displayName": "Estatus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Execution_ID",
+              "displayName": "Execution_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        304
+      ],
+      "id": "aad8278b-6db9-419e-95bd-42e5482f3467",
+      "name": "AGENDAR CITA",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgE1zX4Tu6qFLtP2",
+          "name": "Google Sheets GB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f62bf267-d8a1-42e5-bfb1-8284ae3634e8",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -784,
+        48
+      ],
+      "id": "c8b534f1-357a-4b7c-9ced-8233823d91f6",
+      "name": "Webhook to Evolution API",
+      "webhookId": "f62bf267-d8a1-42e5-bfb1-8284ae3634e8"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-21T00:45:43.657Z",
+      "createdAt": "2025-11-21T00:45:43.657Z",
+      "role": "workflow:owner",
+      "workflowId": "dlK3LLmDARjr0arp",
+      "projectId": "epI1cymQzCzDlQMH"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-11-19T22:36:45.524Z",
+      "createdAt": "2025-11-19T22:36:45.524Z",
+      "id": "oOBV7K2KRexZs41J",
+      "name": "🟠 Rubin Autom. AI"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-21T01:09:19.000Z",
+  "versionId": "e207c8bc-4444-48f7-9829-9e0532d20080"
+}
